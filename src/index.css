@@ -4,6 +4,7 @@
   display: block !important;
   float: right;
   width: 100%;
+  background-color: #333333;
 }
 .navbar-brand{
   float: right;
@@ -30,7 +31,7 @@
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  min-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
