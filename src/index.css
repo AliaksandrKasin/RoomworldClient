@@ -1,24 +1,15 @@
 
-
 .navbar{
-  display: block !important;
-  float: right;
-  width: 100%;
+min-width: 400px;
   background-color: #333333;
 }
-.navbar-brand{
-  float: right;
+.navbar{
+justify-content: flex-end!important;
 }
-/**/
 
-/**/
-.container {
-  max-width: 960px;
-  top: 200px;
-  position: absolute;
-  width: 400px !important;
-  left: 40%;
-
+.container-fluid {
+  max-width: 400px !important;
+  margin-top: 200px;
 }
 
 .border-top { border-top: 1px solid #e5e5e5; }
