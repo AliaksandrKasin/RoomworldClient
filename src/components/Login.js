@@ -2,6 +2,7 @@ import React from 'react';
 import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import ErrorMessage from './ErrorMessage';
 
 
 class Login extends React.Component {
@@ -14,7 +15,8 @@ class Login extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errorMessage: false
         };
     }
 
@@ -26,28 +28,25 @@ class Login extends React.Component {
         this.setState({password: e.target.value})
     }
 
-
-
     signIn() {
-        alert("sing in");
         let tokenKey = 'accessToken';
-        axios.post('https://localhost:5001/token', {
-            email: this.state.email,
-            password: this.state.password
-        })
-            .then(function (response) {
-                console.log(response.data.a);
-                localStorage.setItem(tokenKey, response.data.accessToken);
-                //window.location.href = '/';
+            axios.post('https://localhost:5001/token', {
+                email: this.state.email,
+                password: this.state.password
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then((response) => {
+                    localStorage.setItem(tokenKey, response.data.accessToken);
+                    window.location.href = '/home';
+                })
+                .catch((error) => {
+                    this.setState({errorMessage: true});
+                });
     }
 
     render() {
-        return <div className='container-fluid'>
+        return <div className='container-fluid login'>
             <form className="form-signin text-center">
+                <ErrorMessage state={this.state.errorMessage}/>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
                 <input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control"

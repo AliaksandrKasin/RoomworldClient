@@ -3,6 +3,7 @@ import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
+
 class Registration extends React.Component {
     constructor(props) {
         super(props);
@@ -20,8 +21,11 @@ class Registration extends React.Component {
             numberPhone: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            confirmInvalid: true
         };
+
+
     }
 
     handleNameChange(e) {
@@ -44,8 +48,13 @@ class Registration extends React.Component {
         this.setState({password: e.target.value});
     }
 
-    handleConfPassChange(e){
+    handleConfPassChange(e) {
         this.setState({confirmPassword: e.target.value});
+        if (e.target.value === this.state.password) {
+            this.setState({confirmInvalid: true});
+        } else {
+            this.setState({confirmInvalid: false});
+        }
     }
 
 
@@ -61,6 +70,7 @@ class Registration extends React.Component {
         })
             .then(function (response) {
                 localStorage.setItem(tokenKey, response.data.accessToken);
+                window.location.href = '/home';
                 console.log(response);
             })
             .catch(function (error) {
@@ -69,36 +79,43 @@ class Registration extends React.Component {
     }
 
     render() {
-        return <div className='container-fluid'>
+        return <div className='container-fluid reg'>
             <form>
                 <div className="mb-3">
                     <label htmlFor="first-name">First name</label>
-                        <input type="text" onChange={this.handleNameChange} className="form-control" id="first-name" placeholder="First name" required/>
+                    <input type="text" onChange={this.handleNameChange} className="form-control" id="first-name"
+                           placeholder="First name" required/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="last-name">Last name</label>
-                    <input  type="text" onChange={this.handleLastNameChange} className="form-control" id="last-name" placeholder="Last name" required/>
+                    <input type="text" onChange={this.handleLastNameChange} className="form-control" id="last-name"
+                           placeholder="Last name" required/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="number-phone">Number phone</label>
-                    <input type="tel" onChange={this.handleNumberPhoneChange} className="form-control" id="number-phone" placeholder="+375(33) 111-11-11'" required/>
+                    <input type="tel" onChange={this.handleNumberPhoneChange} className="form-control" id="number-phone"
+                           placeholder="+375(33) 111-11-11'" required/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="email">Email</label>
-                    <input type="email" onChange={this.handleEmailChange} className="form-control" id="email" placeholder="name@example.com" required/>
+                    <input type="email" onChange={this.handleEmailChange} className="form-control" id="email"
+                           placeholder="name@example.com" required/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="password">Password</label>
-                    <input type="password" onChange={this.handlePasswordChange} className="form-control" id="password" placeholder="" required autoComplete=""/>
+                    <input type="password" onChange={this.handlePasswordChange} className="form-control" id="password"
+                           placeholder="" required autoComplete=""/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="confirm-password">Confirm password</label>
-                    <input type="password" className="form-control" id="confirm-password" placeholder="" required autoComplete=""/>
+                    <input type="password" className="form-control" id="confirm-password" placeholder="" required
+                           autoComplete=""/>
                 </div>
+
 
                 <div className='mb-3 text-center'>
                     <button onClick={this.signUp} className="btn btn-lg btn-primary" type="button">Create account

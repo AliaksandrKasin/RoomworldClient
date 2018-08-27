@@ -1,3 +1,33 @@
+.intl-tel-input {
+  display: table-cell;
+}
+.intl-tel-input .selected-flag {
+  z-index: 4;
+}
+.intl-tel-input .country-list {
+  z-index: 5;
+}
+.input-group .intl-tel-input .form-control {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+}
+
+
+
+
+.error-message{
+  color: red;
+}
+
+.reg{
+  margin-top: 60px;
+}
+
+.login{
+  margin-top: 200px;
+}
 
 .navbar{
 min-width: 400px;
@@ -9,7 +39,6 @@ justify-content: flex-end!important;
 
 .container-fluid {
   max-width: 400px !important;
-  margin-top: 200px;
 }
 
 .border-top { border-top: 1px solid #e5e5e5; }

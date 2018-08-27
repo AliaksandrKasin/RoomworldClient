@@ -1,12 +1,56 @@
 import React from "react";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Home from "./Home";
+import Login from "./Login";
+import Registration from "./Registration";
 
 class Menu extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.changeLoginState = this.changeLoginState.bind(this);
+
+        this.state = {
+            loginState: this.loginState(),
+            singUpHiden: this.checkLocalStorage()
+        };
+
+
+    }
+
+    loginState(){
+        return localStorage.getItem('accessToken') ? 'Sing out' : 'Sing in';
+    }
+
+    checkLocalStorage(){
+        return !!localStorage.getItem('accessToken');
+    }
+
+    changeLoginState() {
+        if(localStorage.getItem('accessToken')){
+            this.setState({loginState: 'Sing out', singUpHeden: true});
+        } else {
+            this.setState({loginState: 'Sing in', singUpHeden: false});
+        }
+
+    }
+
     render() {
-        return <nav className='navbar'>
-            <a className='navbar-brand' href='/support'>Support</a>
-            <a className='navbar-brand' href='/registration'>Sing Up</a>
-            <a className='navbar-brand' href='/login'>Sing In</a>
-        </nav>
+        return <div>
+            <nav className='navbar'>
+                <a className='navbar-brand'  href='/support'>Support</a>
+                <a className='navbar-brand' hidden={this.state.singUpHiden} href='/registration'>Sing Up</a>
+                <a className='navbar-brand' onClick={()=>{localStorage.removeItem('accessToken')}} href='/login'>{this.state.loginState}</a>
+            </nav>
+            <BrowserRouter>
+                <Switch>
+                    <Route path='/home' component={Home}/>
+                    <Route path='/login' component={Login}/>
+                    <Route path={'/registration'} component={Registration}/>
+                </Switch>
+            </BrowserRouter>
+        </div>
     }
 }
+
 export default Menu
