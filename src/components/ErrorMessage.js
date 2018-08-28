@@ -4,7 +4,7 @@ class ErrorMessage extends React.Component {
     render() {
         if (this.props.state) {
             return <div className='error-message'>
-                <strong>Error!</strong> Incorrect Email or password.
+                {this.props.content}
             </div>
         }
         else {

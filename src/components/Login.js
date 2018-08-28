@@ -46,7 +46,7 @@ class Login extends React.Component {
     render() {
         return <div className='container-fluid login'>
             <form className="form-signin text-center">
-                <ErrorMessage state={this.state.errorMessage}/>
+                <ErrorMessage state={this.state.errorMessage} content="Incorrect Email or password."/>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
                 <input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control"
