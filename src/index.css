@@ -19,7 +19,7 @@
 .btn-primary {
     background-color: white !important;
     color: blue !important;
-    border-color: #333333!important;
+    border-color: #333333 !important;
 }
 
 .navbar {
@@ -57,7 +57,6 @@
 
 .form-signin {
     width: 100%;
-    min-width: 330px;
     padding: 15px;
     margin: 0 auto;
 }

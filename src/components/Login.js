@@ -12,7 +12,7 @@ class Login extends React.Component {
         this.signIn = this.signIn.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-
+        if (!!localStorage.getItem('accessToken')) window.location.href = '/home';
         this.state = {
             email: '',
             password: '',

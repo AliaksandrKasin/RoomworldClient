@@ -14,20 +14,22 @@ class Menu extends React.Component {
         };
     }
 
-    loginState(){
+    loginState() {
         return localStorage.getItem('accessToken') ? 'Sing out' : 'Sing in';
     }
 
-    checkLocalStorage(){
+    checkLocalStorage() {
         return !!localStorage.getItem('accessToken');
     }
 
     render() {
         return <div>
             <nav className='navbar'>
-                <a className='navbar-brand'  href='/support'>Support</a>
+                <a className='navbar-brand' href='/support'>Support</a>
                 <a className='navbar-brand' hidden={this.state.singUpHiden} href='/registration'>Sing Up</a>
-                <a className='navbar-brand' onClick={()=>{localStorage.removeItem('accessToken')}} href='/login'>{this.state.loginState}</a>
+                <a className='navbar-brand' onClick={() => {
+                    localStorage.removeItem('accessToken')
+                }} href='/login'>{this.state.loginState}</a>
             </nav>
             <BrowserRouter>
                 <Switch>

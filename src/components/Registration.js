@@ -157,11 +157,9 @@ class Registration extends React.Component {
             .then(function (response) {
                 localStorage.setItem(tokenKey, response.data.accessToken);
                 window.location.href = '/home';
-                //console.log(response);
             })
             .catch((error) => {
                 this.setState({emailValid: true, errorMessageEmail: 'This email already exist.'})
-                //console.log(error.response.status);
             });
     }
 
@@ -174,7 +172,7 @@ class Registration extends React.Component {
                     <ErrorMessage state={this.state.nameValid} content='This field required'/>
                     <input ref="name" type="text" onChange={this.handleNameChange} className="form-control"
                            id="first-name"
-                           placeholder="First name" required onBlur={this.checkName}/>
+                           placeholder="First name" required onBlur={this.checkName} style={{borderColor: (this.state.nameValid) ? 'red':''}}/>
                 </div>
 
                 <div className="mb-3">
@@ -182,7 +180,7 @@ class Registration extends React.Component {
                     <ErrorMessage state={this.state.lastNameValid} content='This field required'/>
                     <input ref="lastName" type="text" onChange={this.handleLastNameChange} className="form-control"
                            id="last-name"
-                           placeholder="Last name" required onBlur={this.checkLastName}/>
+                           placeholder="Last name" required onBlur={this.checkLastName} style={{borderColor: (this.state.lastNameValid) ? 'red':''}}/>
                 </div>
 
                 <div className="mb-3">
@@ -190,7 +188,7 @@ class Registration extends React.Component {
                     <ErrorMessage state={this.state.numberPhoneValid} content='Incorrect number phone'/>
                     <input ref="phoneNumber" type="tel" onChange={this.handleNumberPhoneChange} className="form-control"
                            id="number-phone"
-                           placeholder="+375(33) 111-11-11'" required onBlur={this.checkPhoneNumber}/>
+                           placeholder="+375(33) 111-11-11" required onBlur={this.checkPhoneNumber} style={{borderColor: (this.state.numberPhoneValid) ? 'red':''}}/>
                 </div>
 
                 <div className="mb-3">
@@ -198,7 +196,7 @@ class Registration extends React.Component {
                     <ErrorMessage state={this.state.emailValid} content={this.state.errorMessageEmail}/>
                     <input ref="email" type="email" onChange={this.handleEmailChange} className="form-control"
                            id="email"
-                           placeholder="name@example.com" required onBlur={this.checkEmail}/>
+                           placeholder="name@example.com" required onBlur={this.checkEmail} style={{borderColor: (this.state.emailValid) ? 'red':''}}/>
                 </div>
 
                 <div className="mb-3">
@@ -206,7 +204,7 @@ class Registration extends React.Component {
                     <ErrorMessage state={this.state.passwordValid} content='Incorrect password'/>
                     <input ref="password" type="password" onChange={this.handlePasswordChange} className="form-control"
                            id="password"
-                           placeholder="" required autoComplete="" onBlur={this.checkPassword}/>
+                           placeholder="" required autoComplete="" onBlur={this.checkPassword} style={{borderColor: (this.state.passwordValid) ? 'red':''}}/>
                 </div>
 
                 <div className="mb-3">
@@ -216,7 +214,7 @@ class Registration extends React.Component {
                            placeholder=""
                            required
                            onChange={this.handleConfPassChange}
-                           autoComplete="" onBlur={this.checkConfirm}/>
+                           autoComplete="" onBlur={this.checkConfirm} style={{borderColor: (this.state.confirmValid) ? 'red':''}}/>
                 </div>
 
 
