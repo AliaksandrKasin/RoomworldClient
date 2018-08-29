@@ -10,7 +10,7 @@ class Menu extends React.Component {
         super(props);
         this.state = {
             loginState: this.loginState(),
-            singUpHiden: this.checkLocalStorage()
+            singUpHidden: this.checkLocalStorage()
         };
     }
 
@@ -26,7 +26,7 @@ class Menu extends React.Component {
         return <div>
             <nav className='navbar'>
                 <a className='navbar-brand' href='/support'>Support</a>
-                <a className='navbar-brand' hidden={this.state.singUpHiden} href='/registration'>Sing Up</a>
+                <a className='navbar-brand' hidden={this.state.singUpHidden} href='/registration'>Sing Up</a>
                 <a className='navbar-brand' onClick={() => {
                     localStorage.removeItem('accessToken')
                 }} href='/login'>{this.state.loginState}</a>

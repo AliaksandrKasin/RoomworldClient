@@ -4,6 +4,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ErrorMessage from "./ErrorMessage";
 import {SERVER} from "../constants/Constants";
+import FieldRegistration from "./FieldRegistration";
 
 
 class Registration extends React.Component {
@@ -44,7 +45,7 @@ class Registration extends React.Component {
     }
 
     static validateEmail(email) {
-        let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let reg = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return reg.test(String(email).toLowerCase());
     }
 
@@ -174,6 +175,7 @@ class Registration extends React.Component {
                            id="first-name"
                            placeholder="First name" required onBlur={this.checkName} style={{borderColor: (this.state.nameValid) ? 'red':''}}/>
                 </div>
+                <FieldRegistration id/>
 
                 <div className="mb-3">
                     <label htmlFor="last-name">Last name</label>
