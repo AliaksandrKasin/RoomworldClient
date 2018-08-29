@@ -3,7 +3,7 @@ import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
-
+import {SERVER} from "../constants/Constants";
 
 class Login extends React.Component {
 
@@ -30,17 +30,17 @@ class Login extends React.Component {
 
     signIn() {
         let tokenKey = 'accessToken';
-            axios.post('https://localhost:5001/token', {
-                email: this.state.email,
-                password: this.state.password
+        axios.post(SERVER + '/token', {
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((response) => {
+                localStorage.setItem(tokenKey, response.data.accessToken);
+                window.location.href = '/home';
             })
-                .then((response) => {
-                    localStorage.setItem(tokenKey, response.data.accessToken);
-                    window.location.href = '/home';
-                })
-                .catch((error) => {
-                    this.setState({errorMessage: true});
-                });
+            .catch((error) => {
+                this.setState({errorMessage: true});
+            });
     }
 
     render() {
@@ -55,12 +55,8 @@ class Login extends React.Component {
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control"
                        placeholder="Password" required autoComplete="on"/>
-                <div className="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
-                    </label>
-                </div>
-                <button onClick={this.signIn} className="btn btn-lg btn-primary btn-block" type='button'>Sing in
+
+                <button onClick={this.signIn} className="btn btn-lg btn-primary" type='button'>Sing in
                 </button>
             </form>
         </div>

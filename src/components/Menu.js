@@ -8,14 +8,10 @@ class Menu extends React.Component {
 
     constructor(props) {
         super(props);
-        this.changeLoginState = this.changeLoginState.bind(this);
-
         this.state = {
             loginState: this.loginState(),
             singUpHiden: this.checkLocalStorage()
         };
-
-
     }
 
     loginState(){
@@ -24,15 +20,6 @@ class Menu extends React.Component {
 
     checkLocalStorage(){
         return !!localStorage.getItem('accessToken');
-    }
-
-    changeLoginState() {
-        if(localStorage.getItem('accessToken')){
-            this.setState({loginState: 'Sing out', singUpHeden: true});
-        } else {
-            this.setState({loginState: 'Sing in', singUpHeden: false});
-        }
-
     }
 
     render() {

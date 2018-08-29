@@ -12,7 +12,7 @@ ReactDOM.render(<div>
         <BrowserRouter>
             <Switch>
                 <Route path='/' component={Menu}/>
-                <Route path='*' exact={true} component={NotFound}/>
+                <Route path='*' component={NotFound}/>
             </Switch>
         </BrowserRouter>
     </div>,

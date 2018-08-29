@@ -9,7 +9,8 @@ class FieldRegistration extends React.Component {
         this.validateInput = this.validateInput.bind(this);
 
         this.state = {
-            inputValid: 0,
+            value:'',
+            inputValid: false,
             errorMessage: '',
             colorInputBorder: '',
         }
@@ -23,26 +24,27 @@ class FieldRegistration extends React.Component {
     validateInput() {
         let value = this.refs.input.value;
         if (this.props.required && value === '') {
-            this.setState({errorMessage: 'This field required.', colorInputBorder: 'red'});
+            this.setState({errorMessage: 'This field required.', colorInputBorder: 'red', inputValid:false});
         } else if (!this.validateEmail(value) && this.props.type === 'email') {
-            this.setState({errorMessage: 'Incorrect email address.', colorInputBorder: 'red'});
+            this.setState({errorMessage: 'Incorrect email address.', colorInputBorder: 'red', inputValid:false});
         } else {
-            this.setState({inputValid: true});
+            this.setState({inputValid: true, errorMessage: '', colorInputBorder: ''});
         }
 
 
     }
 
     onChange(e) {
-        this.setState({value: e.target.value})
+        this.validateInput();
+        this.setState({value: e.target.value});
     }
 
     render() {
         return <div className="mb-3">
             <label htmlFor={this.props.id}>{this.props.content}</label>
-            <div class="error-message">{this.state.errorMessage}</div>
+            <div className="error-message">{this.state.errorMessage}</div>
             <input ref='input' type={this.props.type} className="form-control" id={this.props.id}
-                   onChange={this.props.onChange} onBlur={this.validateInput}
+                   onChange={(e)=>{this.props.onChange(this.state.value,this.state.inputValid); this.onChange(e)}}
                    placeholder={this.props.placeholder} value={this.props.value}
                    style={{borderColor: this.state.colorInputBorder}}/>
         </div>

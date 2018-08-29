@@ -2,8 +2,8 @@ import React from "react";
 import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import FieldRegistration from "./FieldRegistration";
 import ErrorMessage from "./ErrorMessage";
+import {SERVER} from "../constants/Constants";
 
 
 class Registration extends React.Component {
@@ -16,13 +16,12 @@ class Registration extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleConfPassChange = this.handleConfPassChange.bind(this);
-        this.onBlurName = this.onBlurName.bind(this);
-        this.onBlurLastName = this.onBlurLastName.bind(this);
-        this.onBlurPhoneNumber = this.onBlurPhoneNumber.bind(this);
-        this.onBlurEmail = this.onBlurEmail.bind(this);
-        this.onBlurPassword = this.onBlurPassword.bind(this);
-        this.onBlurConfirm = this.onBlurConfirm.bind(this);
-        this.validateInput = this.validateInput.bind(this);
+        this.checkName = this.checkName.bind(this);
+        this.checkLastName = this.checkLastName.bind(this);
+        this.checkPhoneNumber = this.checkPhoneNumber.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
+        this.checkPassword = this.checkPassword.bind(this);
+        this.checkConfirm = this.checkConfirm.bind(this);
 
         this.state = {
             name: '',
@@ -44,67 +43,74 @@ class Registration extends React.Component {
 
     }
 
-
-    validateInput(calback) {
-        if (this.state.name === '') {
-            this.setState({nameValid: true})
-        } else {
-            this.setState({nameValid: false})
-        }
-        calback();
-    }
-
-    validateEmail(email) {
+    static validateEmail(email) {
         let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return reg.test(String(email).toLowerCase());
     }
 
-    onBlurName() {
-        if (this.state.name === '') {
-            this.setState({nameValid: true})
+    checkName() {
+        let value = this.refs.name.value;
+        if (value === '') {
+            this.setState({nameValid: true});
+            return true;
         } else {
-            this.setState({nameValid: false})
+            this.setState({nameValid: false});
+            return false;
         }
     }
 
-    onBlurLastName() {
-        if (this.state.lastName === '') {
-            this.setState({lastNameValid: true})
+    checkLastName() {
+        let value = this.refs.lastName.value;
+        if (value === '') {
+            this.setState({lastNameValid: true});
+            return true;
         } else {
-            this.setState({lastNameValid: false})
+            this.setState({lastNameValid: false});
+            return false;
         }
     }
 
-    onBlurPhoneNumber() {
-        if (this.state.numberPhone === '') {
-            this.setState({numberPhoneValid: true})
+    checkPhoneNumber() {
+        let value = this.refs.phoneNumber.value;
+        if (value === '') {
+            this.setState({numberPhoneValid: true});
+            return true;
         } else {
-            this.setState({numberPhoneValid: false})
+            this.setState({numberPhoneValid: false});
+            return false;
         }
     }
 
-    onBlurEmail() {
-        let value = this.state.email;
-        if (value === '' || !this.validateEmail(value)) {
-            this.setState({emailValid: true})
+    checkEmail() {
+        let value = this.refs.email.value;
+        if (value === '' || !Registration.validateEmail(value)) {
+            this.setState({emailValid: true});
+            return true;
         } else {
-            this.setState({emailValid: false})
+            this.setState({emailValid: false});
+            return false;
         }
     }
 
-    onBlurPassword() {
-        if (this.state.password.length < 6) {
+    checkPassword() {
+        let value = this.refs.password.value;
+        if (value.length < 6) {
             this.setState({passwordValid: true});
+            return true;
         } else {
             this.setState({passwordValid: false});
+            return false;
         }
     }
 
-    onBlurConfirm() {
-        if (this.state.confirmPassword === '' || this.state.confirmPassword !== this.state.password) {
+    checkConfirm() {
+        let value = this.refs.confirmPassword.value;
+        if (value === '' || value !== this.refs.password.value) {
             this.setState({confirmValid: true});
+            return true;
         } else {
             this.setState({confirmValid: false});
+            return false;
         }
     }
 
@@ -134,76 +140,83 @@ class Registration extends React.Component {
     }
 
     signUp() {
-        this.validateInput(function () {
-            if (this.state.nameValid) {
-                alert("dasfsd");
-                return;
-            }
-            let tokenKey = 'accessToken';
-            axios.post('https://localhost:5001/registration', {
-                name: this.state.name,
-                surname: this.state.lastName,
-                phoneNumber: this.state.numberPhone,
-                email: this.state.email,
-                password: this.state.password,
-                role: "user"
-            })
-                .then(function (response) {
-                    localStorage.setItem(tokenKey, response.data.accessToken);
-                    window.location.href = '/home';
-                    console.log(response);
-                })
-                .catch((error) => {
-                    this.setState({emailValid: true, errorMessageEmail: 'This email exist.'})
-                    console.log(error.response.status);
-                });
-        });
 
+        if (this.checkName() || this.checkLastName() || this.checkPhoneNumber() || this.checkEmail() ||
+            this.checkPassword() || this.checkConfirm()) {
+            return;
+        }
+        let tokenKey = 'accessToken';
+        axios.post(SERVER + '/registration', {
+            name: this.state.name,
+            surname: this.state.lastName,
+            phoneNumber: this.state.numberPhone,
+            email: this.state.email,
+            password: this.state.password,
+            role: "user"
+        })
+            .then(function (response) {
+                localStorage.setItem(tokenKey, response.data.accessToken);
+                window.location.href = '/home';
+                //console.log(response);
+            })
+            .catch((error) => {
+                this.setState({emailValid: true, errorMessageEmail: 'This email already exist.'})
+                //console.log(error.response.status);
+            });
     }
 
     render() {
         return <div className='container-fluid reg'>
             <form>
+
                 <div className="mb-3">
                     <label htmlFor="first-name">First name</label>
                     <ErrorMessage state={this.state.nameValid} content='This field required'/>
-                    <input type="text" onChange={this.handleNameChange} className="form-control" id="first-name"
-                           placeholder="First name" required/>
+                    <input ref="name" type="text" onChange={this.handleNameChange} className="form-control"
+                           id="first-name"
+                           placeholder="First name" required onBlur={this.checkName}/>
                 </div>
+
                 <div className="mb-3">
                     <label htmlFor="last-name">Last name</label>
                     <ErrorMessage state={this.state.lastNameValid} content='This field required'/>
-                    <input type="text" onChange={this.handleLastNameChange} className="form-control" id="last-name"
-                           placeholder="Last name" required/>
+                    <input ref="lastName" type="text" onChange={this.handleLastNameChange} className="form-control"
+                           id="last-name"
+                           placeholder="Last name" required onBlur={this.checkLastName}/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="number-phone">Number phone</label>
                     <ErrorMessage state={this.state.numberPhoneValid} content='Incorrect number phone'/>
-                    <input type="tel" onChange={this.handleNumberPhoneChange} className="form-control" id="number-phone"
-                           placeholder="+375(33) 111-11-11'" required/>
+                    <input ref="phoneNumber" type="tel" onChange={this.handleNumberPhoneChange} className="form-control"
+                           id="number-phone"
+                           placeholder="+375(33) 111-11-11'" required onBlur={this.checkPhoneNumber}/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="email">Email</label>
                     <ErrorMessage state={this.state.emailValid} content={this.state.errorMessageEmail}/>
-                    <input type="email" onChange={this.handleEmailChange} className="form-control" id="email"
-                           placeholder="name@example.com" required/>
+                    <input ref="email" type="email" onChange={this.handleEmailChange} className="form-control"
+                           id="email"
+                           placeholder="name@example.com" required onBlur={this.checkEmail}/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="password">Password</label>
                     <ErrorMessage state={this.state.passwordValid} content='Incorrect password'/>
-                    <input type="password" onChange={this.handlePasswordChange} className="form-control" id="password"
-                           placeholder="" required autoComplete=""/>
+                    <input ref="password" type="password" onChange={this.handlePasswordChange} className="form-control"
+                           id="password"
+                           placeholder="" required autoComplete="" onBlur={this.checkPassword}/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="confirm-password">Confirm password</label>
                     <ErrorMessage state={this.state.confirmValid} content='Incorrect password'/>
-                    <input type="password" className="form-control" id="confirm-password" placeholder="" required
+                    <input ref="confirmPassword" type="password" className="form-control" id="confirm-password"
+                           placeholder=""
+                           required
                            onChange={this.handleConfPassChange}
-                           autoComplete=""/>
+                           autoComplete="" onBlur={this.checkConfirm}/>
                 </div>
 
 
