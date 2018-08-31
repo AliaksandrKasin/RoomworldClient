@@ -24,7 +24,7 @@ class Menu extends React.Component {
 
     render() {
         return <div>
-            <nav className='navbar'>
+            <nav className='navbar border-bottom bo'>
                 <a className='navbar-brand' href='/support'>Support</a>
                 <a className='navbar-brand' hidden={this.state.singUpHidden} href='/registration'>Sing Up</a>
                 <a className='navbar-brand' onClick={() => {

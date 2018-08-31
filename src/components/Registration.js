@@ -175,7 +175,6 @@ class Registration extends React.Component {
                            id="first-name"
                            placeholder="First name" required onBlur={this.checkName} style={{borderColor: (this.state.nameValid) ? 'red':''}}/>
                 </div>
-                <FieldRegistration id/>
 
                 <div className="mb-3">
                     <label htmlFor="last-name">Last name</label>
