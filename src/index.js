@@ -8,7 +8,6 @@ import Menu from './components/Menu'
 
 
 ReactDOM.render(<div>
-
         <BrowserRouter>
             <Switch>
                 <Route path='/' component={Menu}/>

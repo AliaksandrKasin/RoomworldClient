@@ -4,7 +4,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ErrorMessage from "./ErrorMessage";
 import {SERVER} from "../constants/Constants";
-import FieldRegistration from "./FieldRegistration";
 
 
 class Registration extends React.Component {
