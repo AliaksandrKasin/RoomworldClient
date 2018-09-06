@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Switch, Route} from '../node_modules/react-router-dom'
 import NotFound from './components/NotFound'
 import Menu from './components/Menu'
+import Footer from "./components/footer";
 
 
 ReactDOM.render(<div>
@@ -14,6 +15,7 @@ ReactDOM.render(<div>
                 <Route path='*' component={NotFound}/>
             </Switch>
         </BrowserRouter>
+
     </div>,
     document.getElementById('root')
 );
