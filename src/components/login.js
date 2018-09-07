@@ -2,8 +2,8 @@ import React from 'react';
 import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import ErrorMessage from './ErrorMessage';
-import {SERVER} from "../constants/Constants";
+import ErrorMessage from './errorMessage';
+import {SERVER} from "../constants/constants";
 
 class Login extends React.Component {
 

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Switch, Route} from '../node_modules/react-router-dom'
-import NotFound from './components/NotFound'
-import Menu from './components/Menu'
+import NotFound from './components/notFound'
+import Menu from './components/menu'
 import Footer from "./components/footer";
 
 
