@@ -2,13 +2,16 @@ import React from "react";
 import CardFlat from "./cardFlat";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
+import SimpleMap from "./map";
+import Footer from "./footer";
+
 
 class AlbomCardFlat extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            flats: []
+            flats: [],
         }
         this.getFlats();
     }
@@ -23,6 +26,7 @@ class AlbomCardFlat extends React.Component {
         )
             .then((response) => {
                 console.log(response.data);
+                console.log(this.state.flats);
                 this.setState({flats: response.data});
             })
             .catch((error) => {
@@ -35,23 +39,36 @@ class AlbomCardFlat extends React.Component {
     }
 
     render() {
-        return <div className="album py-5 bg-light">
-            <div className="container">
-                <div className="row">
-                    {this.state.flats.map((flat) => {
-                        return <CardFlat name={flat.name}
-                                         key={flat.id}
-                                         image="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1658f9fd45d%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1658f9fd45d%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7265625%22%20y%3D%22120.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                                         cardText={flat.description}
-                                         cost={flat.cost}
-                                         location=""
-                                         date={this.formatDate(new Date(flat.createdDate))}
-                        />
-                    })}
+        return <div className="album py-5">
+            <div className="row">
+                <div className="container col-sm-8">
+                    <div className="place">
+                        <h3>Belarus <small>({this.state.flats.length} places found)</small></h3>
+                    </div>
+                    <div className="row">
+                        {this.state.flats.map((flat) => {
+                            return <CardFlat name={flat.name}
+                                             key={flat.id}
+                                             image="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1658f9fd45d%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1658f9fd45d%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7265625%22%20y%3D%22120.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                                             cardText={flat.description}
+                                             cost={flat.cost}
+                                             location="Belarus, Grodno"
+                                             date={this.formatDate(new Date(flat.createdDate))}
+                            />
+                        })}
+                    </div>
+                    <div className="text-center">
+                        <button className="btn btn-secondary btn-primary search show-more" type='button'
+                                onClick={this.getFlats}>Show more
+                        </button>
+                    </div>
+                </div>
 
-
+                <div className="col-4">
+                    <SimpleMap/>
                 </div>
             </div>
+
         </div>
     }
 }

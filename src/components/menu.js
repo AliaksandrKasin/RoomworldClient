@@ -4,6 +4,8 @@ import Home from "./home";
 import Login from "./login";
 import Registration from "./registration";
 import Profile from "./profile";
+import AlbomCardFlat from "./albomCardFlat";
+import Flat from "./flat";
 
 class Menu extends React.Component {
 
@@ -42,6 +44,8 @@ class Menu extends React.Component {
                     <Route path='/home' component={Home}/>
                     <Route path='/login' component={Login}/>
                     <Route path='/profile' component={Profile}/>
+                    <Route path='/searches' component={AlbomCardFlat}/>
+                    <Route path='/flat' component={Flat}/>
                     <Route path={'/registration'} component={Registration}/>
                 </Switch>
             </BrowserRouter>

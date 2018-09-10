@@ -37,7 +37,7 @@ class SearchBlock extends React.Component {
                 />
 
                 <div className="col-md-1">
-                    <button className="btn btn-secondary btn-primary search btn-search" type='button'>Search
+                    <button className="btn btn-secondary btn-primary search btn-search" type='button' onClick={()=>window.location.href = '/searches'}>Search
                     </button>
                 </div>
             </div>
