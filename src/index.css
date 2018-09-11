@@ -67,8 +67,10 @@
     width: 400px;
     top: 100px;
     left: 73%;
-
+    background-color: white;
+    border-radius: 10px;
 }
+
 
 .w-100{
     border-radius: 5px;
