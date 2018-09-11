@@ -31,14 +31,43 @@
     width: 100%;
 }
 .map{
-    position: fixed;
-    top: 66px;
+    z-index: 1200;
+    top: 0;
     height: 100%;
-    width: 32%;
+    width: 100%;
+}
+
+.amenities{
+    column-count: 4;
+    list-style: none;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.react-calendar{
+    width: 900px!important;
+
+}
+.react-calendar__month-view__weekdays {
+    font-size: 1.5em!important;
+}
+.react-calendar button{
+    font-size: 25px;
+}
+.amenity-single{
+    margin-bottom: 20px;
+    margin-left: 30px;
 }
 
 .carousel{
-    width: 800px;
+    width: 900px;
+}
+.book{
+    position: fixed;
+    width: 400px;
+    top: 100px;
+    left: 73%;
+
 }
 
 .w-100{
@@ -55,11 +84,34 @@
 .container-width-800{
     width: 800px!important;
 }
+.card-min{
+    width: 100px;
+}
+
 
 .img-width{
-    width: 80px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
+
+.img-small{
+    width: 20px;
+    height: 20px;
+}
+
+.img-small-2{
+    width: 40px;
+    height: 40px;
+}
+
+.container-max-width-1{
+    max-width: 900px!important;
+}
+
+.check{
+    min-width: 170px;
+}
+
 
 .card-with{
     min-width: 330px;
