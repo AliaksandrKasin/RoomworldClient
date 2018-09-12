@@ -27,6 +27,7 @@ class SearchBlock extends React.Component {
                     value={this.state.dateFrom}
                     onChange={this.onChangeFrom}
                     minDate={new Date()}
+                    locale="en-En"
                 />
 
                 <DatePicker
@@ -34,6 +35,7 @@ class SearchBlock extends React.Component {
                     value={this.state.dateTo}
                     onChange={this.onChangeTo}
                     minDate={new Date()}
+                    locale="en-En"
                 />
 
                 <div className="col-md-1">

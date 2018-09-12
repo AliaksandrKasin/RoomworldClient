@@ -5,12 +5,13 @@ import Rules from "./rules";
 import SimpleMap from "./map";
 import Calendar from 'react-calendar';
 import DatePicker from "react-date-picker";
+import GoogleMapReact from "google-map-react";
 
 class Flat extends React.Component {
     render() {
         return <div className="container mt-5 flat">
             <Carousel/>
-            <div className="text-left mt-2">
+            <div className="text-left mt-2 text-right">
                 <img className="img-small mr-1"
                      src="https://cdn4.iconfinder.com/data/icons/mayssam/512/location-512.png"/>
                 <a className="text-muted">Belarus, Grodno</a>
@@ -18,18 +19,17 @@ class Flat extends React.Component {
 
 
             <nav className=''>
-                <a className='navbar-brand border-bottom text-info'  href=''>Overview</a>
+                <a className='navbar-brand border-bottom text-info' href=''>Overview</a>
                 <a className='navbar-brand border-bottom text-info' href=''>Amenities</a>
                 <a className='navbar-brand border-bottom text-info' href=''>Rates & Availability</a>
             </nav>
 
 
-
             <div className="mt-3"><h3>Apartment in Grodno with Internet, Pool, Parking, Washing machine</h3></div>
-            <div className="book border mt-2">
+            <div className="book border mt-3">
                 <h3 className="mt-5 ml-4">$162 <small className="text-muted">per night</small></h3>
 
-                <div className="col-8 text-center card-min">
+                <div className="ml-3">
                     <img className="img-width"
                          src="https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/check_round-512.png"
                     />
@@ -40,6 +40,7 @@ class Flat extends React.Component {
                     value={new Date()}
                     onChange={this.onChangeFrom}
                     minDate={new Date()}
+                    locale="en-En"
                 />
 
                 <DatePicker
@@ -47,16 +48,17 @@ class Flat extends React.Component {
                     value={new Date()}
                     onChange={this.onChangeTo}
                     minDate={new Date()}
+                    locale="en-En"
                 />
 
                 <div className="ml-4 mt-4 text-muted row">
-                    <h5 className="col-sm-6 pb-3">Total</h5>
-                    <small className="col-sm-5 text-right h5">$1,135.72</small>
+                    <h5 className="col-sm-6 pb-3 total pl-0">Total</h5>
+                    <small className="col-sm-5 text-right h5 total">$1,135.72</small>
                 </div>
 
                 <div className="ml-4 text-muted row">
-                    <h5 className="col-sm-6 pb-3 small">Includes taxes and fees</h5>
-                    <a className="col-sm-5 text-right text-info h5 small">View details</a>
+                    <h5 className="col-sm-6 pb-3 small total pl-0">Includes taxes and fees</h5>
+                    <a className="col-sm-5 text-right text-info h5 small total">View details</a>
                 </div>
 
                 <div className="text-center mb-4">
@@ -64,6 +66,8 @@ class Flat extends React.Component {
                     </button>
                 </div>
             </div>
+
+
             <div className="row mt-3">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
                           body="Apartment" title="600 sq. ft."/>
@@ -77,10 +81,10 @@ class Flat extends React.Component {
                           title="2"/>
             </div>
 
-            <h3 id="overview" className="mt-3">Description</h3>
-            <div className="row mt-4 ml-0">
 
-                <div className="col-10 pl-0 text-muted">
+            <div className="mt-4 ml-0">
+                <h3 id="overview" className="mt-3">Description</h3>
+                <div className="pl-0 text-muted">
                     * STUDIO FOR 4 PEOPLE including children (1 double bed,1 double sofa bed)
                     * Private feel, en-suite bathroom with shower and door locks
                     * 2 MIN WALK to Bayswater Tube Station, zone 1, District and Circle Line Metro (direct to
@@ -97,13 +101,13 @@ class Flat extends React.Component {
 
             </div>
 
-            <div className="container mt-5 pl-0 mb-5">
+            <div className=" mt-5 pl-0 mb-5">
                 <h5>House Rules</h5>
                 <div className="row mt-4">
                     <h6 className="col-3 check">Check-in: <small className="text-muted">12:00 PM</small></h6>
                     <h6 className="col-3 check">Check-out: <small className="text-muted">10:00 PM</small></h6>
                 </div>
-                <div className="container bg-light ml-0 container-max-width-1">
+                <div className=" bg-light ml-0 container-max-width-1">
                     <Rules state={false} text="No parties/events"/>
                     <Rules state={false} text="No smoking"/>
                     <Rules state={true} text="Children allowed"/>
@@ -113,7 +117,7 @@ class Flat extends React.Component {
                 </div>
             </div>
 
-            <div id="amenities" className="container pl-0">
+            <div id="amenities" className=" pl-0">
                 <h4>Amenities</h4>
                 <div>
                     <ul className="amenities border-bottom border-top pl-0 text-muted">
@@ -125,7 +129,7 @@ class Flat extends React.Component {
                 </div>
             </div>
 
-            <div className="container pl-0">
+            <div className=" pl-0">
                 <h4>General</h4>
                 <div>
                     <ul className="amenities border-bottom border-top pl-0 text-muted">
@@ -137,7 +141,7 @@ class Flat extends React.Component {
                 </div>
             </div>
 
-            <div className="container pl-0">
+            <div className=" pl-0">
                 <h4>Kitchen</h4>
                 <div>
                     <ul className="amenities border-bottom border-top pl-0 text-muted">
@@ -147,11 +151,21 @@ class Flat extends React.Component {
                     </ul>
                 </div>
             </div>
-            <div id="rates" className="mt-5">
-                <h4>Rates & Availability</h4>
-                <Calendar/>
+            <div id="rates" className=" mt-5 rates">
+                <h4 className="mb-3">Rates & Availability</h4>
+
+                <div><Calendar locale="en-En"/></div>
             </div>
 
+            <div className="map-container mt-5">
+                <h3 className="mb-3">Map</h3>
+                <SimpleMap/>
+                <div className="text-left mt-2 text-right">
+                    <img className="img-small mr-1"
+                         src="https://cdn4.iconfinder.com/data/icons/mayssam/512/location-512.png"/>
+                    <a className="text-muted">Belarus, Grodno</a>
+                </div>
+            </div>
         </div>
     }
 }

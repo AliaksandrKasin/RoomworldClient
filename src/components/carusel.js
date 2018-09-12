@@ -14,12 +14,9 @@ class Carousel extends React.Component {
 
                 </div>
             </div>
-            <ul className="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" className="active">0</li>
-                <li data-target="#demo" data-slide-to="1">1</li>
-                <li data-target="#demo" data-slide-to="2">2</li>
-            </ul>
-
+            <div className="carousel-indicators indicator">
+                1/18
+            </div>
             <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="sr-only">Previous</span>
@@ -28,6 +25,7 @@ class Carousel extends React.Component {
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="sr-only">Next</span>
             </a>
+
         </div>
 
     }

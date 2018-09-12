@@ -1,5 +1,5 @@
 
-.find{
+.find {
     background-color: #e5e5e5;
     height: 300px;
     display: flex;
@@ -7,183 +7,237 @@
 
 }
 
-.user-name{
+.user-name {
     width: 300px;
     height: 50px;
 }
 
-.profile-container{
-    padding-left: 100px!important;
+.profile-container {
+    padding-left: 100px !important;
 }
 
-.place{
+.place {
     position: relative;
     left: 20px;
     margin-bottom: 20px;
 }
-.album{
+
+.album {
     position: absolute;
     margin-left: 10px;
 }
 
-
-.row{
+.row {
     width: 100%;
 }
-.map{
-    z-index: 1200;
-    top: 0;
+
+.map {
+
     height: 100%;
     width: 100%;
 }
 
-.amenities{
+.map-container {
+    height: 500px;
+    max-width: 900px;
+}
+
+.amenities {
     column-count: 4;
     list-style: none;
     max-width: 900px;
     padding: 20px;
 }
 
-.react-calendar{
-    width: 900px!important;
+.react-calendar {
+    width: 900px !important;
+    border-radius: 10px;
+}
 
+.react-calendar__navigation button{
+    border-radius: 10px;
 }
+
+.flat {
+    max-width: 900px !important;
+}
+
 .react-calendar__month-view__weekdays {
-    font-size: 1.5em!important;
+    /*font-size: 1.5em!important;*/
 }
-.react-calendar button{
+
+.react-calendar button {
     font-size: 25px;
+    color: #474747;
+    border-radius: 10px;
 }
-.amenity-single{
+
+.amenity-single {
     margin-bottom: 20px;
     margin-left: 30px;
 }
 
-.carousel{
-    width: 900px;
+.carousel {
+
 }
-.book{
-    position: fixed;
-    width: 400px;
-    top: 100px;
-    left: 73%;
+
+@media only screen and (max-width: 860px) {
+    .col-2 {
+        max-width: 25% !important;
+    }
+}
+
+.indicator {
+    color: white;
+    background-color: #333333;
+    font-size: 20px;
+    border-radius: 10px;
+    opacity: 0.7;
+    margin-left: 3% !important;
+    height: 45px;
+    width: 60px;
+    padding-top: 5px;
+}
+
+.book {
+    /* position: fixed;*/
+    max-width: 900px;
+    /*top: 100px;*/
+    /*left: 73%;*/
     background-color: white;
     border-radius: 10px;
+    margin-bottom: 50px;
+
 }
 
-
-.w-100{
+.w-100 {
     border-radius: 5px;
 }
 
-.row-ml-0{
-    margin-left: 0!important;
+.row-ml-0 {
+    margin-left: 0 !important;
 }
-.description-body-text{
+
+.description-body-text {
     width: 300px;
 }
 
-.container-width-800{
-    width: 800px!important;
+.container-width-800 {
+    width: 800px !important;
 }
-.card-min{
+
+.card-min {
     width: 100px;
 }
 
+.total {
+    width: 45% !important;
+}
 
-.img-width{
+.img-width {
     width: 50px;
     height: 50px;
 }
 
-.img-small{
+.img-small {
     width: 20px;
     height: 20px;
 }
 
-.img-small-2{
+.img-small-2 {
     width: 40px;
     height: 40px;
 }
 
-.container-max-width-1{
-    max-width: 900px!important;
+.container-max-width-1 {
+    max-width: 900px !important;
 }
 
-.check{
+.check {
     min-width: 170px;
 }
 
-
-.card-with{
+.card-with {
     min-width: 330px;
 }
-.show-more{
+
+.show-more {
     width: 350px;
-    border-radius: 10px!important;
+    border-radius: 10px !important;
 }
 
 .react-date-picker__calendar--above-label {
-  top: 60px!important;
+    top: 60px !important;
 }
 
 .react-date-picker {
     margin-right: 5px;
     margin-left: 15px;
+    border-radius: 10px;
 }
+
+.react-date-picker__button {
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 860px) {
     .search-container {
-        display: block!important;
-        position: inherit!important;
-        margin: 40px!important;
+        display: block !important;
+        position: inherit !important;
+        margin: 40px !important;
 
     }
-    .col-md-1{
-        margin-top: 10px!important;
-        min-width: 100%!important;
-        max-width: 100%!important;
+
+    .col-md-1 {
+        margin-top: 10px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
     }
 
-    .calendar{
+    .calendar {
         border-color: #e5e5e5;
 
     }
 
-    .col-md-2{
-        margin-top: 10px!important;
-        min-width: 100%!important;
-        max-width: 100%!important;
+    .col-md-2 {
+        margin-top: 10px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
     }
 
-    .btn-search{
+    .btn-search {
         width: 100%;
     }
 }
-.search-container{
+
+.search-container {
     justify-content: center;
     margin: 0;
     position: absolute;
     top: 190px;
     min-width: 400px;
 }
-.col-md-1{
+
+.col-md-1 {
     min-width: 150px;
     max-width: 150px;
 }
 
-.col-md-2{
+.col-md-2 {
     min-width: 300px;
     max-width: 300px;
 
 }
-.search{
-    height: 60px!important;
-    font-size: 20px!important;
+
+.search {
+    height: 60px !important;
+    font-size: 20px !important;
     background-color: white;
 
 }
+
 /**/
-.text-info{
+.text-info {
     cursor: pointer;
 }
 
@@ -217,16 +271,15 @@
 }
 
 .navbar-brand {
-   color: #333333;
+    color: #333333;
 }
 
-
-.profile-icon{
-    border: 0!important;
+.profile-icon {
+    border: 0 !important;
 }
 
-.icon{
-    border: 0!important;
+.icon {
+    border: 0 !important;
     position: absolute;
     z-index: 1000;
     left: 10px;
