@@ -42,11 +42,22 @@
     max-width: 900px;
 }
 
+.map-fixed-container{
+    margin-top: 20px;
+    position: sticky!important;
+    height: 700px;
+}
+.card{
+    cursor: pointer;
+}
 .amenities {
     column-count: 4;
     list-style: none;
     max-width: 900px;
     padding: 20px;
+}
+.info{
+    justify-content: center;
 }
 
 .react-calendar {

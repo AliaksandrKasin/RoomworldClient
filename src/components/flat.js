@@ -68,7 +68,7 @@ class Flat extends React.Component {
             </div>
 
 
-            <div className="row mt-3">
+            <div className="row mt-3 info">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
                           body="Apartment" title="600 sq. ft."/>
                 <CardInfo
@@ -151,7 +151,7 @@ class Flat extends React.Component {
                     </ul>
                 </div>
             </div>
-            <div id="rates" className=" mt-5 rates">
+            <div id="rates" ref="rates" className=" mt-5 rates">
                 <h4 className="mb-3">Rates & Availability</h4>
 
                 <div><Calendar locale="en-En"/></div>

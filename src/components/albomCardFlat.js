@@ -41,7 +41,7 @@ class AlbomCardFlat extends React.Component {
     render() {
         return <div className="album py-5">
             <div className="row">
-                <div className="container col-sm-8">
+                <div className="container col-6">
                     <div className="place">
                         <h3>Belarus <small>({this.state.flats.length} places found)</small></h3>
                     </div>
@@ -64,7 +64,7 @@ class AlbomCardFlat extends React.Component {
                     </div>
                 </div>
 
-                <div className="col-4 sticky-top">
+                <div className="col-6 sticky-top map-fixed-container">
                     <SimpleMap/>
                 </div>
             </div>
