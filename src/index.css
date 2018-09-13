@@ -1,10 +1,16 @@
-
+/**/
 .find {
-    background-color: #e5e5e5;
-    height: 300px;
+    background-size: cover;
+    background: url("https://www.gd-home.com/wp-content/uploads/2016/04/stilnaya-kvartira-v-stile-loft-iz-kieva-1.jpg") fixed center center;
+    height: 600px;
     display: flex;
     justify-content: center;
+    min-width: 400px;
 
+}
+
+.rates {
+    min-width: 348px !important;
 }
 
 .user-name {
@@ -18,8 +24,11 @@
 
 .place {
     position: relative;
-    left: 20px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    min-width: 350px;
+    max-width: 96%;
 }
 
 .album {
@@ -29,6 +38,45 @@
 
 .row {
     width: 100%;
+}
+
+.img-min {
+    min-width: 250px;
+}
+
+.row-size-1 {
+    /*min-width: 760px;*/
+}
+
+.title {
+    font-size: 1rem;
+}
+
+@media (max-width: 1610px) {
+    .col-md-6 {
+        flex: none !important;
+        max-width: none !important;
+    }
+
+    .map-fixed-container {
+        max-width: 40%;
+    }
+}
+
+@media (max-width: 700px) {
+    .col-md-6 {
+        flex: none !important;
+        max-width: none !important;
+    }
+
+    .map-fixed-container {
+        display: none;
+    }
+
+    .container-width-3 {
+        flex: none !important;
+        max-width: none !important;
+    }
 }
 
 .map {
@@ -42,21 +90,23 @@
     max-width: 900px;
 }
 
-.map-fixed-container{
-    margin-top: 20px;
-    position: sticky!important;
+.map-fixed-container {
+    position: sticky !important;
     height: 700px;
 }
-.card{
+
+.card {
     cursor: pointer;
 }
+
 .amenities {
     column-count: 4;
     list-style: none;
     max-width: 900px;
     padding: 20px;
 }
-.info{
+
+.info {
     justify-content: center;
 }
 
@@ -65,7 +115,7 @@
     border-radius: 10px;
 }
 
-.react-calendar__navigation button{
+.react-calendar__navigation button {
     border-radius: 10px;
 }
 
@@ -162,6 +212,11 @@
 
 .container-max-width-1 {
     max-width: 900px !important;
+    min-width: 316px !important;
+}
+
+.min-width-300 {
+    min-width: 300px !important;
 }
 
 .check {
@@ -169,7 +224,7 @@
 }
 
 .card-with {
-    min-width: 330px;
+    min-width: 380px;
 }
 
 .show-more {
@@ -189,6 +244,22 @@
 
 .react-date-picker__button {
     border-radius: 10px;
+    color: #606267;
+}
+
+.date{
+    display: flex;
+    justify-content: center;
+}
+
+.react-date-picker__button__input__input {
+    color: #606267;
+}
+
+@media only screen and (max-width: 858px) {
+    .react-date-picker {
+
+    }
 }
 
 @media only screen and (max-width: 860px) {
@@ -196,6 +267,7 @@
         display: block !important;
         position: inherit !important;
         margin: 40px !important;
+        margin-top: 200px !important;
 
     }
 
@@ -217,16 +289,23 @@
     }
 
     .btn-search {
-        width: 100%;
+        width: 100%!important;
     }
 }
 
+.btn-search {
+   width: 150px;
+    border-radius: 30px!important;
+}
 .search-container {
     justify-content: center;
-    margin: 0;
-    position: absolute;
-    top: 190px;
-    min-width: 400px;
+    margin-top: 300px;
+    min-width: 300px;
+    background-color: #08080840;
+    border-radius: 10px;
+    padding-right: 23px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .col-md-1 {
@@ -244,6 +323,7 @@
     height: 60px !important;
     font-size: 20px !important;
     background-color: white;
+    margin-top: 5px;
 
 }
 

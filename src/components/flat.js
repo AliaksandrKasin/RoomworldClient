@@ -112,7 +112,7 @@ class Flat extends React.Component {
                     <Rules state={false} text="No smoking"/>
                     <Rules state={true} text="Children allowed"/>
                     <Rules state={false} text="No pets"/>
-                    <h6 className="col-6 text-muted pb-4">Minimum age of primary renter: <small
+                    <h6 className="col-6 text-muted pb-4 min-width-300">Minimum age of primary renter: <small
                         className="h6">18</small></h6>
                 </div>
             </div>
