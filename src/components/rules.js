@@ -11,7 +11,7 @@ class Rules extends React.Component{
     }
     render(){
         return <div className="mt-2 mr-3 mb-4 p-4 border-bottom">
-                <img className="img-small-2 mr-5"
+                <img className="img_size_4 mr-5"
                      src={(this.props.state) ? this.state.imgCheckMark : this.state.imgCross}/>
                 <small className="text-muted h5">{this.props.text}</small>
             </div>

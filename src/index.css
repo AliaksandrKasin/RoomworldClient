@@ -1,54 +1,35 @@
-/**/
-.find {
+.search {
     background-size: cover;
     background: url("https://www.gd-home.com/wp-content/uploads/2016/04/stilnaya-kvartira-v-stile-loft-iz-kieva-1.jpg") fixed center center;
     height: 600px;
     display: flex;
     justify-content: center;
     min-width: 400px;
-
 }
 
-.rates {
-    min-width: 348px !important;
+.btn_size_s {
+    width: 150px;
 }
 
-.user-name {
+.profile__title {
     width: 300px;
     height: 50px;
 }
 
-.profile-container {
+.container-profile {
     padding-left: 100px !important;
 }
 
-.place {
-    position: relative;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    padding: 15px;
+.container__title {
     min-width: 350px;
     max-width: 96%;
-}
-
-.album {
-    position: absolute;
-    margin-left: 10px;
 }
 
 .row {
     width: 100%;
 }
 
-.img-min {
-    min-width: 250px;
-}
-
-.row-size-1 {
-    /*min-width: 760px;*/
-}
-
-.title {
+.title_size_1 {
     font-size: 1rem;
 }
 
@@ -58,7 +39,7 @@
         max-width: none !important;
     }
 
-    .map-fixed-container {
+    .map-sticky-container {
         max-width: 40%;
     }
 }
@@ -69,28 +50,30 @@
         max-width: none !important;
     }
 
-    .map-fixed-container {
+    .map-sticky-container {
         display: none;
     }
 
-    .container-width-3 {
+    .container_flex_none {
         flex: none !important;
+    }
+
+    .container_width_none {
         max-width: none !important;
     }
 }
 
 .map {
-
     height: 100%;
     width: 100%;
 }
 
-.map-container {
+.map_size_m {
     height: 500px;
     max-width: 900px;
 }
 
-.map-fixed-container {
+.map-sticky-container {
     position: sticky !important;
     height: 700px;
 }
@@ -106,8 +89,9 @@
     padding: 20px;
 }
 
-.info {
-    justify-content: center;
+.amenity-single {
+    margin-bottom: 20px;
+    margin-left: 30px;
 }
 
 .react-calendar {
@@ -119,23 +103,14 @@
     border-radius: 10px;
 }
 
-.flat {
+.container {
     max-width: 900px !important;
-}
-
-.react-calendar__month-view__weekdays {
-    /*font-size: 1.5em!important;*/
 }
 
 .react-calendar button {
     font-size: 25px;
     color: #474747;
     border-radius: 10px;
-}
-
-.amenity-single {
-    margin-bottom: 20px;
-    margin-left: 30px;
 }
 
 .carousel {
@@ -148,7 +123,7 @@
     }
 }
 
-.indicator {
+.carousel__page-counter {
     color: white;
     background-color: #333333;
     font-size: 20px;
@@ -160,15 +135,16 @@
     padding-top: 5px;
 }
 
-.book {
-    /* position: fixed;*/
-    max-width: 900px;
-    /*top: 100px;*/
-    /*left: 73%;*/
-    background-color: white;
-    border-radius: 10px;
-    margin-bottom: 50px;
+.container_size_9 {
+    max-width: 900px !important;
+}
 
+.rounded_10 {
+    border-radius: 10px !important;
+}
+
+.rounded_20 {
+    border-radius: 20px !important;
 }
 
 .w-100 {
@@ -187,44 +163,31 @@
     width: 800px !important;
 }
 
-.card-min {
+.card_size_s {
     width: 100px;
 }
 
-.total {
-    width: 45% !important;
-}
-
-.img-width {
+.img_size_5 {
     width: 50px;
     height: 50px;
 }
 
-.img-small {
+.img_size_2 {
     width: 20px;
     height: 20px;
 }
 
-.img-small-2 {
+.img_size_4 {
     width: 40px;
     height: 40px;
 }
 
-.container-max-width-1 {
-    max-width: 900px !important;
-    min-width: 316px !important;
-}
-
-.min-width-300 {
+.mw-300 {
     min-width: 300px !important;
 }
 
-.check {
-    min-width: 170px;
-}
-
-.card-with {
-    min-width: 380px;
+.mw-200 {
+    min-width: 200px;
 }
 
 .show-more {
@@ -247,7 +210,7 @@
     color: #606267;
 }
 
-.date{
+.date {
     display: flex;
     justify-content: center;
 }
@@ -288,15 +251,11 @@
         max-width: 100% !important;
     }
 
-    .btn-search {
-        width: 100%!important;
+    .btn_size_s {
+        width: 100% !important;
     }
 }
 
-.btn-search {
-   width: 150px;
-    border-radius: 30px!important;
-}
 .search-container {
     justify-content: center;
     margin-top: 300px;
@@ -319,15 +278,11 @@
 
 }
 
-.search {
+.input_size_s {
     height: 60px !important;
     font-size: 20px !important;
-    background-color: white;
-    margin-top: 5px;
-
 }
 
-/**/
 .text-info {
     cursor: pointer;
 }
@@ -343,7 +298,7 @@
     padding-top: 10px;
 }
 
-.login {
+.container-login {
     margin-top: 200px;
     border: 1px solid #333333 !important;
     border-radius: 4px;
@@ -369,7 +324,7 @@
     border: 0 !important;
 }
 
-.icon {
+.icon-home {
     border: 0 !important;
     position: absolute;
     z-index: 1000;
@@ -379,26 +334,6 @@
 
 .container-fluid {
     max-width: 400px !important;
-}
-
-.border-top {
-    border-top: 1px solid #e5e5e5;
-}
-
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.border-top-gray {
-    border-top-color: #adb5bd;
-}
-
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-.lh-condensed {
-    line-height: 1.25;
 }
 
 .form-signin {

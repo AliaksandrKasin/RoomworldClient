@@ -2,9 +2,7 @@ import React from "react";
 import CardFlat from "./cardFlat";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
-import SimpleMap from "./map";
-import Footer from "./footer";
-
+import Map from "./map";
 
 class AlbomCardFlat extends React.Component {
 
@@ -39,10 +37,10 @@ class AlbomCardFlat extends React.Component {
     }
 
     render() {
-        return <div className="album py-5">
+        return <div className="ml-5 mt-3">
             <div className="row">
-                <div className="container col-6 container-width-3">
-                    <div className="place border">
+                <div className="container col-6 container_flex_none container_width_none">
+                    <div className="container__title border mb-4 rounded_10 p-2">
                         <h3>Belarus <small className="text-muted">({this.state.flats.length} places found)</small></h3>
                     </div>
                     <div className="row">
@@ -58,14 +56,14 @@ class AlbomCardFlat extends React.Component {
                         })}
                     </div>
                     <div className="text-center">
-                        <button className="btn btn-secondary btn-primary search show-more" type='button'
+                        <button className="btn btn-secondary btn-primary input_size_s w-50 rounded_10" type='button'
                                 onClick={this.getFlats}>Show more
                         </button>
                     </div>
                 </div>
 
-                <div className="col-5 sticky-top map-fixed-container">
-                    <SimpleMap/>
+                <div className="map-sticky-container sticky-top col-5">
+                    <Map/>
                 </div>
             </div>
 

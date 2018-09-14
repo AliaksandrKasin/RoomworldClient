@@ -44,7 +44,7 @@ class Profile extends React.Component {
             <div className="row">
 
                 <div className="col-sm-10"><h1
-                    className="user-name">{this.state.name + " " + this.state.surname}</h1></div>
+                    className="profile__title">Kasin Alexandr{/*this.state.name + " " + this.state.surname*/}</h1></div>
                 <div className="col-sm-3">
                     <div className="text-center">
                         <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"

@@ -29,13 +29,13 @@ class Menu extends React.Component {
     render() {
         return <div>
             <a href="/home"><img src="https://cdn2.iconfinder.com/data/icons/real-estate-61/64/Real_estate_16-512.png"
-                                 className="img-thumbnail icon" width="50px" height="50px"/></a>
-            <nav className='navbar border-bottom bo'>
+                                 className="img-thumbnail icon-home" width="50px" height="50px"/></a>
+            <nav className='navbar border-bottom'>
                 <a href="/profile" hidden={!this.state.profileHidden}><img
                     src="https://cdn2.iconfinder.com/data/icons/real-estate-185/64/broker-agent-agency-business_man-512.png"
                     width="45px" height="45px" className="img-thumbnail navbar-brand profile-icon"/></a>
-                <a className='navbar-brand line' hidden={this.state.singUpHidden} href='/registration'>Sign Up</a>
-                <a className='navbar-brand line' onClick={() => {
+                <a className='navbar-brand' hidden={this.state.singUpHidden} href='/registration'>Sign Up</a>
+                <a className='navbar-brand' onClick={() => {
                     localStorage.removeItem('accessToken')
                 }} href='/login'>{this.state.loginState}</a>
             </nav>

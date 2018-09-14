@@ -2,7 +2,7 @@ import * as React from "react";
 
 class UsersProfile extends React.Component{
     render(){
-        return <div className="col-md-9 profile-container">
+        return <div className="col-md-9 container-profile">
             <nav className='mb-3'>
                 <a className='navbar-brand border-bottom text-muted' href=''>Profile</a>
                 <a className='navbar-brand border-bottom text-muted' href=''>Account</a>
