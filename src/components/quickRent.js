@@ -39,7 +39,7 @@ class QuickRent extends React.Component {
             </div>
 
             <div className="text-center mb-4">
-                <button onClick="" className="btn btn-lg btn-primary" type='button'>Book Now
+                <button className="btn btn-lg btn-primary" type='button'>Book Now
                 </button>
             </div>
         </div>

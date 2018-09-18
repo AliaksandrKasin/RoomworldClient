@@ -6,8 +6,8 @@ class Fasilities extends React.Component{
             <h4>{this.props.title}</h4>
             <div>
                 <ul className="amenities border-bottom border-top pl-0 text-muted">
-                    {this.props.amenites.map((el)=>{
-                        return  <li className="amenity-single">{el}</li>
+                    {this.props.amenites.map((el,index)=>{
+                        return  <li key={index} className="amenity-single">{el}</li>
                     })}
                 </ul>
             </div>

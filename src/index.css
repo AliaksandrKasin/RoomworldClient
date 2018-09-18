@@ -331,6 +331,9 @@
     left: 10px;
     top: 3px;
 }
+.underline_none {
+    text-decoration: none !important
+}
 
 .container-fluid {
     max-width: 400px !important;

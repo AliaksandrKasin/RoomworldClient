@@ -15,7 +15,6 @@ ReactDOM.render(<div>
                 <Route path='*' component={NotFound}/>
             </Switch>
         </BrowserRouter>
-
     </div>,
     document.getElementById('root')
 );

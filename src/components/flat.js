@@ -9,15 +9,21 @@ import FlatMenu from "./flatMenu";
 import QuickRent from "./quickRent";
 import Description from "./description";
 import Fasilities from "./facilities";
+import STORE from "../store";
+import connect from "react-redux/es/connect/connect";
+
+
 
 class Flat extends React.Component {
     render() {
+        let flat = this.props.flatReducer.flats[this.props.flatReducer.selectedFlat];
+        console.log(flat);
         return <div className="container mt-5 flat">
             <Carousel/>
-            <Location place="Belarus, Grodno"/>
+            <Location place={flat.location.country +", " + flat.location.city}/>
             <FlatMenu/>
 
-            <div className="mt-3"><h3>Apartment in Grodno with Internet, Pool, Parking, Washing machine</h3></div>
+            <div className="mt-3"><h3>{flat.name}</h3></div>
             <QuickRent/>
 
             <div className="row mt-3 justify-content-center">
@@ -33,13 +39,7 @@ class Flat extends React.Component {
                           title="2"/>
             </div>
 
-            <Description body="* STUDIO FOR 4 PEOPLE including children (1 double bed,1 double sofa bed)
-                    * Private feel, en-suite bathroom with shower and door locks
-                    * 2 MIN WALK to Bayswater Tube Station, zone 1, District and Circle Line Metro (direct to
-                    Notting
-                    Hill, Victoria and Westminster) and 13 MIN WALK to the main Paddington Station, zone 1
-                    (Bakerloo,
-                    "/>
+            <Description body={flat.description}/>
 
 
             <div className=" mt-5 pl-0 mb-5">
@@ -76,5 +76,11 @@ class Flat extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        flatReducer: state.flatReducer
+    };
+}
 
-export default Flat;
+
+export default connect(mapStateToProps)(Flat);
