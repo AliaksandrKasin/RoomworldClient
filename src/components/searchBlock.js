@@ -1,5 +1,8 @@
 import React from "react";
 import DatePicker from "react-date-picker";
+import STORE from "../store";
+import search from "../actions/search";
+import {Link} from "react-router-dom";
 
 class SearchBlock extends React.Component {
     constructor() {
@@ -45,7 +48,8 @@ class SearchBlock extends React.Component {
                     </div>
                     <div className="col-md-1">
                         <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
-                                onClick={() => window.location.href = '/searches'}>Search
+                                onClick={ STORE.dispatch(search({place: this.state.place}))}>
+                            <Link className="text-dark underline_none" to='/searches'>Search</Link>
                         </button>
                     </div>
                 </div>

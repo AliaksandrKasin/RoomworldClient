@@ -16,6 +16,9 @@ export default function flatReducer(state = initialState, action) {
         case 'SELECTED_FLAT':
             return Object.assign({}, state, {selectedFlat: action.flat});
 
+        case 'SEARCH':
+            return Object.assign({}, state, {searchParams: action.searchParams});
+
 
         default:
             return state;
