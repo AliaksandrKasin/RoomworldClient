@@ -11,7 +11,6 @@ class AlbomCardFlat extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.getFlats();
     }
 

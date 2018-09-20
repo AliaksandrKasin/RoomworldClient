@@ -9,26 +9,64 @@ import FlatMenu from "./flatMenu";
 import QuickRent from "./quickRent";
 import Description from "./description";
 import Fasilities from "./facilities";
-import STORE from "../store";
 import connect from "react-redux/es/connect/connect";
+import axios from "axios";
+import {SERVER} from "../constants/constants";
+import STORE from "../store";
+import selectedFlat from "../actions/selectedFlat";
 
 
 
 class Flat extends React.Component {
+
+    constructor(props) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        super(props);
+        this.getFlat(this.props.flatReducer.idSelectedFlat);
+    }
+
+    getFlat(id) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+        axios.get(SERVER + '/flat', {
+                params: {id: id}
+            }
+        )
+            .then((response) => {
+                STORE.dispatch(selectedFlat(response.data));
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+
+    listAmenities(amenities) {
+        let type = getArrayUniqueTypes(amenities);
+        return type.map((item, index) => {
+            let arrayAmenities = getElementsByType(amenities, item);
+            return <Fasilities key={index} title={item} amenites={arrayAmenities}/>
+        })
+    }
+
+    listHouseRules(houseRuleses) {
+        return houseRuleses.map((rule, index) => {
+            return <Rules key={index} state={rule.state} text={rule.name}/>
+        })
+    }
+
     render() {
-        let flat = this.props.flatReducer.flats[this.props.flatReducer.selectedFlat];
-        console.log(flat);
         return <div className="container mt-5 flat">
             <Carousel/>
-            <Location place={flat.location.country +", " + flat.location.city}/>
+            <Location place={this.props.flatReducer.selectedFlat.location.country + ", " + this.props.flatReducer.selectedFlat.location.city}/>
             <FlatMenu/>
 
-            <div className="mt-3"><h3>{flat.name}</h3></div>
-            <QuickRent/>
+            <div className="mt-3"><h3>{this.props.flatReducer.selectedFlat.name}</h3></div>
+            <QuickRent price={this.props.flatReducer.selectedFlat.cost}/>
 
             <div className="row mt-3 justify-content-center">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
-                          body="Apartment" title="600 sq. ft."/>
+                          body="Apartment" title={this.props.flatReducer.selectedFlat.size + " sq. ft."}/>
                 <CardInfo
                     img="https://cdn4.iconfinder.com/data/icons/objects-things-essentials-vol-2/48/v-52-512.png"
                     body="Bathrooms" title="1"/>
@@ -36,31 +74,27 @@ class Flat extends React.Component {
                           body="Bedrooms" title="1"/>
                 <CardInfo img="https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users2-1-128.png"
                           body="Sleeps"
-                          title="2"/>
+                          title={this.props.flatReducer.selectedFlat.accommodates}/>
             </div>
 
-            <Description body={flat.description}/>
-
+            <Description body={this.props.flatReducer.selectedFlat.description}/>
 
             <div className=" mt-5 pl-0 mb-5">
                 <h5>House Rules</h5>
                 <div className="row mt-4">
-                    <h6 className="col-3 mw-200">Check-in: <small className="text-muted">12:00 PM</small></h6>
-                    <h6 className="col-3 mw-200">Check-out: <small className="text-muted">10:00 PM</small></h6>
+                    <h6 className="col-3 mw-200">Check-in: <small className="text-muted">{}</small></h6>
+                    <h6 className="col-3 mw-200">Check-out: <small className="text-muted">{}</small></h6>
                 </div>
                 <div className=" bg-light ml-0">
-                    <Rules state={false} text="No parties/events"/>
-                    <Rules state={false} text="No smoking"/>
-                    <Rules state={true} text="Children allowed"/>
-                    <Rules state={false} text="No pets"/>
+
+                    { this.listHouseRules(this.props.flatReducer.selectedFlat.houseRuleses)}
+
                     <h6 className="col-6 text-muted pb-4 mw-300">Minimum age of primary renter: <small
                         className="h5">18</small></h6>
                 </div>
             </div>
 
-            <Fasilities title="Amenities" amenites={["Internet", "TV", "Children Welcome", "Parking"]}/>
-            <Fasilities title="General" amenites={["Heating", "Linens Provided", "Towels Provided"]}/>
-            <Fasilities title="Kitchen" amenites={["Refrigerator", "Oven"]}/>
+            {this.listAmenities(this.props.flatReducer.selectedFlat.amentieses)}
 
             <div className=" mt-5">
                 <h4 className="mb-3">Rates & Availability</h4>
@@ -78,8 +112,22 @@ class Flat extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        flatReducer: state.flatReducer
+        flatReducer: state.flatReducer,
     };
+}
+
+function getElementsByType(array, type) {
+    let newArray = [];
+    array.map((el) => {
+        if (el.type === type) {
+            newArray.push(el.name)
+        }
+    });
+    return newArray;
+}
+
+function getArrayUniqueTypes(amenities) {
+    return Array.from(new Set(amenities.map(item => item.type)));
 }
 
 

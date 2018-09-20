@@ -4,7 +4,7 @@ import DatePicker from "react-date-picker";
 class QuickRent extends React.Component {
     render() {
         return <div className="border rounded_10 mt-3 mb-5">
-            <h3 className="mt-5 ml-4">$162 <small className="text-muted">per night</small></h3>
+            <h3 className="mt-5 ml-4">${this.props.price} <small className="text-muted">per night</small></h3>
 
             <div className="ml-3">
                 <img className="img_size_5"
@@ -30,7 +30,7 @@ class QuickRent extends React.Component {
 
             <div className="ml-4 mt-4 text-muted row">
                 <h5 className="col-sm-6 pb-3 w-50 pl-0">Total</h5>
-                <small className="col-sm-5 text-right h5 w-auto">$1,135.72</small>
+                <small className="col-sm-5 text-right h5 w-auto">${this.props.price}</small>
             </div>
 
             <div className="ml-4 text-muted row">

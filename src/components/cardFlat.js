@@ -1,12 +1,13 @@
 import React from "react";
 import STORE from "../store";
-import selectFlat from "../actions/selectFlat";
 import {Link} from "react-router-dom";
+import idSelectedFlat from "../actions/idSelectedFlat";
+
 
 class CardFlat extends React.Component {
     render() {
         return <Link to="/flat" className="col-md-6 card-with mb-5 underline_none" onClick={() => {
-            STORE.dispatch(selectFlat(this.props.index));
+            STORE.dispatch(idSelectedFlat(this.props.id));
         }}>
             <div className="card">
                 <div>
