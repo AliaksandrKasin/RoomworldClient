@@ -56,17 +56,18 @@ class Flat extends React.Component {
     }
 
     render() {
+
         return <div className="container mt-5 flat">
             <Carousel/>
-            <Location place={this.props.flatReducer.selectedFlat.location.country + ", " + this.props.flatReducer.selectedFlat.location.city}/>
+            <Location place={this.props.flat.location.country + ", " + this.props.flat.location.city}/>
             <FlatMenu/>
 
-            <div className="mt-3"><h3>{this.props.flatReducer.selectedFlat.name}</h3></div>
-            <QuickRent price={this.props.flatReducer.selectedFlat.cost}/>
+            <div className="mt-3"><h3>{this.props.flat.name}</h3></div>
+            <QuickRent price={this.props.flat.cost}/>
 
             <div className="row mt-3 justify-content-center">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
-                          body="Apartment" title={this.props.flatReducer.selectedFlat.size + " sq. ft."}/>
+                          body="Apartment" title={this.props.flat.size + " sq. ft."}/>
                 <CardInfo
                     img="https://cdn4.iconfinder.com/data/icons/objects-things-essentials-vol-2/48/v-52-512.png"
                     body="Bathrooms" title="1"/>
@@ -74,10 +75,10 @@ class Flat extends React.Component {
                           body="Bedrooms" title="1"/>
                 <CardInfo img="https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users2-1-128.png"
                           body="Sleeps"
-                          title={this.props.flatReducer.selectedFlat.accommodates}/>
+                          title={this.props.flat.accommodates}/>
             </div>
 
-            <Description body={this.props.flatReducer.selectedFlat.description}/>
+            <Description body={this.props.flat.description}/>
 
             <div className=" mt-5 pl-0 mb-5">
                 <h5>House Rules</h5>
@@ -87,14 +88,14 @@ class Flat extends React.Component {
                 </div>
                 <div className=" bg-light ml-0">
 
-                    { this.listHouseRules(this.props.flatReducer.selectedFlat.houseRuleses)}
+                    { this.listHouseRules(this.props.flat.houseRuleses)}
 
                     <h6 className="col-6 text-muted pb-4 mw-300">Minimum age of primary renter: <small
                         className="h5">18</small></h6>
                 </div>
             </div>
 
-            {this.listAmenities(this.props.flatReducer.selectedFlat.amentieses)}
+            {this.listAmenities(this.props.flat.amentieses)}
 
             <div className=" mt-5">
                 <h4 className="mb-3">Rates & Availability</h4>
@@ -113,6 +114,7 @@ class Flat extends React.Component {
 function mapStateToProps(state) {
     return {
         flatReducer: state.flatReducer,
+        flat: state.flatReducer.selectedFlat
     };
 }
 
