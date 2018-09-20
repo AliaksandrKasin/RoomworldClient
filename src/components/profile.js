@@ -4,6 +4,7 @@ import {SERVER} from "../constants/constants";
 import Activity from "./activity";
 import UsersProfile from "./usersProfile";
 import Account from "./acount";
+import ProfileMenu from "./profileMenu";
 
 class Profile extends React.Component {
 
@@ -16,7 +17,8 @@ class Profile extends React.Component {
             email: "",
             phoneNumber: "",
             myFlats: 0,
-            rentedFlats: 0
+            rentedFlats: 0,
+            menuStatus: "Profile"
         }
     }
 
@@ -38,25 +40,24 @@ class Profile extends React.Component {
             });
     }
 
+
     render() {
-        return <div className="container bootstrap snippet">
+        return <div className="">
+            <ProfileMenu/>
 
-            <div className="row">
 
-                <div className="col-sm-10"><h1
-                    className="profile__title">Kasin Alexandr{/*this.state.name + " " + this.state.surname*/}</h1></div>
-                <div className="col-sm-3">
-                    <div className="text-center">
-                        <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"
-                             className="avatar rounded-circle img-thumbnail" alt="avatar" height="250px"
-                             width="250px"/>
-                    </div>
-                    <br/>
-                    <Activity flats={this.state.myFlats}/>
+            <div className="d-flex justify-content-center">
+                <div className="text-center text-muted">
+                    <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"
+                         className="avatar rounded-circle img-thumbnail" alt="avatar" height="200px"
+                         width="200px"/>
+                    <h1 className="profile__title">Kasin Alexandr</h1>
                 </div>
-                <UsersProfile/>
-
             </div>
+
+            <UsersProfile/>
+
+
         </div>
 
 

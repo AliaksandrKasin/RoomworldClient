@@ -48,8 +48,12 @@ class SearchBlock extends React.Component {
                     </div>
                     <div className="col-md-1">
                         <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
-                                onClick={ STORE.dispatch(search({place: this.state.place}))}>
-                            <Link className="text-dark underline_none" to='/searches'>Search</Link>
+                                onClick={STORE.dispatch(search({
+                                    place: this.state.place,
+                                    dateFrom: this.state.dateFrom,
+                                    dateTo: this.state.dateTo
+                                }))}>
+                            <Link to='/searches' className="text-dark underline_none">Search</Link>
                         </button>
                     </div>
                 </div>

@@ -16,11 +16,7 @@ class AlbomCardFlat extends React.Component {
 
     getFlats() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/get-flat', {
-                Country: "Belarus",
-                City: "Grodno",
-                Accommodates: "3"
-            }
+        axios.post(SERVER + '/get-flat', this.props.searchParams
         )
             .then((response) => {
                 STORE.dispatch(listFlat(response.data));
@@ -75,7 +71,8 @@ class AlbomCardFlat extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        flats: state.flatReducer.flats
+        flats: state.flatReducer.flats,
+        searchParams: state.searchParams
 
     };
 }
