@@ -2,6 +2,7 @@ import React from "react";
 import STORE from "../store";
 import {Link} from "react-router-dom";
 import idSelectedFlat from "../actions/idSelectedFlat";
+import selectedFlat from "../actions/search";
 
 
 class CardFlat extends React.Component {

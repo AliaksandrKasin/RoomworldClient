@@ -1,7 +1,25 @@
 import selectFlat from "../actions/idSelectedFlat";
 
 const initialState = {
-    flats: []
+    flats: [],
+    selectedFlat: {
+        location: {
+            country: "",
+            city: ""
+        },
+        houseRuleses: [],
+        amentieses: []
+    },
+
+    searchParams: {
+        country: "",
+        city: ""
+    },
+
+    page: {
+        skip: 0,
+        take: 2
+    }
 };
 
 
@@ -18,6 +36,9 @@ export default function flatReducer(state = initialState, action) {
 
         case 'SEARCH':
             return Object.assign({}, state, {searchParams: action.searchParams});
+
+        case 'PAGE':
+            return Object.assign({}, state, {searchParams: action.pageProps});
 
 
         default:

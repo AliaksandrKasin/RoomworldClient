@@ -3,6 +3,11 @@ import DatePicker from "react-date-picker";
 import STORE from "../store";
 import search from "../actions/search";
 import {Link} from "react-router-dom";
+import selectedFlat from "../actions/selectedFlat";
+import axios from "axios";
+import {SERVER} from "../constants/constants";
+import listFlat from "../actions/listflat";
+import page from "../actions/pageCounter";
 
 class SearchBlock extends React.Component {
     constructor() {
@@ -47,14 +52,14 @@ class SearchBlock extends React.Component {
                         />
                     </div>
                     <div className="col-md-1">
-                        <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
-                                onClick={STORE.dispatch(search({
-                                    place: this.state.place,
-                                    dateFrom: this.state.dateFrom,
-                                    dateTo: this.state.dateTo
-                                }))}>
-                            <Link to='/searches' className="text-dark underline_none">Search</Link>
-                        </button>
+                        <Link to='/searches' className="underline_none">
+                            <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
+                                    onClick={() => STORE.dispatch(search({
+                                        country: "Belarus",
+                                        city: "Grodno"
+                                    }))}>Search
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

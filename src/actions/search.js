@@ -1,4 +1,4 @@
-export default function selectedFlat(searchParams) {
+export default function search(searchParams) {
     return {
         type: 'SEARCH',
         searchParams
