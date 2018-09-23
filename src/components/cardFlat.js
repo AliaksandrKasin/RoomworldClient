@@ -2,7 +2,7 @@ import React from "react";
 import STORE from "../store";
 import {Link} from "react-router-dom";
 import idSelectedFlat from "../actions/idSelectedFlat";
-import selectedFlat from "../actions/search";
+
 
 
 class CardFlat extends React.Component {
@@ -12,7 +12,7 @@ class CardFlat extends React.Component {
         }}>
             <div className="card">
                 <div>
-                    <img src="https://odis.homeaway.com/odis/listing/e2a65868-2ef6-42f8-aca7-46d2f771197b.c10.jpg"
+                    <img src={this.props.image}
                          className="img-fluid"/>
                     <div className="px-3 text-left pb-3 mt-3">
                         <small className="text-muted">Viewed 6 times in the last 48 hours</small>

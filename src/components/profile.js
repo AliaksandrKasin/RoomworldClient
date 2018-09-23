@@ -51,11 +51,12 @@ class Profile extends React.Component {
                     <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"
                          className="avatar rounded-circle img-thumbnail" alt="avatar" height="200px"
                          width="200px"/>
-                    <h1 className="profile__title">Kasin Alexandr</h1>
+                    <h1 className="profile__title">{this.state.name + " " + this.state.surname}</h1>
                 </div>
             </div>
 
-            <UsersProfile/>
+            <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
+                          phoneNumber={this.state.phoneNumber}/>
 
 
         </div>

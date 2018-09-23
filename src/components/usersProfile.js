@@ -18,7 +18,7 @@ class UsersProfile extends React.Component {
                             <div className="col-8">
                                 <input id="name" name="name"
                                        className="form-control here"
-                                       type="text" value={this.props.name}/>
+                                       type="text" required="required" value={this.props.name}/>
                             </div>
                         </div>
                         <div className="form-group row">

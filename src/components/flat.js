@@ -12,9 +12,8 @@ import Fasilities from "./facilities";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
-import STORE from "../store";
-import selectedFlat from "../actions/selectedFlat";
 
+import scrollToComponent from 'react-scroll-to-component';
 
 
 class Flat extends React.Component {
@@ -22,6 +21,18 @@ class Flat extends React.Component {
     constructor(props) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         super(props);
+        this.state = {
+            flat: {
+                location: {
+                    country: "",
+                    city: ""
+                },
+                houseRuleses: [],
+                amentieses: [],
+                images: [],
+            }
+        }
+
         this.getFlat(this.props.flatReducer.idSelectedFlat);
     }
 
@@ -32,7 +43,8 @@ class Flat extends React.Component {
             }
         )
             .then((response) => {
-                STORE.dispatch(selectedFlat(response.data));
+                /* STORE.dispatch(selectedFlat(response.data));*/
+                this.setState({flat: response.data})
                 console.log(response.data);
             })
             .catch((error) => {
@@ -55,19 +67,28 @@ class Flat extends React.Component {
         })
     }
 
+
+    formatDate(date) {
+        return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+    }
+
     render() {
-
         return <div className="container mt-5 flat">
-            <Carousel/>
-            <Location place={this.props.flat.location.country + ", " + this.props.flat.location.city}/>
-            <FlatMenu/>
+            <Carousel images={this.state.flat.images}/>
+            <Location place={this.state.flat.location.country + ", " + this.state.flat.location.city}/>
+            <FlatMenu
+                overview={() => scrollToComponent(this.refs.overview)}
+                amenities={() => scrollToComponent(this.refs.amenities)}
+                rates={() => scrollToComponent(this.refs.rates)}
+                map={() => scrollToComponent(this.refs.map)}
+            />
 
-            <div className="mt-3"><h3>{this.props.flat.name}</h3></div>
-            <QuickRent price={this.props.flat.cost}/>
+            <div className="mt-3"><h3>{this.state.flat.name}</h3></div>
+            <QuickRent price={this.state.flat.cost}/>
 
             <div className="row mt-3 justify-content-center">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
-                          body="Apartment" title={this.props.flat.size + " sq. ft."}/>
+                          body="Apartment" title={this.state.flat.size + " sq. ft."}/>
                 <CardInfo
                     img="https://cdn4.iconfinder.com/data/icons/objects-things-essentials-vol-2/48/v-52-512.png"
                     body="Bathrooms" title="1"/>
@@ -75,34 +96,37 @@ class Flat extends React.Component {
                           body="Bedrooms" title="1"/>
                 <CardInfo img="https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users2-1-128.png"
                           body="Sleeps"
-                          title={this.props.flat.accommodates}/>
+                          title={this.state.flat.accommodates}/>
             </div>
 
-            <Description body={this.props.flat.description}/>
+            <Description ref="overview" body={this.state.flat.description}/>
 
-            <div className=" mt-5 pl-0 mb-5">
+            <div ref="houseRules" className="mt-5 pl-0 mb-5">
                 <h5>House Rules</h5>
                 <div className="row mt-4">
-                    <h6 className="col-3 mw-200">Check-in: <small className="text-muted">{}</small></h6>
-                    <h6 className="col-3 mw-200">Check-out: <small className="text-muted">{}</small></h6>
+                    <h6 className="col-3 mw-200">Check-in: <small
+                        className="text-muted">{this.formatDate(new Date(this.state.flat.checkIn))}</small></h6>
+                    <h6 className="col-3 mw-200">Check-out: <small
+                        className="text-muted">{this.formatDate(new Date(this.state.flat.checkOut))}</small></h6>
                 </div>
                 <div className=" bg-light ml-0">
 
-                    { this.listHouseRules(this.props.flat.houseRuleses)}
+                    {this.listHouseRules(this.state.flat.houseRuleses)}
 
                     <h6 className="col-6 text-muted pb-4 mw-300">Minimum age of primary renter: <small
                         className="h5">18</small></h6>
                 </div>
             </div>
 
-            {this.listAmenities(this.props.flat.amentieses)}
-
-            <div className=" mt-5">
+            <div ref="amenities">
+                {this.listAmenities(this.state.flat.amentieses)}
+            </div>
+            <div ref="rates" className=" mt-5">
                 <h4 className="mb-3">Rates & Availability</h4>
-                <Calendar locale="en-En"/>
+                <Calendar locale="en-En" tileDisabled={({activeStartDate, date, view }) => date.getDate() < 26}/>
             </div>
 
-            <div className="map_size_m mt-5">
+            <div ref="map" className="map_size_m mt-5">
                 <h3 className="mb-3">Map</h3>
                 <Map/>
                 <Location place={"Belarus, Grodno"}/>
@@ -114,7 +138,7 @@ class Flat extends React.Component {
 function mapStateToProps(state) {
     return {
         flatReducer: state.flatReducer,
-        flat: state.flatReducer.selectedFlat
+        flat: state.flatReducer.idSelectedFlat
     };
 }
 

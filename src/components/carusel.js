@@ -1,30 +1,59 @@
 import * as React from "react";
+import {IMG_NOT_FOUND} from "../constants/constants";
 
 class Carousel extends React.Component {
-    render() {
-        return <div className="carousel slide mt-3" data-ride="carousel">
 
-            <div  className="carousel slide" data-ride="carousel">
+    constructor(props) {
+        super(props);
+        this.state = {
+            counter: 0
+        }
+        this.nextImg = this.nextImg.bind(this);
+        this.prevImg = this.prevImg.bind(this);
+    }
+
+    nextImg() {
+        let increment = this.state.counter + 1;
+        if (this.props.images.length > increment) {
+            this.setState({counter: increment});
+        }
+    }
+
+    prevImg() {
+        let increment = this.state.counter - 1;
+        if (increment >= 0) {
+            this.setState({counter: increment});
+        }
+    }
+
+    render() {
+        console.log(this.state.counter);
+        return <div className="carousel slide mt-3" data-ride="carousel">
+            <div className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img className="d-block w-100"
-                             src="http://s1.1zoom.me/b4856/486/Switzerland_Mountains_Roads_Grasslands_Houses_517910_1920x1080.jpg"
+                             src={(this.props.images.length) ? this.props.images[this.state.counter].url : "https://www.solidbackgrounds.com/images/1280x720/1280x720-white-solid-color-background.jpg"}
                              alt="First slide"/>
                     </div>
 
                 </div>
             </div>
             <div className="carousel-indicators carousel__page-counter">
-                1/18
+                {this.state.counter + 1 + "/" + this.props.images.length}
             </div>
-            <a className="carousel-control-prev"  role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button className="carousel-control-prev bg-transparent border-0 button_cursor_pointer" role="button"
+                    data-slide="prev"
+                    onClick={this.prevImg}>
+                <span className="carousel-control-prev-icon " aria-hidden="true"></span>
                 <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" role="button" data-slide="next">
+            </button>
+            <button className="carousel-control-next bg-transparent border-0 button_cursor_pointer" role="button"
+                    data-slide="next"
+                    onClick={this.nextImg}>
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="sr-only">Next</span>
-            </a>
+            </button>
 
         </div>
 

@@ -2,27 +2,61 @@ import React from "react";
 import DatePicker from "react-date-picker";
 import STORE from "../store";
 import search from "../actions/search";
-import {Link} from "react-router-dom";
-import selectedFlat from "../actions/selectedFlat";
+import {Link, Redirect} from "react-router-dom";
+import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
-import listFlat from "../actions/listflat";
-import page from "../actions/pageCounter";
+
 
 class SearchBlock extends React.Component {
     constructor() {
         super();
+        this.dispatchSearchParams = this.dispatchSearchParams.bind(this);
         this.state = {
             dateFrom: new Date(),
             dateTo: new Date(),
-            place: ""
+            place: "",
+            redirect: false
         }
     }
 
     onChangeFrom = dateFrom => this.setState({dateFrom});
-    onChangeTo = dateTo => this.setState({dateTo})
-    onChangePlace = (e) => {
-        this.setState({place: e.target.value});
+    onChangeTo = dateTo => this.setState({dateTo});
+    onChangePlace = (e) => this.setState({place: e.target.value});
+
+    placeToObject(place) {
+        let splitPlace = place.split(/[, ]/).filter(n => n);
+        switch (splitPlace.length) {
+            case 0:
+                return {country: null, city: null};
+            case 1:
+                return {country: splitPlace[0], city: null};
+            case 2:
+                return {country: splitPlace[0], city: splitPlace[1]};
+        }
+    }
+
+
+
+    dispatchSearchParams() {
+        let place = this.placeToObject(this.state.place);
+        if (!place.country) {
+            return;
+        }
+
+        STORE.dispatch(search({
+            dateTo: new Date(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDay()),
+            dateFrom: new Date(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDay()),
+            country: place.country,
+            city: place.city,
+        }))
+
+        window.location = "/searches";
+    }
+
+    stringPlace() {
+        let params = this.props.searchParams;
+        return (params.city) ? params.country + ", " + params.city : params.country;
     }
 
     render() {
@@ -52,14 +86,9 @@ class SearchBlock extends React.Component {
                         />
                     </div>
                     <div className="col-md-1">
-                        <Link to='/searches' className="underline_none">
-                            <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
-                                    onClick={() => STORE.dispatch(search({
-                                        country: "Belarus",
-                                        city: "Grodno"
-                                    }))}>Search
-                            </button>
-                        </Link>
+                        <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
+                                onClick={this.dispatchSearchParams}>Search
+                        </button>
                     </div>
                 </div>
             </div>
@@ -68,4 +97,10 @@ class SearchBlock extends React.Component {
 
 }
 
-export default SearchBlock
+function mapStateToProps(state) {
+    return {
+        searchParams: state.flatReducer.searchParams
+    };
+}
+
+export default connect(mapStateToProps)(SearchBlock);
