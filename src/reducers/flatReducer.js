@@ -19,7 +19,8 @@ const initialState = {
     page: {
         skip: 0,
         take: 2
-    }
+    },
+    modalWindow: false
 };
 
 
@@ -39,6 +40,9 @@ export default function flatReducer(state = initialState, action) {
 
         case 'PAGE':
             return Object.assign({}, state, {searchParams: action.pageProps});
+
+        case 'MODAL_WINDOW':
+            return Object.assign({}, state, {modalWindow: action.state});
 
 
         default:

@@ -24,7 +24,6 @@ class AlbomCardFlat extends React.Component {
     }
 
     countPlaces() {
-        debugger;
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         axios.post(SERVER + '/amount-places', {
             country: this.props.searchParams.country,

@@ -11,6 +11,18 @@
     width: 150px;
 }
 
+/*Modal*/
+.modal-container{
+    max-width: 300px;
+    min-width: 300px;
+    z-index: 100000;
+    position: absolute;
+    margin-top: 180px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+}
+/**/
 /*Profile*/
 .container-profile {
     padding-left: 100px !important;

@@ -14,6 +14,8 @@ import axios from "axios";
 import {SERVER} from "../constants/constants";
 
 import scrollToComponent from 'react-scroll-to-component';
+import STORE from "../store";
+import stateWindow from "../actions/visibleModalWindow";
 
 
 class Flat extends React.Component {
@@ -30,9 +32,13 @@ class Flat extends React.Component {
                 houseRuleses: [],
                 amentieses: [],
                 images: [],
+                orders: [{
+                    dateFrom: "",
+                    dateTo: ""
+                }]
             }
         }
-
+        STORE.dispatch(stateWindow(true));
         this.getFlat(this.props.flatReducer.idSelectedFlat);
     }
 
@@ -72,6 +78,16 @@ class Flat extends React.Component {
         return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
     }
 
+    showCalendar() {
+        if (this.state.flat.name !== undefined) {
+            return <Calendar locale="en-En" tileDisabled={({activeStartDate, date, view}) => {
+               return this.state.flat.orders.map((order) => {
+                    return (date.getTime() >= new Date(order.dateFrom).setHours(0,0,0,0) && date.getTime() <= new Date(order.dateTo).setHours(0,0,0,0));
+                }).find((element) => element === true);
+            }}/>
+        }
+    }
+
     render() {
         return <div className="container mt-5 flat">
             <Carousel images={this.state.flat.images}/>
@@ -84,7 +100,8 @@ class Flat extends React.Component {
             />
 
             <div className="mt-3"><h3>{this.state.flat.name}</h3></div>
-            <QuickRent price={this.state.flat.cost}/>
+            <QuickRent price={this.state.flat.cost} dateFrom={this.props.searchParams.dateFrom}
+                       dateTo={this.props.searchParams.dateTo} flat={this.state.flat}/>
 
             <div className="row mt-3 justify-content-center">
                 <CardInfo img="https://cdn1.iconfinder.com/data/icons/facebook-ui/48/additional_icons-10-512.png"
@@ -105,9 +122,9 @@ class Flat extends React.Component {
                 <h5>House Rules</h5>
                 <div className="row mt-4">
                     <h6 className="col-3 mw-200">Check-in: <small
-                        className="text-muted">{this.formatDate(new Date(this.state.flat.checkIn))}</small></h6>
+                        className="text-muted"></small></h6>
                     <h6 className="col-3 mw-200">Check-out: <small
-                        className="text-muted">{this.formatDate(new Date(this.state.flat.checkOut))}</small></h6>
+                        className="text-muted"></small></h6>
                 </div>
                 <div className=" bg-light ml-0">
 
@@ -123,7 +140,9 @@ class Flat extends React.Component {
             </div>
             <div ref="rates" className=" mt-5">
                 <h4 className="mb-3">Rates & Availability</h4>
-                <Calendar locale="en-En" tileDisabled={({activeStartDate, date, view }) => date.getDate() < 26}/>
+                {
+                    this.showCalendar()
+                }
             </div>
 
             <div ref="map" className="map_size_m mt-5">
@@ -138,7 +157,8 @@ class Flat extends React.Component {
 function mapStateToProps(state) {
     return {
         flatReducer: state.flatReducer,
-        flat: state.flatReducer.idSelectedFlat
+        flat: state.flatReducer.idSelectedFlat,
+        searchParams: state.flatReducer.searchParams
     };
 }
 

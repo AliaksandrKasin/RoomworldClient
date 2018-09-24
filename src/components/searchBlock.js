@@ -14,13 +14,21 @@ class SearchBlock extends React.Component {
         this.dispatchSearchParams = this.dispatchSearchParams.bind(this);
         this.state = {
             dateFrom: new Date(),
-            dateTo: new Date(),
+            dateTo: this.datePlusDay(new Date()),
             place: "",
             redirect: false
         }
     }
 
-    onChangeFrom = dateFrom => this.setState({dateFrom});
+    datePlusDay(date) {
+        let datePlusDay = new Date(date);
+        return new Date(datePlusDay.setDate(date.getDate() + 1));
+    }
+
+    onChangeFrom = dateFrom => {
+        this.setState({dateFrom});
+        this.setState({dateTo: this.datePlusDay(dateFrom)});
+    }
     onChangeTo = dateTo => this.setState({dateTo});
     onChangePlace = (e) => this.setState({place: e.target.value});
 
@@ -37,7 +45,6 @@ class SearchBlock extends React.Component {
     }
 
 
-
     dispatchSearchParams() {
         let place = this.placeToObject(this.state.place);
         if (!place.country) {
@@ -45,8 +52,8 @@ class SearchBlock extends React.Component {
         }
 
         STORE.dispatch(search({
-            dateTo: new Date(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDay()),
-            dateFrom: new Date(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDay()),
+            dateFrom: new Date(Date.UTC(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDate())),
+            dateTo: new Date(Date.UTC(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDate())),
             country: place.country,
             city: place.city,
         }))
@@ -81,7 +88,7 @@ class SearchBlock extends React.Component {
                             className="input_size_s bg-white mt-1"
                             value={this.state.dateTo}
                             onChange={this.onChangeTo}
-                            minDate={new Date()}
+                            minDate={this.datePlusDay(this.state.dateFrom)}
                             locale="en-En"
                         />
                     </div>
