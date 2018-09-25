@@ -21,31 +21,51 @@ class QuickRent extends React.Component {
         this.state = {
             dateFrom: new Date(props.dateFrom),
             dateTo: new Date(props.dateTo),
-            flat: this.props.flat
+            flat: this.props.flat,
+            dateNotOrdered: true
         }
     }
 
     onChangeFrom = dateFrom => {
         this.setState({dateFrom});
         this.setState({dateTo: this.datePlusDay(dateFrom)});
+        if (this.props.flat.orders.length) this.checkDates(dateFrom, this.datePlusDay(dateFrom));
     }
-    onChangeTo = dateTo => this.setState({dateTo});
+    onChangeTo = dateTo => {
+        this.setState({dateTo});
+        if (this.props.flat.orders.length) this.checkDates(this.state.dateFrom, dateTo);
+    };
+
+    checkDates(currentDateFrom, currentDateTo) {
+        let arrayOrders = this.props.flat.orders;
+        let state = null;
+        currentDateFrom = currentDateFrom.setHours(0, 0, 0, 0);
+        currentDateTo = currentDateTo.setHours(0, 0, 0, 0);
+        let count = 0;
+        arrayOrders.some((order) => {
+            let dateFrom = new Date(order.dateFrom).setHours(0, 0, 0, 0);
+            let dateTo = new Date(order.dateTo).setHours(0, 0, 0, 0);
+            state = ((dateFrom <= currentDateFrom && dateTo >= currentDateFrom)
+                && (dateFrom <= currentDateTo && dateTo >= currentDateTo)
+                || (dateFrom > currentDateFrom && dateFrom < currentDateTo));
+            return state;
+        }) ? this.setState({dateNotOrdered: false}) : this.setState({dateNotOrdered: true});
+    }
 
     render() {
-        debugger
-        let a = this. state.dateTo;
         return <div className="border rounded_10 mt-3 mb-5">
             <ModalWindowBook dateFrom={this.state.dateFrom} dateTo={this.state.dateTo}
                              totalPrice={this.dateDiff(this.state.dateTo, this.state.dateFrom) * this.props.price}/>
             <h3 className="mt-5 ml-4">${this.props.price}
-                <small className="text-muted">per night</small>
+                <small className="text-muted"> per night</small>
             </h3>
 
             <div className="ml-3">
                 <img className="img_size_5"
-                     src="https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/check_round-512.png"
+                     src={(this.state.dateNotOrdered) ? "https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/check_round-512.png" : "https://cdn3.iconfinder.com/data/icons/simple-web-navigation/165/cross-128.png"}
                 />
-                <small className="card-body text-muted">Your dates are Available!</small>
+                <small
+                    className="card-body text-muted">{(this.state.dateNotOrdered) ? "Your dates are Available!" : "Your dates booked!"}</small>
             </div>
             <DatePicker
                 className="input_size_s bg-white mt-3"
@@ -75,7 +95,7 @@ class QuickRent extends React.Component {
             </div>
             */}
             <div className="text-center mb-4">
-                <button className="btn btn-lg btn-primary" type='button'
+                <button className="btn btn-lg btn-primary" type='button' disabled={!this.state.dateNotOrdered}
                         onClick={() => STORE.dispatch(stateWindow(false))}>Book Now
                 </button>
             </div>

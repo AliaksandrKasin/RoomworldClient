@@ -20,7 +20,9 @@ const initialState = {
         skip: 0,
         take: 2
     },
-    modalWindow: false
+    modalWindow: false,
+
+    selectedMenu: "Profile"
 };
 
 
@@ -42,7 +44,10 @@ export default function flatReducer(state = initialState, action) {
             return Object.assign({}, state, {searchParams: action.pageProps});
 
         case 'MODAL_WINDOW':
-            return Object.assign({}, state, {modalWindow: action.state});
+            return Object.assign({}, state, {modalWindow: action.state})
+
+        case 'SELECT_PROFILE_MENU':
+            return Object.assign({}, state, {selectedMenu: action.state})
 
 
         default:

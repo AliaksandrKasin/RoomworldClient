@@ -1,10 +1,13 @@
 import * as React from "react";
 import axios from "axios";
-import {SERVER} from "../constants/constants";
+import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
 import Activity from "./activity";
 import UsersProfile from "./usersProfile";
 import Account from "./acount";
 import ProfileMenu from "./profileMenu";
+import CardFlat from "./cardFlat";
+import UsersFlats from "./usersFlats";
+import connect from "react-redux/es/connect/connect";
 
 class Profile extends React.Component {
 
@@ -18,7 +21,9 @@ class Profile extends React.Component {
             phoneNumber: "",
             myFlats: 0,
             rentedFlats: 0,
-            menuStatus: "Profile"
+            menuStatus: "Profile",
+            flats: [],
+            orders: []
         }
     }
 
@@ -27,12 +32,15 @@ class Profile extends React.Component {
         axios.post(SERVER + '/get-profile')
             .then((response) => {
                 console.log(response.data);
+                debugger
                 this.setState({
                     name: response.data.name,
                     surname: response.data.surname,
                     myFlats: response.data.flats.length,
                     email: response.data.email,
-                    phoneNumber: response.data.phoneNumber
+                    phoneNumber: response.data.phoneNumber,
+                    flats: response.data.flats,
+                    orders: response.data.orders
                 });
             })
             .catch((error) => {
@@ -40,29 +48,29 @@ class Profile extends React.Component {
             });
     }
 
-
+    bodyProfile(){
+        switch (this.props.selectedMenu) {
+            case "My flats": return <UsersFlats flats={this.state.flats}/>
+            case "My booking": return <UsersFlats flats={this.state.orders.flat}/>
+            case "Profile": return <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
+                                                 phoneNumber={this.state.phoneNumber}/>
+        }
+    }
     render() {
         return <div className="">
             <ProfileMenu/>
-
-
-            <div className="d-flex justify-content-center">
-                <div className="text-center text-muted">
-                    <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"
-                         className="avatar rounded-circle img-thumbnail" alt="avatar" height="200px"
-                         width="200px"/>
-                    <h1 className="profile__title">{this.state.name + " " + this.state.surname}</h1>
-                </div>
-            </div>
-
-            <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
-                          phoneNumber={this.state.phoneNumber}/>
-
-
+            {this.bodyProfile()}
         </div>
 
 
     }
 }
 
-export default Profile;
+
+function mapStateToProps(state) {
+    return {
+        selectedMenu: state.flatReducer.selectedMenu
+    };
+}
+
+export default connect(mapStateToProps)(Profile);

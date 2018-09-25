@@ -16,7 +16,7 @@ class SearchBlock extends React.Component {
             dateFrom: new Date(),
             dateTo: this.datePlusDay(new Date()),
             place: "",
-            redirect: false
+            redirect: false,
         }
     }
 

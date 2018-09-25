@@ -1,13 +1,11 @@
 import React from "react";
-import STORE from "../store";
 import {Link} from "react-router-dom";
+import STORE from "../store";
 import idSelectedFlat from "../actions/idSelectedFlat";
 
-
-
-class CardFlat extends React.Component {
+class UsersCardFlat extends React.Component {
     render() {
-        return <Link to="/flat" className="col-md-6 card-with mb-5 underline_none" onClick={() => {
+        return <Link to="/flat" className="col-md-4 mb-5 underline_none" onClick={() => {
             STORE.dispatch(idSelectedFlat(this.props.id));
         }}>
             <div className="card">
@@ -19,7 +17,6 @@ class CardFlat extends React.Component {
                         <div className="d-flex justify-content-between align-items-center pt-4 mt-4">
                             <div className="pb-2">
                                 <strong className="h4 text-dark">{this.props.cost}€ </strong>
-                                <small className="text-muted">per night</small>
                             </div>
                             <small className="text-info">{this.props.location}</small>
                             <small className="text-muted">{this.props.date}</small>
@@ -31,4 +28,4 @@ class CardFlat extends React.Component {
     }
 }
 
-export default CardFlat
+export default UsersCardFlat

@@ -35,7 +35,7 @@ class Flat extends React.Component {
                 orders: [{
                     dateFrom: "",
                     dateTo: ""
-                }]
+                }],
             }
         }
         STORE.dispatch(stateWindow(true));
@@ -81,11 +81,16 @@ class Flat extends React.Component {
     showCalendar() {
         if (this.state.flat.name !== undefined) {
             return <Calendar locale="en-En" tileDisabled={({activeStartDate, date, view}) => {
-               return this.state.flat.orders.map((order) => {
-                    return (date.getTime() >= new Date(order.dateFrom).setHours(0,0,0,0) && date.getTime() <= new Date(order.dateTo).setHours(0,0,0,0));
+                return this.state.flat.orders.map((order) => {
+                    return (date.getTime() >= new Date(order.dateFrom).setHours(0, 0, 0, 0) && date.getTime() <= new Date(order.dateTo).setHours(0, 0, 0, 0));
                 }).find((element) => element === true);
             }}/>
         }
+    }
+
+    getTime(stringDate) {
+        let date = new Date(stringDate);
+        return date.getHours() + ":" + date.getMinutes();
     }
 
     render() {
@@ -108,9 +113,9 @@ class Flat extends React.Component {
                           body="Apartment" title={this.state.flat.size + " sq. ft."}/>
                 <CardInfo
                     img="https://cdn4.iconfinder.com/data/icons/objects-things-essentials-vol-2/48/v-52-512.png"
-                    body="Bathrooms" title="1"/>
+                    body="Bathrooms" title={this.state.flat.countBathroom}/>
                 <CardInfo img="https://cdn3.iconfinder.com/data/icons/furniture-vector-line-1/128/22-128.png"
-                          body="Bedrooms" title="1"/>
+                          body="Bedrooms" title={this.state.flat.countBedroom}/>
                 <CardInfo img="https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users2-1-128.png"
                           body="Sleeps"
                           title={this.state.flat.accommodates}/>
@@ -122,9 +127,9 @@ class Flat extends React.Component {
                 <h5>House Rules</h5>
                 <div className="row mt-4">
                     <h6 className="col-3 mw-200">Check-in: <small
-                        className="text-muted"></small></h6>
+                        className="text-muted">{this.getTime(this.state.flat.checkIn)}</small></h6>
                     <h6 className="col-3 mw-200">Check-out: <small
-                        className="text-muted"></small></h6>
+                        className="text-muted">{this.getTime(this.state.flat.checkOut)}</small></h6>
                 </div>
                 <div className=" bg-light ml-0">
 

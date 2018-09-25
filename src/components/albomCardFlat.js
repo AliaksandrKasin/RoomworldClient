@@ -28,6 +28,8 @@ class AlbomCardFlat extends React.Component {
         axios.post(SERVER + '/amount-places', {
             country: this.props.searchParams.country,
             city: this.props.searchParams.city,
+            dateFrom: this.props.searchParams.dateFrom,
+            dateTo: this.props.searchParams.dateTo
         })
             .then((response) => {
                this.setState({found: response.data});
@@ -43,6 +45,8 @@ class AlbomCardFlat extends React.Component {
         axios.post(SERVER + '/search', {
             country: this.props.searchParams.country,
             city: this.props.searchParams.city,
+            dateFrom: this.props.searchParams.dateFrom,
+            dateTo: this.props.searchParams.dateTo,
             skip: this.state.skip,
             take: this.state.take
         })
