@@ -11,8 +11,12 @@
     width: 150px;
 }
 
+/*input file*/
+
+
+/**/
 /*Modal*/
-.modal-container{
+.modal-container {
     max-width: 300px;
     min-width: 300px;
     z-index: 100000;
@@ -22,6 +26,7 @@
     transform: translate(-50%, -50%);
     height: 100px;
 }
+
 /**/
 /*Profile*/
 .container-profile {
@@ -35,22 +40,21 @@
     height: 50px;
 }
 
-.profile-menu{
+.profile-menu {
     height: 44px;
 }
 
-.profile-menu__link:hover{
+.profile-menu__link:hover {
     border-bottom: 3px solid #2525201a;
 }
 
 @media (max-width: 520px) {
-    .profile-menu__link{
+    .profile-menu__link {
         /*visibility: hidden;*/
     }
 }
 
 /*******/
-
 
 .container__title {
     min-width: 350px;
@@ -149,7 +153,7 @@
 
 }
 
-.button_cursor_pointer:hover{
+.button_cursor_pointer:hover {
     cursor: pointer;
 }
 
@@ -367,6 +371,7 @@
     left: 10px;
     top: 3px;
 }
+
 .underline_none {
     text-decoration: none !important
 }
