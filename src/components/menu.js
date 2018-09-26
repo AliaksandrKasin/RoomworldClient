@@ -8,6 +8,7 @@ import AlbomCardFlat from "./albomCardFlat";
 import Flat from "./flat";
 import {Provider} from 'react-redux';
 import STORE from "../store";
+import RegistrationFlat from "./registrationFlat";
 
 class Menu extends React.Component {
 
@@ -33,7 +34,7 @@ class Menu extends React.Component {
             <a href="/home"><img src="https://cdn2.iconfinder.com/data/icons/real-estate-61/64/Real_estate_16-512.png"
                                  className="img-thumbnail icon-home" width="50px" height="50px"/></a>
             <nav className='navbar border-bottom'>
-                <a className='navbar-brand ' href='/rent'>List your place</a>
+                <a className='navbar-brand ' href='/places/new'>List your place</a>
                 <a href="/profile" hidden={!this.state.profileHidden}>
                     <img
                         src="https://cdn2.iconfinder.com/data/icons/real-estate-185/64/broker-agent-agency-business_man-512.png"
@@ -53,6 +54,7 @@ class Menu extends React.Component {
                         <Route path='/searches' component={AlbomCardFlat}/>
                         <Route path='/flat' component={Flat}/>
                         <Route path={'/registration'} component={Registration}/>
+                        <Route path={'/places/new'} component={RegistrationFlat}/>
                     </Switch>
                 </BrowserRouter>
             </Provider>
