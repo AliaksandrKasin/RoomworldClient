@@ -5,8 +5,9 @@ import STORE from "../store";
 import selectedFlat from "../actions/selectedFlat";
 import connect from "react-redux/es/connect/connect";
 import Rules from "./rules";
-import RulesRegistration from "./RulesRegistration";
+import RulesRegistration from "./rulesRegistration";
 import addRules from "../actions/addRules";
+import rulesInitial from "../actions/rulesInitial";
 
 class RegistrationFlat extends React.Component {
 
@@ -39,6 +40,7 @@ class RegistrationFlat extends React.Component {
             amentieses: [],
             images: []
         }));
+        STORE.dispatch(rulesInitial());
     }
 
     onChangeSelectPictures = event => {
@@ -151,17 +153,10 @@ class RegistrationFlat extends React.Component {
     }
 
     onClickAddRule(rule) {
-
-        STORE.dispatch(addRules(rule));
-
-        /*if (rule.title !== "") {
-
-
-            if (flat.houseRuleses.filter(x => x.title === rule.title).length === 0) {
-                flat.houseRuleses.push(rule);
-                this.setState({houseRules: {title: "", state: true}})
-            }
-        }*/
+        if (rule.title !== "" && this.props.rules.filter(x => x.title === rule.title).length === 0) {
+            STORE.dispatch(addRules(rule));
+            this.setState({houseRules: {title: "", state: true}})
+        }
     }
 
 
@@ -318,7 +313,7 @@ class RegistrationFlat extends React.Component {
             <div className="container border rounded_10 ">
                 <h4>House Rules</h4>
 
-                {this.listHouseRules(this.props.flat.houseRuleses)}
+                {this.listHouseRules(this.props.rules)}
 
                 <div className="row">
                     <div className="col-6">
@@ -347,7 +342,8 @@ class RegistrationFlat extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        flat: state.flatReducer.selectedFlat
+        flat: state.flatReducer.selectedFlat,
+        rules: state.flatReducer.houseRuleses
     };
 }
 

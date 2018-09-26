@@ -1,7 +1,5 @@
 import * as React from "react";
-import connect from "react-redux/es/connect/connect";
 import STORE from "../store";
-import selectedFlat from "../actions/selectedFlat";
 import deleteRules from "../actions/deleteRule";
 
 class RulesRegistration extends React.Component {
@@ -12,13 +10,6 @@ class RulesRegistration extends React.Component {
             imgCross: "https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/close-512.png",
             imgCheckMark: "https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/check-512.png"
         }
-    }
-
-    removeRule(title){
-        let flat = this.props.flat;
-
-        flat.houseRuleses = flat.houseRuleses.filter(x => x.title !== title);
-        STORE.dispatch(selectedFlat(flat));
     }
 
     render() {
@@ -35,10 +26,4 @@ class RulesRegistration extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        flat: state.flatReducer.selectedFlat
-    };
-}
-
-export default connect(mapStateToProps)(RulesRegistration);
+export default RulesRegistration;

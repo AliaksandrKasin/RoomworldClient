@@ -2,6 +2,7 @@ import selectFlat from "../actions/idSelectedFlat";
 
 const initialState = {
     flats: [],
+    houseRuleses: [],
     selectedFlat: {
         placeTitle: "",
         placeDescription: "",
@@ -42,10 +43,13 @@ export default function flatReducer(state = initialState, action) {
             return Object.assign({}, state, {selectedFlat: action.flat});
 
         case 'ADD_RULES':
-            return Object.assign({}, state, {selectedFlat: {houseRuleses: [...state.selectedFlat.houseRuleses, action.rule]}});
+            return Object.assign({}, state, {houseRuleses: [...state.houseRuleses, action.rule]});
+
+        case 'RULES_INITIAL':
+            return Object.assign({}, state, {houseRuleses: []});
 
         case 'DELETE_RULES':
-            return Object.assign({}, state, {selectedFlat: {houseRuleses: state.selectedFlat.houseRuleses.filter(value => value.title !== action.title)}});
+            return Object.assign({}, state, {houseRuleses: state.houseRuleses.filter(value => value.title !== action.title)});
 
         case 'SEARCH':
             return Object.assign({}, state, {searchParams: action.searchParams});
