@@ -3,11 +3,8 @@ import CardFlat from "./cardFlat";
 import axios from "axios";
 import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
 import Map from "./map";
-import STORE from "../store";
 import {connect} from 'react-redux';
-import listFlat from "../actions/listflat";
-import search from "../actions/search";
-import pageCounter from "../actions/pageCounter";
+
 
 
 class AlbomCardFlat extends React.Component {
@@ -72,7 +69,7 @@ class AlbomCardFlat extends React.Component {
                     id={flat.id}
                     key={index}
                     name={flat.name}
-                    image={(flat.images.length) ? flat.images[0].url : IMG_NOT_FOUND}
+                    image={(flat.images.length) ? SERVER + flat.images[0].url : IMG_NOT_FOUND}
                     cardText={flat.description}
                     cost={flat.cost}
                     location={flat.location.country + " " + flat.location.city}

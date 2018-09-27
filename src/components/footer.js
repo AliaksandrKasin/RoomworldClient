@@ -2,11 +2,11 @@ import * as React from "react";
 
 class Footer extends React.Component {
     render() {
-        return <footer className="page-footer font-small unique-color-dark pt-4">
+        return <footer className="page-footer font-small border-top border-bottom pt-4">
             <div className="container">
             </div>
-            <div className="footer-copyright text-center py-3">© 2018 Copyright:
-                <a href="https://mdbootstrap.com/bootstrap-tutorial/">RoomWorld.com</a>
+            <div className="footer-copyright text-muted text-center py-3">© 2018 Copyright:
+                <a className="text-info ml-2">Alexandr Kasin</a>
             </div>
         </footer>
 

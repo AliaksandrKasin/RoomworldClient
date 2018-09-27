@@ -1,4 +1,4 @@
-import selectFlat from "../actions/idSelectedFlat";
+
 
 const initialState = {
     flats: [],
@@ -28,8 +28,6 @@ const initialState = {
 
     selectedMenu: "Profile"
 };
-/* case 'ID_SELECTED_FLAT':
-            return Object.assign({}, state, {idSelectedFlat: Object.assign({}, state.idSelectedFlat.id, action.id) action.id});*/
 
 export default function flatReducer(state = initialState, action) {
     switch (action.type) {
@@ -44,6 +42,12 @@ export default function flatReducer(state = initialState, action) {
 
         case 'ADD_RULES':
             return Object.assign({}, state, {houseRuleses: [...state.houseRuleses, action.rule]});
+
+        case 'ADD_AMENITY':
+            return Object.assign({}, state, {amenities: [...state.amenities, action.amenity]});
+
+        case 'AMENITIES_INITIAL':
+            return Object.assign({}, state, {amenities: []});
 
         case 'RULES_INITIAL':
             return Object.assign({}, state, {houseRuleses: []});

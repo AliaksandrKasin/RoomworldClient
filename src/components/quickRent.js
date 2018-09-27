@@ -89,11 +89,6 @@ class QuickRent extends React.Component {
                     className="col-sm-5 text-right h5 w-auto">${this.dateDiff(this.state.dateTo, this.state.dateFrom) * this.props.price}</small>
             </div>
 
-            {/*<div className="ml-4 text-muted row">
-                <h5 className="col-sm-6 pb-3 small w-50 pl-0">Includes taxes and fees</h5>
-                <a className="col-sm-5 text-right text-info small w-auto">View details</a>
-            </div>
-            */}
             <div className="text-center mb-4">
                 <button className="btn btn-lg btn-primary" type='button' disabled={!this.state.dateNotOrdered}
                         onClick={() => STORE.dispatch(stateWindow(false))}>Book Now

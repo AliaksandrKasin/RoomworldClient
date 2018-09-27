@@ -1,5 +1,5 @@
 import * as React from "react";
-import {IMG_NOT_FOUND} from "../constants/constants";
+import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
 
 class Carousel extends React.Component {
 
@@ -33,7 +33,7 @@ class Carousel extends React.Component {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img className="d-block w-100"
-                             src={(this.props.images.length) ? this.props.images[this.state.counter].url : "https://www.solidbackgrounds.com/images/1280x720/1280x720-white-solid-color-background.jpg"}
+                             src={(this.props.images.length) ? SERVER + this.props.images[this.state.counter].url : "https://www.solidbackgrounds.com/images/1280x720/1280x720-white-solid-color-background.jpg"}
                              alt="First slide"/>
                     </div>
 

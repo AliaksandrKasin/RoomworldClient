@@ -2,7 +2,7 @@ import * as React from "react";
 import STORE from "../store";
 import deleteRules from "../actions/deleteRule";
 
-class RulesRegistration extends React.Component {
+class RuleRegistration extends React.Component {
     constructor(props) {
         super(props);
 
@@ -26,4 +26,4 @@ class RulesRegistration extends React.Component {
     }
 }
 
-export default RulesRegistration;
+export default RuleRegistration;

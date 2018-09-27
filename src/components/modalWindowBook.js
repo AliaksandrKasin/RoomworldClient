@@ -33,10 +33,10 @@ class ModalWindowBook extends React.Component {
     render() {
         return <div className="d-flex justify-content-center position-relative">
             <div hidden={this.props.stateWindow} className="modal-container bg-light rounded_10 border">
-                <h4 className="text-center">Book now?</h4>
+                <h4 className="text-center mb-5 mt-2">Book now?</h4>
                 <div className="d-flex justify-content-center">
-                    <button className="btn" type="button" onClick={this.bookNow}>Yes</button>
-                    <button className="btn ml-3" type="button" onClick={() => STORE.dispatch(stateWindow(true))}>No</button>
+                    <button className="btn border bg-white" type="button" onClick={this.bookNow}>Yes</button>
+                    <button className="btn ml-3 border bg-white" type="button" onClick={() => STORE.dispatch(stateWindow(true))}>No</button>
                 </div>
             </div>
         </div>

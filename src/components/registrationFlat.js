@@ -4,10 +4,10 @@ import {SERVER} from "../constants/constants";
 import STORE from "../store";
 import selectedFlat from "../actions/selectedFlat";
 import connect from "react-redux/es/connect/connect";
-import Rules from "./rules";
-import RulesRegistration from "./rulesRegistration";
-import addRules from "../actions/addRules";
-import rulesInitial from "../actions/rulesInitial";
+import AmenitiesRegistration from "./amenitiesRegistration";
+import Rules from "./ruleRegistration";
+import LocationRegistration from "./locationRegistration";
+import DescriptionFlatRegistration from "./descriptionFlatRegistration";
 
 class RegistrationFlat extends React.Component {
 
@@ -15,8 +15,9 @@ class RegistrationFlat extends React.Component {
         super(props);
         this.state = {
             pictures: [],
-            houseRule: {title: "", state: true}
         }
+
+        this.saveFlat = this.saveFlat.bind(this);
 
         STORE.dispatch(selectedFlat({
             placeTitle: "",
@@ -34,13 +35,13 @@ class RegistrationFlat extends React.Component {
                 city: "",
                 numberHouse: "",
                 numberHouseBlock: "",
-                numberFlat: ""
+                numberFlat: "",
+                gpsPoint: "a3434t3rg33r"
             },
             houseRuleses: [],
             amentieses: [],
             images: []
         }));
-        STORE.dispatch(rulesInitial());
     }
 
     onChangeSelectPictures = event => {
@@ -54,113 +55,9 @@ class RegistrationFlat extends React.Component {
         STORE.dispatch(selectedFlat(flat))
     }
 
-    onChangePlaceTitle = (event) => {
-        let flat = this.props.flat;
-        flat.placeTitle = event.target.value;
-        STORE.dispatch(selectedFlat(flat))
-    }
-
-    onChangePlaceDescription = (event) => {
-        let flat = this.props.flat;
-        flat.placeDescription = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeSpaceOffered = (event) => {
-        let flat = this.props.flat;
-        flat.spaceOffered = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeAccommodates = (event) => {
-        let flat = this.props.flat;
-        flat.accommodates = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeSizeFlat = (event) => {
-        let flat = this.props.flat;
-        flat.sizeFlat = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangePrice = (event) => {
-        let flat = this.props.flat;
-        flat.price = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeCheckIn = (event) => {
-        let flat = this.props.flat;
-        flat.checkIn = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeCheckOut = (event) => {
-        let flat = this.props.flat;
-        flat.checkOut = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeAmountBathroom = (event) => {
-        let flat = this.props.flat;
-        flat.amountBathroom = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeAmountBedroom = (event) => {
-        let flat = this.props.flat;
-        flat.amountBedroom = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeCountry = (event) => {
-        let flat = this.props.flat;
-        flat.location.country = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeCity = (event) => {
-        let flat = this.props.flat;
-        flat.location.city = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeNumberHouse = (event) => {
-        let flat = this.props.flat;
-        flat.location.numberHouse = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeNumberHouseBlock = (event) => {
-        let flat = this.props.flat;
-        flat.location.numberHouseBlock = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeNumberFlat = (event) => {
-        let flat = this.props.flat;
-        flat.location.numberFlat = event.target.value;
-        STORE.dispatch(selectedFlat(flat));
-    }
-
-    onChangeHouseRulesTitle = (event) => {
-        this.setState({houseRule: {title: event.target.value, state: this.state.houseRule.state}})
-    }
-
-    onChangeHouseRulesState = (event) => {
-        this.setState({houseRule: {state: (event.target.value === "Can"), title: this.state.houseRule.title}})
-    }
-
-    onClickAddRule(rule) {
-        if (rule.title !== "" && this.props.rules.filter(x => x.title === rule.title).length === 0) {
-            STORE.dispatch(addRules(rule));
-            this.setState({houseRules: {title: "", state: true}})
-        }
-    }
-
 
     uploadImages(images) {
+        debugger
         let form = new FormData();
         for (let i = 0; i < images.length; i++) {
             form.append("File", images[i])
@@ -185,10 +82,51 @@ class RegistrationFlat extends React.Component {
 
     }
 
-    listHouseRules(houseRules) {
-        return houseRules.map((rule, index) => {
-            return <RulesRegistration key={index} state={rule.state} text={rule.title}/>
+
+    saveFlat() {
+        let flat = this.props.flat;
+        this.uploadImages(this.state.pictures);
+        flat.houseRuleses = this.props.rules;
+        flat.amenitieses = this.props.amenities;
+        let arrayAmenities = [];
+        this.props.amenities.map((amenity) => {
+            arrayAmenities.push({name: amenity.title, type: amenity.type})
+        });
+        let arrayHouseRules = [];
+        this.props.rules.map((rule) => {
+            arrayHouseRules.push({name: rule.title, state: rule.state})
+        });
+        let arrayImages = [];
+        flat.images.map((image) => {
+            arrayImages.push({url: image});
         })
+        debugger;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+        axios.post(SERVER + '/place/new', {
+            name: flat.placeTitle,
+            description: flat.placeDescription,
+            cost: flat.price,
+            accommodates: flat.accommodates,
+            spaceOffered: flat.spaceOffered,
+            size: flat.sizeFlat,
+            countBathRoom: flat.amountBathroom,
+            countBedroom: flat.amountBedroom,
+            checkIn: flat.checkIn,
+            checkOut: flat.checkOut,
+            amentieses: arrayAmenities,
+            houseRuleses: arrayHouseRules,
+            images: arrayImages,
+            location: flat.location
+
+
+        })
+            .then((response) => {
+                window.location.href = "/home";
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }
 
     render() {
@@ -209,130 +147,21 @@ class RegistrationFlat extends React.Component {
                         {this.listImages(this.state.pictures)}
                     </div>
                 </div>
-                <input className="" type="file" name="picture" multiple accept="image/*"
+                <input className="button_cursor_pointer mb-3" type="file" name="picture" multiple accept="image/*"
                        onChange={this.onChangeSelectPictures}/>
             </div>
 
-            <div className="container border rounded_10 mb-3 mt-5">
-                <h4>Tell us about your place...</h4>
+            <DescriptionFlatRegistration/>
 
-                <div className="text-left mb-4 w-100">
-                    <label className="text-muted">Place title:</label><br/>
-                    <input className="rounded w-75" type="text" onChange={this.onChangePlaceTitle}/>
-                </div>
+           <LocationRegistration/>
 
-                <div className="text-left mb-4 w-100">
-                    <label className="text-muted">Place description:</label><br/>
-                    <textarea className="rounded w-75" onChange={this.onChangePlaceDescription}/>
-                </div>
+            <Rules/>
+            <AmenitiesRegistration/>
 
-                <div className="row">
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Space offered:</label><br/>
-                        <select className="rounded" onChange={this.onChangeSpaceOffered}>
-                            <option>Entire place</option>
-                            <option>Private room</option>
-                            <option>Shared room</option>
-                        </select>
-                    </div>
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Accommodates:</label><br/>
-                        <input className="rounded w-25 h5 " type="number" min="1" max="20"
-                               onChange={this.onChangeAccommodates}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Size flat:</label><br/>
-                        <input className="rounded w-50 h5 " type="number" min="1" onChange={this.onChangeSizeFlat}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Price per night(USD):</label><br/>
-                        <input className="rounded w-50 h5 " type="number" min="0" onChange={this.onChangePrice}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Check in:</label><br/>
-                        <input className="rounded w-50 h5 " type="time" onChange={this.onChangeCheckIn}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Check out:</label><br/>
-                        <input className="rounded w-50 h5 " type="time" onChange={this.onChangeCheckOut}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Amount bathroom:</label><br/>
-                        <input className="rounded w-25 h5 " type="number" min="1" max="20"
-                               onChange={this.onChangeAmountBathroom}/>
-                    </div>
-
-                    <div className="col-4 text-left">
-                        <label className="text-muted">Amount bedroom:</label><br/>
-                        <input className="rounded w-25 h5 " type="number" min="1" max="20"
-                               onChange={this.onChangeAmountBedroom}/>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div className="container border rounded_10 ">
-                <h4>Location</h4>
-                <div className="text-left mb-4 w-100 mt-3">
-                    <label className="text-muted">Country:</label><br/>
-                    <input className="rounded w-75 " type="text" onChange={this.onChangeCountry}/>
-                </div>
-
-                <div className="text-left mb-4 w-100 mt-3">
-                    <label className="text-muted">City:</label><br/>
-                    <input className="rounded w-75" type="text" onChange={this.onChangeCity}/>
-                </div>
-
-                <div className="row">
-                    <div className="text-left mb-4 w-100 mt-3 col-4">
-                        <label className="text-muted">Number house:</label><br/>
-                        <input className="rounded w-50" type="number" min="1" onChange={this.onChangeNumberHouse}/>
-                    </div>
-
-                    <div className="text-left mb-4 w-100 mt-3 col-4">
-                        <label className="text-muted">Number house block:</label><br/>
-                        <input className="rounded w-50" type="number" min="1"
-                               onChange={this.onChangeNumberHouseBlock}/>
-                    </div>
-
-                    <div className="text-left mb-4 w-100 mt-3 col-4">
-                        <label className="text-muted">Number flat:</label><br/>
-                        <input className="rounded w-50" type="number" min="1"
-                               onChange={this.onChangeNumberFlat}/>
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="container border rounded_10 ">
-                <h4>House Rules</h4>
-
-                {this.listHouseRules(this.props.rules)}
-
-                <div className="row">
-                    <div className="col-6">
-                        <label className="text-muted">Title:</label><br/>
-                        <input className="rounded w-100" type="text" onChange={this.onChangeHouseRulesTitle}/>
-                    </div>
-                    <div className="col-2">
-                        <label className="text-muted">State:</label><br/>
-                        <select className="rounded" onChange={this.onChangeHouseRulesState}>
-                            <option>Can</option>
-                            <option>Can`t</option>
-                        </select>
-                    </div>
-
-                    <div className="col-4 mt-4 pt-1">
-                        <button onClick={() => this.onClickAddRule(this.state.houseRule)} type="button">Add rule
-                        </button>
-                    </div>
-                </div>
+            <div className="text-center mb-5">
+                <button className="btn btn-secondary btn-primary input_size_s w-50 rounded_10" type='button'
+                        onClick={this.saveFlat}>Save
+                </button>
             </div>
 
 
@@ -340,10 +169,25 @@ class RegistrationFlat extends React.Component {
     }
 }
 
+function getElementsByType(array, type) {
+    let newArray = [];
+    array.map((el) => {
+        if (el.type === type) {
+            newArray.push(el.name)
+        }
+    });
+    return newArray;
+}
+
+function getArrayUniqueTypes(amenities) {
+    return Array.from(new Set(amenities.map(item => item.type)));
+}
+
 function mapStateToProps(state) {
     return {
         flat: state.flatReducer.selectedFlat,
-        rules: state.flatReducer.houseRuleses
+        rules: state.flatReducer.houseRuleses,
+        amenities: state.flatReducer.amenities
     };
 }
 

@@ -1,11 +1,8 @@
 import * as React from "react";
 import axios from "axios";
-import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
-import Activity from "./activity";
+import {SERVER} from "../constants/constants";
 import UsersProfile from "./usersProfile";
-import Account from "./acount";
 import ProfileMenu from "./profileMenu";
-import CardFlat from "./cardFlat";
 import UsersFlats from "./usersFlats";
 import connect from "react-redux/es/connect/connect";
 
@@ -31,8 +28,6 @@ class Profile extends React.Component {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         axios.post(SERVER + '/get-profile')
             .then((response) => {
-                console.log(response.data);
-                debugger
                 this.setState({
                     name: response.data.name,
                     surname: response.data.surname,
@@ -48,14 +43,18 @@ class Profile extends React.Component {
             });
     }
 
-    bodyProfile(){
+    bodyProfile() {
         switch (this.props.selectedMenu) {
-            case "My flats": return <UsersFlats flats={this.state.flats}/>
-            case "My booking": return <UsersFlats flats={this.state.orders.flat}/>
-            case "Profile": return <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
-                                                 phoneNumber={this.state.phoneNumber}/>
+            case "My flats":
+                return <UsersFlats flats={this.state.flats}/>
+            case "My booking":
+                return <UsersFlats flats={this.state.orders.flat}/>
+            case "Profile":
+                return <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
+                                     phoneNumber={this.state.phoneNumber}/>
         }
     }
+
     render() {
         return <div className="">
             <ProfileMenu/>

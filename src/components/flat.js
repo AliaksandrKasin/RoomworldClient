@@ -12,7 +12,6 @@ import Fasilities from "./facilities";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
-
 import scrollToComponent from 'react-scroll-to-component';
 import STORE from "../store";
 import stateWindow from "../actions/visibleModalWindow";
@@ -90,7 +89,7 @@ class Flat extends React.Component {
 
     getTime(stringDate) {
         let date = new Date(stringDate);
-        return date.getHours() + ":" + date.getMinutes();
+        return date.getHours() + "h:" + date.getMinutes() + "m";
     }
 
     render() {

@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import STORE from "../store";
 import idSelectedFlat from "../actions/idSelectedFlat";
+import {SERVER} from "../constants/constants";
 
 class UsersCardFlat extends React.Component {
     render() {
@@ -10,7 +11,7 @@ class UsersCardFlat extends React.Component {
         }}>
             <div className="card">
                 <div>
-                    <img src={this.props.image}
+                    <img src={SERVER + this.props.image}
                          className="img-fluid"/>
                     <div className="px-3 text-left pb-3 mt-3">
                         <h4 className="card-title title_size_1 text-dark">{this.props.name}</h4>

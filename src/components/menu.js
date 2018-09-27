@@ -9,6 +9,7 @@ import Flat from "./flat";
 import {Provider} from 'react-redux';
 import STORE from "../store";
 import RegistrationFlat from "./registrationFlat";
+import Footer from "./footer";
 
 class Menu extends React.Component {
 
@@ -58,6 +59,7 @@ class Menu extends React.Component {
                     </Switch>
                 </BrowserRouter>
             </Provider>
+
         </div>
     }
 }
