@@ -1,3 +1,23 @@
+body {
+    height: 100%;
+    position: relative;
+}
+
+.body{
+    min-height: 100vh;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 250px;
+
+}
+
+.page-footer{
+    position: absolute!important;
+    bottom: 0!important;
+    width: 100%!important;
+}
+
 .search {
     background-size: cover;
     background: url("https://www.gd-home.com/wp-content/uploads/2016/04/stilnaya-kvartira-v-stile-loft-iz-kieva-1.jpg") fixed center center;

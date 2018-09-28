@@ -3,48 +3,55 @@ import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
 
 const AnyReactComponent = ({text}) => <div>
-    <img className="button_cursor_pointer" onClick={()=>alert("asdasdasa")} className="img_size_4"
+    <img className="button_cursor_pointer" onClick={() => alert("asdasdasa")} className="img_size_4"
          src="https://cdn4.iconfinder.com/data/icons/iconsimple-places/512/pin_2-512.png"/>
-    <h6>{text}</h6>
+    <h6></h6>
 </div>;
 
 class Map extends Component {
-    static defaultProps = {
-        center: {
-            lat: 48.85837009999999,
-            lng: 2.2944813
-        },
-        zoom: 11
-    };
+    constructor(props) {
+        super(props);
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
+
+        this.state = {
+            center: {
+                lat: 0,
+                lng: 0
+            },
+            zoom: 15,
+        }
+    }
+
+    getPlace(place) {
+        if (!this.state.center.lat && !this.state.center.lng && place !== ",  ") {
+            Geocode.fromAddress(place).then(
+                response => {
+                   this.setState({center: response.results[0].geometry.location});
+                   console.log(response.results[0].geometry.location);
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+        }
+    }
 
     render() {
-        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
-        Geocode.enableDebug();
-        Geocode.fromAddress("Eiffel Tower").then(
-            response => {
-                const {lat, lng} = response.results[0].geometry.location;
-                console.log(lat, lng);
-            },
-            error => {
-                console.error(error);
-            }
-        );
-
-        return (
-            <div className="map">
+        this.getPlace(this.props.place);
+        return (this.state.center.lat !==0 && !this.state.center.lng !==0) ? <div className="map">
                 <GoogleMapReact
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}
+                    defaultCenter={this.state.center}
+                    defaultZoom={this.state.zoom}
                     bootstrapURLKeys={{key: "AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY"}}
                 >
                     <AnyReactComponent
-                        lat={48.85837009999999}
-                        lng={2.2944813}
+                        lat={this.state.center.lat}
+                        lng={this.state.center.lng}
                         text={'Efel Tower'}
                     />
                 </GoogleMapReact>
-            </div>
-        );
+            </div> : "";
+
     }
 }
 

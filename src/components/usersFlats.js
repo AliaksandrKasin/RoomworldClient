@@ -6,6 +6,7 @@ class UsersFlats extends React.Component {
 
     listFlat() {
         if (this.props.flats.length) {
+            console.log(this.props.flats);
             return this.props.flats.map((flat, index) => {
                 return <UsersCardFlat
                     id={flat.id}
@@ -14,7 +15,7 @@ class UsersFlats extends React.Component {
                     image={(flat.images.length) ? flat.images[0].url : IMG_NOT_FOUND}
                     cardText={flat.description}
                     cost={flat.cost}
-                    location="Belarus, Grodno"
+                    location={flat.location.country + ", " + flat.location.city}
                     date={this.formatDate(new Date(flat.createdDate))}
                 />
             })

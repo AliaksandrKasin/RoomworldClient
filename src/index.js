@@ -8,13 +8,14 @@ import Menu from './components/menu'
 import Footer from "./components/footer";
 
 
-ReactDOM.render(<div>
+ReactDOM.render(<div className="body">
         <BrowserRouter>
             <Switch>
                 <Route path='/' component={Menu}/>
                 <Route path='*' component={NotFound}/>
             </Switch>
         </BrowserRouter>
+    <Footer/>
     </div>,
     document.getElementById('root')
 );

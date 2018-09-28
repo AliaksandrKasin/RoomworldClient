@@ -26,7 +26,8 @@ class Flat extends React.Component {
             flat: {
                 location: {
                     country: "",
-                    city: ""
+                    city: "",
+                    numberHouse: ""
                 },
                 houseRuleses: [],
                 amentieses: [],
@@ -151,8 +152,8 @@ class Flat extends React.Component {
 
             <div ref="map" className="map_size_m mt-5">
                 <h3 className="mb-3">Map</h3>
-                <Map/>
-                <Location place={"Belarus, Grodno"}/>
+                <Map place={this.state.flat.location.country + ", " + this.state.flat.location.city + " " + this.state.flat.location.numberHouse}/>
+                <Location place={this.state.flat.location.country + ", " + this.state.flat.location.city}/>
             </div>
         </div>
     }

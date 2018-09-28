@@ -20,13 +20,15 @@ class Profile extends React.Component {
             rentedFlats: 0,
             menuStatus: "Profile",
             flats: [],
-            orders: []
+            orders: [],
+            flatsOrders: []
         }
+        this.getBooking();
     }
 
     getProfile() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/get-profile')
+        axios.post(SERVER + '/user/profile')
             .then((response) => {
                 this.setState({
                     name: response.data.name,
@@ -43,12 +45,26 @@ class Profile extends React.Component {
             });
     }
 
+    getBooking() {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+        axios.post(SERVER + '/user/orders')
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    flatOrders: response.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     bodyProfile() {
         switch (this.props.selectedMenu) {
             case "My flats":
                 return <UsersFlats flats={this.state.flats}/>
             case "My booking":
-                return <UsersFlats flats={this.state.orders.flat}/>
+                return <UsersFlats flats={this.state.flats}/>
             case "Profile":
                 return <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
                                      phoneNumber={this.state.phoneNumber}/>

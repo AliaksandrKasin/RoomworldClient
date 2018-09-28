@@ -22,7 +22,7 @@ class AlbomCardFlat extends React.Component {
 
     countPlaces() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/amount-places', {
+        axios.post(SERVER + '/places/amount', {
             country: this.props.searchParams.country,
             city: this.props.searchParams.city,
             dateFrom: this.props.searchParams.dateFrom,
@@ -102,7 +102,7 @@ class AlbomCardFlat extends React.Component {
                     </div>
                 </div>
                 <div className="map-sticky-container sticky-top col-5">
-                    <Map/>
+                    <Map place={this.props.searchParams.country + ", " + this.props.searchParams.city}/>
                 </div>
             </div>
 
