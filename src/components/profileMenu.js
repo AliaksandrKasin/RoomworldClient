@@ -10,6 +10,7 @@ class ProfileMenu extends React.Component {
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("My flats"))}>My flats</a>
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("My booking"))}>My booking</a>
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("Profile"))}>Profile</a>
+                <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("Account"))}>Account</a>
             </div>
         </nav>
     }

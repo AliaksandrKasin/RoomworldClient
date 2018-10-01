@@ -17,6 +17,7 @@ class UsersFlats extends React.Component {
                     cost={flat.cost}
                     location={flat.location.country + ", " + flat.location.city}
                     date={this.formatDate(new Date(flat.createdDate))}
+                    orderAmount={(flat.orders.length) ? flat.orders.length : 0}
                 />
             })
         }

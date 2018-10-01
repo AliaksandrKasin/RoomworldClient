@@ -74,11 +74,17 @@ body {
 
 .profile-menu {
     height: 44px;
+    min-width: 610px;
 }
 
 .profile-menu__link:hover {
     border-bottom: 3px solid #2525201a;
 }
+
+.profile-menu__link:active {
+    border-bottom: 3px solid #ffff00;
+}
+
 
 @media (max-width: 520px) {
     .profile-menu__link {
