@@ -1,6 +1,7 @@
 import {createStore} from 'redux';
 import {combineReducers} from 'redux'
 import flatReducer from "./reducers/flatReducer";
+import profileReducer from "./reducers/profileReducer";
 
 
 const loadState = () => {
@@ -25,7 +26,8 @@ const saveState = (state) => {
 const oldState = loadState();
 
 const ALLREDUCERS = combineReducers({
-    flatReducer
+    flatReducer,
+    profileReducer
 });
 
 const STORE = createStore(ALLREDUCERS, oldState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

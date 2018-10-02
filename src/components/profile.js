@@ -9,6 +9,8 @@ import UsersOrders from "./userOrders";
 import Account from "./account";
 import STORE from "../store";
 import selectProfileMenu from "../actions/selectProfileMenu";
+import addUserProfile from "../actions/profile/addUser";
+import changeProfile from "../actions/profile/changeProfile";
 
 class Profile extends React.Component {
 
@@ -16,33 +18,19 @@ class Profile extends React.Component {
         super(props);
         STORE.dispatch(selectProfileMenu("Profile"));
         this.getProfile();
-        this.state = {
-            name: "",
-            surname: "",
-            email: "",
-            phoneNumber: "",
-            myFlats: 0,
-            rentedFlats: 0,
-            menuStatus: "Profile",
-            flats: [],
-            orders: [],
-            flatsOrders: []
-        }
     }
 
     getProfile() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         axios.post(SERVER + '/user/profile')
             .then((response) => {
-                this.setState({
+                STORE.dispatch(addUserProfile(response.data));
+                STORE.dispatch(changeProfile({
                     name: response.data.name,
                     surname: response.data.surname,
-                    myFlats: response.data.flats.length,
-                    email: response.data.email,
                     phoneNumber: response.data.phoneNumber,
-                    flats: response.data.flats,
-                    orders: response.data.orders
-                });
+                    email: response.data.email
+                }));
             })
             .catch((error) => {
                 console.log(error);
@@ -53,12 +41,11 @@ class Profile extends React.Component {
     bodyProfile() {
         switch (this.props.selectedMenu) {
             case "My flats":
-                return <UsersFlats flats={this.state.flats}/>
+                return <UsersFlats flats={this.props.user.flats}/>
             case "My booking":
                 return <UsersOrders/>
             case "Profile":
-                return <UsersProfile name={this.state.name} surname={this.state.surname} email={this.state.email}
-                                     phoneNumber={this.state.phoneNumber}/>
+                return <UsersProfile/>
             case "Account":
                 return <Account/>
         }
@@ -77,7 +64,8 @@ class Profile extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        selectedMenu: state.flatReducer.selectedMenu
+        selectedMenu: state.flatReducer.selectedMenu,
+        user: state.profileReducer.user
     };
 }
 

@@ -153,7 +153,7 @@ class RegistrationFlat extends React.Component {
 
             <DescriptionFlatRegistration/>
 
-           <LocationRegistration/>
+            <LocationRegistration/>
 
             <Rules/>
             <AmenitiesRegistration/>

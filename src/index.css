@@ -86,12 +86,34 @@ body {
 }
 
 
-@media (max-width: 520px) {
+@media (max-width: 750px) {
     .profile-menu__link {
-        /*visibility: hidden;*/
+        visibility: hidden;
     }
 }
 
+.profile-burger-menu{
+    list-style: none;
+    width: 200px;
+    top: 108px;
+    font-size: 19px;
+    border-radius: 0 0 5px 5px;
+    z-index: 100;
+    background-color: white;
+}
+
+.container-change-pass{
+    margin-top: 200px;
+}
+
+@media (max-width: 750px) {
+    .burger-menu-images{
+        visibility: visible!important;
+    }
+}
+.burger-menu-images{
+    visibility: hidden;
+}
 /*******/
 
 .container__title {

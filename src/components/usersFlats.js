@@ -29,7 +29,7 @@ class UsersFlats extends React.Component {
 
     render() {
         return <div>
-            <div className="row">
+            <div className="row ml-3">
                 <div className="container container_flex_none container_width_none">
                     <div className="row">
                         {this.listFlat()}

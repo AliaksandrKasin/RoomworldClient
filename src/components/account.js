@@ -52,7 +52,7 @@ class Account extends React.Component {
     }
 
     render() {
-        return <div className="">
+        return <div className="container-change-pass">
             <div className="container text-center mt-5 border rounded_10">
 
                 <h3 className="text-muted mb-5">Change password</h3>
