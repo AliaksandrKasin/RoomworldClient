@@ -2,45 +2,51 @@ import React from "react";
 import '../index.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import ErrorMessage from "./errorMessage";
 import {SERVER} from "../constants/constants";
+import STORE from "../store";
+import addUser from "../actions/userActions/addUser";
+import FieldRegistration from "./fieldRegistration";
+import addName from "../actions/userActions/addName";
+import addSurname from "../actions/userActions/addSurname";
+import addPhoneNumber from "../actions/userActions/addPhoneNumber";
+import addEmail from "../actions/userActions/addEmail";
+import addPassword from "../actions/userActions/addPassword";
+import addConfirmPassword from "../actions/userActions/addConfirmPassword";
+import ReactPhoneInput from "react-phone-input-2";
+import {isValidNumber} from "libphonenumber-js";
+import connect from "react-redux/es/connect/connect";
 
 
 class Registration extends React.Component {
     constructor(props) {
         super(props);
-        this.signUp = this.signUp.bind(this);
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleNumberPhoneChange = this.handleNumberPhoneChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleConfPassChange = this.handleConfPassChange.bind(this);
-        this.checkName = this.checkName.bind(this);
-        this.checkLastName = this.checkLastName.bind(this);
-        this.checkPhoneNumber = this.checkPhoneNumber.bind(this);
-        this.checkEmail = this.checkEmail.bind(this);
-        this.checkPassword = this.checkPassword.bind(this);
-        this.checkConfirm = this.checkConfirm.bind(this);
 
         this.state = {
-            name: '',
-            lastName: '',
-            numberPhone: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
             nameValid: false,
             lastNameValid: false,
             numberPhoneValid: false,
             emailValid: false,
             passwordValid: false,
             confirmValid: false,
-            formValid: false,
-            errorMessageEmail: 'Incorrect email address'
+
+            errorMessageEmail: '',
+            errorMessageNumber: "",
+            errorMessageRequired: "This field is required.",
+            errorMessagePassLength: "Password must be longer than 6 characters.",
+            errorMessagePassNotMatch: "Passwords do not match."
+
         };
 
+        STORE.dispatch(addUser({
+            name: "",
+            surname: "",
+            role: "user",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            phoneNumber: ""
 
+        }));
     }
 
     static validateEmail(email) {
@@ -48,114 +54,53 @@ class Registration extends React.Component {
         return reg.test(String(email).toLowerCase());
     }
 
-    checkName() {
-        let value = this.refs.name.value;
-        if (value === '') {
-            this.setState({nameValid: true});
-            return true;
-        } else {
-            this.setState({nameValid: false});
-            return false;
-        }
+    checkName = () => {
+        (!this.props.user.name.length) ? this.setState({nameValid: true}) : this.setState({nameValid: false});
+        return (!this.props.user.name.length);
     }
 
-    checkLastName() {
-        let value = this.refs.lastName.value;
-        if (value === '') {
-            this.setState({lastNameValid: true});
-            return true;
-        } else {
-            this.setState({lastNameValid: false});
-            return false;
-        }
+    checkLastName = () => {
+        (!this.props.user.surname.length) ? this.setState({lastNameValid: true}) : this.setState({lastNameValid: false});
+        return (!this.props.user.surname.length);
     }
 
-    checkPhoneNumber() {
-        let value = this.refs.phoneNumber.value;
-        if (value === '') {
-            this.setState({numberPhoneValid: true});
-            return true;
-        } else {
-            this.setState({numberPhoneValid: false});
-            return false;
-        }
+    checkPhoneNumber = () => {
+        (!isValidNumber(this.props.user.phoneNumber)) ?
+            this.setState({numberPhoneValid: true, errorMessageNumber: "This number is not valid"}) :
+            this.setState({numberPhoneValid: false, errorMessageNumber: ""});
+        return (!isValidNumber(this.props.user.phoneNumber));
     }
 
-    checkEmail() {
-        let value = this.refs.email.value;
-        if (value === '' || !Registration.validateEmail(value)) {
-            this.setState({emailValid: true});
-            return true;
-        } else {
-            this.setState({emailValid: false});
-            return false;
-        }
+    checkEmail = () => {
+        (!this.props.user.email.length || !Registration.validateEmail(this.props.user.email)) ?
+            this.setState({emailValid: true, errorMessageEmail: "Incorrect email address"}) :
+            this.setState({emailValid: false, errorMessageEmail: ""});
+        return (!this.props.user.email.length || !Registration.validateEmail(this.props.user.email));
     }
 
-    checkPassword() {
-        let value = this.refs.password.value;
-        if (value.length < 6) {
-            this.setState({passwordValid: true});
-            return true;
-        } else {
-            this.setState({passwordValid: false});
-            return false;
-        }
+    checkPassword = () => {
+        (this.props.user.password.length < 6) ? this.setState({passwordValid: true}) : this.setState({passwordValid: false});
+        return (this.props.user.password.length < 6);
     }
 
-    checkConfirm() {
-        let value = this.refs.confirmPassword.value;
-        if (value === '' || value !== this.refs.password.value) {
-            this.setState({confirmValid: true});
-            return true;
-        } else {
-            this.setState({confirmValid: false});
-            return false;
-        }
+    checkConfirm = () => {
+        (!this.props.user.confirmPassword.length || this.props.user.confirmPassword !== this.props.user.password) ?
+            this.setState({confirmValid: true}) : this.setState({confirmValid: false});
+        return (!this.props.user.confirmPassword.length || this.props.user.confirmPassword !== this.props.user.password);
     }
 
-    handleNameChange(e) {
-        this.setState({name: e.target.value});
+    validateForm = () => {
+        return (this.checkName() || this.checkLastName() || this.checkPhoneNumber()
+            || this.checkEmail() || this.checkPassword() || this.checkConfirm())
     }
 
-    handleLastNameChange(e) {
-        this.setState({lastName: e.target.value});
-    }
 
-    handleNumberPhoneChange(e) {
-        this.setState({numberPhone: e.target.value});
-    }
+    signUp = () => {
+        if (this.validateForm()) return;
 
-    handleEmailChange(e) {
-        this.setState({email: e.target.value});
-
-    }
-
-    handlePasswordChange(e) {
-        this.setState({password: e.target.value});
-    }
-
-    handleConfPassChange(e) {
-        this.setState({confirmPassword: e.target.value});
-    }
-
-    signUp() {
-
-        if (this.checkName() || this.checkLastName() || this.checkPhoneNumber() || this.checkEmail() ||
-            this.checkPassword() || this.checkConfirm()) {
-            return;
-        }
-        let tokenKey = 'accessToken';
-        axios.post(SERVER + '/registration', {
-            name: this.state.name,
-            surname: this.state.lastName,
-            phoneNumber: this.state.numberPhone,
-            email: this.state.email,
-            password: this.state.password,
-            role: "user"
-        })
+        axios.post(SERVER + '/registration', this.props.user)
             .then(function (response) {
-                localStorage.setItem(tokenKey, response.data.accessToken);
+                localStorage.setItem('accessToken', response.data.accessToken);
                 window.location.href = '/home';
             })
             .catch((error) => {
@@ -167,64 +112,57 @@ class Registration extends React.Component {
         return <div className='container-fluid reg'>
             <form>
 
-                <div className="mb-3">
-                    <label htmlFor="first-name">First name</label>
-                    <ErrorMessage state={this.state.nameValid} content='This field required'/>
-                    <input ref="name" type="text" onChange={this.handleNameChange} className="form-control"
-                           id="first-name"
-                           placeholder="First name" required onBlur={this.checkName} style={{borderColor: (this.state.nameValid) ? 'red':''}}/>
+                <FieldRegistration content="First name" type="text"
+                                   onChange={(e) => STORE.dispatch(addName(e.target.value))}
+                                   placeholder="First name" onBlur={this.checkName}
+                                   errorMessage={(this.state.nameValid) ? this.state.errorMessageRequired : null}/>
+
+
+                <FieldRegistration content="Last name" type="text"
+                                   onChange={(e) => STORE.dispatch(addSurname(e.target.value))}
+                                   placeholder="Last name" onBlur={this.checkLastName}
+                                   errorMessage={(this.state.lastNameValid) ? this.state.errorMessageRequired : null}/>
+
+
+                <div className="mb-2">
+                    <label>Phone Number</label>
+                    <div className="error-message">{this.state.errorMessageNumber}</div>
+                    <ReactPhoneInput defaultCountry="by" inputClass="w-100" onBlur={this.checkPhoneNumber}
+                                     onChange={(value) => STORE.dispatch(addPhoneNumber(value))} required={true}/>
                 </div>
 
-                <div className="mb-3">
-                    <label htmlFor="last-name">Last name</label>
-                    <ErrorMessage state={this.state.lastNameValid} content='This field required'/>
-                    <input ref="lastName" type="text" onChange={this.handleLastNameChange} className="form-control"
-                           id="last-name"
-                           placeholder="Last name" required onBlur={this.checkLastName} style={{borderColor: (this.state.lastNameValid) ? 'red':''}}/>
-                </div>
+                <FieldRegistration content="Email" type="email"
+                                   onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
+                                   placeholder="example@examle.com" onBlur={this.checkEmail}
+                                   errorMessage={this.state.errorMessageEmail}/>
 
-                <div className="mb-3">
-                    <label htmlFor="number-phone">Number phone</label>
-                    <ErrorMessage state={this.state.numberPhoneValid} content='Incorrect number phone'/>
-                    <input ref="phoneNumber" type="tel" onChange={this.handleNumberPhoneChange} className="form-control"
-                           id="number-phone"
-                           placeholder="+375(33) 111-11-11" required onBlur={this.checkPhoneNumber} style={{borderColor: (this.state.numberPhoneValid) ? 'red':''}}/>
-                </div>
+                <FieldRegistration content="Password" type="password"
+                                   onChange={(e) => STORE.dispatch(addPassword(e.target.value))}
+                                   onBlur={this.checkPassword}
+                                   errorMessage={(this.state.passwordValid) ? this.state.errorMessagePassLength : null}/>
 
-                <div className="mb-3">
-                    <label htmlFor="email">Email</label>
-                    <ErrorMessage state={this.state.emailValid} content={this.state.errorMessageEmail}/>
-                    <input ref="email" type="email" onChange={this.handleEmailChange} className="form-control"
-                           id="email"
-                           placeholder="name@example.com" required onBlur={this.checkEmail} style={{borderColor: (this.state.emailValid) ? 'red':''}}/>
-                </div>
 
-                <div className="mb-3">
-                    <label htmlFor="password">Password</label>
-                    <ErrorMessage state={this.state.passwordValid} content='Incorrect password'/>
-                    <input ref="password" type="password" onChange={this.handlePasswordChange} className="form-control"
-                           id="password"
-                           placeholder="" required autoComplete="" onBlur={this.checkPassword} style={{borderColor: (this.state.passwordValid) ? 'red':''}}/>
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="confirm-password">Confirm password</label>
-                    <ErrorMessage state={this.state.confirmValid} content='Incorrect password'/>
-                    <input ref="confirmPassword" type="password" className="form-control" id="confirm-password"
-                           placeholder=""
-                           required
-                           onChange={this.handleConfPassChange}
-                           autoComplete="" onBlur={this.checkConfirm} style={{borderColor: (this.state.confirmValid) ? 'red':''}}/>
-                </div>
-
+                <FieldRegistration content="Confirm password" type="password"
+                                   onChange={(e) => STORE.dispatch(addConfirmPassword(e.target.value))}
+                                   onBlur={this.checkConfirm}
+                                   errorMessage={(this.state.confirmValid) ? this.state.errorMessagePassNotMatch : null}/>
 
                 <div className='mb-3 text-center'>
-                    <button onClick={this.signUp} className="btn btn-lg btn-primary" type="button">Create account
+                    <button onClick={this.signUp}
+                            className="btn btn-lg btn-primary"
+                            type="button">Create account
                     </button>
                 </div>
+
             </form>
         </div>
     }
 }
 
-export default Registration
+function mapStateToProps(state) {
+    return {
+        user: state.userRegistrationReducer.user
+    };
+}
+
+export default connect(mapStateToProps)(Registration);

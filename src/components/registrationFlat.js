@@ -23,13 +23,13 @@ class RegistrationFlat extends React.Component {
             placeTitle: "",
             placeDescription: "",
             spaceOffered: "Entire place",
-            accommodates: "",
-            sizeFlat: "",
-            price: "",
+            accommodates: 0,
+            sizeFlat: 1,
+            price: 0,
             checkIn: "",
             checkOut: "",
-            amountBathroom: "",
-            amountBedroom: "",
+            amountBathroom: 0,
+            amountBedroom: 0,
             location: {
                 country: "",
                 city: "",
@@ -100,7 +100,8 @@ class RegistrationFlat extends React.Component {
         flat.images.map((image) => {
             arrayImages.push({url: image});
         })
-        debugger;
+
+        /*if (flat.placeTitle.length < 50 && flat.placeTitle.length > 300)*/
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         axios.post(SERVER + '/place/new', {
             name: flat.placeTitle,

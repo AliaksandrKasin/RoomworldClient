@@ -89,7 +89,7 @@ class DescriptionFlatRegistration extends React.Component{
                         <option>Shared room</option>
                     </select>
                 </div>
-                <FieldDescription title="Accommodates:" onChange={this.onChangeAccommodates} type="number"/>
+                <FieldDescription title="Accommodates:" onChange={this.onChangeAccommodates} type="number" value = {this.props.flat.accommodates}/>
                 <FieldDescription title="Size flat:" onChange={this.onChangeSizeFlat} type="number"/>
                 <FieldDescription title="Price per night(USD):" onChange={this.onChangePrice} type="number"/>
                 <FieldDescription title="Check in:" onChange={this.onChangeCheckIn} type="time"/>
