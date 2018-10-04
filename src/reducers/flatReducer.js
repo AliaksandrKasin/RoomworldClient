@@ -1,20 +1,6 @@
-
-
 const initialState = {
     flats: [],
     houseRuleses: [],
-    selectedFlat: {
-        placeTitle: "",
-        placeDescription: "",
-
-        location: {
-            country: "",
-            city: ""
-        },
-        houseRuleses: [],
-        amentieses: []
-    },
-
     searchParams: {
         country: "",
         city: ""
@@ -25,7 +11,6 @@ const initialState = {
         take: 2
     },
     modalWindow: false,
-
     selectedMenu: "Profile"
 };
 
@@ -36,24 +21,6 @@ export default function flatReducer(state = initialState, action) {
 
         case 'ID_SELECTED_FLAT':
             return Object.assign({}, state, {idSelectedFlat: action.id});
-
-        case 'SELECTED_FLAT':
-            return Object.assign({}, state, {selectedFlat: action.flat});
-
-        case 'ADD_RULES':
-            return Object.assign({}, state, {houseRuleses: [...state.houseRuleses, action.rule]});
-
-        case 'ADD_AMENITY':
-            return Object.assign({}, state, {amenities: [...state.amenities, action.amenity]});
-
-        case 'AMENITIES_INITIAL':
-            return Object.assign({}, state, {amenities: []});
-
-        case 'RULES_INITIAL':
-            return Object.assign({}, state, {houseRuleses: []});
-
-        case 'DELETE_RULES':
-            return Object.assign({}, state, {houseRuleses: state.houseRuleses.filter(value => value.title !== action.title)});
 
         case 'SEARCH':
             return Object.assign({}, state, {searchParams: action.searchParams});
@@ -66,7 +33,6 @@ export default function flatReducer(state = initialState, action) {
 
         case 'SELECT_PROFILE_MENU':
             return Object.assign({}, state, {selectedMenu: action.state})
-
 
         default:
             return state;

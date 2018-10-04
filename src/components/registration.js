@@ -40,7 +40,7 @@ class Registration extends React.Component {
         STORE.dispatch(addUser({
             name: "",
             surname: "",
-            role: "user",
+            role: "1",
             email: "",
             password: "",
             confirmPassword: "",

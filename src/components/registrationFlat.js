@@ -2,12 +2,13 @@ import * as React from "react";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
 import STORE from "../store";
-import selectedFlat from "../actions/selectedFlat";
 import connect from "react-redux/es/connect/connect";
 import AmenitiesRegistration from "./amenitiesRegistration";
 import Rules from "./ruleRegistration";
 import LocationRegistration from "./locationRegistration";
 import DescriptionFlatRegistration from "./descriptionFlatRegistration";
+import {addImages, addRule, initialState} from "../actions/registrationFlat/registrationFlatActions";
+
 
 class RegistrationFlat extends React.Component {
 
@@ -15,49 +16,43 @@ class RegistrationFlat extends React.Component {
         super(props);
         this.state = {
             pictures: [],
+
+            imagesInvalid: false,
+            nameInvalid: false,
+            descriptionInvalid: false,
+            accommodatesInvalid: false,
+            sizeInvalid: false,
+            costInvalid: false,
+            checkInInvalid: false,
+            checkOutInvalid: false,
+            countBathroomInvalid: false,
+            countBedroomInvalid: false,
+            countryInvalid: false,
+            cityInvalid: false,
+            numberHouseInvalid: false,
+            numberHouseBlockInvalid: false,
+            numberFlat: false,
+            errorMessageImages: "Select 2 or more images"
         }
+        STORE.dispatch(initialState());
+    }
 
-        this.saveFlat = this.saveFlat.bind(this);
-
-        STORE.dispatch(selectedFlat({
-            placeTitle: "",
-            placeDescription: "",
-            spaceOffered: "Entire place",
-            accommodates: 0,
-            sizeFlat: 1,
-            price: 0,
-            checkIn: "",
-            checkOut: "",
-            amountBathroom: 0,
-            amountBedroom: 0,
-            location: {
-                country: "",
-                city: "",
-                numberHouse: "",
-                numberHouseBlock: "",
-                numberFlat: "",
-                gpsPoint: "a3434t3rg33r"
-            },
-            houseRuleses: [],
-            amentieses: [],
-            images: []
-        }));
+    checkImages() {
+        !(this.state.pictures.length) ? this.setState({imagesInvalid: true}) : null;
+        return !(this.state.pictures.length)
     }
 
     onChangeSelectPictures = event => {
         this.setState({pictures: event.target.files});
-        let flat = this.props.flat;
         let src = [];
         for (let i = 0; i < event.target.files.length; i++) {
-            src.push(event.target.files[i].name);
+            src.push({url: event.target.files[i].name});
         }
-        flat.images = src;
-        STORE.dispatch(selectedFlat(flat))
+        STORE.dispatch(addImages(src));
     }
 
 
-    uploadImages(images) {
-        debugger
+    uploadImages = (images) => {
         let form = new FormData();
         for (let i = 0; i < images.length; i++) {
             form.append("File", images[i])
@@ -68,7 +63,7 @@ class RegistrationFlat extends React.Component {
         });
     }
 
-    listImages(images) {
+    listImages = (images) => {
         let imagesSrc = [];
         for (let i = 0; i < images.length; i++) {
             imagesSrc.push(URL.createObjectURL(images[i]));
@@ -77,50 +72,74 @@ class RegistrationFlat extends React.Component {
             return <div key={index} className="col-3 m-1">
                 <img src={src} className="img-thumbnail"/>
             </div>
-
         })
+    }
 
+    checkName = () => {
+        (this.props.flat.name.length > 0 && this.props.flat.name.length < 300) ? this.setState({nameInvalid: false}) : this.setState({nameInvalid: true});
+        return (this.props.flat.name.length > 0 && this.props.flat.name.length < 300);
+    }
+
+    checkDescription = () => {
+        (this.props.flat.description.length > 0 && this.props.flat.description.length < 1000) ? this.setState({descriptionInvalid: false}) : this.setState({descriptionInvalid: true});
+        return (this.props.flat.description.length > 0 && this.props.flat.description.length < 1000);
+    }
+
+    checkAccommodates = () => {
+        (this.props.flat.accommodates > 0) ? this.setState({accommodatesInvalid: false}) : this.setState({accommodatesInvalid: true});
+        return (this.props.flat.accommodates > 0);
+    }
+
+    checkSize = () => {
+        (this.props.flat.size > 0) ? this.setState({sizeInvalid: false}) : this.setState({sizeInvalid: true});
+        return (this.props.flat.size > 0);
+    }
+
+    checkBathroom = () => {
+        (this.props.flat.countBathroom >= 0) ? this.setState({countBathroomInvalid: false}) : this.setState({countBathroomInvalid: true});
+        return (this.props.flat.countBathroom >= 0);
+    }
+
+    checkBedroom = () => {
+        (this.props.flat.countBedroom >= 0) ? this.setState({countBedroomInvalid: false}) : this.setState({countBedroomInvalid: true});
+        return (this.props.flat.countBedroom >= 0);
+    }
+
+    checkCheckIn = () => {
+        (this.props.flat.checkIn.length) ? this.setState({checkInInvalid: false}) : this.setState({checkInInvalid: true});
+        return (this.props.flat.checkIn.length);
+    }
+
+    checkCheckOut = () => {
+        (this.props.flat.checkOut.length) ? this.setState({checkOutInvalid: false}) : this.setState({checkOutInvalid: true});
+        return (this.props.flat.checkOut.length);
+    }
+
+    checkCountry= () => {
+        (this.props.location.country.length) ? this.setState({countryInvalid: false}) : this.setState({countryInvalid: true});
+        return  (this.props.location.country.length);
+    }
+
+    checkCity= () => {
+        (this.props.location.city.length) ? this.setState({cityInvalid: false}) : this.setState({cityInvalid: true});
+        return  (this.props.location.city.length);
     }
 
 
-    saveFlat() {
-        let flat = this.props.flat;
+    saveFlat = () => {
+        debugger;
+        if (this.checkImages() || !this.checkName() || !this.checkDescription() ||
+            !this.checkAccommodates() || !this.checkSize() || !this.checkBedroom() ||
+            !this.checkBathroom() || !this.checkCheckIn() || !this.checkCheckOut() ||
+            !this.checkCountry() || !this.checkCity()) return;
+
         this.uploadImages(this.state.pictures);
-        flat.houseRuleses = this.props.rules;
-        flat.amenitieses = this.props.amenities;
-        let arrayAmenities = [];
-        this.props.amenities.map((amenity) => {
-            arrayAmenities.push({name: amenity.title, type: amenity.type})
-        });
-        let arrayHouseRules = [];
-        this.props.rules.map((rule) => {
-            arrayHouseRules.push({name: rule.title, state: rule.state})
-        });
-        let arrayImages = [];
-        flat.images.map((image) => {
-            arrayImages.push({url: image});
-        })
+        debugger
+        let flat = Object.assign(this.props.flat, {houseRuleses: this.props.rules},
+            {amentieses: this.props.amenities}, {location: this.props.location}, {images: this.props.images});
 
-        /*if (flat.placeTitle.length < 50 && flat.placeTitle.length > 300)*/
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/place/new', {
-            name: flat.placeTitle,
-            description: flat.placeDescription,
-            cost: flat.price,
-            accommodates: flat.accommodates,
-            spaceOffered: flat.spaceOffered,
-            size: flat.sizeFlat,
-            countBathRoom: flat.amountBathroom,
-            countBedroom: flat.amountBedroom,
-            checkIn: flat.checkIn,
-            checkOut: flat.checkOut,
-            amentieses: arrayAmenities,
-            houseRuleses: arrayHouseRules,
-            images: arrayImages,
-            location: flat.location
-
-
-        })
+        axios.post(SERVER + '/place/new', flat)
             .then((response) => {
                 window.location.href = "/home";
             })
@@ -157,7 +176,10 @@ class RegistrationFlat extends React.Component {
             <LocationRegistration/>
 
             <Rules/>
+
             <AmenitiesRegistration/>
+
+            <div className="error-message">{this.props.errorMessage}</div>
 
             <div className="text-center mb-5">
                 <button className="btn btn-secondary btn-primary input_size_s w-50 rounded_10" type='button'
@@ -170,25 +192,14 @@ class RegistrationFlat extends React.Component {
     }
 }
 
-function getElementsByType(array, type) {
-    let newArray = [];
-    array.map((el) => {
-        if (el.type === type) {
-            newArray.push(el.name)
-        }
-    });
-    return newArray;
-}
-
-function getArrayUniqueTypes(amenities) {
-    return Array.from(new Set(amenities.map(item => item.type)));
-}
-
 function mapStateToProps(state) {
     return {
-        flat: state.flatReducer.selectedFlat,
-        rules: state.flatReducer.houseRuleses,
-        amenities: state.flatReducer.amenities
+        flatForUpload: state.registrationFlatReducer,
+        flat: state.registrationFlatReducer.flat,
+        rules: state.registrationFlatReducer.houseRuleses,
+        amenities: state.registrationFlatReducer.amentieses,
+        location: state.registrationFlatReducer.location,
+        images: state.registrationFlatReducer.images
     };
 }
 

@@ -2,35 +2,35 @@ import * as React from "react";
 import Fasilities from "./facilities";
 import connect from "react-redux/es/connect/connect";
 import STORE from "../store";
-import addAmenity from "../actions/addAmenities";
-import amenitiesInitial from "../actions/amenitiesInitial";
+import {addAmenity} from "../actions/registrationFlat/registrationFlatActions";
+
 
 class AmenitiesRegistration extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
-            amenity: {title: "Air Conditioning", type: "Amenities"}
+            amenity: {name: "Air Conditioning", type: "Amenities"}
         }
-        STORE.dispatch(amenitiesInitial())
     }
+
     onChangeAmenity = (event) => {
-        this.setState({amenity: {title: event.target.value, type: "Amenities"}})
+        this.setState({amenity: {name: event.target.value, type: "Amenities"}})
     }
 
     listAmenities(amenities) {
         let arrayAmenities = [];
         amenities.map((amenity) => {
-            arrayAmenities.push(amenity.title);
+            arrayAmenities.push(amenity.name);
         })
         return <Fasilities key={0} title="Amenities" amenites={arrayAmenities}/>
 
     }
 
     onClickAddAmenity(amenity) {
-        if (amenity.title !== "" && this.props.amenities.filter(x => x.title === amenity.title).length === 0) {
+        if (amenity.name !== "" && this.props.amenities.filter(x => x.name === amenity.name).length === 0) {
             STORE.dispatch(addAmenity(amenity));
-            this.setState({amenities: {title: "", type: "Amenities"}})
+            this.setState({amenities: {name: "", type: "Amenities"}})
         }
     }
 
@@ -60,7 +60,7 @@ class AmenitiesRegistration extends React.Component{
 
 function mapStateToProps(state) {
     return {
-        amenities: state.flatReducer.amenities
+        amenities: state.registrationFlatReducer.amentieses
     };
 }
 
