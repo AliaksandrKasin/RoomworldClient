@@ -38,7 +38,7 @@ class Account extends React.Component {
             return;
         }
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/user/change/password', {
+        axios.put(SERVER + '/user/change/password', {
             currentPassword: this.state.currentPassword,
             newPassword: this.state.newPassword
         })

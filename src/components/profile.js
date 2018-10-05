@@ -11,6 +11,7 @@ import STORE from "../store";
 import selectProfileMenu from "../actions/selectProfileMenu";
 import addUserProfile from "../actions/profile/addUser";
 import changeProfile from "../actions/profile/changeProfile";
+import Orders from "./Orders";
 
 class Profile extends React.Component {
 
@@ -22,7 +23,7 @@ class Profile extends React.Component {
 
     getProfile() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/user/profile')
+        axios.get(SERVER + '/user/profile')
             .then((response) => {
                 STORE.dispatch(addUserProfile(response.data));
                 STORE.dispatch(changeProfile({
@@ -40,6 +41,8 @@ class Profile extends React.Component {
 
     bodyProfile() {
         switch (this.props.selectedMenu) {
+            case "Orders":
+                return <Orders/>
             case "My flats":
                 return <UsersFlats flats={this.props.user.flats}/>
             case "My booking":

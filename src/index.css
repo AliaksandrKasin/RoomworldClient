@@ -116,6 +116,19 @@ body {
 }
 /*******/
 
+@media (max-width: 665px) {
+    .container-advice{
+        visibility: hidden!important;
+        position: absolute!important;
+
+    }
+}
+
+.quick-rent_title{
+    min-width: 300px!important;
+}
+
+
 .container__title {
     min-width: 350px;
     max-width: 96%;

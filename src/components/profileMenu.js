@@ -33,7 +33,7 @@ class ProfileMenu extends React.Component {
                  onClick={() => this.setState({dropDown: !this.state.dropDown})}/>
             <DropDownProfileMenu hidden={this.state.dropDown} onClick={()=> this.setState({dropDown: !this.state.dropDown})}/>
             <div className="mb-1 ml-5">
-                <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("Inbox"))} >Inbox</a>
+                <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("Orders"))} >Orders</a>
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("My flats"))}>My flats</a>
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("My booking"))}>My booking</a>
                 <a className='navbar-brand profile-menu__link text-muted ml-5 button_cursor_pointer' onClick={()=> STORE.dispatch(selectProfileMenu("Profile"))}>Profile</a>

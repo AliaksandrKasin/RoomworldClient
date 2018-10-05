@@ -24,12 +24,11 @@ class UsersProfile extends React.Component {
 
 
     saveChanges = () => {
-        debugger
         if (this.props.changedProfile.name.length < 1 || this.props.changedProfile.surname.length < 1 || !isValidNumber(this.props.changedProfile.phoneNumber)) {
             return;
         }
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/user/change/profile', this.props.changedProfile)
+        axios.put(SERVER + '/user/change/profile', this.props.changedProfile)
             .then((response) => {
                 window.location.reload();
             })

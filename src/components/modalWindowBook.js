@@ -12,11 +12,10 @@ class ModalWindowBook extends React.Component {
     }
 
     bookNow(){
-        //проверка дат
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         debugger
         let a = this.props.dateFrom
-        axios.post(SERVER + '/order', {
+        axios.post(SERVER + '/add/order', {
             idFlat: this.props.idFlat,
             dateFrom: new Date(this.props.dateFrom.setDate(this.props.dateFrom.getDate() + 1)),
             dateTo: new Date(this.props.dateTo.setDate(this.props.dateTo.getDate() + 1)),

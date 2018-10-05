@@ -32,6 +32,7 @@ class RegistrationFlat extends React.Component {
             numberHouseInvalid: false,
             numberHouseBlockInvalid: false,
             numberFlat: false,
+            formInvalid: false,
             errorMessageImages: "Select 2 or more images"
         }
         STORE.dispatch(initialState());
@@ -115,14 +116,14 @@ class RegistrationFlat extends React.Component {
         return (this.props.flat.checkOut.length);
     }
 
-    checkCountry= () => {
+    checkCountry = () => {
         (this.props.location.country.length) ? this.setState({countryInvalid: false}) : this.setState({countryInvalid: true});
-        return  (this.props.location.country.length);
+        return (this.props.location.country.length);
     }
 
-    checkCity= () => {
+    checkCity = () => {
         (this.props.location.city.length) ? this.setState({cityInvalid: false}) : this.setState({cityInvalid: true});
-        return  (this.props.location.city.length);
+        return (this.props.location.city.length);
     }
 
 
@@ -131,7 +132,12 @@ class RegistrationFlat extends React.Component {
         if (this.checkImages() || !this.checkName() || !this.checkDescription() ||
             !this.checkAccommodates() || !this.checkSize() || !this.checkBedroom() ||
             !this.checkBathroom() || !this.checkCheckIn() || !this.checkCheckOut() ||
-            !this.checkCountry() || !this.checkCity()) return;
+            !this.checkCountry() || !this.checkCity()) {
+            this.setState({formInvalid: true})
+            return;
+        } else {
+            this.setState({formInvalid: false})
+        }
 
         this.uploadImages(this.state.pictures);
         debugger
@@ -179,7 +185,7 @@ class RegistrationFlat extends React.Component {
 
             <AmenitiesRegistration/>
 
-            <div className="error-message">{this.props.errorMessage}</div>
+            <div className="error-message text-center mb-5">{(this.state.formInvalid) ? "Form is not valid check again!" : null}</div>
 
             <div className="text-center mb-5">
                 <button className="btn btn-secondary btn-primary input_size_s w-50 rounded_10" type='button'

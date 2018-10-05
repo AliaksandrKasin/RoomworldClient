@@ -49,7 +49,6 @@ class Flat extends React.Component {
             }
         )
             .then((response) => {
-                /* STORE.dispatch(selectedFlat(response.data));*/
                 this.setState({flat: response.data})
                 console.log(response.data);
             })

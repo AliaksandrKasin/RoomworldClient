@@ -7,7 +7,7 @@ class DropDownProfileMenu extends React.Component {
         return <nav className="ml-5 position-absolute profile-burger-menu border" hidden={this.props.hidden}>
             <li className='text-muted ml-5 button_cursor_pointer mb-2' onClick={() => {
                 this.props.onClick();
-                STORE.dispatch(selectProfileMenu("Inbox"));
+                STORE.dispatch(selectProfileMenu("Orders"));
             }}>Inbox
             </li>
             <li className='text-muted ml-5 button_cursor_pointer mb-2'
