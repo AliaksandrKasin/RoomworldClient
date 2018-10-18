@@ -2,6 +2,7 @@ import * as React from "react";
 import STORE from "../../store";
 import {chatState} from "../../actions/chatActions/chatActions";
 import connect from "react-redux/es/connect/connect";
+import ChatMessage from "./chatMessage";
 
 class ChatContainer extends React.Component {
     render() {
@@ -14,7 +15,14 @@ class ChatContainer extends React.Component {
                          src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/down3-128.png"/>
                 </div>
                 <div className="border chat-container-content">
-
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
+                    <ChatMessage/>
                 </div>
                 <div className="chat-container-bottom bg-white rounded_10">
                     <textarea className="chat-container-input ml-2 text-muted" placeholder="Type your message and press Enter to send."/>

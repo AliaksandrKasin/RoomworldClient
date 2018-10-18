@@ -542,6 +542,32 @@ body {
     height: 50px;
 }
 
+.speech-bubble {
+    position: relative;
+    background: #b9e4e9;
+    border-radius: .4em;
+    width: 200px;
+    word-wrap: break-word;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 80%;
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+    border-left-color: #b9e4e9;
+    border-right: 0;
+    border-bottom: 0;
+    margin-top: -6px;
+    margin-right: -12px;
+}
+
 /*
 .img-clear{
     width: 13px;
