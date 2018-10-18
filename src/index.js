@@ -6,16 +6,26 @@ import {BrowserRouter, Switch, Route} from '../node_modules/react-router-dom'
 import NotFound from './components/notFound'
 import Menu from './components/menu'
 import Footer from "./components/footer";
+import ChatContainer from "./components/chatComponents/chatContainer";
+import ChatButton from "./components/chatComponents/chatButton";
+import STORE from "./store";
+import Provider from "react-redux/es/components/Provider";
 
 
 ReactDOM.render(<div className="body">
-        <BrowserRouter>
-            <Switch>
-                <Route path='/' component={Menu}/>
-                <Route path='*' component={NotFound}/>
-            </Switch>
-        </BrowserRouter>
-    <Footer/>
+        <Provider store={STORE}>
+            <div>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path='/' component={Menu}/>
+                        <Route path='*' component={NotFound}/>
+                    </Switch>
+                </BrowserRouter>
+                <ChatContainer/>
+                <ChatButton/>
+                <Footer/>
+            </div>
+        </Provider>
     </div>,
     document.getElementById('root')
 );

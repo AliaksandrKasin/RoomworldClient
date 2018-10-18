@@ -9,7 +9,6 @@ import Flat from "./flat";
 import {Provider} from 'react-redux';
 import STORE from "../store";
 import RegistrationFlat from "./registrationFlat";
-import Footer from "./footer";
 
 class Menu extends React.Component {
 
@@ -46,7 +45,6 @@ class Menu extends React.Component {
                     localStorage.removeItem('accessToken')
                 }} href='/login'>{this.state.loginState}</a>
             </nav>
-            <Provider store={STORE}>
                 <BrowserRouter>
                     <Switch>
                         <Route path='/home' component={Home}/>
@@ -58,7 +56,6 @@ class Menu extends React.Component {
                         <Route path={'/places/new'} component={RegistrationFlat}/>
                     </Switch>
                 </BrowserRouter>
-            </Provider>
 
         </div>
     }
