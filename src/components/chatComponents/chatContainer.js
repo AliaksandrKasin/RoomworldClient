@@ -15,18 +15,20 @@ class ChatContainer extends React.Component {
                          src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/down3-128.png"/>
                 </div>
                 <div className="border chat-container-content">
+                    <ChatMessage isSender={true}/>
+                    <ChatMessage isSender={true}/>
                     <ChatMessage/>
                     <ChatMessage/>
+                    <ChatMessage isSender={true}/>
                     <ChatMessage/>
-                    <ChatMessage/>
-                    <ChatMessage/>
-                    <ChatMessage/>
-                    <ChatMessage/>
+                    <ChatMessage isSender={true}/>
                     <ChatMessage/>
                 </div>
                 <div className="chat-container-bottom bg-white rounded_10">
-                    <textarea className="chat-container-input ml-2 text-muted" placeholder="Type your message and press Enter to send."/>
-                    <img className="chat-button-send button_cursor_pointer" src="https://cdn2.iconfinder.com/data/icons/line-drawn-social-media/30/send-128.png"/>
+                    <textarea className="chat-container-input ml-2 text-muted"
+                              placeholder="Type your message and press Enter to send."/>
+                    <img className="chat-button-send button_cursor_pointer"
+                         src="https://cdn2.iconfinder.com/data/icons/line-drawn-social-media/30/send-128.png"/>
                 </div>
             </div>
         </div>
