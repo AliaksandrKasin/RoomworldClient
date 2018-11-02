@@ -10,6 +10,7 @@ import ChatContainer from "./components/chatComponents/chatContainer";
 import ChatButton from "./components/chatComponents/chatButton";
 import STORE from "./store";
 import Provider from "react-redux/es/components/Provider";
+import NavigationPanel from "./components/navigation/navigationPanel";
 
 
 ReactDOM.render(<div className="body">
@@ -21,8 +22,8 @@ ReactDOM.render(<div className="body">
                         <Route path='*' component={NotFound}/>
                     </Switch>
                 </BrowserRouter>
-                <ChatContainer/>
-                <ChatButton/>
+                {(localStorage.getItem('accessToken')) ?<ChatContainer/> : null}
+                {(localStorage.getItem('accessToken')) ?<ChatButton/> : null}
                 <Footer/>
             </div>
         </Provider>

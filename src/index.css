@@ -2,13 +2,21 @@ body {
     height: 100%;
     position: relative;
 }
+a:hover{
+    text-decoration: none!important;
+}
+
+.link:hover{
+    border-bottom: 1px solid #000000 !important;
+    color: #464f57 !important;
+}
 
 .body {
     min-height: 100vh;
     overflow: hidden;
     display: block;
     position: relative;
-    padding-bottom: 400px;
+    /*padding-bottom: 400px;*/
 
 }
 
@@ -411,9 +419,8 @@ body {
 }
 
 .container-login {
-    margin-top: 200px;
-    border: 1px solid #333333 !important;
-    border-radius: 4px;
+
+   /* height: 80vh;*/
 }
 
 .btn-primary {
@@ -444,18 +451,28 @@ body {
     top: 3px;
 }
 
+
+/***Navigation***/
+.container-navigation{
+    background-color: #f7f8f9;
+    height: 40px;
+}
+/***Navigation***/
+
+
+
 .underline_none {
     text-decoration: none !important
 }
 
 .container-fluid {
-    max-width: 400px !important;
+    /*max-width: 400px !important;*/
 }
 
 .form-signin {
-    width: 100%;
+    /*width: 100%;
     padding: 15px;
-    margin: 0 auto;
+    margin: 0 auto;*/
 }
 
 .form-signin > .checkbox {
@@ -582,27 +599,113 @@ body {
     border-right-color: #b9e4e9;
 }
 
-
 ::-webkit-scrollbar {
     width: 7px;
 }
 
-
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
-
 
 ::-webkit-scrollbar-thumb {
     background: #ababab;
     border-radius: 5px;
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
     cursor: pointer;
 }
+
+/***Alert***/
+.alert-success{
+    background-color: #2FC65B!important;
+    border-color: #2FC65B!important;
+    color: white!important;
+    border-radius: 3px!important;
+}
+
+.alert-btn{
+    background: transparent;
+    border: 0;
+    padding-bottom: 0;
+    color: #54565b !important;
+    opacity: 0.5;
+    outline: none!important;
+}
+
+.alert-btn:hover{
+    color: #292b30 !important;
+}
+
+
+.btn{
+    width: 250px;
+    outline: none!important;
+    border-radius: 0!important;
+}
+
+.btn-light{
+    background-color: white;
+}
+
+.btn-light:hover{
+    background-color: #606267!important;
+    color: white!important;
+    border-color: white!important;
+}
+
+.btn-dark{
+    background-color: #606267!important;
+    color: white!important;
+    border: 0!important;
+}
+
+.btn-dark:hover{
+    background-color: #45474c !important;
+}
+
+.btn-lg
+{
+    outline: none!important;
+}
+.btn-primary{
+    outline: none!important;
+}
+
+.btn-social{
+    padding: 3px;
+}
+
+.btn-social:hover{
+    padding: 0;
+}
+
+
+.btn-social-big{
+    background-color: #45474c !important;
+    color: white;
+    font-size: 20px!important;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn-social-big:hover{
+    background-color: #5b5c61 !important;
+}
+
+.outline-none{
+    outline: none!important;
+}
+
+/***Inputs***/
+.invalid-input{
+    border-bottom: 2px solid rgba(255, 0, 0, 0.83) !important;
+}
+/***Inputs***/
+
+
+/***Alert***/
 
 /*
 .img-clear{
@@ -615,3 +718,17 @@ body {
 */
 
 /*****Chat******/
+
+
+
+.line{
+    height: 150px;
+    width: 0;
+}
+
+
+
+
+.react-tel-input .flag-dropdown{
+    background-color: white!important;
+}

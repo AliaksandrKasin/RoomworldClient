@@ -93,7 +93,7 @@ class SearchBlock extends React.Component {
                         />
                     </div>
                     <div className="col-md-1">
-                        <button className="btn input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
+                        <button className="border-0 input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
                                 onClick={this.dispatchSearchParams}>Search
                         </button>
                     </div>

@@ -109,52 +109,106 @@ class Registration extends React.Component {
     }
 
     render() {
-        return <div className='container-fluid reg'>
-            <form>
-
-                <FieldRegistration content="First name" type="text"
-                                   onChange={(e) => STORE.dispatch(addName(e.target.value))}
-                                   placeholder="First name" onBlur={this.checkName}
-                                   errorMessage={(this.state.nameValid) ? this.state.errorMessageRequired : null}/>
-
-
-                <FieldRegistration content="Last name" type="text"
-                                   onChange={(e) => STORE.dispatch(addSurname(e.target.value))}
-                                   placeholder="Last name" onBlur={this.checkLastName}
-                                   errorMessage={(this.state.lastNameValid) ? this.state.errorMessageRequired : null}/>
-
-
-                <div className="mb-2">
-                    <label>Phone Number</label>
-                    <div className="error-message">{this.state.errorMessageNumber}</div>
-                    <ReactPhoneInput defaultCountry="by" inputClass="w-100" onBlur={this.checkPhoneNumber}
-                                     onChange={(value) => STORE.dispatch(addPhoneNumber(value))} required={true}/>
+        return <div className='d-flex justify-content-center align-items-center mt-5 row'>
+            <div className="col-2 text-center">
+                <div className="text-left pb-3">
+                    <h3>Sing-up <span className="text-muted">with your existing social network account.</span></h3>
                 </div>
 
-                <FieldRegistration content="Email" type="email"
-                                   onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
-                                   placeholder="example@examle.com" onBlur={this.checkEmail}
-                                   errorMessage={this.state.errorMessageEmail}/>
+                <div className="mb-2 text-uppercase btn-social-big">
+                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_google-128.png"/>
+                    google +
+                </div>
+                <div className="mb-2 text-uppercase btn-social-big">
+                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-128.png"/>
+                    facebook
+                </div>
 
-                <FieldRegistration content="Password" type="password"
-                                   onChange={(e) => STORE.dispatch(addPassword(e.target.value))}
-                                   onBlur={this.checkPassword}
-                                   errorMessage={(this.state.passwordValid) ? this.state.errorMessagePassLength : null}/>
+                <div className="mb-2 text-uppercase btn-social-big">
+                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_twitter-128.png"/>
+                    <span>twitter</span>
+                </div>
+
+            </div>
+
+            <div className="col-1">
+                <div className="line border-right ml-2"></div>
+                <div className="text-uppercase text-muted">or</div>
+                <div className="line border-right ml-2"></div>
+            </div>
+
+            <div className="w-50 col-6 mt-5">
+                <h3 className="h3 mb-5 font-weight-normal border-bottom pb-3">Sing-up <span className="text-muted">with new account account.</span></h3>
+
+                <h6 className="text-uppercase">Name</h6>
+                <div className="row">
+                    <div className="col-6">
+                        <FieldRegistration content="*First name" type="text"
+                                           onChange={(e) => STORE.dispatch(addName(e.target.value))}
+                                           placeholder="First name" onBlur={this.checkName}
+                                           errorMessage={(this.state.nameValid) ? this.state.errorMessageRequired : null}/>
+                    </div>
+                    <div className="col-6">
+                        <FieldRegistration content="*Last name" type="text"
+                                           onChange={(e) => STORE.dispatch(addSurname(e.target.value))}
+                                           placeholder="Last name" onBlur={this.checkLastName}
+                                           errorMessage={(this.state.lastNameValid) ? this.state.errorMessageRequired : null}/>
+                    </div>
+                </div>
+
+                <h6 className="text-uppercase">Contact information</h6>
+                <div className="row">
+                    <div className="col-6">
+                        <div className="mb-2">
+                            <small className="pl-2 text-muted">*Phone number</small>
+                            <div className="error-message">{this.state.errorMessageNumber}</div>
+                            <ReactPhoneInput defaultCountry="by" inputClass="w-100" onBlur={this.checkPhoneNumber}
+                                             onChange={(value) => STORE.dispatch(addPhoneNumber(value))}
+                                             required={true}/>
+                        </div>
+                    </div>
+                </div>
 
 
-                <FieldRegistration content="Confirm password" type="password"
-                                   onChange={(e) => STORE.dispatch(addConfirmPassword(e.target.value))}
-                                   onBlur={this.checkConfirm}
-                                   errorMessage={(this.state.confirmValid) ? this.state.errorMessagePassNotMatch : null}/>
+                <h6 className="text-uppercase">Login information</h6>
+                <div className="row">
+                    <div className="col-6">
+                        <FieldRegistration content="*Email" type="email"
+                                           onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
+                                           placeholder="example@examle.com" onBlur={this.checkEmail}
+                                           errorMessage={this.state.errorMessageEmail}/>
+                    </div>
+                    <div className="col-6">
+                        <FieldRegistration content="*Confirm email" type="email"
+                                           onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
+                                           placeholder="example@examle.com" onBlur={this.checkEmail}
+                                           errorMessage={this.state.errorMessageEmail}/>
+                    </div>
+                </div>
 
-                <div className='mb-3 text-center'>
-                    <button onClick={this.signUp}
-                            className="btn btn-lg btn-primary"
+
+                <div className="row">
+                    <div className="col-6">
+                        <FieldRegistration content="*Password" type="password"
+                                           onChange={(e) => STORE.dispatch(addPassword(e.target.value))}
+                                           onBlur={this.checkPassword}
+                                           errorMessage={(this.state.passwordValid) ? this.state.errorMessagePassLength : null}/>
+                    </div>
+                    <div className="col-6">
+                        <FieldRegistration content="*Confirm password" type="password"
+                                           onChange={(e) => STORE.dispatch(addConfirmPassword(e.target.value))}
+                                           onBlur={this.checkConfirm}
+                                           errorMessage={(this.state.confirmValid) ? this.state.errorMessagePassNotMatch : null}/>
+                    </div>
+                </div>
+
+                <div className='mb-3 mt-5 text-center'>
+                    <button onClick={this.signUp} className="btn btn-lg btn-primary btn-light"
                             type="button">Create account
                     </button>
                 </div>
 
-            </form>
+            </div>
         </div>
     }
 }

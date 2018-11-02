@@ -78,7 +78,6 @@ class UsersProfile extends React.Component {
                 </div>
 
                 <form className="ml-3">
-
                     <FieldProfile title="First Name:" type="text" input={this.props.changedProfile.name}
                                   onChange={this.onChangeName} errorMessage="This field is required!"/>
                     <FieldProfile title="Last Name:" type="text" input={this.props.changedProfile.surname}
@@ -88,7 +87,7 @@ class UsersProfile extends React.Component {
                                 onChange={this.onChangePhoneNumber} errorMessage="This number is not valid!"/>
 
 
-                    <div className="text-right mr-5 mt-4 mb-3">
+                    <div className="text-right mr-5 pr-5 mt-4 mb-3">
                         <button onClick={this.saveChanges} className="btn btn-lg btn-primary rounded_10"
                                 type='button' disabled={this.state.buttonDisabled}>Save Changes
                         </button>

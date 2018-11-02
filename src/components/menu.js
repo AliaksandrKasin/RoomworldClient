@@ -9,6 +9,9 @@ import Flat from "./flat";
 import {Provider} from 'react-redux';
 import STORE from "../store";
 import RegistrationFlat from "./registrationFlat";
+import ResetPassword from "./accountComponents/resetPassword";
+import ChangePasswordByToken from "./accountComponents/changePasswordByToken";
+import NavigationPanel from "./navigation/navigationPanel";
 
 class Menu extends React.Component {
 
@@ -34,17 +37,18 @@ class Menu extends React.Component {
             <a href="/home"><img src="https://cdn2.iconfinder.com/data/icons/real-estate-61/64/Real_estate_16-512.png"
                                  className="img-thumbnail icon-home" width="50px" height="50px"/></a>
             <nav className='navbar border-bottom'>
-                <a className='navbar-brand ' href='/places/new'>List your place</a>
+                <a className='navbar-brand text-uppercase' href='/places/new'>List your place</a>
                 <a href="/profile" hidden={!this.state.profileHidden}>
                     <img
                         src="https://cdn2.iconfinder.com/data/icons/real-estate-185/64/broker-agent-agency-business_man-512.png"
                         width="45px" height="45px" className="img-thumbnail navbar-brand profile-icon"/>
                 </a>
-                <a className='navbar-brand' hidden={this.state.singUpHidden} href='/registration'>Sign Up</a>
-                <a className='navbar-brand' onClick={() => {
+                <a className='navbar-brand text-uppercase' hidden={this.state.singUpHidden} href='/registration'>Sign Up</a>
+                <a className='navbar-brand text-uppercase' onClick={() => {
                     localStorage.removeItem('accessToken')
                 }} href='/login'>{this.state.loginState}</a>
             </nav>
+            <NavigationPanel/>
                 <BrowserRouter>
                     <Switch>
                         <Route path='/home' component={Home}/>
@@ -54,6 +58,8 @@ class Menu extends React.Component {
                         <Route path='/flat' component={Flat}/>
                         <Route path={'/registration'} component={Registration}/>
                         <Route path={'/places/new'} component={RegistrationFlat}/>
+                        <Route path={'/password/reset'} component={ResetPassword}/>
+                        <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
                     </Switch>
                 </BrowserRouter>
 
