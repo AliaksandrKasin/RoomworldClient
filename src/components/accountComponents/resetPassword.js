@@ -52,7 +52,7 @@ class ResetPassword extends React.Component {
     }
 
     render() {
-        return <div className='container-fluid container-login'>
+        return <div className='d-flex align-items-center justify-content-center container-fluid container-login'>
             <form className="form-signin text-center">
                 <h1 className="h3 mb-3 font-weight-normal">Forgot password?</h1>
                 {

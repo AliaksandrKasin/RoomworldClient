@@ -24,7 +24,7 @@ ReactDOM.render(<div className="body">
                 </BrowserRouter>
                 {(localStorage.getItem('accessToken')) ?<ChatContainer/> : null}
                 {(localStorage.getItem('accessToken')) ?<ChatButton/> : null}
-                <Footer/>
+
             </div>
         </Provider>
     </div>,

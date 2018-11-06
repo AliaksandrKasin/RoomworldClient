@@ -110,45 +110,48 @@ class Registration extends React.Component {
 
     render() {
         return <div className='d-flex justify-content-center align-items-center mt-5 row'>
-            <div className="col-2 text-center">
-                <div className="text-left pb-3">
-                    <h3>Sing-up <span className="text-muted">with your existing social network account.</span></h3>
+            <div className="col-sm-2 text-center social-button">
+                 <div className="text-left pb-3 social-title mb-3 border-bottom">
+                    <h5>Sing-up <span className="text-muted">with social account.</span></h5>
                 </div>
 
                 <div className="mb-2 text-uppercase btn-social-big">
-                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_google-128.png"/>
+                    <img className="img_size_4 text-left mr-3"
+                         src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_google-128.png"/>
                     google +
                 </div>
                 <div className="mb-2 text-uppercase btn-social-big">
-                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-128.png"/>
+                    <img className="img_size_4 text-left mr-3"
+                         src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-128.png"/>
                     facebook
                 </div>
 
                 <div className="mb-2 text-uppercase btn-social-big">
-                    <img className="img_size_4 text-left mr-3" src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_twitter-128.png"/>
+                    <img className="img_size_4 text-left mr-3"
+                         src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_twitter-128.png"/>
                     <span>twitter</span>
                 </div>
 
             </div>
 
-            <div className="col-1">
+            <div className="mr-3 ml-3 container-line">
                 <div className="line border-right ml-2"></div>
                 <div className="text-uppercase text-muted">or</div>
                 <div className="line border-right ml-2"></div>
             </div>
 
-            <div className="w-50 col-6 mt-5">
-                <h3 className="h3 mb-5 font-weight-normal border-bottom pb-3">Sing-up <span className="text-muted">with new account account.</span></h3>
-
+            <div className="col-sm-6 mt-5 container-fields-reg">
+                <h4 className="mb-5 font-weight-normal border-bottom pb-3">Sing-up <span className="text-muted">with new account.</span>
+                </h4>
                 <h6 className="text-uppercase">Name</h6>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <FieldRegistration content="*First name" type="text"
                                            onChange={(e) => STORE.dispatch(addName(e.target.value))}
                                            placeholder="First name" onBlur={this.checkName}
                                            errorMessage={(this.state.nameValid) ? this.state.errorMessageRequired : null}/>
                     </div>
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <FieldRegistration content="*Last name" type="text"
                                            onChange={(e) => STORE.dispatch(addSurname(e.target.value))}
                                            placeholder="Last name" onBlur={this.checkLastName}
@@ -156,45 +159,47 @@ class Registration extends React.Component {
                     </div>
                 </div>
 
-                <h6 className="text-uppercase">Contact information</h6>
+                <h6 className="text-uppercase mt-2">Contact information</h6>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <div className="mb-2">
                             <small className="pl-2 text-muted">*Phone number</small>
-                            <div className="error-message">{this.state.errorMessageNumber}</div>
-                            <ReactPhoneInput defaultCountry="by" inputClass="w-100" onBlur={this.checkPhoneNumber}
+                            <ReactPhoneInput defaultCountry="by"
+                                             inputClass={(this.state.numberPhoneValid) ? "w-100 form-control invalid-input" : "w-100 form-control"}
+                                             onBlur={this.checkPhoneNumber}
                                              onChange={(value) => STORE.dispatch(addPhoneNumber(value))}
                                              required={true}/>
+                            <div className="error-message">{this.state.errorMessageNumber}</div>
                         </div>
                     </div>
                 </div>
 
 
-                <h6 className="text-uppercase">Login information</h6>
+                <h6 className="text-uppercase mt-3">Login information</h6>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <FieldRegistration content="*Email" type="email"
                                            onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
                                            placeholder="example@examle.com" onBlur={this.checkEmail}
                                            errorMessage={this.state.errorMessageEmail}/>
                     </div>
-                    <div className="col-6">
-                        <FieldRegistration content="*Confirm email" type="email"
+                    <div className="col-sm container-register">
+                        <FieldRegistration content="*Username"
                                            onChange={(e) => STORE.dispatch(addEmail(e.target.value))}
-                                           placeholder="example@examle.com" onBlur={this.checkEmail}
+                                           placeholder="Username" onBlur={this.checkEmail}
                                            errorMessage={this.state.errorMessageEmail}/>
                     </div>
                 </div>
 
 
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <FieldRegistration content="*Password" type="password"
                                            onChange={(e) => STORE.dispatch(addPassword(e.target.value))}
                                            onBlur={this.checkPassword}
                                            errorMessage={(this.state.passwordValid) ? this.state.errorMessagePassLength : null}/>
                     </div>
-                    <div className="col-6">
+                    <div className="col-sm container-register">
                         <FieldRegistration content="*Confirm password" type="password"
                                            onChange={(e) => STORE.dispatch(addConfirmPassword(e.target.value))}
                                            onBlur={this.checkConfirm}

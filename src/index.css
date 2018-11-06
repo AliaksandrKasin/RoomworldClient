@@ -160,6 +160,13 @@ a:hover{
     }
 }
 
+
+@media (max-width: 830px) {
+    .container-new-customer{
+        display: none!important;
+    }
+}
+
 @media (max-width: 700px) {
     .col-md-6 {
         flex: none !important;
@@ -177,6 +184,22 @@ a:hover{
     .container_width_none {
         max-width: none !important;
     }
+
+    .container-login{
+        display: grid!important;
+    }
+
+    .max-w-80{
+        max-width: 80%!important;
+
+    }
+
+    .container-social{
+        position: absolute!important;
+        top: 300px!important;
+    }
+
+
 }
 
 .map {
@@ -241,6 +264,22 @@ a:hover{
     .col-2 {
         max-width: 25% !important;
     }
+    .container-reg{
+        flex: none!important;
+        max-width: none!important;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .container-register{
+        flex: none!important;
+        max-width: none!important;
+    }
+}
+
+@media (max-width: 1200px) {
+
 }
 
 .carousel__page-counter {
@@ -419,8 +458,23 @@ a:hover{
 }
 
 .container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    min-height: 500px;
+}
 
-   /* height: 80vh;*/
+
+@media (max-width: 800px) {
+    .min-width{
+        max-width: none!important;
+    }
+}
+
+.min-width{
+    /*max-width: 28.333333%!important;*/
+    min-width: 300px;
 }
 
 .btn-primary {
@@ -485,6 +539,10 @@ a:hover{
     height: auto;
     padding: 10px;
     font-size: 16px;
+}
+
+.form-control{
+    min-width: 200px;
 }
 
 .form-signin > .form-control:focus {
@@ -640,7 +698,8 @@ a:hover{
 
 
 .btn{
-    width: 250px;
+    max-width: 250px;
+    min-width: 200px;
     outline: none!important;
     border-radius: 0!important;
 }
@@ -682,6 +741,12 @@ a:hover{
 }
 
 
+@media (max-width: 1250px) {
+    .btn-social-big{
+       min-width: 176px;
+    }
+}
+
 .btn-social-big{
     background-color: white !important;
     color: #45474c;
@@ -689,6 +754,52 @@ a:hover{
     padding: 5px;
     cursor: pointer;
     border: 1px solid #45474c;
+    max-width: 300px;
+}
+
+
+@media (max-width: 550px) {
+    .container-login{
+        justify-content: inherit!important;
+    }
+}
+
+@media (max-width: 700px) {
+    .container-login-line{
+        display: none!important;
+    }
+}
+
+@media (max-width: 800px) {
+    .btn-social-big{
+        max-width: 100%!important;
+        margin-left: 30px;
+    }
+    .social-button{
+        display: block!important;
+        flex: none!important;
+    }
+    .container-line{
+        display: none!important;
+    }
+    .container-fields-reg{
+        margin-left: 50px;
+        max-width: none!important;
+        flex: none!important;
+    }
+
+    .social-title{
+        margin-left: 30px;
+    }
+}
+
+.social-title{
+    min-width: 270px;
+    height: 30px;
+}
+
+.social-button{
+    max-width: none!important;
 }
 
 .btn-social-big:hover{
@@ -699,9 +810,15 @@ a:hover{
     outline: none!important;
 }
 
+
+.form-login{
+   /* height: 42px!important;
+    font-size: 20px!important;*/
+}
+
 /***Inputs***/
 .invalid-input{
-    border-bottom: 2px solid rgba(255, 0, 0, 0.83) !important;
+    border-bottom: 2px solid #FF0000 !important;
 }
 /***Inputs***/
 
@@ -719,6 +836,20 @@ a:hover{
 */
 
 /*****Chat******/
+
+
+
+
+/***Counter***/
+.counter-number{
+    font-size: 6em;
+    color: #323f4d;
+    line-height: 1.2;
+    white-space: nowrap;
+
+}
+/***Counter***/
+
 
 
 

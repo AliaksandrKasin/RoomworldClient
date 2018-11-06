@@ -6,12 +6,11 @@ import Registration from "./registration";
 import Profile from "./profile";
 import AlbomCardFlat from "./albomCardFlat";
 import Flat from "./flat";
-import {Provider} from 'react-redux';
-import STORE from "../store";
 import RegistrationFlat from "./registrationFlat";
 import ResetPassword from "./accountComponents/resetPassword";
 import ChangePasswordByToken from "./accountComponents/changePasswordByToken";
 import NavigationPanel from "./navigation/navigationPanel";
+import Counter from "./registerFlatComponents/counter";
 
 class Menu extends React.Component {
 
@@ -60,6 +59,8 @@ class Menu extends React.Component {
                         <Route path={'/places/new'} component={RegistrationFlat}/>
                         <Route path={'/password/reset'} component={ResetPassword}/>
                         <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
+
+                        <Route path={'/counter'} component={Counter}/>
                     </Switch>
                 </BrowserRouter>
 
