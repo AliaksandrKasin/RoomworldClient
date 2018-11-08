@@ -11,6 +11,8 @@ import ResetPassword from "./accountComponents/resetPassword";
 import ChangePasswordByToken from "./accountComponents/changePasswordByToken";
 import NavigationPanel from "./navigation/navigationPanel";
 import Counter from "./registerFlatComponents/counter";
+import CounterAmenity from "./registerFlatComponents/counterAmenity";
+import FlatDetails from "./registerFlatComponents/flatDetails";
 
 class Menu extends React.Component {
 
@@ -47,7 +49,7 @@ class Menu extends React.Component {
                     localStorage.removeItem('accessToken')
                 }} href='/login'>{this.state.loginState}</a>
             </nav>
-            <NavigationPanel/>
+            {/*<NavigationPanel/>*/}
                 <BrowserRouter>
                     <Switch>
                         <Route path='/home' component={Home}/>
@@ -60,7 +62,8 @@ class Menu extends React.Component {
                         <Route path={'/password/reset'} component={ResetPassword}/>
                         <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
 
-                        <Route path={'/counter'} component={Counter}/>
+                        <Route path={'/counter'} component={CounterAmenity}/>
+                        <Route path={'/details'} component={FlatDetails}/>
                     </Switch>
                 </BrowserRouter>
 

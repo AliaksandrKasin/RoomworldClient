@@ -2,11 +2,12 @@ body {
     height: 100%;
     position: relative;
 }
-a:hover{
-    text-decoration: none!important;
+
+a:hover {
+    text-decoration: none !important;
 }
 
-.link:hover{
+.link:hover {
     border-bottom: 1px solid #000000 !important;
     color: #464f57 !important;
 }
@@ -160,10 +161,9 @@ a:hover{
     }
 }
 
-
 @media (max-width: 830px) {
-    .container-new-customer{
-        display: none!important;
+    .container-new-customer {
+        display: none !important;
     }
 }
 
@@ -185,20 +185,19 @@ a:hover{
         max-width: none !important;
     }
 
-    .container-login{
-        display: grid!important;
+    .container-login {
+        display: grid !important;
     }
 
-    .max-w-80{
-        max-width: 80%!important;
+    .max-w-80 {
+        max-width: 80% !important;
 
     }
 
-    .container-social{
-        position: absolute!important;
-        top: 300px!important;
+    .container-social {
+        position: absolute !important;
+        top: 300px !important;
     }
-
 
 }
 
@@ -264,17 +263,17 @@ a:hover{
     .col-2 {
         max-width: 25% !important;
     }
-    .container-reg{
-        flex: none!important;
-        max-width: none!important;
+
+    .container-reg {
+        flex: none !important;
+        max-width: none !important;
     }
 }
 
-
 @media (max-width: 1000px) {
-    .container-register{
-        flex: none!important;
-        max-width: none!important;
+    .container-register {
+        flex: none !important;
+        max-width: none !important;
     }
 }
 
@@ -465,14 +464,13 @@ a:hover{
     min-height: 500px;
 }
 
-
 @media (max-width: 800px) {
-    .min-width{
-        max-width: none!important;
+    .min-width {
+        max-width: none !important;
     }
 }
 
-.min-width{
+.min-width {
     /*max-width: 28.333333%!important;*/
     min-width: 300px;
 }
@@ -505,15 +503,13 @@ a:hover{
     top: 3px;
 }
 
-
 /***Navigation***/
-.container-navigation{
+.container-navigation {
     background-color: #f7f8f9;
     height: 40px;
 }
+
 /***Navigation***/
-
-
 
 .underline_none {
     text-decoration: none !important
@@ -541,7 +537,7 @@ a:hover{
     font-size: 16px;
 }
 
-.form-control{
+.form-control {
     min-width: 200px;
 }
 
@@ -676,152 +672,151 @@ a:hover{
 }
 
 /***Alert***/
-.alert-success{
-    background-color: #2FC65B!important;
-    border-color: #2FC65B!important;
-    color: white!important;
-    border-radius: 3px!important;
+.alert-success {
+    background-color: #2FC65B !important;
+    border-color: #2FC65B !important;
+    color: white !important;
+    border-radius: 3px !important;
 }
 
-.alert-btn{
+.alert-btn {
     background: transparent;
     border: 0;
     padding-bottom: 0;
     color: #54565b !important;
     opacity: 0.5;
-    outline: none!important;
+    outline: none !important;
 }
 
-.alert-btn:hover{
+.alert-btn:hover {
     color: #292b30 !important;
 }
 
-
-.btn{
+.btn {
     max-width: 250px;
     min-width: 200px;
-    outline: none!important;
-    border-radius: 0!important;
+    outline: none !important;
+    border-radius: 0 !important;
 }
 
-.btn-light{
+.btn-light {
     background-color: white;
 }
 
-.btn-light:hover{
-    background-color: #606267!important;
-    color: white!important;
-    border-color: white!important;
+.btn-light:hover {
+    background-color: #606267 !important;
+    color: white !important;
+    border-color: white !important;
 }
 
-.btn-dark{
-    background-color: #606267!important;
-    color: white!important;
-    border: 0!important;
+.btn-dark {
+    background-color: #606267 !important;
+    color: white !important;
+    border: 0 !important;
 }
 
-.btn-dark:hover{
+.btn-dark:hover {
     background-color: #45474c !important;
 }
 
-.btn-lg
-{
-    outline: none!important;
-}
-.btn-primary{
-    outline: none!important;
+.btn-lg {
+    outline: none !important;
 }
 
-.btn-social{
+.btn-primary {
+    outline: none !important;
+}
+
+.btn-social {
     padding: 3px;
 }
 
-.btn-social:hover{
+.btn-social:hover {
     padding: 0;
 }
 
-
 @media (max-width: 1250px) {
-    .btn-social-big{
-       min-width: 176px;
+    .btn-social-big {
+        min-width: 176px;
     }
 }
 
-.btn-social-big{
+.btn-social-big {
     background-color: white !important;
     color: #45474c;
-    font-size: 20px!important;
+    font-size: 20px !important;
     padding: 5px;
     cursor: pointer;
     border: 1px solid #45474c;
     max-width: 300px;
 }
 
-
 @media (max-width: 550px) {
-    .container-login{
-        justify-content: inherit!important;
+    .container-login {
+        justify-content: inherit !important;
     }
 }
 
 @media (max-width: 700px) {
-    .container-login-line{
-        display: none!important;
+    .container-login-line {
+        display: none !important;
     }
 }
 
 @media (max-width: 800px) {
-    .btn-social-big{
-        max-width: 100%!important;
+    .btn-social-big {
+        max-width: 100% !important;
         margin-left: 30px;
     }
-    .social-button{
-        display: block!important;
-        flex: none!important;
-    }
-    .container-line{
-        display: none!important;
-    }
-    .container-fields-reg{
-        margin-left: 50px;
-        max-width: none!important;
-        flex: none!important;
+
+    .social-button {
+        display: block !important;
+        flex: none !important;
     }
 
-    .social-title{
+    .container-line {
+        display: none !important;
+    }
+
+    .container-fields-reg {
+        margin-left: 50px;
+        max-width: none !important;
+        flex: none !important;
+    }
+
+    .social-title {
         margin-left: 30px;
     }
 }
 
-.social-title{
+.social-title {
     min-width: 270px;
     height: 30px;
 }
 
-.social-button{
-    max-width: none!important;
+.social-button {
+    max-width: none !important;
 }
 
-.btn-social-big:hover{
+.btn-social-big:hover {
     background-color: #5b5c6126 !important;
 }
 
-.outline-none{
-    outline: none!important;
+.outline-none {
+    outline: none !important;
 }
 
-
-.form-login{
-   /* height: 42px!important;
-    font-size: 20px!important;*/
+.form-login {
+    /* height: 42px!important;
+     font-size: 20px!important;*/
 }
 
 /***Inputs***/
-.invalid-input{
+.invalid-input {
     border-bottom: 2px solid #FF0000 !important;
 }
-/***Inputs***/
 
+/***Inputs***/
 
 /***Alert***/
 
@@ -837,30 +832,200 @@ a:hover{
 
 /*****Chat******/
 
-
-
-
-/***Counter***/
-.counter-number{
-    font-size: 6em;
-    color: #323f4d;
-    line-height: 1.2;
-    white-space: nowrap;
-
-}
-/***Counter***/
-
-
-
-
-.line{
+.line {
     height: 150px;
     width: 0;
 }
 
-
-
-
-.react-tel-input .flag-dropdown{
-    background-color: white!important;
+.react-tel-input .flag-dropdown {
+    background-color: white !important;
 }
+
+.blur {
+    -webkit-filter: blur(5px) !important;
+    -moz-filter: blur(5px) !important;
+    -o-filter: blur(5px) !important;
+    -ms-filter: blur(5px) !important;
+    filter: blur(5px) !important;
+}
+
+/***Counter***/
+.counter-number {
+    font-size: 8em;
+    color: #323f4d;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: Calibri;
+    position: relative;
+
+}
+
+.counter-button__disable {
+    color: #69696985 !important;
+    opacity: 0.6;
+    cursor: inherit !important;
+}
+
+.counter-button-up {
+    transform: translateY(0);
+    transition: -webkit-transform .2s;
+}
+
+.counter-button-up:hover {
+    transform: translateY(-5px);
+    transition: -webkit-transform .4s;
+}
+
+.counter-button-down {
+    transform: translateY(0);
+    transition: -webkit-transform .2s;
+}
+
+.counter-button-down:hover {
+    transform: translateY(5px);
+    transition: -webkit-transform .4s;
+}
+
+.fs-2 {
+    color: #2a6ebb;
+    cursor: pointer;
+    font-size: 3em;
+    width: 40px;
+}
+
+/***Counter***/
+
+/***ContainerAmenity***/
+.container-amenity {
+    height: 60vh;
+    background: url("https://www.kronograd.by/wp-content/uploads/2018/04/Leisure-villa-Wallpapers-HD-2560x1440.jpg") fixed;
+    background-size: cover;
+    position: absolute;
+    height: 590px;
+    width: 100%;
+    z-index: -1;
+
+}
+
+.container-counter {
+    z-index: 11;
+    min-width: 450px;
+    min-height: 500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+}
+
+.container-line {
+    height: 300px;
+}
+
+.counter-title {
+    color: #323f4d;
+}
+
+.btn-next {
+    border-radius: 20px !important;
+    padding: 10px !important;
+    width: 140px !important;
+    border: none !important;
+    color: white;
+    font-size: 18px;
+    background-color: #0067db;
+    cursor: pointer;
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    transition: -webkit-transform .8s;
+}
+
+.counter{
+    margin-top: 120px;
+    z-index: 1111!important;
+}
+
+.cover{
+    background-color: rgba(8, 8, 8, 0.48);
+    border-radius: 10px;
+    padding: 10px;
+}
+/***ContainerAmenity***/
+
+
+
+/*** input***/
+
+.label{
+    z-index: 3;
+    -webkit-transition: all 50ms ease-out;
+    transition: all 50ms ease-out;
+    position: absolute;
+    left: 16px;
+    font-size: 16px;
+    top: 16px;
+    pointer-events: none;
+    max-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 24px);
+    white-space: nowrap;
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #5e6d77;
+}
+
+.label-small{
+    font-size: 14px!important;
+    top: 0!important;
+}
+
+.input{
+    display: block;
+    width: 100%;
+    height: 56px;
+    padding: 15px 16px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: #323f4d;
+    border: 1px solid #d3d8de;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+
+    background-size: 0 3px!important;
+    background: linear-gradient(#0067db, #0067db) no-repeat bottom, 50% calc(100% - 1px);
+    -webkit-transition: background .3s ease-out,box-shadow .3s ease-out,border-color .15s ease-out,border-width .15s ease-out,padding 50ms ease-out;
+    transition: background .3s ease-out,box-shadow .3s ease-out,border-color .15s ease-out,border-width .15s ease-out,padding 50ms ease-out;
+}
+
+.input-small{
+    padding-bottom: 0!important;
+
+}
+
+.input:focus{
+    background-size: 100% 4px!important;
+}
+
+.input-counter{
+    font-size: 14px;
+    min-width: 225px;
+}
+
+.back{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    opacity: 0.2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.back:hover{
+    color: #0067db;
+    opacity: 1;
+}
+
+/***input***/
+

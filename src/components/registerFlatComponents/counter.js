@@ -1,21 +1,46 @@
 import * as React from "react";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCoffee} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faCoffee)
 
-class Counter extends React.Component{
-    render(){
+class Counter extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            counter: 1
+        }
+    }
+
+    increment = () => {
+        if (this.state.counter < 9) {
+            this.setState({counter: +this.state.counter + 1});
+        }
+    }
+
+    decrement = () => {
+        if (this.state.counter > 0) {
+            this.setState({counter: +this.state.counter - 1});
+        }
+    }
+
+    render() {
         return <div className="d-flex justify-content-center align-items-center">
             <div className="text-center">
-                <div>
-                    <i className=" fas fa-angle-up "></i>
+                <div className="">
+                    <i onClick={this.increment}
+                       className={(this.state.counter === 9) ? "counter-button__disable fas fa-angle-up fs-2" : "counter-button-up fas fa-angle-up fs-2"}></i>
                 </div>
-                <div>
-                    <span className="counter-number">1</span>
+                <div className="mb-2 ">
+                    <span className="counter-number">{this.state.counter}</span>
                 </div>
-                <div>down</div>
+                <div className="">
+                    <i onClick={this.decrement}
+                       className={(this.state.counter === 0) ? "counter-button__disable fas fa-angle-down fs-2" : "counter-button-down fas fa-angle-down fs-2"}></i>
+                </div>
             </div>
         </div>
     }
