@@ -18,6 +18,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "libphonenumber-js": "^1.5.1",
+    "prop-types": "^15.6.2",
     "qs-stringify": "^1.1.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.2",

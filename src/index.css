@@ -932,11 +932,31 @@ a:hover {
     font-size: 18px;
     background-color: #0067db;
     cursor: pointer;
+    transition: 1s;
+    outline: none!important;
 }
 
 .btn-next:hover {
-    transform: translateY(-2px);
-    transition: -webkit-transform .8s;
+    background-color: #005ebc;
+}
+
+
+.btn-back {
+    border-radius: 20px !important;
+    padding: 10px !important;
+    width: 140px !important;
+    color: #0067db;
+    border: 1px solid #d3d8de;
+    font-size: 18px;
+    background-color: white;
+    cursor: pointer;
+    transition: 1s;
+    outline: none!important;
+}
+
+.btn-back:hover {
+    transition: 1s;
+    border-color: #0067db;
 }
 
 .counter{
@@ -992,6 +1012,7 @@ a:hover {
     border-radius: 4px;
     box-shadow: none;
     outline: none;
+    padding-right: 50px!important;
 
     background-size: 0 3px!important;
     background: linear-gradient(#0067db, #0067db) no-repeat bottom, 50% calc(100% - 1px);
@@ -1027,5 +1048,18 @@ a:hover {
     opacity: 1;
 }
 
+
+.resize-none{
+    resize: none!important;
+}
+
+.input-size-5{
+    height: 250px!important;
+    padding-top: 28px!important;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 /***input***/
 
