@@ -13,6 +13,7 @@ import NavigationPanel from "./navigation/navigationPanel";
 import Counter from "./registerFlatComponents/counter";
 import CounterAmenity from "./registerFlatComponents/counterAmenity";
 import FlatDetails from "./registerFlatComponents/flatDetails";
+import RegistrationFlatMain from "./registerFlatComponents/registrationFlatMain";
 
 class Menu extends React.Component {
 
@@ -63,7 +64,7 @@ class Menu extends React.Component {
                         <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
 
                         <Route path={'/counter'} component={CounterAmenity}/>
-                        <Route path={'/details'} component={FlatDetails}/>
+                        <Route path={'/details'} component={RegistrationFlatMain}/>
                     </Switch>
                 </BrowserRouter>
 

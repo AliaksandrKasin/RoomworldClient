@@ -22,7 +22,7 @@ class FormTextArea extends React.Component {
     }
 
     render() {
-        return <div className="mt-5 mb-5 position-relative">
+        return <div className="position-relative">
             <div className="text-right">
                 <label className={(!this.state.value) ? "label" : "label label-small"}>{this.props.placeholder}</label>
                 <i className="fas fa-backspace back" onClick={this.clearInput}></i>

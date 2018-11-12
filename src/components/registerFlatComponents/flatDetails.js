@@ -9,31 +9,37 @@ class FlatDetails extends React.Component {
     }
 
     render() {
-        return <div className="d-flex  mt-5 border container ">
+        return <div className="d-flex border container bg-white">
             <div className="w-100">
-                <div className="p-4">
+                <div className="p-4 mb-3">
                     <h4 className="pb-3">Describe your property</h4>
                     <div className="border-bottom w-100">
                     </div>
                 </div>
 
-                <FormInput placeholder="Headtitle" min={20} max={100}/>
-                <FormTextArea placeholder="Property description" min={400} max={100000}/>
-                <div className="row m-0">
-                    <div className="col-sm-6">
+                <div className="mb-4">
+                    <FormInput placeholder="Headtitle" min={20} max={100}/>
+                </div>
+
+                <div>
+                    <FormTextArea placeholder="Property description" min={400} max={100000}/>
+                </div>
+
+                <div className="row m-0 mb-5">
+                    <div className="col-sm-6 mt-4">
                         <FormInput placeholder="Accommodates" value={1} type="number"/>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-sm-6 mt-4">
                         <FormInput placeholder="Size" value={1} type="number"/>
                     </div>
                 </div>
                 <div className="border-bottom w-100 mb-3">
                 </div>
-                <div className="row m-0 mb-3">
-                    <div className="text-left col-sm-6">
+                <div className="row m-0 mb-3 flex-nowrap">
+                    <div className="text-left col-sm">
                         <button className="btn-back" type='button'>Back</button>
                     </div>
-                    <div className="text-right col-sm-6">
+                    <div className="text-right col-sm">
                         <button className="btn-next" type='button'>Next</button>
                     </div>
                 </div>
