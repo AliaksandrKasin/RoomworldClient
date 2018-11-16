@@ -68,14 +68,18 @@ class SearchBlock extends React.Component {
 
     render() {
         return <div className="search">
-            <div>
-                <div className="row search-container mr-0 ml-0">
-                    <div className="col-md-2 ">
-                        <input type="text" className="form-control h1 input_size_s bg-white mt-1"
+            <div className="d-flex justify-content-center align-items-center">
+                <div className="row mr-0 ml-0">
+
+                    <div className="position-relative w-100">
+                        <input type="text" className="form-control h1 input_size_s bg-white mt-1 pl-5 border-0 input-search"
                                placeholder="Where do you want to go?"
                                onChange={this.onChangePlace}/>
+                        <i className="fas fa-map-marker-alt input-search-lable"></i>
                     </div>
-                    <div className="date">
+
+
+
                         <DatePicker
                             className="input_size_s bg-white mt-1"
                             value={this.state.dateFrom}
@@ -91,12 +95,11 @@ class SearchBlock extends React.Component {
                             minDate={this.datePlusDay(this.state.dateFrom)}
                             locale="en-En"
                         />
-                    </div>
-                    <div className="col-md-1">
-                        <button className="border-0 input_size_s mt-1 btn_size_s rounded_20 bg-white" type='button'
+
+
+                        <button className="border-0 input_size_s mt-1 rounded_20 bg-white" type='button'
                                 onClick={this.dispatchSearchParams}>Search
                         </button>
-                    </div>
                 </div>
             </div>
         </div>

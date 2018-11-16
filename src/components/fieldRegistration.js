@@ -1,6 +1,4 @@
 import React from "react";
-import '../index.css';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class FieldRegistration extends React.Component {
     render() {

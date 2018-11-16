@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
 
 const AnyReactComponent = ({text}) => <div>
-    <img className="button_cursor_pointer" onClick={() => alert("asdasdasa")} className="img_size_4"
+    <img className="cursor-pointer" onClick={() => alert("asdasdasa")} className="img_size_4"
          src="https://cdn4.iconfinder.com/data/icons/iconsimple-places/512/pin_2-512.png"/>
     <h6></h6>
 </div>;

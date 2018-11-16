@@ -1,6 +1,4 @@
 import React from "react";
-import '../index.css';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {SERVER} from "../constants/constants";
 import STORE from "../store";

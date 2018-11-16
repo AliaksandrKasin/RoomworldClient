@@ -1,0 +1,113 @@
+.chat-container {
+    z-index: 10;
+    border: 1px solid #d7d9de;
+    width: 300px;
+    min-width: 300px;
+    height: 450px;
+    background-color: #fcfcfc;
+}
+
+.chat-icon {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    color: #606267;
+    border: 1px solid #606267;
+    background-color: #f7f7f7;
+    z-index: 10;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-icon:hover {
+    width: 62px;
+    height: 62px;
+    transition: 50ms;
+}
+
+.chat-container-top {
+    border-radius: 10px 10px 0 0;
+    height: 40px;
+}
+
+.chat-container-content {
+    overflow: auto;
+    height: 350px;
+    background-color: rgba(206, 232, 249, 0.28);
+}
+
+.chat-container-input {
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 230px;
+    resize: none;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.chat-button-send {
+    width: 27px;
+    height: 27px;
+    margin-left: 17px;
+    margin-bottom: 40px;
+    padding: 1px;
+    animation: 10s;
+}
+
+.chat-button-send:hover {
+    padding: 0;
+}
+
+.chat-container-bottom {
+    height: 50px;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #b9e4e9;
+    border-radius: .4em;
+    width: 200px;
+    word-wrap: break-word;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    top: 80%;
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+}
+
+.speech-bubble-right:after {
+    right: 0;
+    border-right: 0;
+    border-bottom: 0;
+    margin-top: -6px;
+    margin-right: -12px;
+    border-left-color: #b9e4e9;
+}
+
+.speech-bubble-left:after {
+    left: 0;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -6px;
+    margin-left: -12px;
+    border-right-color: #b9e4e9;
+}
+
+.bottom-right {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}

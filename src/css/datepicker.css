@@ -1,0 +1,20 @@
+button.react-date-picker__button__icon.react-date-picker__clear-button {
+    display: none;
+}
+.react-date-picker__calendar-button{
+    outline: none!important;
+}
+
+.react-date-picker__calendar-button > svg > g{
+   stroke: #76787f;
+}
+
+.react-date-picker__button__input__input{
+    outline: none!important;
+    cursor: pointer;
+}
+
+.react-date-picker__button__input{
+    cursor: pointer;
+    /*pointer-events: none;*/
+}

@@ -9,7 +9,7 @@ class AlertInfo extends React.Component {
                 (this.props.type === "error") ? "alert-danger" : (this.props.type === "warning") ? "alert-warning" :
                     (this.props.type === "info") ? "alert-info" : ""}>
             <div className="mb-2 text-right">
-                <button onClick={this.props.onclickButtonClose} className="alert-btn button_cursor_pointer h5 mr-1" type="button">x</button>
+                <button onClick={this.props.onclickButtonClose} className="alert-btn cursor-pointer h5 mr-1" type="button">x</button>
                 <h5 className="text-left ml-4 ">{(this.props.type === "success") ? "Successful." :
                     (this.props.type === "error") ? "Error." : (this.props.type === "warning") ? "Warning." :
                         (this.props.type === "info") ? "Info." : ""}</h5>

@@ -52,18 +52,18 @@ class ChatContainer extends React.Component {
     }
 
     onKeyEnter = (e) => {
-        if(e.ctrlKey){
+        if (e.ctrlKey) {
             this.sendMessage();
         }
     }
 
     render() {
-        return <div className="fixed-bottom d-flex justify-content-end mb-3 mr-3">
-            <div className="chat-container rounded_10" hidden={!this.props.chatIsOpen}>
+        return (this.props.chatIsOpen) && <div className="bottom-right d-flex justify-content-end mb-3 mr-3">
+            <div className="chat-container rounded_10">
                 <div className="border text-right bg-white chat-container-top">
                     <span className="h6 text-muted mr-5 pt-5">Chat with us!</span>
                     <img onClick={() => STORE.dispatch(chatState(false))}
-                         className="img_size_2 mb-1 mr-2 mt-2 ml-4 button_cursor_pointer"
+                         className="img_size_2 mb-1 mr-2 mt-2 ml-4 cursor-pointer"
                          src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/down3-128.png"/>
                 </div>
                 <div className="border chat-container-content">
@@ -75,10 +75,11 @@ class ChatContainer extends React.Component {
                     }
                 </div>
                 <div className="chat-container-bottom bg-white rounded_10">
-                    <textarea ref={this.textArea} onKeyPress={this.onKeyEnter} onChange={this.onChangeMessage} value={this.state.textMessage}
+                    <textarea ref={this.textArea} onKeyPress={this.onKeyEnter} onChange={this.onChangeMessage}
+                              value={this.state.textMessage}
                               className="chat-container-input ml-2 text-muted"
                               placeholder="Type your message and press Ctrl + Enter to send."/>
-                    <img onClick={this.sendMessage} className="chat-button-send button_cursor_pointer"
+                    <img onClick={this.sendMessage} className="chat-button-send cursor-pointer"
                          src="https://cdn2.iconfinder.com/data/icons/line-drawn-social-media/30/send-128.png"/>
                 </div>
             </div>

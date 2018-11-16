@@ -1,6 +1,4 @@
 import React from 'react';
-import '../index.css';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ErrorMessage from './errorMessage';
 import {SERVER} from "../constants/constants";
@@ -14,13 +12,12 @@ class Login extends React.Component {
         this.signIn = this.signIn.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        if (localStorage.getItem('accessToken')) window.location.href = '/home';
+        if (localStorage.getItem('accessToken')) window.location.href = '/';
         this.state = {
             email: '',
             password: '',
             errorMessage: false
         };
-
     }
 
     handleEmailChange(e) {
@@ -40,7 +37,7 @@ class Login extends React.Component {
             .then((response) => {
                 localStorage.setItem(tokenKey, response.data.accessToken);
                 localStorage.setItem("username", response.data.username);
-                window.location.href = '/home';
+                window.location.href = '/';
             })
             .catch((error) => {
                 this.setState({errorMessage: true});

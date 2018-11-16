@@ -42,13 +42,13 @@ class Carousel extends React.Component {
             <div className="carousel-indicators carousel__page-counter">
                 {this.state.counter + 1 + "/" + this.props.images.length}
             </div>
-            <button className="carousel-control-prev bg-transparent border-0 button_cursor_pointer" role="button"
+            <button className="carousel-control-prev bg-transparent border-0 cursor-pointer" role="button"
                     data-slide="prev"
                     onClick={this.prevImg}>
                 <span className="carousel-control-prev-icon " aria-hidden="true"></span>
                 <span className="sr-only">Previous</span>
             </button>
-            <button className="carousel-control-next bg-transparent border-0 button_cursor_pointer" role="button"
+            <button className="carousel-control-next bg-transparent border-0 cursor-pointer" role="button"
                     data-slide="next"
                     onClick={this.nextImg}>
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>

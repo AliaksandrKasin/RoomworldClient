@@ -6,7 +6,6 @@ import userRegistrationReducer from "./reducers/userRegistration";
 import registrationFlatReducer from "./reducers/registrationFlatReducer";
 import chatReducer from "./reducers/chatReducer";
 
-
 const loadState = () => {
     try {
         const serialisedState = window.sessionStorage.getItem('app_state');
@@ -24,7 +23,6 @@ const saveState = (state) => {
     } catch (err) {
     }
 };
-
 
 const oldState = loadState();
 

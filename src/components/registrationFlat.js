@@ -173,7 +173,7 @@ class RegistrationFlat extends React.Component {
                         {this.listImages(this.state.pictures)}
                     </div>
                 </div>
-                <input className="button_cursor_pointer mb-3" type="file" name="picture" multiple accept="image/*"
+                <input className="cursor-pointer mb-3" type="file" name="picture" multiple accept="image/*"
                        onChange={this.onChangeSelectPictures}/>
             </div>
 

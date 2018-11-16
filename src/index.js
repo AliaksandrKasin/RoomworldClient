@@ -1,33 +1,32 @@
 import React from 'react';
+import './css/index.css';
+import './css/menu/menu.css';
+import './css/chat.css';
+import './css/datepicker.css';
 import ReactDOM from 'react-dom';
-import './index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Switch, Route} from '../node_modules/react-router-dom'
-import NotFound from './components/notFound'
-import Menu from './components/menu'
-import Footer from "./components/footer";
+import {BrowserRouter} from "react-router-dom";
+import Provider from "react-redux/es/components/Provider";
+import STORE from "./store";
+import Menu from "./components/menu/menu";
+import Router from "./router";
 import ChatContainer from "./components/chatComponents/chatContainer";
 import ChatButton from "./components/chatComponents/chatButton";
-import STORE from "./store";
-import Provider from "react-redux/es/components/Provider";
-import NavigationPanel from "./components/navigation/navigationPanel";
 
+ReactDOM.render(<Provider store={STORE}>
+        <BrowserRouter>
+            <div className="app-container">
+                <Menu/>
+                <main>
+                    <Router/>
+                    {(localStorage.getItem('accessToken')) && <ChatContainer/>}
+                    {(localStorage.getItem('accessToken')) && <ChatButton/>}
+                </main>
+                <footer>
 
-ReactDOM.render(<div className="body">
-        <Provider store={STORE}>
-            <div>
-                <BrowserRouter>
-                    <Switch>
-                        <Route path='/' component={Menu}/>
-                        <Route path='*' component={NotFound}/>
-                    </Switch>
-                </BrowserRouter>
-                {(localStorage.getItem('accessToken')) ?<ChatContainer/> : null}
-                {(localStorage.getItem('accessToken')) ?<ChatButton/> : null}
-
+                </footer>
             </div>
-        </Provider>
-    </div>,
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );
 

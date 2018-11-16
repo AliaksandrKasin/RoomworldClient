@@ -11,10 +11,9 @@ class ChatButton extends React.Component {
     }
 
     render() {
-        return <div className="fixed-bottom text-right mb-3 mr-3">
-            <img onClick={() => STORE.dispatch(chatState(true))} className="chat-icon rounded-circle"
-                 src="https://cdn3.iconfinder.com/data/icons/common-7/32/Chat-128.png"
-                 hidden={this.props.chatIsOpen}/>
+        return (!this.props.chatIsOpen) && <div className="chat-icon rounded-circle bottom-right text-right mb-3 mr-3">
+            <i onClick={() => STORE.dispatch(chatState(true))}
+               className="far fa-comments"></i>
         </div>
     }
 
