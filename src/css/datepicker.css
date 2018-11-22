@@ -1,20 +1,122 @@
 button.react-date-picker__button__icon.react-date-picker__clear-button {
     display: none;
 }
-.react-date-picker__calendar-button{
-    outline: none!important;
+
+.react-date-picker__calendar-button {
+    outline: none !important;
 }
 
-.react-date-picker__calendar-button > svg > g{
-   stroke: #76787f;
+.react-date-picker__calendar-button > svg > g {
+    stroke: #76787f;
 }
 
-.react-date-picker__button__input__input{
-    outline: none!important;
+.react-date-picker__button__input__input {
+    outline: none !important;
     cursor: pointer;
 }
 
-.react-date-picker__button__input{
+.react-date-picker__button__input {
     cursor: pointer;
+    height: 60px;
     /*pointer-events: none;*/
+}
+
+
+.react-date-picker {
+    border-radius: 6px !important;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.react-date-picker__calendar--above-label {
+    top: 60px !important;
+}
+
+.react-date-picker__button {
+    border-radius: 6px;
+    color: #606267;
+    border: none !important;
+    width: 100%;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+}
+
+.react-date-picker__button__input__input {
+    color: #606267;
+}
+
+@media only screen and (max-width: 858px) {
+    .react-date-picker {
+
+    }
+}
+/***Calendar is open***/
+
+.react-calendar {
+    width: 900px !important;
+    border: none!important;
+    box-shadow: 0 0 30px rgb(89, 89, 89);
+}
+
+.react-calendar__navigation button {
+
+}
+
+
+
+.react-calendar button {
+    font-size: 20px;
+    color: #474747;
+}
+
+.react-calendar button:hover {
+    color: white!important;
+    background-color: #0067db!important;
+}
+
+.react-calendar button[disabled] {
+    background-color: transparent!important;
+    color: black!important;
+    opacity: 0.6!important;
+}
+
+.react-calendar__navigation{
+    background-color: #0067db!important;
+    height: 50px!important;
+}
+
+.react-calendar__navigation__label{
+    pointer-events: none!important;
+    color: #ffffff !important;
+    font-size: 20px!important;
+    font-family: Calibri;
+    opacity: 0.8!important;
+}
+
+.react-calendar__navigation__label:hover{
+    background-color: #0067db!important;
+}
+
+.react-calendar__navigation__prev2-button {
+    display: none !important;
+}
+
+.react-calendar__navigation__next2-button {
+    display: none !important;
+}
+.react-calendar__navigation__arrow{
+    color: white!important;
+    cursor: pointer!important;
+    background-color: transparent!important;
+    font-size: 2rem!important;
+    opacity: 0.6!important;
+    margin-bottom: 5px!important;
+}
+
+.react-calendar__navigation__arrow:hover{
+    transition: 0.8s;
+    opacity: 1!important;
 }

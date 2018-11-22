@@ -6,6 +6,7 @@ import {Link, Redirect} from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {SERVER} from "../constants/constants";
+import FormInput from "./registerFlatComponents/formInput";
 
 
 class SearchBlock extends React.Component {
@@ -66,41 +67,49 @@ class SearchBlock extends React.Component {
         return (params.city) ? params.country + ", " + params.city : params.country;
     }
 
+    onChangeRow = (e) => {
+        debugger
+    }
+
     render() {
         return <div className="search">
-            <div className="d-flex justify-content-center align-items-center">
-                <div className="row mr-0 ml-0">
 
-                    <div className="position-relative w-100">
-                        <input type="text" className="form-control h1 input_size_s bg-white mt-1 pl-5 border-0 input-search"
-                               placeholder="Where do you want to go?"
-                               onChange={this.onChangePlace}/>
-                        <i className="fas fa-map-marker-alt input-search-lable"></i>
-                    </div>
+                <div className="d-flex justify-content-center align-items-center w-100">
+                    <div className="row d-flex justify-content-center search-container-max">
+                        <div className="col-sm mt-2">
+                            <div className="position-relative w-100">
+                                <i className="fas fa-map-marker-alt input-label"></i>
+                                <input type="text" className="input-search"
+                                       placeholder="Where do you want to go?"
+                                       onChange={this.onChangePlace}/>
+                            </div>
+                        </div>
 
+                        <div className="mt-2 mr-2 search-container-calendar">
+                            <DatePicker
+                                className="bg-white"
+                                value={this.state.dateFrom}
+                                onChange={this.onChangeFrom}
+                                minDate={new Date()}
+                                locale="en-En"
+                            />
 
+                            <DatePicker
+                                className="bg-white"
+                                value={this.state.dateTo}
+                                onChange={this.onChangeTo}
+                                minDate={this.datePlusDay(this.state.dateFrom)}
+                                locale="en-En"
+                                onChangeRaw={this.onChangeRow}
+                            />
 
-                        <DatePicker
-                            className="input_size_s bg-white mt-1"
-                            value={this.state.dateFrom}
-                            onChange={this.onChangeFrom}
-                            minDate={new Date()}
-                            locale="en-En"
-                        />
+                        </div>
 
-                        <DatePicker
-                            className="input_size_s bg-white mt-1"
-                            value={this.state.dateTo}
-                            onChange={this.onChangeTo}
-                            minDate={this.datePlusDay(this.state.dateFrom)}
-                            locale="en-En"
-                        />
-
-
-                        <button className="border-0 input_size_s mt-1 rounded_20 bg-white" type='button'
+                        <button className="btn btn-search col-sm ml-3 mr-3 mt-2" type='button'
                                 onClick={this.dispatchSearchParams}>Search
                         </button>
-                </div>
+                    </div>
+
             </div>
         </div>
     }
