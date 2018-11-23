@@ -18,7 +18,7 @@ class Submenu extends React.Component {
     }
 
     render() {
-        return <div ref="submenu" className="d-flex justify-content-end mr-5">
+        return <div ref="submenu" className="d-flex justify-content-end mr-1">
             <div className="submenu-container position-absolute">
                 <div className="d-flex justify-content-center align-items-center">
                      <span

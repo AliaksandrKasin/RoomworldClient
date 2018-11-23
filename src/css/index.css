@@ -33,18 +33,18 @@ a:hover {
     min-height: 70vh;
     display: flex;
     justify-content: center;
-
+    min-width: 310px;
 }
 
 .search-container-max {
     padding-top: 2px;
     max-width: 1000px !important;
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0, 0, 0, .2);
     height: 80px;
     border-radius: 10px;
 }
 
-.search-container-calendar{
+.search-container-calendar {
     min-width: 300px;
 }
 
@@ -822,7 +822,7 @@ a:hover {
     }
 
     .search-container-max {
-        background-color: rgba(0,0,0,.2);
+        background-color: rgba(0, 0, 0, .2);
         height: 240px;
     }
 }

@@ -30,7 +30,7 @@ class Menu extends React.Component {
 
                 {
                     (this.checkLocalStorage()) &&
-                    <div className="d-flex">
+                    <div className="d-flex h-100">
                         <div className="navbar-button">
                             <i className="fas fa-home navbar-icon"></i>
                             <i className="fas fa-plus-circle navbar-icon-info"></i>
@@ -44,30 +44,30 @@ class Menu extends React.Component {
                 {
                     (this.checkLocalStorage()) ?
                         <div className="d-flex align-items-center navbar-button"
-                             onClick={() => this.setState({subMenuVisibility: !this.state.subMenuVisibility})}>
+                             onClick={(e) => this.setState({subMenuVisibility: true})}>
                             <i className="far fa-user navbar-icon pl-1"></i>
                             <span
                                 className="ml-2 text-lowercase text-dark menu-username">{localStorage.getItem("username")}</span>
-                            <i className="fas fa-angle-down arrow-down"></i>
+                            <i className="fas fa-angle-down arrow-down mr-2"></i>
                         </div>
                         :
-                        <a href='/registration'>
-                            <div className="d-flex align-items-center navbar-button">
-                                <i className="fas fa-user-plus navbar-icon pl-1"></i>
-                            </div>
-                        </a>
+                        <div className="navbar-button">
+                            <a href='/registration'>
+                                <div className="d-flex align-items-center navbar-button">
+                                    <i className="fas fa-user-plus navbar-icon pl-1"></i>
+                                </div>
+                            </a>
+                        </div>
+
                 }
 
                 {
-                    (this.checkLocalStorage()) ?
-                        <a href="/login" className="navbar-button" onClick={() => {
-                            localStorage.removeItem('accessToken')
-                        }}>
-                            <i className="fas fa-sign-out-alt navbar-icon cursor-pointer"></i>
-                        </a> :
+                    (!this.checkLocalStorage()) &&
+                    <div className="navbar-button">
                         <a href="/login" className="d-flex align-items-center navbar-button">
                             <i className="fas fa-sign-in-alt navbar-icon cursor-pointer"></i>
                         </a>
+                    </div>
                 }
             </nav>
             {(this.state.subMenuVisibility) && <Submenu onChangeState={this.onChangeSubMenu}/>}

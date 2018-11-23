@@ -97,7 +97,6 @@ class SearchBlock extends React.Component {
                             locale="en-En"
                             onChangeRaw={this.onChangeRow}
                         />
-
                     </div>
 
                     <button className="btn btn-search col-sm ml-3 mr-3 mt-2" type='button'
