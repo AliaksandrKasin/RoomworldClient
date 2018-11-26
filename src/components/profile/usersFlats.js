@@ -1,6 +1,6 @@
 import * as React from "react";
-import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
-import UsersCardFlat from "./usersCardFlat";
+import {IMG_NOT_FOUND, SERVER} from "../../constants/constants";
+import UsersCardFlat from "../usersCardFlat";
 
 class UsersFlats extends React.Component {
 

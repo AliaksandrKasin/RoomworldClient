@@ -4,10 +4,10 @@ class FormInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.value,
-            min: props.min,
-            max: props.max,
-            charLeft: props.max
+            value: props.value || "",
+            min: props.min || null,
+            max: props.max || null,
+            charLeft: props.max || null
         }
     }
 

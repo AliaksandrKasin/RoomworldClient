@@ -17,13 +17,10 @@ class PhoneInput extends React.Component {
     }
 
     render() {
-        return <div className="form-group row">
-            <label htmlFor="name" className="col-3 col-form-label">{this.props.title}</label>
-            <div className="col-8">
-                <div className="error-message">{(this.state.invalidInput) ? this.props.errorMessage : ""}</div>
-                <ReactPhoneInput defaultCountry="by" value={this.props.numberPhone} inputClass="w-100"
-                                 onChange={this.props.onChange} required={true} onBlur={this.onBlur}/>
-            </div>
+        return <div className="">
+            <ReactPhoneInput defaultCountry="by" value={this.props.numberPhone} inputClass="w-100"
+                             onChange={this.props.onChange} required={true} onBlur={this.onBlur}/>
+
         </div>
     }
 }

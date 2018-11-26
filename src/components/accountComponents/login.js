@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import ErrorMessage from './errorMessage';
-import {SERVER} from "../constants/constants";
+import ErrorMessage from '../errorMessage';
+import {SERVER} from "../../constants/constants";
 import {Link} from "react-router-dom";
 
 

@@ -31,11 +31,12 @@ class Submenu extends React.Component {
                 <hr className="w-90 mt-0 mb-0"/>
                 <div className="mt-2 mb-1">
                     <SubMenuButton title="Profile" link="/profile" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="My flats" link="" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="My booking" link="" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="Orders" link="" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="My flats" link="/profile/my/flats" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="My booking" link="/profile/my/booking" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Orders" link="/profile/my/flats/orders" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Account" link="/profile/account" onClick={() => this.props.onChangeState(false)}/>
                 </div>
-                <hr className="w-90 mt-0 mb-0 mt-4"/>
+                <hr className="w-90 mb-0 mt-4"/>
                 <div className="pt-3">
                     <SubMenuButton title="Log out" link="login" onClick={() => this.props.onChangeState(false)}
                                    onClickCapture={() => {localStorage.removeItem('accessToken')}}/>

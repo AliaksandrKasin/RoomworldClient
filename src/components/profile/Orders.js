@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import {SERVER} from "../constants/constants";
+import {SERVER} from "../../constants/constants";
 
 
 class Orders extends React.Component {

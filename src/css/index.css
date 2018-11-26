@@ -81,59 +81,8 @@ a:hover {
 
 /**/
 /*Profile*/
-.container-profile {
-    padding-left: 100px !important;
-    margin-right: auto;
-    margin-left: auto;
-}
 
-.profile__title {
-    width: 300px;
-    height: 50px;
-}
 
-.profile-menu {
-    height: 44px;
-    min-width: 610px;
-}
-
-.profile-menu__link:hover {
-    border-bottom: 3px solid #2525201a;
-}
-
-.profile-menu__link:active {
-    border-bottom: 3px solid #ffff00;
-}
-
-@media (max-width: 750px) {
-    .profile-menu__link {
-        visibility: hidden;
-    }
-}
-
-.profile-burger-menu {
-    list-style: none;
-    width: 200px;
-    top: 108px;
-    font-size: 19px;
-    border-radius: 0 0 5px 5px;
-    z-index: 100;
-    background-color: white;
-}
-
-.container-change-pass {
-    margin-top: 200px;
-}
-
-@media (max-width: 750px) {
-    .burger-menu-images {
-        visibility: visible !important;
-    }
-}
-
-.burger-menu-images {
-    visibility: hidden;
-}
 
 /*******/
 
@@ -144,7 +93,9 @@ a:hover {
 
     }
 }
-
+.container-change-pass {
+    height: 100vh;
+}
 .quick-rent_title {
     min-width: 300px !important;
 }
@@ -784,7 +735,10 @@ a:hover {
 .btn-next:hover {
     background-color: #005ebc;
 }
-
+.btn-back:disabled {
+    color: #d3d8de;
+    border: 1px solid #d3d8de!important;
+}
 .btn-back {
     border-radius: 20px !important;
     padding: 10px !important;

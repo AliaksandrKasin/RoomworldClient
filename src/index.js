@@ -3,6 +3,8 @@ import './css/index.css';
 import './css/menu/menu.css';
 import './css/chat.css';
 import './css/datepicker.css';
+import './css/profile.css';
+import './css/elements.css';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import Provider from "react-redux/es/components/Provider";
