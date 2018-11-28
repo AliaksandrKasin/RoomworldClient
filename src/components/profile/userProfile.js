@@ -1,16 +1,12 @@
 import * as React from "react";
 import PhoneInput from "../phoneInput";
 import connect from "react-redux/es/connect/connect";
-import STORE from "../../store";
-import changePhoneNumberProfile from "../../actions/profile/changePhoneNumber";
-import changeNameProfile from "../../actions/profile/changeNameProfile";
-import changeSurnameProfile from "../../actions/profile/changeSurname";
 import axios from "axios";
 import {SERVER} from "../../constants/constants";
 import {isValidNumber} from "libphonenumber-js";
-import addUserProfile from "../../actions/profile/addUser";
-import changeProfile from "../../actions/profile/changeProfile";
 import FormInput from "../registerFlatComponents/formInput";
+import Loading from "../extensionComponents/loading";
+import Validation from "../../extends/validation";
 
 
 class UserProfile extends React.Component {
@@ -19,9 +15,12 @@ class UserProfile extends React.Component {
         super(props);
 
         this.state = {
-            buttonDisabled: true
+            imageProfile: "https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png",
+            loading: true,
+            profile: {},
+            changedProfile: {}
         }
-
+        this.uploader = React.createRef();
         this.getProfile();
     }
 
@@ -29,115 +28,117 @@ class UserProfile extends React.Component {
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         axios.get(SERVER + '/user/profile')
             .then((response) => {
-                STORE.dispatch(addUserProfile(response.data));
-                STORE.dispatch(changeProfile({
-                    name: response.data.name,
-                    surname: response.data.surname,
-                    phoneNumber: response.data.phoneNumber,
-                    email: response.data.email
-                }));
+                this.setState({profile: response.data, changedProfile: response.data, loading: false});
             })
             .catch((error) => {
                 console.log(error);
             });
+    }
+
+    validationProfile = () => {
     }
 
     saveChanges = () => {
-        if (this.props.changedProfile.name.length < 1 || this.props.changedProfile.surname.length < 1 || !isValidNumber(this.props.changedProfile.phoneNumber)) {
+        if (this.state.changedProfile.name.length < 1 || this.state.changedProfile.surname.length < 1
+            || !isValidNumber(this.state.changedProfile.phoneNumber)) {
             return;
         }
+
+        let form = new FormData();
+        form.append("File", this.uploader.current.files[0]);
+        form.append("name", this.state.changedProfile.name);
+        form.append("surname", this.state.changedProfile.surname);
+        form.append("email", this.state.changedProfile.email);
+        form.append("phoneNumber", this.state.changedProfile.phoneNumber);
+
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.put(SERVER + '/user/change/profile', this.props.changedProfile)
-            .then((response) => {
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        axios.put(SERVER + '/user/change/profile', form, {
+            headers: {'Content-Type': 'multipart/form-data'}
+        });
     }
 
     checkChanges = () => {
-        (this.props.changedProfile.name !== this.props.user.name
-            || this.props.changedProfile.surname !== this.props.user.surname
-            || this.props.changedProfile.phoneNumber !== this.props.user.phoneNumber) ?
-            this.setState({buttonDisabled: false}) : this.setState({buttonDisabled: true});
+        return (this.state.changedProfile.name !== this.state.profile.name || this.state.changedProfile.surname !== this.state.profile.surname
+            || this.state.changedProfile.phoneNumber !== this.state.profile.phoneNumber);
     }
 
     onChangeName = value => {
-        STORE.dispatch(changeNameProfile(value));
-        this.checkChanges();
+        this.setState({changedProfile: Object.assign({}, this.state.changedProfile, {name: value})});
     }
 
     onChangeLastName = value => {
-        STORE.dispatch(changeSurnameProfile(value));
-        this.checkChanges();
+        this.setState({changedProfile: Object.assign({}, this.state.changedProfile, {surname: value})});
     }
 
     onChangePhoneNumber = value => {
-        STORE.dispatch(changePhoneNumberProfile(value));
-        this.checkChanges();
+        this.setState({changedProfile: Object.assign({}, this.state.changedProfile, {phoneNumber: value})});
+    }
+
+    onChangeSelectPictures = event => {
+        if (event.target.files.length !== 0 && event.target.files[0].type.match("image")) {
+            this.setState({imageProfile: URL.createObjectURL(event.target.files[0])});
+        }
     }
 
     render() {
-        return <div className="container-profile">
-            <div className="sub-container-profile border rounded_10 p-0">
-                <div className="d-flex justify-content-center profile-top">
-                    <div className="text-center profile-image position-relative">
-                        <div className="position-absolute profile-pen">
-                            <i className="fas fa-pencil-alt"></i>
-                        </div>
-                        <img src="https://cdn4.iconfinder.com/data/icons/business-men-women-set-1/512/23-512.png"
-                             className="profile-avatar rounded-circle img-thumbnail" alt="avatar" height="160px"
-                             width="160px"/>
-                    </div>
-
-                </div>
-
-                <div className="position-relative mt-5 m-4">
-
-                    <div className="d-flex justify-content-center">
-                        <div className="text-center">
-                            <h2 className="profile__title">{this.props.user.name + " " + this.props.user.surname}</h2>
+        return (!Validation.objectIsEmpty(this.state.changedProfile) && this.state.loading) ? <Loading/> :
+            <div className="container-profile">
+                <div className="sub-container-profile border rounded_10 p-0">
+                    <div className="d-flex justify-content-center profile-top">
+                        <div onClick={() => this.uploader.current.click()}
+                             className="text-center profile-image rounded-circle position-relative">
+                            <div className="position-absolute profile-pen">
+                                <i className="fas fa-pencil-alt"></i>
+                            </div>
+                            <img src={this.state.imageProfile}
+                                 className="profile-avatar rounded-circle img-thumbnail" alt="avatar" height="160px"
+                                 width="160px"/>
+                            <input ref={this.uploader} onChange={this.onChangeSelectPictures} type="file"
+                                   accept="image/*"
+                                   className="profile-input-file"/>
                         </div>
                     </div>
-
-
-
-                    <div className="">
-                        <div className="mt-3">
-                            <FormInput placeholder="First name" type="text"
-                                       onChange={this.onChangeName} value={this.props.changedProfile.name}/>
+                    <div className="position-relative mt-5 m-4">
+                        <div className="d-flex justify-content-center">
+                            <div className="text-center">
+                                <h2 className="profile__title">{this.state.profile.name + " " + this.state.profile.surname}</h2>
+                            </div>
                         </div>
+                        <div className="">
+                            <div className="mt-3">
+                                <FormInput placeholder="First name" type="text"
+                                           onChange={this.onChangeName} value={this.state.changedProfile.name}/>
+                            </div>
 
-                        <div className="mt-3">
-                            <FormInput placeholder="Second name" type="text"
-                                       onChange={this.onChangeLastName} value={this.props.changedProfile.surname}/>
-                        </div>
+                            <div className="mt-3">
+                                <FormInput placeholder="Second name" type="text"
+                                           onChange={this.onChangeLastName} value={this.state.changedProfile.surname}/>
+                            </div>
 
-                        <div className="mt-3">
-                            <FormInput placeholder="Email" type="email" value={this.props.user.email}/>
-                        </div>
-                        <div className="mt-3">
-                            <PhoneInput type="tel" numberPhone={this.props.changedProfile.phoneNumber}
-                                        onChange={this.onChangePhoneNumber} errorMessage="This number is not valid!"/>
-                        </div>
-                        <div className="text-center mt-5 mb-5">
-                            <button onClick={this.saveChanges} className="btn-back"
-                                    type='button' disabled={this.state.buttonDisabled}>Save Changes
-                            </button>
+                            <div className="mt-3">
+                                <FormInput placeholder="Email" type="email" value={this.state.profile.email}/>
+                            </div>
+                            <div className="mt-3">
+                                <PhoneInput type="tel" numberPhone={this.state.changedProfile.phoneNumber}
+                                            onChange={this.onChangePhoneNumber}
+                                            errorMessage="This number is not valid!"/>
+                            </div>
+                            <div className="text-center mt-5 mb-5">
+                                <button onClick={this.saveChanges} className="btn-back"
+                                        type='button' disabled={!this.checkChanges()}>Save Changes
+                                </button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
+
     }
 }
 
 function mapStateToProps(state) {
     return {
-        profile: state.profileReducer,
-        user: state.profileReducer.user,
+        profile: state.profileReducer.profile,
         changedProfile: state.profileReducer.changedProfile
     };
 }

@@ -52,11 +52,13 @@ class Account extends React.Component {
         return <div className="container-change-pass d-flex justify-content-center">
             <div className="container text-center mt-5">
 
+
                 <h3 className="mb-4">Change password</h3>
 
                 <small>A strong password helps prevent unauthorized access to your email
                     account.
                 </small>
+
 
                 <div className="d-flex justify-content-center align-items-center">
                     <div className="w-75">

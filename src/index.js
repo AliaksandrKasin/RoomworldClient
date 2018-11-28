@@ -5,6 +5,7 @@ import './css/chat.css';
 import './css/datepicker.css';
 import './css/profile.css';
 import './css/elements.css';
+import './css/loading.css';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import Provider from "react-redux/es/components/Provider";
@@ -24,7 +25,6 @@ ReactDOM.render(<Provider store={STORE}>
                     {(localStorage.getItem('accessToken')) && <ChatButton/>}
                 </main>
                 <footer>
-
                 </footer>
             </div>
         </BrowserRouter>

@@ -35,7 +35,7 @@ class Registration extends React.Component {
 
         };
 
-        STORE.dispatch(addUser({
+        /*STORE.dispatch(addUser({
             name: "",
             surname: "",
             role: "1",
@@ -44,7 +44,7 @@ class Registration extends React.Component {
             confirmPassword: "",
             phoneNumber: ""
 
-        }));
+        }));*/
     }
 
     static validateEmail(email) {
@@ -99,7 +99,7 @@ class Registration extends React.Component {
         axios.post(SERVER + '/registration', this.props.user)
             .then(function (response) {
                 localStorage.setItem('accessToken', response.data.accessToken);
-                window.location.href = '/home';
+                window.location.href = '/';
             })
             .catch((error) => {
                 this.setState({emailValid: true, errorMessageEmail: 'This email already exist.'})

@@ -39,7 +39,7 @@
     }
 
     .container-profile {
-        margin-top: 50px;
+        margin-top: 20px;
     }
 }
 
@@ -52,19 +52,40 @@
 
 .profile-image {
     margin-top: 75px;
+    height: 160px;
 }
 
-.profile-avatar:hover {
+.profile-avatar{
+    height: 160px!important;
+    width: 160px!important;
+}
+
+.profile-image:hover .profile-avatar {
+    background-color: #a4a8b1 !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+.profile-image:hover .profile-pen {
+    display: block;
+}
+
+/*.profile-avatar:hover {
     background-color: #606267;
     opacity: 1;
     cursor: pointer;
-}
+}*/
 
-.profile-pen{
+.profile-pen {
     top: 60px;
-    left: 65px;
+    left: 67px;
     font-size: 30px;
-    color: white!important;
+    color: #fcfcfc !important;
+    cursor: pointer;
+    display: none;
 }
 
+.profile-input-file{
+    display: none;
+}
 

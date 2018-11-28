@@ -1,13 +1,12 @@
 import * as React from "react";
 import STORE from "../../store";
-import {chatState, initialState} from "../../actions/chatActions/chatActions";
+import {chatState} from "../../actions/chatActions/chatActions";
 import connect from "react-redux/es/connect/connect";
 
 class ChatButton extends React.Component {
 
     constructor(props) {
         super(props);
-        STORE.dispatch(chatState(false));
     }
 
     render() {
