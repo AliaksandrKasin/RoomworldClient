@@ -4,6 +4,7 @@ import STORE from "../store";
 import search from "../actions/search";
 import connect from "react-redux/es/connect/connect";
 
+
 class SearchBlock extends React.Component {
     constructor() {
         super();
@@ -103,7 +104,6 @@ class SearchBlock extends React.Component {
                             onClick={this.dispatchSearchParams}>Search
                     </button>
                 </div>
-
             </div>
         </div>
     }

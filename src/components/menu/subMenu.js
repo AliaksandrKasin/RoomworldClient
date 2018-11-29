@@ -22,7 +22,7 @@ class Submenu extends React.Component {
             <div className="submenu-container position-absolute">
                 <div className="d-flex justify-content-center align-items-center">
                      <span
-                         className="ml-2 text-lowercase menu-username pb-2 pt-2">{localStorage.getItem("username")}</span>
+                         className="ml-2 text-lowercase submenu-username pb-2 pt-2">{localStorage.getItem("username")}</span>
                     <div className="d-flex justify-content-end">
                         <i onClick={() => this.props.onChangeState(false)}
                            className="fas fa-times text-muted submenu-close"></i>

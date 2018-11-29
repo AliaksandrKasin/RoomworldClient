@@ -38,9 +38,41 @@
     height: 50px;
 }
 
-.menu-username {
+.submenu-username{
     font-weight: 600;
     color: #9b9ea6;
+    max-width: 232px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 420px){
+    .menu-username {
+        max-width: 160px!important;
+    }
+}
+
+@media (max-width: 360px){
+    .menu-username {
+        max-width: 130px!important;
+    }
+}
+
+@media (max-width: 320px){
+    .menu-username {
+        max-width: 100px!important;
+    }
+}
+
+
+.menu-username {
+    max-width: 200px;
+    font-weight: 600;
+    color: #9b9ea6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .arrow-down {

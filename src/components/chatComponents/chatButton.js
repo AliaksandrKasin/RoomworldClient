@@ -10,9 +10,10 @@ class ChatButton extends React.Component {
     }
 
     render() {
-        return (!this.props.chatIsOpen) && <div className="chat-icon rounded-circle bottom-right text-right mb-3 mr-3">
-            <i onClick={() => STORE.dispatch(chatState(true))}
-               className="far fa-comments"></i>
+        return (!this.props.chatIsOpen)
+            && <div className="chat-icon rounded-circle bottom-right text-right mb-3 mr-3"
+                    onClick={() => STORE.dispatch(chatState(true))}>
+            <i className="fas fa-headset"></i>
         </div>
     }
 

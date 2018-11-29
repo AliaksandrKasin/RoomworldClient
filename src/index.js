@@ -6,6 +6,7 @@ import './css/datepicker.css';
 import './css/profile.css';
 import './css/elements.css';
 import './css/loading.css';
+import './css/filter.css';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import Provider from "react-redux/es/components/Provider";

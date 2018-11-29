@@ -5,15 +5,15 @@
     min-width: 300px;
     height: 450px;
     background-color: #fcfcfc;
+    border-radius: 10px;
 }
 
 .chat-icon {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
-    color: #606267;
-    border: 1px solid #606267;
-    background-color: #f7f7f7;
+    color: #ebebeb;
+    background-color: #1954e5;
     z-index: 10;
     font-size: 33px;
     display: flex;
@@ -22,14 +22,40 @@
 }
 
 .chat-icon:hover {
-    width: 62px;
-    height: 62px;
-    transition: 50ms;
+    animation: pulse 1.5s infinite;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 #1a5eff;
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 #1b5dff;
+        box-shadow: 0 0 0 0 #185eff;
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 7px rgba(204, 169, 44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
 }
 
 .chat-container-top {
     border-radius: 10px 10px 0 0;
     height: 40px;
+    background-color: white;
 }
 
 .chat-container-content {
@@ -110,4 +136,13 @@
     right: 0;
     bottom: 0;
     z-index: 100;
+}
+
+.chat-container-button-close {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.chat-container-title {
+    margin-left: 30px;
 }
