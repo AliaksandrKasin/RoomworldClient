@@ -6,6 +6,7 @@ import CheckList from "./checkList";
 
 
 const listAmenities = ["Pool", "Internet/WiFi", "Air conditioning", "TV", "Dishwasher"];
+
 class HousesFilter extends React.Component {
 
     constructor(props) {
@@ -25,23 +26,37 @@ class HousesFilter extends React.Component {
         let cost = "$" + this.state.minCost + "- $" + this.state.maxCost + " avg/night";
         return <div className="mb-5 border">
             <div className="m-4">
-                <div className="filter-container-price">
-                    <div className="mb-4 h5">
-                        <span>{(this.state.minCost === 0 && this.state.maxCost === 1000) ? "Any Price avg/night" : cost}</span>
+                <div className="d-flex flex-wrap">
+                    <div>
+                        <div className="filter-container-price">
+                            <div className="mb-4 h5">
+                                <span>{(this.state.minCost === 0 && this.state.maxCost === 1000) ? "Any Price avg/night" : cost}</span>
+                            </div>
+                            <ReactSlider withBars min={0} max={1000} step={10} onChange={this.onChangeCost}>
+                                <div className="my-handle"></div>
+                                <div className="my-handle"></div>
+                            </ReactSlider>
+                        </div>
+
+                        <div className="mt-5">
+                            <CounterAmenitiesSmall title="Bathrooms"/>
+                            <CounterAmenitiesSmall title="Bedrooms"/>
+                        </div>
                     </div>
-                    <ReactSlider withBars min={0} max={1000} step={10} onChange={this.onChangeCost}>
-                        <div className="my-handle"></div>
-                        <div className="my-handle"></div>
-                    </ReactSlider>
+
+                    <div className="ml-5 mt-5">
+                        <CheckList title="Features & amenities" list={listAmenities}/>
+                    </div>
+
+                    <div className="ml-5 mt-5">
+                        <CheckList title="Features & amenities" list={listAmenities}/>
+                    </div>
+
+                    <div className="ml-5 mt-5">
+                        <CheckList title="Features & amenities" list={listAmenities}/>
+                    </div>
+
                 </div>
-
-                <div className="mt-5">
-                    <CounterAmenitiesSmall title="Bathrooms"/>
-                    <CounterAmenitiesSmall title="Bedrooms"/>
-                </div>
-
-                <CheckList title="Features & amenities" list={listAmenities}/>
-
                 <div className="d-flex justify-content-end mt-5">
                     <div className="mr-3">
                         <button className="btn-back" type='button'>Clear</button>
