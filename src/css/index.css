@@ -711,6 +711,10 @@ a:hover {
 
 }
 
+.sticky-top{
+    z-index: 2!important;
+}
+
 .container-line {
     height: 300px;
 }
@@ -730,6 +734,10 @@ a:hover {
     cursor: pointer;
     transition: 1s;
     outline: none !important;
+}
+
+.btn-next-size-s {
+    width: 200px!important;
 }
 
 .btn-next:hover {

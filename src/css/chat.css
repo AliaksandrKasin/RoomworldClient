@@ -19,10 +19,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: pulse 1.5s infinite;
 }
 
 .chat-icon:hover {
-    animation: pulse 1.5s infinite;
+    /*animation: pulse 1.5s infinite;*/
 }
 
 @-webkit-keyframes pulse {

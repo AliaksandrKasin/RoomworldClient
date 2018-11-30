@@ -4,7 +4,7 @@ import axios from "axios";
 import {IMG_NOT_FOUND, SERVER} from "../constants/constants";
 import Map from "./map";
 import {connect} from 'react-redux';
-import HousesFilter from "./housesFilter";
+import HousesFilter from "./houseFilter/housesFilter";
 
 
 class AlbomCardFlat extends React.Component {
