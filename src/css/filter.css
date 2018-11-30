@@ -27,11 +27,23 @@
     cursor: pointer;
     font-size: 20px;
     margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-button-icon{
+    font-size: 13px;
+    color: #606267;
+}
+
+.counter-button:hover .counter-button-icon{
+    color: #1a5eff;
 }
 
 .counter-title {
     text-transform: lowercase;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .counter-amount {
