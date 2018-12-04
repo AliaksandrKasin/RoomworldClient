@@ -90,9 +90,11 @@ class AlbomCardFlat extends React.Component {
 
     render() {
         return <div className="ml-5 mt-3">
+
+            <HousesFilter/>
+
             <div className="row">
                 <div className="container col-6 container_flex_none container_width_none">
-                    <HousesFilter/>
                     <div className="container__title border mb-4 rounded_10 p-2">
                         <h3>{this.stringPlace()}
                             <small className="text-muted">({this.state.found} places

@@ -1,5 +1,6 @@
 import * as React from "react";
 import SubMenuButton from "./subMenuButton";
+import {Link} from "react-router-dom";
 
 class Submenu extends React.Component {
 
@@ -30,15 +31,16 @@ class Submenu extends React.Component {
                 </div>
                 <hr className="w-90 mt-0 mb-0"/>
                 <div className="mt-2 mb-1">
-                    <SubMenuButton title="Profile" link="/profile" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="My flats" link="/profile/my/flats" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="My booking" link="/profile/my/booking" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="Orders" link="/profile/my/flats/orders" onClick={() => this.props.onChangeState(false)}/>
-                    <SubMenuButton title="Account" link="/profile/account" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Profile" link="/profile" icon="fas fa-address-card" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="My Apartment" link="/profile/my/flats" icon="fas fa-home" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="My booking" link="/profile/my/booking" icon="fas fa-calendar-alt" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Reservation list" link="/profile/my/flats/orders" icon="far fa-calendar-alt" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Account" link="/profile/account" icon="fas fa-unlock-alt" onClick={() => this.props.onChangeState(false)}/>
+                    <SubMenuButton title="Admin" link="/admin" icon="fas fa-users-cog" onClick={() => this.props.onChangeState(false)}/>
                 </div>
                 <hr className="w-90 mb-0 mt-4"/>
                 <div className="pt-3">
-                    <SubMenuButton title="Log out" link="login" onClick={() => this.props.onChangeState(false)}
+                    <SubMenuButton title="Log out" link="login" icon="fas fa-sign-out-alt" onClick={() => this.props.onChangeState(false)}
                                    onClickCapture={() => {localStorage.removeItem('accessToken')}}/>
                 </div>
             </div>

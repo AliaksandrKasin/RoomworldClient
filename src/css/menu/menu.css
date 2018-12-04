@@ -98,7 +98,7 @@
     border-radius: 4px;
     width: 300px;
     min-width: 310px;
-    height: 340px;
+    height: 380px;
     background-color: white;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
@@ -112,6 +112,11 @@
     padding: 15px;
     cursor: pointer;
     font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+}
+
+.submenu-icon{
+    font-size: 22px;
+    width: 30px;
 }
 
 .submenu-button:hover {
@@ -129,3 +134,8 @@
 .submenu-close:hover {
     opacity: 1;
 }
+
+
+
+
+

@@ -1,5 +1,6 @@
 import React from "react";
 import Submenu from "./subMenu";
+import {Link} from "react-router-dom";
 
 
 class Menu extends React.Component {
@@ -23,10 +24,10 @@ class Menu extends React.Component {
     render() {
         return <header>
             <nav className='navbar border-bottom pr-0'>
-                <a className="navbar-logo" href="/">
+                <Link className="navbar-logo" to="/">
                     <img className="img-thumbnail border-0"
                          src="https://cdn2.iconfinder.com/data/icons/real-estate-61/64/Real_estate_16-512.png"/>
-                </a>
+                </Link>
 
                 {
                     (this.checkLocalStorage()) &&

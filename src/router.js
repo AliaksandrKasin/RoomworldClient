@@ -12,6 +12,7 @@ import ChangePasswordByToken from "./components/accountComponents/changePassword
 import CounterAmenity from "./components/registerFlatComponents/counterAmenity"
 import RegistrationFlatMain from "./components/registerFlatComponents/registrationFlatMain"
 import NotFound from "./components/notFound"
+import AdminGeneral from "./components/admin/adminGeneral";
 
 class Router extends React.Component {
     render() {
@@ -26,6 +27,7 @@ class Router extends React.Component {
             <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
 
             <Route path={'/profile'} component={Profile}/>
+            <Route path={'/admin'} component={AdminGeneral}/>
 
             <Route path={'/counter'} component={CounterAmenity}/>
             <Route path={'/details'} component={RegistrationFlatMain}/>

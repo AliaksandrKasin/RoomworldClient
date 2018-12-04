@@ -22,37 +22,41 @@ class ChatContainer extends React.Component {
 
     componentDidMount = () => {
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken"),})
+            .withUrl(SERVER + "/chat")
             .build();
-
 
         connection.on("send", (text, username) => {
             this.setState({messages: [...this.state.messages, {text, username}]});
         });
         connection.start()
-            .then(() => console.log('Connection started!'))
-            .catch(err => console.log('Error while establishing connection :('));
+            .then(() => {
+
+            })
+            .catch(err => {
+
+            });
 
         this.setState({hubConnection: connection});
-
     }
 
     sendMessage = () => {
-        if (this.state.textMessage) {
+        if (this.state.textMessage.trim()) {
             this.state.hubConnection
                 .invoke('send', this.state.textMessage, this.state.username)
                 .catch(err => console.error(err));
             this.setState({textMessage: ""});
+            this.textArea.current.focus();
         }
-        this.textArea.current.focus();
     };
 
     onChangeMessage = (e) => {
-        this.setState({textMessage: e.target.value});
+        if (!e.target.value.match(/\n/)) {
+            this.setState({textMessage: e.target.value});
+        }
     }
 
     onKeyEnter = (e) => {
-        if (e.ctrlKey) {
+        if (e.charCode === 13) {
             this.sendMessage();
         }
     }
@@ -61,18 +65,34 @@ class ChatContainer extends React.Component {
         return (this.props.chatIsOpen) && <div className="bottom-right d-flex justify-content-end mb-3 mr-3">
             <div className="chat-container">
                 <div className="border chat-container-top d-flex align-items-center justify-content-center">
-                    <div className="w-100 text-center chat-container-title">
-                        <span className="h6 text-muted">Online consultant</span>
+                    <div className="w-100 chat-container-title d-flex">
+                        <img className="img_size_4 rounded-circle"
+                             src="https://pp.userapi.com/c631925/v631925003/1aa08/aFe1PkzOKOM.jpg?ava=1"/>
+                        <div className="ml-3 text-white">
+                            <div>Alexandr</div>
+                            <div className="chat-container-role">Consultant</div>
+                        </div>
                     </div>
 
                     <div>
-                        <img onClick={() => STORE.dispatch(chatState(false))}
-                             className="img_size_2 chat-container-button-close"
-                             src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/down3-128.png"/>
+                        <i onClick={() => STORE.dispatch(chatState(false))}
+                           className="fas fa-times img_size_2 chat-container-button-close"></i>
                     </div>
                 </div>
 
                 <div className="border chat-container-content">
+                    {
+                        /*(this.state.messages.length === 0) && <div className="">
+                            <div className="mt-2">
+                                <div className="d-flex justify-content-center">
+                                    Type your message
+                                </div>
+                                <div className="d-flex justify-content-center small">
+                                    Consultant online!
+                                </div>
+                            </div>
+                        </div>*/
+                    }
                     {
                         this.state.messages.map((message, index) => {
                             return <ChatMessage key={index} isSender={true} username={message.username}
@@ -80,12 +100,12 @@ class ChatContainer extends React.Component {
                         })
                     }
                 </div>
-                <div className="chat-container-bottom bg-white rounded_10">
+                <div className="chat-container-bottom">
                     <textarea ref={this.textArea} onKeyPress={this.onKeyEnter} onChange={this.onChangeMessage}
                               value={this.state.textMessage}
-                              className="chat-container-input ml-2 text-muted"
-                              placeholder="Type your question."/>
-                    <img onClick={this.sendMessage} className="chat-button-send cursor-pointer"
+                              className="chat-container-input text-muted"
+                              placeholder="Type message"/>
+                    <img onClick={this.sendMessage} className="chat-button-send"
                          src="https://cdn2.iconfinder.com/data/icons/line-drawn-social-media/30/send-128.png"/>
                 </div>
             </div>
