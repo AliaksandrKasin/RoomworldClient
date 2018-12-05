@@ -2,7 +2,6 @@ import {createStore} from 'redux';
 import {combineReducers} from 'redux'
 import flatReducer from "./reducers/flatReducer";
 import profileReducer from "./reducers/profileReducer";
-import userRegistrationReducer from "./reducers/userRegistration";
 import registrationFlatReducer from "./reducers/registrationFlatReducer";
 import chatReducer from "./reducers/chatReducer";
 
@@ -29,7 +28,6 @@ const oldState = loadState();
 const ALLREDUCERS = combineReducers({
     flatReducer,
     profileReducer,
-    userRegistrationReducer,
     registrationFlatReducer,
     chatReducer
 });
