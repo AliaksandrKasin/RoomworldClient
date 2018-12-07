@@ -59,7 +59,7 @@ class ChatMessage extends React.Component {
 
                         <div className="mb-4">
                             <div className="speech-bubble speech-bubble-left ml-3 mt-2">
-                                <div className="text-muted small">Consultant</div>
+                                <div className="text-muted small">{this.props.username}</div>
                                 {this.props.message}
                                 <div className="small text-right mt-2">{this.state.currentTime}</div>
                             </div>

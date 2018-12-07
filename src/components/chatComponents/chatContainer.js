@@ -5,6 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import ChatMessage from "./chatMessage";
 import * as signalR from "@aspnet/signalr";
 import {SERVER} from "../../constants/constants";
+import Validation from "../../extends/validation";
 
 
 class ChatContainer extends React.Component {
@@ -16,17 +17,40 @@ class ChatContainer extends React.Component {
             hubConnection: null,
             textMessage: "",
             messages: [],
-            username: localStorage.getItem("username")
+            username: localStorage.getItem("username"),
+            consultant: {
+                id: "",
+                name: "",
+                email: ""
+            }
         }
     }
 
     componentDidMount = () => {
+        console.log(localStorage.getItem("accessToken"));
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl(SERVER + "/chat")
+            .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
 
         connection.on("send", (text, username) => {
-            this.setState({messages: [...this.state.messages, {text, username}]});
+            this.setState({
+                messages: [...this.state.messages, {text, username}]
+            });
+        });
+        connection.on("SwichConsultant", (idConsultant, nameConsultant, emailConsultant) => {
+
+            this.setState({
+                consultant: {id: idConsultant, name: nameConsultant, email: emailConsultant},
+            });
+
+            if (idConsultant && this.state.messages.length === 0) {
+                this.setState({
+                    messages: [...this.state.messages, {
+                        text: "Hello, how can I help you?",
+                        username: nameConsultant
+                    }]
+                })
+            }
         });
         connection.start()
             .then(() => {
@@ -40,6 +64,10 @@ class ChatContainer extends React.Component {
     }
 
     sendMessage = () => {
+        /*this.state.hubConnection
+            .invoke('sendById', "1", this.state.textMessage, this.state.username)
+            .catch(err => console.error(err));
+        debugger*/
         if (this.state.textMessage.trim()) {
             this.state.hubConnection
                 .invoke('send', this.state.textMessage, this.state.username)
@@ -65,12 +93,16 @@ class ChatContainer extends React.Component {
         return (this.props.chatIsOpen) && <div className="bottom-right d-flex justify-content-end mb-3 mr-3">
             <div className="chat-container">
                 <div className="border chat-container-top d-flex align-items-center justify-content-center">
-                    <div className="w-100 chat-container-title d-flex">
-                        <img className="img_size_4 rounded-circle"
-                             src="https://pp.userapi.com/c631925/v631925003/1aa08/aFe1PkzOKOM.jpg?ava=1"/>
-                        <div className="ml-3 text-white">
-                            <div>Alexandr</div>
-                            <div className="chat-container-role">Consultant</div>
+                    <div className="w-100 chat-container-title">
+                        <div className="d-flex">
+                            <img className="img_size_4 rounded-circle"
+                                 src="https://pp.userapi.com/c631925/v631925003/1aa08/aFe1PkzOKOM.jpg?ava=1"/>
+                            <div className="ml-3 text-white">
+                                <div>Consultant {(this.state.consultant.id) && this.state.consultant.name}</div>
+                                <div className="chat-container-role">
+                                    {(this.state.consultant.id) ? "Online" : "Offline"}
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -1,7 +1,9 @@
 class Validation {
     static objectIsEmpty(object) {
         for (let key in object) {
-            return true;
+            if (object[key]){
+                return true;
+            }
         }
         return false;
     }
