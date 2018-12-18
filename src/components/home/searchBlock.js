@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-date-picker";
-import STORE from "../store";
-import search from "../actions/search";
+import STORE from "../../store";
+import search from "../../actions/search";
 import connect from "react-redux/es/connect/connect";
 
 

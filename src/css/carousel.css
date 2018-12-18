@@ -1,0 +1,30 @@
+.carousel-container{
+    display: flex;
+    align-items: center;
+    height: 350px;
+    margin-top: 60px;
+    width: 100%;
+
+    max-width: 90vw;
+    overflow: hidden;
+}
+
+.carousel-item{
+    display: block!important;
+    height: 100%;
+    width: 350px;
+    margin-right: 20px;
+    background-color: #2a6ebb;
+    transform: translateX(-425%);
+    transition: all 3s ease 0s;
+}
+
+.carousel-item-scroll{
+    transform: translateX(-425%);
+   transition: all 3s ease 0s;
+}
+
+.carousel-item-img{
+    height: 100%;
+    width: 323px;
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Route, Switch} from "react-router-dom";
-import Home from "./components/home";
+import Home from "./components/home/home";
 import Login from "./components/accountComponents/login";
 import Profile from "./components/profile/profile"
 import AlbomCardFlat from "./components/albomCardFlat"
@@ -13,6 +13,8 @@ import CounterAmenity from "./components/registerFlatComponents/counterAmenity"
 import RegistrationFlatMain from "./components/registerFlatComponents/registrationFlatMain"
 import NotFound from "./components/notFound"
 import AdminGeneral from "./components/admin/adminGeneral";
+import Counter from "./components/registerFlatComponents/counter";
+import AdminChat from "./components/chatComponents/adminChat";
 
 class Router extends React.Component {
     render() {
@@ -29,7 +31,7 @@ class Router extends React.Component {
             <Route path={'/profile'} component={Profile}/>
             <Route path={'/admin'} component={AdminGeneral}/>
 
-            <Route path={'/counter'} component={CounterAmenity}/>
+            <Route path={'/apartment/registration'} component={CounterAmenity}/>
             <Route path={'/details'} component={RegistrationFlatMain}/>
             <Route path='*' component={NotFound}/>}
         </Switch>
