@@ -67,7 +67,7 @@ class Account extends React.Component {
                                        onChange={this.onChangeCurrentPassword}/>
                         </div>
                         <div className="text-left mb-3">
-                            <Link to="password/reset">
+                            <Link to="/password/reset">
                                 <small className="ml-2 text-muted link">Forgot password?</small>
                             </Link>
                         </div>

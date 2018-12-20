@@ -578,6 +578,7 @@ a:hover {
         margin-left: 50px;
         max-width: none !important;
         flex: none !important;
+        background-color: rgba(0, 0, 0, 0.45);
     }
 
     .social-title {

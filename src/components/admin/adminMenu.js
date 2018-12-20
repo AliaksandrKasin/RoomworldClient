@@ -15,7 +15,7 @@ class AdminMenu extends React.Component{
                     <Link to='/admin/houses/type' className={(document.location.pathname === '/admin/houses/type')
                         ? 'navbar-brand profile-menu__link profile-menu__active' : 'navbar-brand profile-menu__link'}>Types of housing</Link>
                     <Link to='/admin/consult'
-                          className={(document.location.pathname === '/admin/consult')
+                          className={(document.location.pathname === '/admin/consult' || '/admin/chat')
                               ? 'navbar-brand profile-menu__link profile-menu__active' : 'navbar-brand profile-menu__link'}>Consult</Link>
                     <Link to='/admin/feedbacks'
                           className={(document.location.pathname === '/admin/feedbacks')

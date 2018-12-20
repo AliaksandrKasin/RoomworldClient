@@ -2,7 +2,6 @@ import * as React from "react";
 import {getMessagesByEmail} from "../../services/chatService";
 import AdminChatMessage from "./adminChatMessage";
 import {Link} from "react-router-dom";
-import FormInput from "../registerFlatComponents/formInput";
 
 class AdminChatContainer extends React.Component {
 
@@ -24,7 +23,7 @@ class AdminChatContainer extends React.Component {
                         </div>
                     </Link>
                 </div>
-                <div className="row">
+                <div className="row m-0">
                     <div className="w-100 d-flex justify-content-center col-sm">
                         <div className="text-center">
                             <h6 className="font-weight-bold m-0">Alexandr Kasin</h6>
@@ -37,7 +36,7 @@ class AdminChatContainer extends React.Component {
                     </div>
                 </div>
             </div>
-            <div className="admin-chat-container">
+            <div className="admin-chat-body">
                 {
                     this.state.messages.map((message, index) => {
                         return <AdminChatMessage key={index} name={message.username}

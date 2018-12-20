@@ -23,11 +23,27 @@ class AdminChat extends React.Component {
             .build();
 
         connection.on("sendToConsultants", (text, username) => {
-            debugger
-            this.setState({
-                //if user exists in chat, find and change message
-                messages: [...this.state.messages, {text, username}]
-            });
+
+            let index = this.state.messages.map((x) => {
+                return x.username;
+            }).indexOf(username);
+            if (index !== -1) {
+                let tempArray = this.state.messages;
+                tempArray[index] = {text, username};
+                this.setState({
+                    messages: tempArray
+                });
+            }else{
+                this.setState({
+                    messages: [...this.state.messages, {text, username}]
+                });
+            }
+           /*if(index !== -1){
+                this.setState({
+                    messages: this.state.messages.filter((x)=> {return x.username !== username;})
+                });
+            }*/
+
         });
 
         connection.on("SwichConsultant", (state) => {
@@ -37,10 +53,7 @@ class AdminChat extends React.Component {
 
             if (state && !this.state.messages.length) {
                 this.setState({
-                    messages: [...this.state.messages, {
-                        text: "Hello, how can I help you?",
-                        username: "Consultant"
-                    }]
+
                 })
             }
         });
@@ -57,6 +70,8 @@ class AdminChat extends React.Component {
     render() {
         return <div className="admin-chat-container container border">
             <AdminChatDialog name="Alexandr Kasin" userState={true} message="Hello sfdgsdfgsd fgsdfgsdf gsdfg sdfg sdfg sdfgs dfgs d"/>
+
+
             {
                 this.state.messages.map((message, index) => {
                     return <AdminChatDialog key={index} name={message.username}

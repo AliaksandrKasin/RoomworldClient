@@ -143,10 +143,10 @@
 }
 
 .admin-chat-container {
-    height: 73vh;
+    min-height: 90vh;
     /*background-color: #fafafa;*/
     padding: 0;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import {SERVER} from "../../constants/constants";
 import AlertInfo from "../alertComponents/alertInfo";
 import * as EmailValidator from 'email-validator';
+import {Link} from "react-router-dom";
 
 
 class ResetPassword extends React.Component {
@@ -29,7 +30,7 @@ class ResetPassword extends React.Component {
     }
 
     resetPassword = () => {
-        if(!EmailValidator.validate(this.state.email)){
+        if (!EmailValidator.validate(this.state.email)) {
             this.setState({
                 alertType: "error",
                 alertMessage: "Invalid email address, check email again."
@@ -52,19 +53,48 @@ class ResetPassword extends React.Component {
     }
 
     render() {
-        return <div className='d-flex align-items-center justify-content-center container-fluid container-login'>
-            <form className="form-signin text-center">
-                <h1 className="h3 mb-3 font-weight-normal">Forgot password?</h1>
-                {
-                    (this.state.alertMessage) ?
-                        <AlertInfo onclickButtonClose={this.onClickButtonClose} message={this.state.alertMessage} type={this.state.alertType}/> : null
-                }
-                <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                <input onChange={this.handleEmailChange} className="form-control mb-3" placeholder="Email address"
-                       autoFocus/>
-                <button disabled={this.state.alertType === "success"} onClick={this.resetPassword} className="btn btn-lg btn-primary" type='button'>Reset password
-                </button>
-            </form>
+        return <div>
+            <div className="recover-background"></div>
+            <div className='recover-form-container'>
+                <form className="recover-form">
+                    <div className="d-flex justify-content-center align-items-center">
+                        <div className="recover-form-content m-5">
+                            <div className="d-flex align-items-center mb-3">
+                                <img className="img_size_4"
+                                     src="https://cdn0.iconfinder.com/data/icons/my-house-1/512/06-twitter-512.png"/>
+                                <h4 className="ml-2 font-weight-normal">Room World</h4>
+                            </div>
+                            <h4 className="mb-3 font-weight-bold">Recover your account</h4>
+                            <div className="mb-3">We can help you reset your password and security info. First, enter
+                                your email address and fallow the instructions bellow.
+                            </div>
+                            <input disabled={this.state.alertType === "success"} onChange={this.handleEmailChange} className="form-control mb-4 recover-input"
+                                   placeholder="Email address"
+                                   autoFocus/>
+                            <div className="row m-0 mb-3 flex-nowrap">
+                                <div className="text-left col-sm">
+                                    <Link to={'/'}>
+                                        <button className="btn-back" type='button'>Cancel</button>
+                                    </Link>
+                                </div>
+                                <div className="text-right col-sm">
+                                    <button className="btn-next" type='button'
+                                            disabled={this.state.alertType === "success"}
+                                            onClick={this.resetPassword}>Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {
+                        (this.state.alertMessage) ?
+                            <AlertInfo onclickButtonClose={this.onClickButtonClose}
+                                       message={this.state.alertMessage}
+                                       type={this.state.alertType}/> : null
+                    }
+                </form>
+
+            </div>
         </div>
     }
 }

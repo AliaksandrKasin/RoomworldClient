@@ -1,0 +1,47 @@
+.recover-form{
+    height: 400px;
+    display: block;
+    width: 480px;
+    vertical-align: middle;
+    background-color: white;
+}
+
+.recover-background{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #e5e5e5 url("http://de.informationcommunicationtechnology.com/wp-content/uploads/2018/06/natur-hd-307.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.recover-form-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+}
+
+.recover-input{
+    height: 50px;
+}
+
+.recover-form-content{
+
+}
+
+@media (max-width: 500px){
+    .recover-form {
+       width: 400px;
+    }
+}
+
+@media (max-width: 420px){
+    .recover-form {
+        width: 380px;
+    }
+
+}

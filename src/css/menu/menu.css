@@ -31,7 +31,6 @@
 .navbar-logo {
     border: none !important;
     position: absolute;
-    z-index: 1000;
     left: 10px;
     top: 3px;
     width: 50px;
