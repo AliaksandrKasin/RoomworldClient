@@ -12,6 +12,7 @@ class AdminChatContainer extends React.Component {
         }
     }
 
+
     render() {
         return <div className="container border p-0">
             <div className="admin-chat-header border-bottom d-flex align-items-center">
@@ -36,7 +37,7 @@ class AdminChatContainer extends React.Component {
                     </div>
                 </div>
             </div>
-            <div className="admin-chat-body">
+            <div className="admin-chat-container">
                 {
                     this.state.messages.map((message, index) => {
                         return <AdminChatMessage key={index} name={message.username}

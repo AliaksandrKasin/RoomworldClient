@@ -97,9 +97,6 @@ class Registration extends React.Component {
     }
 
     render() {
-        console.log(this.state.user);
-        console.log(this.state.confirmPassword);
-        console.log(this.state.validate);
         return <div className='d-flex justify-content-center align-items-center mt-5 row'>
             <div className="col-sm-2 text-center social-button">
                 <SocialSingUp/>

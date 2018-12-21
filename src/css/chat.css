@@ -142,12 +142,18 @@
     color: #c5c0d2;
 }
 
-.admin-chat-container {
-    min-height: 90vh;
-    /*background-color: #fafafa;*/
+.admin-chat-container{
+    height: 74vh;
     padding: 0;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
+}
+
+.admin-dialog-container{
+    min-height: 88vh;
+    padding: 0;
+    overflow: hidden;
+
 }
 
 .container-dialog {

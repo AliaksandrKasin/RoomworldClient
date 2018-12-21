@@ -40,7 +40,7 @@ class Submenu extends React.Component {
                 </div>
                 <hr className="w-90 mb-0 mt-4"/>
                 <div className="pt-3">
-                    <SubMenuButton title="Log out" link="login" icon="fas fa-sign-out-alt" onClick={() => this.props.onChangeState(false)}
+                    <SubMenuButton title="Log out" link="/login" icon="fas fa-sign-out-alt" onClick={() => this.props.onChangeState(false)}
                                    onClickCapture={() => {localStorage.removeItem('accessToken')}}/>
                 </div>
             </div>

@@ -13,8 +13,6 @@ import CounterAmenity from "./components/registerFlatComponents/counterAmenity"
 import RegistrationFlatMain from "./components/registerFlatComponents/registrationFlatMain"
 import NotFound from "./components/notFound"
 import AdminGeneral from "./components/admin/adminGeneral";
-import Counter from "./components/registerFlatComponents/counter";
-import AdminChat from "./components/chatComponents/adminChat";
 
 class Router extends React.Component {
     render() {
@@ -30,6 +28,7 @@ class Router extends React.Component {
 
             <Route path={'/profile'} component={Profile}/>
             <Route path={'/admin'} component={AdminGeneral}/>
+
 
             <Route path={'/apartment/registration'} component={CounterAmenity}/>
             <Route path={'/details'} component={RegistrationFlatMain}/>

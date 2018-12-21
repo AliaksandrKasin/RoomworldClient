@@ -2,6 +2,7 @@ import * as React from "react";
 import AdminChatDialog from "./adminChatDialog";
 import * as signalR from "@aspnet/signalr";
 import {SERVER} from "../../constants/constants";
+import axios from "axios";
 
 
 class AdminChat extends React.Component {
@@ -18,32 +19,31 @@ class AdminChat extends React.Component {
     }
 
     componentDidMount = () => {
+        axios.get(SERVER + '/get/dialogs/all')
+            .then((response) => {
+                this.setState({messages: response.data});
+            })
+            .catch((error) => {
+
+            });
+
+
         const connection = new signalR.HubConnectionBuilder()
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
-
         connection.on("sendToConsultants", (text, username) => {
-
             let index = this.state.messages.map((x) => {
-                return x.username;
+                return x.userFrom.email;
             }).indexOf(username);
+            let tempArray = this.state.messages;
             if (index !== -1) {
-                let tempArray = this.state.messages;
-                tempArray[index] = {text, username};
-                this.setState({
-                    messages: tempArray
-                });
-            }else{
-                this.setState({
-                    messages: [...this.state.messages, {text, username}]
-                });
+                tempArray.splice(index, 1);
             }
-           /*if(index !== -1){
-                this.setState({
-                    messages: this.state.messages.filter((x)=> {return x.username !== username;})
-                });
-            }*/
-
+            let message = {text: text, userFrom: {email: username}};
+            tempArray.unshift(message);
+            this.setState({
+                messages: tempArray
+            });
         });
 
         connection.on("SwichConsultant", (state) => {
@@ -68,13 +68,11 @@ class AdminChat extends React.Component {
         this.setState({hubConnection: connection});
     }
     render() {
-        return <div className="admin-chat-container container border">
-            <AdminChatDialog name="Alexandr Kasin" userState={true} message="Hello sfdgsdfgsd fgsdfgsdf gsdfg sdfg sdfg sdfgs dfgs d"/>
-
-
+        return <div className="admin-dialog-container container border">
             {
                 this.state.messages.map((message, index) => {
-                    return <AdminChatDialog key={index} name={message.username}
+                    debugger
+                    return <AdminChatDialog key={index} name={message.userFrom.email}
                                         message={message.text}/>
                 })
             }
