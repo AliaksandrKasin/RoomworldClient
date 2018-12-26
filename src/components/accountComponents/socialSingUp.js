@@ -8,20 +8,20 @@ class SocialSingUp extends React.Component {
             </div>
 
             <div className="mb-2 text-uppercase btn-social-big">
-                <img className="img_size_4 text-left mr-3"
+                <img className="img_size_4 mr-2"
                      src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_google-128.png"/>
-                google +
+                <span className="btn-social-title">google +</span>
             </div>
             <div className="mb-2 text-uppercase btn-social-big">
-                <img className="img_size_4 text-left mr-3"
+                <img className="img_size_4 mr-2"
                      src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-128.png"/>
-                facebook
+                <span className="btn-social-title">facebook</span>
             </div>
 
             <div className="mb-2 text-uppercase btn-social-big">
-                <img className="img_size_4 text-left mr-3"
+                <img className="img_size_4 mr-2"
                      src="https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_twitter-128.png"/>
-                <span>twitter</span>
+                <span className="btn-social-title">twitter</span>
             </div>
         </div>
     }

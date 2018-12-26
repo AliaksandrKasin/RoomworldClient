@@ -41,9 +41,7 @@ class AdminChat extends React.Component {
             }
             let message = {text: text, userFrom: {email: username}};
             tempArray.unshift(message);
-            this.setState({
-                messages: tempArray
-            });
+            this.setState({messages: tempArray});
         });
 
         connection.on("SwichConsultant", (state) => {
@@ -52,9 +50,7 @@ class AdminChat extends React.Component {
             });
 
             if (state && !this.state.messages.length) {
-                this.setState({
-
-                })
+                this.setState({})
             }
         });
         connection.start()
@@ -67,15 +63,46 @@ class AdminChat extends React.Component {
 
         this.setState({hubConnection: connection});
     }
-    render() {
-        return <div className="admin-dialog-container container border">
-            {
-                this.state.messages.map((message, index) => {
-                    debugger
-                    return <AdminChatDialog key={index} name={message.userFrom.email}
-                                        message={message.text}/>
+
+    searchDialogs = (e) => {
+        let inputUsername = e.target.value;
+        this.setState({
+            messages: this.state.messages.filter((message) => {
+                return (message.userFrom.email.slice(0, inputUsername.length).toUpperCase() === inputUsername.toUpperCase());
+            })
+        })
+        if(inputUsername.length === 0){
+            axios.get(SERVER + '/get/dialogs/all')
+                .then((response) => {
+                    this.setState({messages: response.data});
                 })
-            }
+                .catch((error) => {
+
+                });
+        }
+    }
+
+    render() {
+        return <div className="container">
+            <div className="">
+                <div className="position-relative w-100">
+                    <i className="fas fa-search input-label"></i>
+                    <input type="text" className="dialog-input-search"
+                           placeholder="Search"
+                           onChange={this.searchDialogs}/>
+                </div>
+            </div>
+            <div className="admin-dialog-container container border">
+                <div>
+                    {
+                        this.state.messages.map((message, index) => {
+                            debugger
+                            return <AdminChatDialog key={index} name={message.userFrom.email}
+                                                    message={message.text}/>
+                        })
+                    }
+                </div>
+            </div>
         </div>
     }
 

@@ -24,7 +24,6 @@ const saveState = (state) => {
 };
 
 const oldState = loadState();
-
 const ALLREDUCERS = combineReducers({
     flatReducer,
     profileReducer,

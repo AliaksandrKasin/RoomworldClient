@@ -150,10 +150,10 @@
 }
 
 .admin-dialog-container{
-    min-height: 88vh;
+    min-height: 81vh;
     padding: 0;
     overflow: hidden;
-
+    border-bottom: none!important;
 }
 
 .container-dialog {

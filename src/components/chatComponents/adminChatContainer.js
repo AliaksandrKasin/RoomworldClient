@@ -2,17 +2,64 @@ import * as React from "react";
 import {getMessagesByEmail} from "../../services/chatService";
 import AdminChatMessage from "./adminChatMessage";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {SERVER} from "../../constants/constants";
+import * as signalR from "@aspnet/signalr";
 
 class AdminChatContainer extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            messages: getMessagesByEmail()
+            messages: []
         }
     }
 
+    componentDidMount = () => {
+        axios.get(SERVER + '/get/messages',{params:{email:"sasha___1943@mail.ru"}})
+            .then((response) => {
+                this.setState({messages: response.data});
+            })
+            .catch((error) => {
 
+            });
+
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
+            .build();
+        connection.on("sendToConsultants", (text, username) => {
+           /* let index = this.state.messages.map((x) => {
+                return x.userFrom.email;
+            }).indexOf(username);
+            let tempArray = this.state.messages;
+            if (index !== -1) {
+                tempArray.splice(index, 1);
+            }
+            let message = {text: text, userFrom: {email: username}};
+            tempArray.unshift(message);
+            this.setState({messages: tempArray});*/
+        });
+
+        connection.on("SwichConsultant", (state) => {
+            /*this.setState({
+                consultantIsOnline: state,
+            });
+
+            if (state && !this.state.messages.length) {
+                this.setState({})
+            }*/
+        });
+        connection.start()
+            .then(() => {
+
+            })
+            .catch(err => {
+
+            });
+
+        this.setState({hubConnection: connection});
+    }
     render() {
         return <div className="container border p-0">
             <div className="admin-chat-header border-bottom d-flex align-items-center">
@@ -40,7 +87,7 @@ class AdminChatContainer extends React.Component {
             <div className="admin-chat-container">
                 {
                     this.state.messages.map((message, index) => {
-                        return <AdminChatMessage key={index} name={message.username}
+                        return <AdminChatMessage key={index} name={message.userFrom.email}
                                                  message={message.text}/>
                     })
                 }

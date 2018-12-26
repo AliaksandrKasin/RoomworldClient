@@ -98,10 +98,6 @@ class Registration extends React.Component {
 
     render() {
         return <div className='d-flex justify-content-center align-items-center mt-5 row'>
-            <div className="col-sm-2 text-center social-button">
-                <SocialSingUp/>
-            </div>
-            <ContainerLine/>
             <div className="col-sm-6 mt-5 container-fields-reg">
                 <h4 className="mb-5 font-weight-normal border-bottom pb-3">Sing-up with new account.</h4>
                 <h6 className="text-uppercase">Name</h6>
