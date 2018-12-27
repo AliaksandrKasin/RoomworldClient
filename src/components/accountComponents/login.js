@@ -7,6 +7,7 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
+        /*! create service for check token lifetime*/
         if (localStorage.getItem('accessToken')) this.props.history.push('/');
         this.state = {
             email: '',
@@ -28,13 +29,14 @@ class Login extends React.Component {
             this.props.history.push('/');
         }).catch((error) => {
             this.setState({errorMessage: error.response.data});
-        })
+        });
         e.preventDefault();
     }
 
 
     render() {
         return <div className="login-page">
+            <div className="login-background"></div>
             <div className='container-login text-center'>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <div className="d-flex align-items-center mb-4">

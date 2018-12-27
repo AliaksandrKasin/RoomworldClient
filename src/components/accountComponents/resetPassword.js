@@ -54,11 +54,11 @@ class ResetPassword extends React.Component {
 
     render() {
         return <div>
-            <div className="recover-background"></div>
-            <div className='recover-form-container'>
-                <form className="recover-form">
+            <div className="background-cover reset-background"></div>
+            <div className='reset-form-container'>
+                <form onSubmit={this.resetPassword} className="reset-form">
                     <div className="d-flex justify-content-center align-items-center">
-                        <div className="recover-form-content m-5">
+                        <div className="reset-form-content m-5">
                             <div className="d-flex align-items-center mb-3">
                                 <img className="img_size_4"
                                      src="https://cdn0.iconfinder.com/data/icons/my-house-1/512/06-twitter-512.png"/>
@@ -68,20 +68,17 @@ class ResetPassword extends React.Component {
                             <div className="mb-3">We can help you reset your password and security info. First, enter
                                 your email address and fallow the instructions bellow.
                             </div>
-                            <input disabled={this.state.alertType === "success"} onChange={this.handleEmailChange} className="form-control mb-4 recover-input"
+                            <input disabled={this.state.alertType === "success"} onChange={this.handleEmailChange} className="form-control mb-4 reset-input"
                                    placeholder="Email address"
                                    autoFocus/>
                             <div className="row m-0 mb-3 flex-nowrap">
                                 <div className="text-left col-sm">
-                                    <Link to={'/'}>
+                                    <Link to={'/login'}>
                                         <button className="btn-back" type='button'>Cancel</button>
                                     </Link>
                                 </div>
                                 <div className="text-right col-sm">
-                                    <button className="btn-next" type='button'
-                                            disabled={this.state.alertType === "success"}
-                                            onClick={this.resetPassword}>Next
-                                    </button>
+                                    <button className="btn-next" type='button'>Next</button>
                                 </div>
                             </div>
                         </div>

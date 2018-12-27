@@ -17,3 +17,13 @@ export function login(email, password) {
 export function logout() {
 
 }
+
+export function registration(user) {
+    return  axios.post(SERVER + '/registration', user).then((response) => {
+        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem("username", response.data.username);
+        return response;
+    }).catch((error) => {
+        throw error
+    })
+}

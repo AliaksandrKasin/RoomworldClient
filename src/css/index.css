@@ -148,11 +148,6 @@ a:hover {
         max-width: none !important;
     }
 
-    .container-login {
-        display: grid !important;
-        margin-top: 80px;
-    }
-
     .max-w-80 {
         max-width: 80% !important;
 
@@ -375,26 +370,6 @@ a:hover {
     padding-top: 10px;
 }
 
-.container-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 460px;
-    min-height: 530px;
-    background-color: white;
-}
-.login-page{
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /*https://images.unsplash.com/photo-1519302959554-a75be0afc82a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1962&q=80*/
-    /*https://images.unsplash.com/photo-1434434319959-1f886517e1fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=2048&q=80*/
-    background: #191919 url("https://images.unsplash.com/photo-1519302959554-a75be0afc82a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1962&q=80") no-repeat center center;
-}
 
 @media (max-width: 800px) {
     .min-width {
@@ -569,17 +544,6 @@ a:hover {
     text-align: left;
 }
 
-@media (max-width: 550px) {
-    .container-login {
-        justify-content: inherit !important;
-    }
-}
-
-@media (max-width: 700px) {
-    .container-login-line {
-        display: none !important;
-    }
-}
 
 @media (max-width: 800px) {
     .btn-social-big {
@@ -624,10 +588,6 @@ a:hover {
     outline: none !important;
 }
 
-.form-login {
-     height: 46px!important;
-     /*font-size: 20px!important;*/
-}
 
 /***Inputs***/
 .invalid-input {

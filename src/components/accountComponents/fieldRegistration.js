@@ -9,6 +9,7 @@ class FieldRegistration extends React.Component {
                    onChange={this.props.onChange}
                    placeholder={this.props.placeholder}
                    onBlur={this.props.onBlur}
+                   required={this.props.required}
                    name={this.props.name}/>
             <div className="error-message">{this.props.errorMessage}</div>
         </div>

@@ -4,6 +4,8 @@ import './css/menu/menu.css';
 import './css/chat.css';
 import './css/datepicker.css';
 import './css/profile.css';
+import './css/account/login.css';
+import './css/account/resetPassword.css';
 import './css/elements.css';
 import './css/loading.css';
 import './css/filter.css';
