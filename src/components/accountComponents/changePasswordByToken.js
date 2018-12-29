@@ -53,7 +53,7 @@ class ChangePasswordByToken extends React.Component {
             <div className='reset-form-container'>
                 <form onSubmit={this.changePassword} className="reset-form">
                     <div className="d-flex justify-content-center align-items-center">
-                        <div className="w-100 reset-form-content m-5">
+                        <div className="reset-form-content m-5">
                             <div className="d-flex align-items-center mb-3">
                                 <img className="img_size_4"
                                      src="https://cdn0.iconfinder.com/data/icons/my-house-1/512/06-twitter-512.png"/>
@@ -73,11 +73,11 @@ class ChangePasswordByToken extends React.Component {
                             <div className="row m-0 mb-3 flex-nowrap">
                                 <div className="text-left col-sm">
                                     <Link to={'/login'}>
-                                        <button className="btn-back" type='button'>Cancel</button>
+                                        <button className="btn-back reset-form-button" type='button'>Cancel</button>
                                     </Link>
                                 </div>
                                 <div className="text-right col-sm">
-                                    <button className="btn-next" type='submit'>Next</button>
+                                    <button className="btn-next reset-form-button" type='submit'>Next</button>
                                 </div>
                             </div>
                         </div>

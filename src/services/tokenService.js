@@ -27,3 +27,11 @@ export function registration(user) {
         throw error
     })
 }
+
+export function resetPassword(email) {
+    return  axios.put(SERVER + '/password/reset/' + email).then((response) => {
+        return response
+    }).catch((error) => {
+        throw error
+    })
+}

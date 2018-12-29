@@ -6,6 +6,7 @@ import './css/datepicker.css';
 import './css/profile.css';
 import './css/account/login.css';
 import './css/account/resetPassword.css';
+import './css/account/registration.css';
 import './css/elements.css';
 import './css/loading.css';
 import './css/filter.css';

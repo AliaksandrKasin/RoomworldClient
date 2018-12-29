@@ -9,6 +9,14 @@
     background: #e5e5e5 url("http://de.informationcommunicationtechnology.com/wp-content/uploads/2018/06/natur-hd-307.jpg") no-repeat center center;
 }
 
+.registration-form-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 640px) {
     .registration-background {
         background: white !important;
@@ -17,17 +25,20 @@
         margin-top: -80px;
     }
 }
-
 @media (max-height: 450px) {
     .registration-form-container {
         margin-top: -80px;
     }
+    .registration-background {
+        background: white !important;
+    }
 }
-
-.registration-form-container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media (max-width: 320px) {
+    .registration-form-content {
+        width: 310px;
+    }
+    .registration-button{
+        width: 120px!important;
+        transition: 0s;
+    }
 }

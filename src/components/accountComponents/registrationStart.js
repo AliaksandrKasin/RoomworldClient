@@ -45,11 +45,11 @@ class RegistrationStart extends React.Component {
 
     render() {
         return <div>
-            <div className="recover-background"></div>
+            <div className="background-cover registration-background"></div>
             <div className='registration-form-container'>
                 <form onSubmit={(e) => this.onSubmit(e)} className="registration-form">
                     <div className="d-flex justify-content-center align-items-center">
-                        <div className="recover-form-content m-5">
+                        <div className="registration-form-content m-5">
                             <div className="d-flex align-items-center mb-3">
                                 <img className="img_size_4"
                                      src="https://cdn0.iconfinder.com/data/icons/my-house-1/512/06-twitter-512.png"/>
@@ -122,12 +122,12 @@ class RegistrationStart extends React.Component {
                             </div>
                             <div className="row m-0 mb-2 mt-3 flex-nowrap">
                                 <div className="text-left col-sm">
-                                    <Link to={'/'}>
-                                        <button className="btn-back" type='button'>Cancel</button>
+                                    <Link to={'/login'}>
+                                        <button className="btn-back registration-button" type='button'>Cancel</button>
                                     </Link>
                                 </div>
                                 <div className="text-right col-sm">
-                                    <button className="btn-next" type='submit'>Create</button>
+                                    <button className="btn-next registration-button" type='submit'>Create</button>
                                 </div>
                             </div>
                         </div>
