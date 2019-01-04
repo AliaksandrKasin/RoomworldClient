@@ -13,6 +13,7 @@ import RegistrationFlatMain from "./components/registerFlatComponents/registrati
 import NotFound from "./components/notFound"
 import AdminGeneral from "./components/admin/adminGeneral";
 import RegistrationStart from "./components/accountComponents/registrationStart";
+import ServerError from "./components/extensionComponents/serverError";
 
 class Router extends React.Component {
     render() {
@@ -31,6 +32,7 @@ class Router extends React.Component {
 
             <Route path={'/apartment/registration'} component={CounterAmenity}/>
             <Route path={'/details'} component={RegistrationFlatMain}/>
+            <Route path={'/error'} component={ServerError}/>
             <Route path='*' component={NotFound}/>}
         </Switch>
     }

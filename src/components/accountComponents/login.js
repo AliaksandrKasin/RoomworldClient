@@ -28,7 +28,8 @@ class Login extends React.Component {
         login(this.state.email, this.state.password).then(() => {
             this.props.history.push('/');
         }).catch((error) => {
-            this.setState({errorMessage: error.response.data});
+            (error.response) ? this.setState({errorMessage: error.response.data})
+                : this.props.history.push('/error');
         });
         e.preventDefault();
     }
@@ -54,13 +55,13 @@ class Login extends React.Component {
                     </div>
                     <AlertError message={this.state.errorMessage}/>
                     <div className="text-left mb-2">
-                        <small className="pl-2 text-muted">*Email address</small>
+                        <small className="pl-2 text-muted">Email address</small>
                         <input type="email" onChange={this.handleEmailChange} className="form-control form-login"
                                placeholder="Email address" required
                                autoFocus/>
                     </div>
                     <div className="text-left">
-                        <small className="pl-2 text-muted">*Password</small>
+                        <small className="pl-2 text-muted">Password</small>
                         <input type="password" onChange={this.handlePasswordChange} className="form-control form-login"
                                placeholder="Password" required autoComplete="on"/>
                     </div>

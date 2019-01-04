@@ -1,17 +1,16 @@
 import * as React from "react";
-import axios from "axios";
-import {SERVER} from "../../constants/constants";
 import {Link} from "react-router-dom";
+import {changePasswordByToken} from "../../services/profileService";
+import AlertError from "../alertComponents/alertError";
 
 class ChangePasswordByToken extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            alertType: "",
-            alertMessage: "",
             resetToken: props.match.params.token,
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            alertMessage: ""
         }
     }
 
@@ -23,27 +22,19 @@ class ChangePasswordByToken extends React.Component {
         this.setState({confirmPassword: e.target.value});
     }
 
-    changePassword = () => {
-        if (this.state.password.length < 6) {
-            this.setState({
-                alertType: "error",
-                alertMessage: "Password must be more than 6 characters."
-            });
-            return
-        }
+    changePassword = (e) => {
+        e.preventDefault();
         if (this.state.password !== this.state.confirmPassword) {
-            this.setState({
-                alertType: "error",
-                alertMessage: "Passwords do not match."
-            });
-            return
+            this.setState({alertMessage: "Passwords do not match."});
+            return;
         }
-        axios.put(SERVER + '/password/change', {token: this.state.resetToken, password: this.state.password})
+        changePasswordByToken(this.state.resetToken, this.state.password)
             .then((response) => {
-                window.location.href = "/login";
+                this.props.history.push('/login');
             })
             .catch((error) => {
-
+                (error.response) ? this.setState({errorMessage: error.response.data})
+                    : this.props.history.push('/error');
             });
     }
 
@@ -51,7 +42,7 @@ class ChangePasswordByToken extends React.Component {
         return <div>
             <div className="background-cover reset-background"></div>
             <div className='reset-form-container'>
-                <form onSubmit={this.changePassword} className="reset-form">
+                <form onSubmit={(e) => this.changePassword(e)} className="reset-form">
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="reset-form-content m-5">
                             <div className="d-flex align-items-center mb-3">
@@ -59,16 +50,20 @@ class ChangePasswordByToken extends React.Component {
                                      src="https://cdn0.iconfinder.com/data/icons/my-house-1/512/06-twitter-512.png"/>
                                 <h4 className="ml-2 font-weight-normal">Room World</h4>
                             </div>
-                            <h4 className="mb-3 font-weight-bold">Change your password</h4>
-                            <input onChange={this.onChangePassword} type="password"
+                            <h4 className="mb-4 font-weight-bold">Change your password</h4>
+                            <AlertError message={this.state.alertMessage}/>
+                            <input onChange={this.onChangePassword}
+                                   type="password"
                                    className="form-control mb-4 reset-input"
                                    placeholder="Password"
                                    required={true}
-                                   autoFocus/>
+                                   autoFocus
+                                   minLength={6}/>
                             <input onChange={this.onChangeConfirmPassword}
                                    type="password"
                                    className="form-control mb-4 reset-input"
                                    placeholder="Confirm password"
+                                   minLength={6}
                                    required={true}/>
                             <div className="row m-0 mb-3 flex-nowrap">
                                 <div className="text-left col-sm">

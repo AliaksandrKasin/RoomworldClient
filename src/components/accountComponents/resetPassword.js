@@ -1,11 +1,7 @@
 import * as React from "react";
-import axios from "axios";
-import {SERVER} from "../../constants/constants";
-import AlertInfo from "../alertComponents/alertInfo";
-import * as EmailValidator from 'email-validator';
 import {Link} from "react-router-dom";
 import {resetPassword} from "../../services/tokenService";
-
+import AlertSuccess from "../alertComponents/alertSuccess";
 
 class ResetPassword extends React.Component {
 
@@ -13,7 +9,7 @@ class ResetPassword extends React.Component {
         super(props);
         this.state = {
             email: "",
-            alertMessage: ""
+            alertMessage:""
         }
     }
 
@@ -23,7 +19,10 @@ class ResetPassword extends React.Component {
 
     resetPassword = (e) => {
         resetPassword(this.state.email).then((response) => {
-
+            this.setState({alertMessage: "Password reset successful, check your email."})
+        }).catch(error => {
+            (error.response) ? this.setState({alertMessage: error.response.data})
+                : this.props.history.push('/error');
         });
         e.preventDefault();
     }
@@ -44,6 +43,7 @@ class ResetPassword extends React.Component {
                             <div className="mb-3">We can help you reset your password and security info. First, enter
                                 your email address and fallow the instructions bellow.
                             </div>
+                            <AlertSuccess message={this.state.alertMessage}/>
                             <input onChange={this.handleEmailChange} className="form-control mb-4 reset-input"
                                    placeholder="Email address"
                                    autoFocus/>

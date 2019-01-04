@@ -10,11 +10,27 @@
 }
 
 .registration-form-container {
-    height: 100%;
+    height: calc(100vh - 100px);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.registration-form-content{
+    width: 700px;
+}
+
+@media (max-width: 1024px) {
+    .registration-form-content{
+        width: auto;
+    }
+}
+
+@media (max-height: 820px) {
+   .registration-form-container{
+       height: 100%!important;
+   }
 }
 
 @media (max-width: 640px) {
@@ -38,7 +54,7 @@
         width: 310px;
     }
     .registration-button{
-        width: 120px!important;
+        width: 100px!important;
         transition: 0s;
     }
 }

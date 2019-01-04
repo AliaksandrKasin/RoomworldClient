@@ -19,7 +19,7 @@ export function logout() {
 }
 
 export function registration(user) {
-    return  axios.post(SERVER + '/registration', user).then((response) => {
+    return axios.post(SERVER + '/registration', user).then((response) => {
         localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem("username", response.data.username);
         return response;
@@ -29,7 +29,7 @@ export function registration(user) {
 }
 
 export function resetPassword(email) {
-    return  axios.put(SERVER + '/password/reset/' + email).then((response) => {
+    return axios.put(SERVER + '/password/reset/' + email).then((response) => {
         return response
     }).catch((error) => {
         throw error

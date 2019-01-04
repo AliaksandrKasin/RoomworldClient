@@ -1,18 +1,5 @@
 import React from 'react';
 import './css/index.css';
-import './css/menu/menu.css';
-import './css/chat.css';
-import './css/datepicker.css';
-import './css/profile.css';
-import './css/account/login.css';
-import './css/account/resetPassword.css';
-import './css/account/registration.css';
-import './css/elements.css';
-import './css/loading.css';
-import './css/filter.css';
-import './css/carousel.css';
-import './css/account.css';
-import './css/alert.css';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import Provider from "react-redux/es/components/Provider";

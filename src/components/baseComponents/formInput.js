@@ -7,17 +7,13 @@ class FormInput extends React.Component {
             value: props.value || "",
             min: props.min || null,
             max: props.max || null,
-            charLeft: props.max || null
+            charLeft: props.max || null,
+            minLength: props.minLength || null
         }
     }
 
-
     inputOnChange = (e) => {
         this.setState({value: e.target.value, charLeft: this.state.max - e.target.value.length});
-    }
-
-    inputOnBlur = (e) => {
-
     }
 
     clearInput = (e) => {
@@ -44,11 +40,14 @@ class FormInput extends React.Component {
                 <label className={(!this.state.value) ? "label" : "label label-small"}>{this.props.placeholder}</label>
                 <i className="fas fa-backspace back" onClick={this.clearInput}></i>
                 <input value={this.state.value}
-                       min={0}
+                       minLength={this.state.minLength}
+                       min={this.state.min}
+                       max={this.state.max}
+                       required={this.props.required}
                        type={this.props.type}
+                       autoComplete={this.props.autoComplete}
                        onChange={(e) => (this.props.onChange) ? this.props.onChange(e.target.value) : null}
                        onChangeCapture={this.inputOnChange}
-                       onBlur={this.inputOnBlur}
                        className={(!this.state.value) ? "input border" : "input border input-small"}/>
                 <span className="text-danger input-counter">{this.printAmountAllowedCharacters()}</span>
             </div>

@@ -1,3 +1,17 @@
+@import './menu/menu.css';
+@import './chat.css';
+@import './datepicker.css';
+@import './profile.css';
+@import './account/login.css';
+@import './account/resetPassword.css';
+@import './account/registration.css';
+@import './elements.css';
+@import './loading.css';
+@import './filter.css';
+@import './carousel.css';
+@import './account/account.css';
+@import './alert.css';
+
 app-container {
     height: 100%;
     position: relative;
@@ -370,7 +384,6 @@ a:hover {
     padding-top: 10px;
 }
 
-
 @media (max-width: 800px) {
     .min-width {
         max-width: none !important;
@@ -544,7 +557,6 @@ a:hover {
     text-align: left;
 }
 
-
 @media (max-width: 800px) {
     .btn-social-big {
         max-width: 100% !important;
@@ -587,7 +599,6 @@ a:hover {
 .outline-none {
     outline: none !important;
 }
-
 
 /***Inputs***/
 .invalid-input {
@@ -708,7 +719,7 @@ a:hover {
 .btn-next {
     border-radius: 20px !important;
     padding: 10px !important;
-    width: 140px !important;
+    width: 140px;
     border: none !important;
     color: white;
     font-size: 18px;
@@ -734,7 +745,7 @@ a:hover {
 .btn-back {
     border-radius: 20px !important;
     padding: 10px !important;
-    width: 140px !important;
+    width: 140px;
     color: #0067db;
     border: 1px solid #d3d8de;
     font-size: 18px;

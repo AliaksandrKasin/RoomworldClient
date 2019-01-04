@@ -1,10 +1,18 @@
 .alert-container{
     border-radius: 2px;
-    background: #ffeee7;
-    border: 1px solid #ff8b8b;
     height: 60px;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.alert-container-error{
+    background: #ffeee7;
+    border: 1px solid #ff8b8b;
+}
+
+.alert-container-success{
+    background: #f3ffe7;
+    border: 1px solid #00ba07;
 }
 
 .alert-error-icon{

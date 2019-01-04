@@ -1,5 +1,5 @@
 import * as React from "react";
-import FormInput from "./formInput";
+import FormInput from "../baseComponents/formInput";
 import FormTextArea from "./formTextArea";
 
 class FlatDetails extends React.Component {
