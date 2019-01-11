@@ -1,25 +1,13 @@
-export function getMessagesByEmail() {
-    return [{text: "Hello", username: "Alexandr", date: new Date().toUTCString()},
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World dsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()},
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
-        ,
-        {text: "World", username: "Alexandr", date: new Date().toUTCString()}
+import axios from "axios";
+import {SERVER} from "../constants/constants";
 
-    ];
+export function getAllDialogs(skip, take) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;/*!*/
+    return axios.get(SERVER + '/get/dialogs/all')
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            throw error;
+        });
 }

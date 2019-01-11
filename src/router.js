@@ -12,7 +12,7 @@ import CounterAmenity from "./components/registerFlatComponents/counterAmenity"
 import RegistrationFlatMain from "./components/registerFlatComponents/registrationFlatMain"
 import NotFound from "./components/notFound"
 import AdminGeneral from "./components/admin/adminGeneral";
-import RegistrationStart from "./components/accountComponents/registrationStart";
+import RegistrationUser from "./components/accountComponents/registrationUser";
 import ServerError from "./components/extensionComponents/serverError";
 
 class Router extends React.Component {
@@ -22,7 +22,7 @@ class Router extends React.Component {
             <Route path='/login' component={Login}/>
             <Route path='/searches' component={AlbomCardFlat}/>
             <Route path='/flat' component={Flat}/>
-            <Route path={'/registration'} component={RegistrationStart}/>
+            <Route path={'/registration'} component={RegistrationUser}/>
             <Route path={'/places/new'} component={RegistrationFlat}/>
             <Route path={'/password/reset'} component={ResetPassword}/>
             <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>

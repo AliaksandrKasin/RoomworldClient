@@ -3,6 +3,7 @@ import AdminChatDialog from "./adminChatDialog";
 import * as signalR from "@aspnet/signalr";
 import {SERVER} from "../../constants/constants";
 import axios from "axios";
+import {getAllDialogs} from "../../services/chatService";
 
 
 class AdminChat extends React.Component {
@@ -10,7 +11,6 @@ class AdminChat extends React.Component {
         super(props);
         this.textArea = React.createRef();
         this.state = {
-            hubConnection: null,
             textMessage: "",
             messages: [],
             username: localStorage.getItem("username"),
@@ -19,14 +19,12 @@ class AdminChat extends React.Component {
     }
 
     componentDidMount = () => {
-        axios.get(SERVER + '/get/dialogs/all')
+        getAllDialogs(0, 10)
             .then((response) => {
                 this.setState({messages: response.data});
             })
             .catch((error) => {
-
             });
-
 
         const connection = new signalR.HubConnectionBuilder()
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
@@ -43,16 +41,6 @@ class AdminChat extends React.Component {
             tempArray.unshift(message);
             this.setState({messages: tempArray});
         });
-
-        connection.on("SwichConsultant", (state) => {
-            this.setState({
-                consultantIsOnline: state,
-            });
-
-            if (state && !this.state.messages.length) {
-                this.setState({})
-            }
-        });
         connection.start()
             .then(() => {
 
@@ -60,8 +48,6 @@ class AdminChat extends React.Component {
             .catch(err => {
 
             });
-
-        this.setState({hubConnection: connection});
     }
 
     searchDialogs = (e) => {
@@ -70,8 +56,8 @@ class AdminChat extends React.Component {
             messages: this.state.messages.filter((message) => {
                 return (message.userFrom.email.slice(0, inputUsername.length).toUpperCase() === inputUsername.toUpperCase());
             })
-        })
-        if(inputUsername.length === 0){
+        });
+        if (inputUsername.length === 0) {
             axios.get(SERVER + '/get/dialogs/all')
                 .then((response) => {
                     this.setState({messages: response.data});
@@ -96,7 +82,6 @@ class AdminChat extends React.Component {
                 <div>
                     {
                         this.state.messages.map((message, index) => {
-                            debugger
                             return <AdminChatDialog key={index} name={message.userFrom.email}
                                                     message={message.text}/>
                         })

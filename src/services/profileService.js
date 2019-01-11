@@ -2,7 +2,7 @@ import axios from "axios";
 import {SERVER} from "../constants/constants";
 
 export function changePassword(currentPassword, newPassword) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;/*!*/
     return axios.put(SERVER + '/user/change/password', {
         currentPassword: currentPassword,
         newPassword: newPassword

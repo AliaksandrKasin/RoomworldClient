@@ -7,7 +7,6 @@ import * as signalR from "@aspnet/signalr";
 import {SERVER} from "../../constants/constants";
 
 
-
 class ChatContainer extends React.Component {
 
     constructor(props) {
@@ -26,36 +25,28 @@ class ChatContainer extends React.Component {
         const connection = new signalR.HubConnectionBuilder()
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
-
         connection.on("sendToConsultants", (text, username) => {
-            debugger
-            this.setState({
-                messages: [...this.state.messages, {text, username}]
-            });
-        });
-
-        connection.on("SwichConsultant", (state) => {
-            this.setState({
-                consultantIsOnline: state,
-            });
-
-            if (state && !this.state.messages.length) {
+            if (username !== this.state.username) {
                 this.setState({
+                    messages: [...this.state.messages, {text, username}]
+                });
+            }
+        });
+        connection.on("stateConsultants", (state) => {
+            (state && !this.state.messages.length)
+                ? this.setState({
                     messages: [...this.state.messages, {
                         text: "Hello, how can I help you?",
                         username: "Consultant"
                     }]
-                })
-            }
+                }) :
+                this.setState({consultantIsOnline: state});
         });
         connection.start()
             .then(() => {
-
             })
             .catch(err => {
-
             });
-
         this.setState({hubConnection: connection});
     }
 
@@ -68,7 +59,6 @@ class ChatContainer extends React.Component {
                 textMessage: "",
                 messages: [...this.state.messages, {text: this.state.textMessage, username: this.state.username}]
             });
-
             this.textArea.current.focus();
         }
     };
@@ -101,13 +91,11 @@ class ChatContainer extends React.Component {
                             </div>
                         </div>
                     </div>
-
                     <div>
                         <i onClick={() => STORE.dispatch(chatState(false))}
                            className="fas fa-times img_size_2 chat-container-button-close"></i>
                     </div>
                 </div>
-
                 <div className="border chat-container-content">
                     {
                         this.state.messages.map((message, index) => {

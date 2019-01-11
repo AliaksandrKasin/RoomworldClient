@@ -6,7 +6,7 @@ import AlertError from "../alertComponents/alertError";
 import {registration} from "../../services/tokenService";
 import {isValidNumber} from "libphonenumber-js";
 
-class RegistrationStart extends React.Component {
+class RegistrationUser extends React.Component {
 
     constructor(props) {
         super(props);
@@ -152,4 +152,4 @@ class RegistrationStart extends React.Component {
     }
 }
 
-export default RegistrationStart;
+export default RegistrationUser;

@@ -16,39 +16,22 @@ class AdminChatContainer extends React.Component {
     }
 
     componentDidMount = () => {
-        axios.get(SERVER + '/get/messages',{params:{email:"sasha___1943@mail.ru"}})
+        axios.get(SERVER + '/get/messages', {params: {email: "sasha___1943@mail.ru"}})
             .then((response) => {
                 this.setState({messages: response.data});
             })
             .catch((error) => {
 
             });
-
-
         const connection = new signalR.HubConnectionBuilder()
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
         connection.on("sendToConsultants", (text, username) => {
-           /* let index = this.state.messages.map((x) => {
-                return x.userFrom.email;
-            }).indexOf(username);
-            let tempArray = this.state.messages;
-            if (index !== -1) {
-                tempArray.splice(index, 1);
+            if (username !== this.state.username) {
+                this.setState({
+                    messages: [...this.state.messages, {text, userFrom: {email: username}}]
+                });
             }
-            let message = {text: text, userFrom: {email: username}};
-            tempArray.unshift(message);
-            this.setState({messages: tempArray});*/
-        });
-
-        connection.on("SwichConsultant", (state) => {
-            /*this.setState({
-                consultantIsOnline: state,
-            });
-
-            if (state && !this.state.messages.length) {
-                this.setState({})
-            }*/
         });
         connection.start()
             .then(() => {
@@ -60,6 +43,7 @@ class AdminChatContainer extends React.Component {
 
         this.setState({hubConnection: connection});
     }
+
     render() {
         return <div className="container border p-0">
             <div className="admin-chat-header border-bottom d-flex align-items-center">

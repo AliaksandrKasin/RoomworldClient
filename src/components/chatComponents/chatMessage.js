@@ -47,7 +47,6 @@ class ChatMessage extends React.Component {
                     </div>
                 </div>
             </div> :
-
             <div className="mb-2" ref={this.chatContainer}>
                 <div>
                     <div className="d-flex">
@@ -56,7 +55,6 @@ class ChatMessage extends React.Component {
                                  src={(false) ? "https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png"
                                      : "https://pp.userapi.com/c631925/v631925003/1aa08/aFe1PkzOKOM.jpg?ava=1"}/>
                         </div>
-
                         <div className="mb-4">
                             <div className="speech-bubble speech-bubble-left ml-3 mt-2">
                                 <div className="text-muted small">{this.props.username}</div>
