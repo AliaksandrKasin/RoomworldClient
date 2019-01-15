@@ -11,8 +11,12 @@
 @import './carousel.css';
 @import './account/account.css';
 @import './alert.css';
+@import './apartment/details.css';
+@import './apartment/apartmentFooter.css';
+@import './apartment/location.css';
+@import './apartment/photos.css';
 
-app-container {
+.app-container {
     height: 100%;
     position: relative;
 }

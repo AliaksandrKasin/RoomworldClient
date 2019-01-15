@@ -8,8 +8,7 @@ import Flat from "./components/flat"
 import RegistrationFlat from "./components/registrationFlat"
 import ResetPassword from "./components/accountComponents/resetPassword"
 import ChangePasswordByToken from "./components/accountComponents/changePasswordByToken"
-import CounterAmenity from "./components/registerFlatComponents/counterAmenity"
-import RegistrationFlatMain from "./components/registerFlatComponents/registrationFlatMain"
+import RegistrationApartment from "./components/apartmentComponents/registrationApartment"
 import NotFound from "./components/notFound"
 import AdminGeneral from "./components/admin/adminGeneral";
 import RegistrationUser from "./components/accountComponents/registrationUser";
@@ -30,8 +29,7 @@ class Router extends React.Component {
             <Route path={'/profile'} component={Profile}/>
             <Route path={'/admin'} component={AdminGeneral}/>
 
-            <Route path={'/apartment/registration'} component={CounterAmenity}/>
-            <Route path={'/details'} component={RegistrationFlatMain}/>
+            <Route path={'/apartment'} component={RegistrationApartment}/>
             <Route path={'/error'} component={ServerError}/>
             <Route path='*' component={NotFound}/>}
         </Switch>

@@ -1,0 +1,33 @@
+.select-placeholder{
+    left: 23px!important;
+    top: 3px!important;
+}
+
+.apartment-container{
+    width: 100%;
+    padding: 3rem;
+}
+
+.apartment-container-col{
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+@media (max-width: 575px) {
+    .apartment-container-col{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .apartment-container{
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .apartment-container{
+        padding: 0;
+    }
+}

@@ -11,11 +11,15 @@ class AdminChatContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: [],
+            id: "",
+            hubConnection:"",
+            textMessage: ""
         }
     }
 
     componentDidMount = () => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;/*!*/
         axios.get(SERVER + '/get/messages', {params: {email: "sasha___1943@mail.ru"}})
             .then((response) => {
                 this.setState({messages: response.data});
@@ -26,10 +30,11 @@ class AdminChatContainer extends React.Component {
         const connection = new signalR.HubConnectionBuilder()
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
-        connection.on("sendToConsultants", (text, username) => {
+        connection.on("sendToConsultants", (text, username, id) => {
             if (username !== this.state.username) {
                 this.setState({
-                    messages: [...this.state.messages, {text, userFrom: {email: username}}]
+                    messages: [...this.state.messages, {text, userFrom: {email: username}}],
+                    id: id
                 });
             }
         });
@@ -42,6 +47,30 @@ class AdminChatContainer extends React.Component {
             });
 
         this.setState({hubConnection: connection});
+    }
+
+    sendMessage = () => {
+        if (this.state.textMessage.trim()) {
+            this.state.hubConnection
+                .invoke('sendById',this.state.id, this.state.textMessage, this.state.username)
+                .catch(err => console.error(err));
+            this.setState({
+                textMessage: "",
+                messages: [...this.state.messages, {text: this.state.textMessage,userFrom: {email: "consultant"}}]
+            });
+        }
+    };
+
+    onChangeMessage = (e) => {
+        if (!e.target.value.match(/\n/)) {
+            this.setState({textMessage: e.target.value});
+        }
+    }
+
+    onKeyEnter = (e) => {
+        if (e.charCode === 13) {
+            this.sendMessage();
+        }
     }
 
     render() {
@@ -78,10 +107,11 @@ class AdminChatContainer extends React.Component {
             </div>
             <div className="admin-chat-footer row m-0">
                 <div className="col-sm d-flex align-items-center">
-                    <textarea className="admin-chat-input" placeholder="Type message"/>
+                    <textarea className="admin-chat-input" placeholder="Type message" onChange={this.onChangeMessage} value={this.state.textMessage}/>
                 </div>
                 <div className="d-flex justify-content-end align-items-center pr-3 col-sm-1">
                     <img className="chat-button-send"
+                         onClick={this.sendMessage}
                          src="https://cdn2.iconfinder.com/data/icons/line-drawn-social-media/30/send-128.png"/>
                 </div>
             </div>

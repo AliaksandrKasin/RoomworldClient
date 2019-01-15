@@ -33,7 +33,7 @@ class CounterAmenity extends React.Component {
                         </div>
                     </div>
                     <div className="text-center ml-2 mt-4 pb-5">
-                        <button className="btn-next" type='button'>Next</button>
+                        <button className="btn-next" type='button' onClick={() => this.props.history.push('/apartment/details')}>Next</button>
                     </div>
                 </div>
             </div>

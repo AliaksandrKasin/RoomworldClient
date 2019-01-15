@@ -32,6 +32,13 @@ class ChatContainer extends React.Component {
                 });
             }
         });
+        connection.on("sendById", (text, username) => {
+            if (username !== this.state.username) {
+                this.setState({
+                    messages: [...this.state.messages, {text, username}]
+                });
+            }
+        });
         connection.on("stateConsultants", (state) => {
             (state && !this.state.messages.length)
                 ? this.setState({
