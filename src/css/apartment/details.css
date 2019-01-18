@@ -31,3 +31,10 @@
         padding: 0;
     }
 }
+
+@media (max-width: 360px) {
+    .button-size-s{
+        width: 120px!important;
+        transition: 0s;
+    }
+}

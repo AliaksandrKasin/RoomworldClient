@@ -14,9 +14,10 @@ class ApartmentLocation extends React.Component {
         return <div className="d-flex border container bg-white">
             <form onSubmit={this.next} className="apartment-container">
                 <div className="mb-4 mt-2 pb-3">
-                    <h4>Where is your apartment located?</h4>
+                    <h4 className="apartment-title">Where is your apartment located?</h4>
                     <div className="border-bottom w-100 pt-4">
                     </div>
+
                     <div className="row m-0 mb-5">
                         <div className="col-sm mt-4 apartment-container-col">
                             <FormSelect placeholder="Country"/>
@@ -29,21 +30,20 @@ class ApartmentLocation extends React.Component {
                     <div className="mb-4 mt-4">
                         <FormInput placeholder="City" required={true}/>
                     </div>
-
                     <div className="mb-4 mt-4">
                         <FormInput placeholder="Street address" required={true}/>
                     </div>
                     <div className="apartment-location-map mb-5">
                         <Map place={"Belarus, Minsk"}/>
                     </div>
-                    <div className="row m-0 flex-nowrap">
+                    <div className="row m-0 flex-nowrap mb-2">
                         <div className="text-left col-sm">
-                            <button className="btn-back" type='button'
+                            <button className="btn-back button-size-s" type='button'
                                     onClick={() => this.props.history.push('/apartment/details')}>Back
                             </button>
                         </div>
                         <div className="text-right col-sm">
-                            <button className="btn-next" type='submit'>Next</button>
+                            <button className="btn-next button-size-s" type='submit'>Next</button>
                         </div>
                     </div>
                 </div>

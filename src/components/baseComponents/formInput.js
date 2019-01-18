@@ -7,28 +7,29 @@ class FormInput extends React.Component {
             value: props.value || "",
             min: props.min || null,
             max: props.max || null,
-            charLeft: props.max || null,
-            minLength: props.minLength || null
+            charLeft: props.maxLength || null,
+            minLength: props.minLength || null,
+            maxLength: props.maxLength || null
         }
     }
 
     inputOnChange = (e) => {
-        this.setState({value: e.target.value, charLeft: this.state.max - e.target.value.length});
+        this.setState({value: e.target.value, charLeft: this.state.maxLength - e.target.value.length});
     }
 
     clearInput = (e) => {
-        this.setState({value: "", charLeft: this.state.max});
+        this.setState({value: "", charLeft: this.state.maxLength});
         if (this.props.onChange) this.props.onChange("");
     }
 
     printAmountAllowedCharacters = () => {
         let amountCharacters = "";
         if (this.props.type === "text" || this.props.type === undefined) {
-            if (this.state.min) {
-                amountCharacters += "(minimum: " + this.state.min + ") ";
+            if (this.state.minLength) {
+                amountCharacters += "(minimum: " + this.state.minLength + ") ";
             }
-            if (this.state.max) {
-                amountCharacters += this.state.charLeft + "characters left";
+            if (this.state.maxLength) {
+                amountCharacters += this.state.charLeft + " characters left";
             }
         }
         return amountCharacters;
@@ -41,15 +42,17 @@ class FormInput extends React.Component {
                 <i className="fas fa-backspace back" onClick={this.clearInput}></i>
                 <input value={this.state.value}
                        minLength={this.state.minLength}
+                       maxLength={this.state.maxLength}
                        min={this.state.min}
                        max={this.state.max}
                        required={this.props.required}
                        type={this.props.type}
+                       name={this.props.name}
                        autoComplete={this.props.autoComplete}
-                       onChange={(e) => (this.props.onChange) ? this.props.onChange(e.target.value) : null}
+                       onChange={(e) => (this.props.onChange) ? this.props.onChange(e.target.value, e.target.name) : null}
                        onChangeCapture={this.inputOnChange}
                        className={(!this.state.value) ? "input border" : "input border input-small"}/>
-                <span className="text-danger input-counter">{this.printAmountAllowedCharacters()}</span>
+                <span className="text-muted input-counter">{this.printAmountAllowedCharacters()}</span>
             </div>
         </div>
     }

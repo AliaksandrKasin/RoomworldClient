@@ -29,10 +29,11 @@ class FormTextArea extends React.Component {
                           minLength={this.state.minLength}
                           maxLength={this.state.maxLength}
                           required={this.props.required}
-                          onChange={(e) => (this.props.onChange) ? this.props.onChange(e.target.value) : null}
+                          name={this.props.name}
+                          onChange={(e) => (this.props.onChange) ? this.props.onChange(e.target.value, e.target.name) : null}
                           onChangeCapture={this.inputOnChange}
                           className={(!this.state.value) ? "input border resize-none input-size-5" : "input border input-small resize-none input-size-5"}/>
-                <span className="text-danger input-counter">(minimum {this.state.minLength}) {this.state.charLeft} characters left</span>
+                <span className="text-muted input-counter">(minimum {this.state.minLength}) {this.state.charLeft} characters left</span>
             </div>
         </div>
     }
