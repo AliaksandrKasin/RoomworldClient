@@ -12,16 +12,18 @@ class ApartmentRates extends React.Component {
                     </div>
                 </div>
                 <div className="row m-0 mb-5">
-                    <div className="col-sm mt-4 apartment-container-col">
+                    <div className="col-sm mt-4 ">
                         <FormSelect placeholder="Currency"/>
                     </div>
-                    <div className="col-sm mt-4 apartment-container-col">
-                        <FormInput placeholder="Nightly Base Rate"/>
+                    <div className="col-sm mt-4 ">
+                        <FormInput placeholder="Base Rate"/>
                     </div>
                 </div>
 
-                <div className="mb-4 mt-4">
-                    <FormInput placeholder="Minimum stay" required={true}/>
+                <div className="row m-0 mb-4 mt-4">
+                    <div className="col-sm-6">
+                        <FormInput placeholder="Minimum stay" required={true}/>
+                    </div>
                 </div>
 
                 <div className="row m-0 flex-nowrap mt-5 mb-5">
