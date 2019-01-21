@@ -19,9 +19,9 @@ class RegistrationApartment extends React.Component {
 
     render() {
         return <div className="">
-            {/*<div className="container d-flex justify-content-center mb-5 position-relative">
+            <div className="container d-flex justify-content-center mb-5 mt-5 position-relative">
                 <ProgressBar/>
-            </div>*/}
+            </div>
             <Switch>
                 <Route path={'/apartment/details'} component={ApartmentDetails}/>
                 <Route path={'/apartment/location'} component={ApartmentLocation}/>

@@ -2,11 +2,13 @@ import * as React from "react";
 import FormInput from "../baseComponents/formInput";
 import FormTextArea from "../baseComponents/formTextArea";
 import FormSelect from "../baseComponents/formSelect";
+import {getTypesApartment} from "../../services/apartmentService";
 
 class ApartmentDetails extends React.Component {
 
     constructor(props) {
         super(props);
+        this.apartmentTypes = getTypesApartment();
         this.state = {
             apartmentDetails: {
                 headTitle: "",
@@ -15,8 +17,8 @@ class ApartmentDetails extends React.Component {
                 apartmentSize: 1,
                 amountBathroom: 1,
                 amountBedrooms: 1,
-                apartmentType: ""
-            }
+                apartmentType: this.apartmentTypes[0]
+            },
         }
     }
 
@@ -42,7 +44,7 @@ class ApartmentDetails extends React.Component {
                     </div>
                 </div>
                 <div className="mb-4 mt-4">
-                    <FormInput placeholder="Headtitle" minLength={20} maxLength={100}
+                    <FormInput placeholder="Headtitle" minLength={10} maxLength={100}
                                required={true} name="headTitle"
                                onChange={this.onChangeFormValue}/>
                 </div>
@@ -72,7 +74,9 @@ class ApartmentDetails extends React.Component {
                 </div>
                 <div className="row m-0 mb-5">
                     <div className="col-sm-6 mt-4 apartment-container-col">
-                        <FormSelect placeholder="Property type"/>
+                        <FormSelect onChange={this.onChangeFormValue}
+                                    name="apartmentType"
+                                    options={this.apartmentTypes} placeholder="Property type"/>
                     </div>
                 </div>
                 <div className="border-bottom w-100 mb-5">

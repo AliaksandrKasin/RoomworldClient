@@ -7,7 +7,7 @@ import AmenitiesRegistration from "./amenitiesRegistration";
 import Rules from "./ruleRegistration";
 import LocationRegistration from "./locationRegistration";
 import DescriptionFlatRegistration from "./descriptionFlatRegistration";
-import {addImages, addRule, initialState} from "../actions/registrationFlat/registrationFlatActions";
+import {addImages, initialState} from "../actions/registrationFlat/registrationFlatActions";
 
 
 class RegistrationFlat extends React.Component {

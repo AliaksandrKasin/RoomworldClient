@@ -4,53 +4,30 @@ class FormSelect extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            value: ""
+            options: props.options || [],
+            value: (props.options) && props.options[0] || ""
         }
+    }
+
+    onChangeSelect = (e) => {
+        this.setState({value: e.target.value});
     }
 
     render() {
         return <div>
             <div className="text-right bg-white ">
                 <label className="label select-placeholder">{this.props.placeholder}</label>
-                <select className="input border input-small form-select pb-0">
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
-                    <option>House</option>
-                    <option>Hotel</option>
-                    <option>Hostel</option>
+                <select onChange={this.onChangeSelect}
+                        value={this.props.value}
+                        onChangeCapture={(e) => (this.props.onChange) && this.props.onChange(e.target.value, e.target.name)}
+                        className="input border input-small form-select pb-0"
+                        name={this.props.name}>
+                    {
+                        this.state.options.map((option, index) => {
+                            return <option key={index} value={option}>{option}</option>
+                        })
+                    }
                 </select>
             </div>
         </div>

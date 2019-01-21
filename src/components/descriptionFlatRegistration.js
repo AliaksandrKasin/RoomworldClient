@@ -8,7 +8,6 @@ import {
     changeName, changePrice,
     changeSize, changeSpaceOffered
 } from "../actions/registrationFlat/registrationFlatActions";
-import connect from "react-redux/es/connect/connect";
 
 class DescriptionFlatRegistration extends React.Component {
 

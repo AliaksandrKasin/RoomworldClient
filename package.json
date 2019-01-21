@@ -23,6 +23,7 @@
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.2",
     "react-calendar": "^2.17.2",
+    "react-country-flag": "^1.0.1",
     "react-country-region-selector": "^1.4.2",
     "react-date-picker": "^6.12.0",
     "react-day-picker-input": "^0.1.0",
@@ -38,6 +39,7 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.1.4",
     "react-scroll-to-component": "^1.0.2",
+    "react-select-country-list": "^1.0.7",
     "react-slider": "^0.11.2",
     "react-validation": "^3.0.7",
     "react-yearly-calendar": "^1.2.1",
@@ -49,6 +51,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-	  "postbuild": "node iisConfig/copyIISConfig.js"
+    "postbuild": "node iisConfig/copyIISConfig.js"
   }
 }

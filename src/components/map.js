@@ -26,8 +26,8 @@ class Map extends Component {
         if (!this.state.center.lat && !this.state.center.lng && place !== ",  ") {
             Geocode.fromAddress(place).then(
                 response => {
-                   this.setState({center: response.results[0].geometry.location});
-                   console.log(response.results[0].geometry.location);
+                    this.setState({center: response.results[0].geometry.location});
+                    console.log(response.results[0].geometry.location);
                 },
                 error => {
                     console.error(error);
@@ -38,19 +38,19 @@ class Map extends Component {
 
     render() {
         this.getPlace(this.props.place);
-        return (this.state.center.lat !==0 && !this.state.center.lng !==0) ? <div className="map">
-                <GoogleMapReact
-                    defaultCenter={this.state.center}
-                    defaultZoom={this.state.zoom}
-                    bootstrapURLKeys={{key: "AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY"}}
-                >
-                    <AnyReactComponent
-                        lat={this.state.center.lat}
-                        lng={this.state.center.lng}
-                        text={'Efel Tower'}
-                    />
-                </GoogleMapReact>
-            </div> : "";
+        return (this.state.center.lat !== 0 && !this.state.center.lng !== 0) ? <div className="map">
+            <GoogleMapReact
+                defaultCenter={this.state.center}
+                defaultZoom={this.state.zoom}
+                bootstrapURLKeys={{key: "AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY"}}
+            >
+                <AnyReactComponent
+                    lat={this.state.center.lat}
+                    lng={this.state.center.lng}
+                    text={'Efel Tower'}
+                />
+            </GoogleMapReact>
+        </div> : "";
 
     }
 }
