@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import STORE from "../store";
-import idSelectedFlat from "../actions/idSelectedFlat";
 import {SERVER} from "../constants/constants";
 
 class UsersCardFlat extends React.Component {
@@ -28,9 +27,7 @@ class UsersCardFlat extends React.Component {
     }
 
     render() {
-        return <Link to="/flat" className="col-md-4 mb-5 underline_none" onClick={() => {
-            STORE.dispatch(idSelectedFlat(this.props.id));
-        }}>
+        return <Link to="/flat" className="col-md-4 mb-5 underline_none" onClick={() => {/*Add Id selected flat*/}}>
             <div className="card">
                 <div>
                     <img src={SERVER + this.props.image}

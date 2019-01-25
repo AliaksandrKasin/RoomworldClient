@@ -1,5 +1,5 @@
 import * as React from "react";
-import PhoneInput from "../phoneInput";
+import PhoneInput from "../baseComponents/phoneInput";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {SERVER} from "../../constants/constants";

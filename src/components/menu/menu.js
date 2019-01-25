@@ -28,12 +28,10 @@ class Menu extends React.Component {
                     <img className="img-thumbnail border-0"
                          src="https://cdn2.iconfinder.com/data/icons/real-estate-61/64/Real_estate_16-512.png"/>
                 </Link>
-
                 {
                     (this.checkLocalStorage()) &&
-
                     <div className="d-flex h-100">
-                        <Link to={'/apartment/registration'}>
+                        <Link to={'/apartment/welcome'}>
                             <div className="navbar-button">
                                 <i className="fas fa-home navbar-icon"></i>
                                 <i className="fas fa-plus-circle navbar-icon-info"></i>
@@ -45,7 +43,6 @@ class Menu extends React.Component {
                     </div>
 
                 }
-
                 {
                     (this.checkLocalStorage()) ?
                         <div className="d-flex align-items-center navbar-button"

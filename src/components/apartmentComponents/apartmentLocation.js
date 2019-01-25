@@ -5,7 +5,8 @@ import countryList from 'react-select-country-list'
 import ApartmentMap from "./apartmentMap";
 import Geocode from "react-geocode";
 import AlertError from "../alertComponents/alertError";
-
+import {setApartmentLocation} from "../../actions/apartmentActions/apartmentActions";
+import connect from "react-redux/es/connect/connect";
 
 class ApartmentLocation extends React.Component {
 
@@ -15,10 +16,10 @@ class ApartmentLocation extends React.Component {
         this.countries = countryList().getLabels();
         this.state = {
             location: {
-                country: this.countries[0],
-                state: "",
-                city: "",
-                streetAddress: "",
+                country: this.props.apartment.apartmentLocation.country || this.countries[0],
+                state: this.props.apartment.apartmentLocation.state || "",
+                city: this.props.apartment.apartmentLocation.city || "",
+                streetAddress: this.props.apartment.apartmentLocation.streetAddress || "",
             },
             center: {
                 lat: 0,
@@ -27,7 +28,14 @@ class ApartmentLocation extends React.Component {
             zoom: 15,
             addressIsNotExists: false,
             isVisibleMap: false
-        }
+        };
+    }
+
+    componentDidMount = () => {
+        let unsubscribe = this.props.history.listen((location, action) => {
+            this.props.setApartmentLocation(this.state.location);
+            unsubscribe();
+        });
     }
 
     onChangeFormValue = (value, name) => {
@@ -38,19 +46,12 @@ class ApartmentLocation extends React.Component {
         Geocode.fromAddress(place).then(
             (response) => {
                 let typeAddress = response.results[0].types[0].toLocaleUpperCase();
-                if (typeAddress === "route".toLocaleUpperCase() || typeAddress === "street_address".toLocaleUpperCase()) {
-                    let geocode = response.results[0].geometry.location;
+                let geocode = response.results[0].geometry.location;
+                (typeAddress === "route".toLocaleUpperCase() || typeAddress === "street_address".toLocaleUpperCase()) ?
                     this.setState({
-                        center: {
-                            lat: geocode.lat,
-                            lng: geocode.lng
-                        },
-                        addressIsNotExists: false,
-                        isVisibleMap: true
-                    });
-                } else {
+                        center: {lat: geocode.lat, lng: geocode.lng}, addressIsNotExists: false, isVisibleMap: true
+                    }) :
                     this.setState({addressIsNotExists: true})
-                }
             },
             (error) => {
                 console.log(error)
@@ -62,6 +63,7 @@ class ApartmentLocation extends React.Component {
         e.preventDefault();
         if (this.state.isVisibleMap) {
             this.props.history.push('/apartment/photos');
+            this.props.setApartmentLocation(this.state.location);
         } else {
             this.changeGeocodePlace(this.state.location.country + " " + this.state.location.city + " " + this.state.location.streetAddress);
         }
@@ -107,17 +109,17 @@ class ApartmentLocation extends React.Component {
                             :
                             <div>
                                 <div className="w-100 bg-light p-3 pl-5 mb-3">
-                                    <h5>You entered:</h5>
+                                    <h6 className="text-muted">You entered:</h6>
+                                    <span
+                                        className="d-block text-muted text-capitalize">{this.state.location.country}</span>
                                     <small
-                                        className="d-block h6 text-muted text-capitalize">{this.state.location.country}</small>
+                                        className="d-block text-muted text-capitalize">{this.state.location.state}</small>
                                     <small
-                                        className="d-block h6 text-muted text-capitalize">{this.state.location.state}</small>
+                                        className="d-block text-muted text-capitalize">{this.state.location.city}</small>
                                     <small
-                                        className="d-block h6 text-muted text-capitalize">{this.state.location.city}</small>
-                                    <small
-                                        className="d-block h6 text-muted text-capitalize">{this.state.location.streetAddress}</small>
+                                        className="d-block text-muted text-capitalize">{this.state.location.streetAddress}</small>
                                     <div>
-                                        <span className="text-info mt-2" onClick={() => {
+                                        <span className="text-info mt-3" onClick={() => {
                                             this.setState({isVisibleMap: false})
                                         }}>Edit address</span>
                                     </div>
@@ -127,7 +129,6 @@ class ApartmentLocation extends React.Component {
                                 </div>
                             </div>
                     }
-
                     <div className="row m-0 flex-nowrap">
                         <div className="text-left col-sm">
                             <button className="btn-back button-size-s" type='button'
@@ -145,4 +146,18 @@ class ApartmentLocation extends React.Component {
     }
 }
 
-export default ApartmentLocation;
+function mapStateToProps(state) {
+    return {
+        apartment: state.apartmentReducer.apartment
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setApartmentLocation: location => {
+            dispatch(setApartmentLocation(location));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApartmentLocation);

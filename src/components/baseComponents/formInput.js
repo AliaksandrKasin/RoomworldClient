@@ -37,7 +37,7 @@ class FormInput extends React.Component {
 
     render() {
         return <div className="position-relative">
-            <div className="text-right bg-white ">
+            <div className="text-right bg-white">
                 <label className={(!this.state.value) ? "label" : "label label-small"}>{this.props.placeholder}</label>
                 <i className="fas fa-backspace back" onClick={this.clearInput}></i>
                 <input value={this.state.value}

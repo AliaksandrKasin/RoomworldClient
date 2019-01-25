@@ -5,8 +5,8 @@ class FormSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: props.options || [],
-            value: (props.options) && props.options[0] || ""
+            options: props.options,
+            value: props.value
         }
     }
 
@@ -20,7 +20,7 @@ class FormSelect extends React.Component {
                 <label className="label select-placeholder">{this.props.placeholder}</label>
                 <select onChange={this.onChangeSelect}
                         value={this.props.value}
-                        onChangeCapture={(e) => (this.props.onChange) && this.props.onChange(e.target.value, e.target.name)}
+                        onChangeCapture={(e) => this.props.onChange(e.target.value, e.target.name)}
                         className="input border input-small form-select pb-0"
                         name={this.props.name}>
                     {

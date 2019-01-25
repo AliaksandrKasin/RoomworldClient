@@ -19,7 +19,7 @@ class ApartmentMap extends React.Component {
 }
 
 const AnyReactComponent = ({text}) => <div>
-    <img className="cursor-pointer" onClick={() => alert("asdasdasa")} className="img_size_4"
+    <img className="img_size_4 cursor-pointer"
          src="https://cdn4.iconfinder.com/data/icons/iconsimple-places/512/pin_2-512.png"/>
     <h6></h6>
 </div>;

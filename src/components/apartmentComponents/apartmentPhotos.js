@@ -1,6 +1,7 @@
 import * as React from "react";
-import axios from "axios";
-import {SERVER} from "../../constants/constants";
+import AlertError from "../alertComponents/alertError";
+import {setApartmentImages} from "../../actions/apartmentActions/apartmentActions";
+import connect from "react-redux/es/connect/connect";
 
 class ApartmentPhotos extends React.Component {
 
@@ -8,26 +9,35 @@ class ApartmentPhotos extends React.Component {
         super(props);
         this.inputFile = React.createRef();
         this.state = {
-            images: []
-        }
+            images: this.props.apartment.images || [],
+            errorMessage: ""
+        };
+    }
+
+    componentDidMount = () => {
+        let unsubscribe = this.props.history.listen((location, action) => {
+            this.props.setApartmentImages(this.state.images);
+            unsubscribe();
+        });
     }
 
     onChangeSelectPictures = event => {
-        let images = [...event.target.files].concat(this.state.images);
+        let images = this.state.images;
+        [...event.target.files].map(img => {
+            let isExistsImage = images.map(el => el.name).indexOf(img.name);
+            (isExistsImage === -1) && images.push(img);
+        });
+        (this.state.images.length > 3) && this.setState({errorMessage: ""});
         this.setState({images: images});
     }
 
     listPictures = (images) => {
-        let imagesSrc = [];
-        images.map((img) => {
-            imagesSrc.push(URL.createObjectURL(img));
-        })
-        return imagesSrc.map((src, index) => {
+        return images.map((img, index) => {
             return <div key={index} className="position-relative picture-container">
                 <div className="gallery-picture-icon" onClick={() => this.removePicture(index)}>
                     <i className="fas fa-times"></i>
                 </div>
-                <img src={src} className="img-thumbnail gallery-picture"/>
+                <img src={URL.createObjectURL(img)} className="img-thumbnail gallery-picture"/>
             </div>
         })
     }
@@ -37,16 +47,13 @@ class ApartmentPhotos extends React.Component {
     }
 
     next = (e) => {
-        this.props.history.push('/apartment/rates')
-       /* e.preventDefault();
-        let form = new FormData();
-        for (let i = 0; i < this.state.images.length; i++) {
-            form.append("File", this.state.images[i])
+        e.preventDefault();
+        if (this.state.images.length < 3) {
+            this.setState({errorMessage: "Upload 3 or more images!"});
+            return;
         }
-        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-        axios.post(SERVER + '/upload/images', form, {
-            headers: {'Content-Type': 'multipart/form-data'}
-        });*/
+        this.props.setApartmentImages(this.state.images);
+        this.props.history.push('/apartment/rates');
     }
 
     render() {
@@ -59,6 +66,7 @@ class ApartmentPhotos extends React.Component {
                     <div className="border-bottom w-100 pt-4">
                     </div>
                 </div>
+                <AlertError message={this.state.errorMessage}/>
                 <div className="photo-container mb-5">
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <button className="button-upload" type="button" onClick={() => this.inputFile.current.click()}>
@@ -91,4 +99,18 @@ class ApartmentPhotos extends React.Component {
     }
 }
 
-export default ApartmentPhotos;
+function mapStateToProps(state) {
+    return {
+        apartment: state.apartmentReducer.apartment
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setApartmentImages: images => {
+            dispatch(setApartmentImages(images));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApartmentPhotos);

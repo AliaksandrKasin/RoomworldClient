@@ -1,0 +1,21 @@
+.container-apartment-welcome {
+    background: url("https://www.kronograd.by/wp-content/uploads/2018/04/Leisure-villa-Wallpapers-HD-2560x1440.jpg") fixed;
+    background-size: cover;
+    width: 100%;
+    z-index: -1;
+    min-height: 75vh;
+}
+.apartment-welcome-icon{
+    font-size: 30px;
+    padding: 20px;
+    cursor: inherit!important;
+}
+
+.cover {
+    background-color: rgba(8, 8, 8, 0.59);
+    padding: 10px;
+}
+
+.apartment-button-start{
+    min-height: 450px;
+}
