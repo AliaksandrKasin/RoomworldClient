@@ -1,7 +1,5 @@
 import React from "react";
 import DatePicker from "react-date-picker";
-import search from "../../actions/search";
-import connect from "react-redux/es/connect/connect";
 import Geocode from "react-geocode";
 
 
@@ -13,7 +11,7 @@ class SearchBlock extends React.Component {
             dateFrom: new Date(),
             dateTo: this.datePlusDay(new Date()),
             place: "",
-            redirect: false,
+            typePlace: ""
         }
     }
 
@@ -23,15 +21,30 @@ class SearchBlock extends React.Component {
     }
     onChangeFrom = (dateFrom) => this.setState({dateFrom: dateFrom, dateTo: this.datePlusDay(dateFrom)});
     onChangeTo = (dateTo) => this.setState({dateTo});
-    onChangePlace = (e) => this.setState({place: e.target.value});
+    onChangePlace = (e) => {
+        Geocode.fromAddress(this.state.place).then(
+            (response) => {
+                this.setState({typePlace: response.results[0].types[0].toLocaleUpperCase()});
+            },
+            (error) => {
+                console.log(error)
+            }
+        );
+        this.setState({place: e.target.value})
+    };
 
     placeToObject = (place) => {
         let splitPlace = place.split(/[, ]/).filter(n => n);
         switch (splitPlace.length) {
             case 0:
                 return {country: null, city: null};
-            case 1:
-                return {country: splitPlace[0], city: null};
+            case 1: {
+                if (this.state.typePlace === "country".toLocaleUpperCase()) {
+                    return {country: splitPlace[0], city: null};
+                } else {
+                    return {country: null, city: splitPlace[0]};
+                }
+            }
             case 2:
                 return {country: splitPlace[0], city: splitPlace[1]};
         }
@@ -47,6 +60,7 @@ class SearchBlock extends React.Component {
             country: addressObject.country,
             city: addressObject.city
         };
+        debugger
         localStorage.setItem("searchParams", JSON.stringify(searchParams));
         this.props.history.push("/search/apartment");
     }
