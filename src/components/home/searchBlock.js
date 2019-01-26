@@ -2,11 +2,13 @@ import React from "react";
 import DatePicker from "react-date-picker";
 import search from "../../actions/search";
 import connect from "react-redux/es/connect/connect";
+import Geocode from "react-geocode";
 
 
 class SearchBlock extends React.Component {
     constructor(props) {
         super(props);
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
         this.state = {
             dateFrom: new Date(),
             dateTo: this.datePlusDay(new Date()),
@@ -36,19 +38,21 @@ class SearchBlock extends React.Component {
     }
 
 
-    search = () => {
-        if (!this.state.place.length) {
-            return;
-        }
+    search = (e) => {
+        e.preventDefault();
+        let addressObject = this.placeToObject(this.state.place);
         let searchParams = {
-            dateFrom: new Date(Date.UTC(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDate())),
-            dateTo: new Date(Date.UTC(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDate())),
-        }
-        this.props.history.push("/searches");
+            dateFrom: new Date(Date.UTC(this.state.dateFrom.getUTCFullYear(), this.state.dateFrom.getUTCMonth(), this.state.dateFrom.getUTCDate())),
+            dateTo: new Date(Date.UTC(this.state.dateTo.getUTCFullYear(), this.state.dateTo.getUTCMonth(), this.state.dateTo.getUTCDate())),
+            country: addressObject.country,
+            city: addressObject.city
+        };
+        localStorage.setItem("searchParams", JSON.stringify(searchParams));
+        this.props.history.push("/search/apartment");
     }
 
     render() {
-        return <form onSubmit={search} className="search">
+        return <form onSubmit={this.search} className="search">
             <div className="d-flex justify-content-center align-items-center w-100">
                 <div className="row d-flex justify-content-center search-container-max">
                     <div className="col-sm mt-2">
@@ -56,6 +60,7 @@ class SearchBlock extends React.Component {
                             <i className="fas fa-map-marker-alt input-label"></i>
                             <input type="text" className="input-search"
                                    placeholder="Where do you want to go?"
+                                   required={true}
                                    onChange={this.onChangePlace}/>
                         </div>
                     </div>
@@ -84,10 +89,4 @@ class SearchBlock extends React.Component {
 
 }
 
-function mapStateToProps(state) {
-    return {
-        /*searchParams: state.flatReducer.searchParams*/
-    };
-}
-
-export default connect(mapStateToProps)(SearchBlock);
+export default SearchBlock;

@@ -207,6 +207,11 @@ a:hover {
 
 .title_size_1 {
     font-size: 1rem;
+    /*height: 60px!important;*/
+}
+
+.card-apartment-container-img{
+    height: 300px;
 }
 
 @media (max-width: 1610px) {

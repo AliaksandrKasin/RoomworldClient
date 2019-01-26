@@ -4,6 +4,7 @@ export const SET_APARTMENT_IMAGES = 'SET_APARTMENT_IMAGES';
 export const SET_APARTMENT_RATES = 'SET_APARTMENT_RATES';
 export const SET_APARTMENT_RULES = 'SET_APARTMENT_RULES';
 export const SET_APARTMENT_TYPES = 'SET_APARTMENT_TYPES';
+export const SET_SELECTED_APARTMENT = 'SET_SELECTED_APARTMENT';
 
 export function setApartmentDetails(apartmentDetails) {
     return {
@@ -44,5 +45,12 @@ export function setApartmentTypes(types) {
     return {
         type: SET_APARTMENT_TYPES,
         types
+    }
+}
+
+export function setSelectedApartment(id) {
+    return {
+        type: SET_SELECTED_APARTMENT,
+        id
     }
 }

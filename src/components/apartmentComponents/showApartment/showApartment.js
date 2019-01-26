@@ -12,6 +12,8 @@ import Loading from "../../extensionComponents/loading";
 import ApartmentMap from "../apartmentMap";
 import RuleSequence from "../rules/ruleSequence";
 import ApartmentFooter from "../apartmentFooter";
+import {setSelectedApartment} from "../../../actions/apartmentActions/apartmentActions";
+import connect from "react-redux/es/connect/connect";
 
 
 class ShowApartment extends React.Component {
@@ -32,9 +34,10 @@ class ShowApartment extends React.Component {
     }
 
     componentDidMount = () => {
-        getApartmentById(9).then((apartment) => {
-            this.setState({apartment: apartment, isLoad: true});
-        });
+        let id = localStorage.getItem("selectedApartment");
+        (id) ? getApartmentById(id).then((apartment) => {
+                this.setState({apartment: apartment, isLoad: true});
+            }) : this.props.history.push("/");
     }
 
     listAmenities(amenities) {
@@ -163,4 +166,10 @@ function getArrayUniqueTypes(amenities) {
 }
 
 
-export default ShowApartment;
+function mapStateToProps(state) {
+    return {
+        selectedApartment: state.apartmentReducer.selectedApartment,
+    };
+}
+
+export default connect(mapStateToProps)(ShowApartment);

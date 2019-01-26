@@ -95,8 +95,7 @@ class ApartmentQuickRent extends React.Component {
                 </div>
             </div>
             <div className="text-center mb-4">
-                <button className="btn-next" type='button'
-                        onClick="">Book Now
+                <button className="btn-next" type='button'>Book Now
                 </button>
             </div>
         </div>

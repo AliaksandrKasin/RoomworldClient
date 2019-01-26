@@ -14,14 +14,25 @@ export function getTypesApartment() {
 
 export function createApartment(formData) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-   return axios.post(SERVER + '/apartment/create', formData, {
+    return axios.post(SERVER + '/apartment/create', formData, {
         headers: {'Content-Type': 'multipart/form-data'}
     });
 }
 
 export function getApartmentById(id) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
-    return axios.get(SERVER + '/apartment/get',{params:{id: id}})
+    return axios.get(SERVER + '/apartment/get', {params: {id: id}})
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
+
+export function getApartmentByParams(searchParams) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    return axios.post(SERVER + '/collection/apartment', searchParams)
         .then((response) => {
             return response.data;
         })

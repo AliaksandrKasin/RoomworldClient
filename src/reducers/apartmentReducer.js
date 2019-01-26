@@ -4,7 +4,7 @@ import {
     SET_APARTMENT_LOCATION,
     SET_APARTMENT_RATES,
     SET_APARTMENT_RULES,
-    SET_APARTMENT_TYPES
+    SET_APARTMENT_TYPES, SET_SELECTED_APARTMENT
 } from "../actions/apartmentActions/apartmentActions";
 
 const initialState = {
@@ -38,7 +38,8 @@ const initialState = {
         ratesIsDone: false,
         rulesIsDone: false
     },
-    apartmentTypes: []
+    apartmentTypes: [],
+    selectedApartment: ""
 };
 
 export default function apartmentReducer(state = initialState, action) {
@@ -75,10 +76,16 @@ export default function apartmentReducer(state = initialState, action) {
             });
         case SET_APARTMENT_RULES:
             return Object.assign(state, {
-                apartment: Object.assign(state.apartment,{rulesOfResidence: action.rules})});
+                apartment: Object.assign(state.apartment, {rulesOfResidence: action.rules})
+            });
         case SET_APARTMENT_TYPES:
             return Object.assign(state, {
                 apartmentTypes: Object.assign(state.apartmentTypes, action.types)
+            });
+        case SET_SELECTED_APARTMENT:
+            debugger
+            return Object.assign(state, {
+                selectedApartment: action.id
             });
         default:
             return state;

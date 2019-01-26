@@ -7,8 +7,7 @@ class Home extends React.Component {
 
     render() {
         return <div>
-            <SearchBlock/>
-
+            <SearchBlock history={this.props.history}/>
         </div>
 
     }
