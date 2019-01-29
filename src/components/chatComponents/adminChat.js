@@ -19,6 +19,7 @@ class AdminChat extends React.Component {
     }
 
     componentDidMount = () => {
+        debugger
         getAllDialogs(0, 10)
             .then((response) => {
                 this.setState({messages: response.data});

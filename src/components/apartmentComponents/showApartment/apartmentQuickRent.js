@@ -1,15 +1,30 @@
 import * as React from "react";
 import DatePicker from "react-date-picker";
 import QuickRentAdvice from "./quickRentAdvice";
-import ApartmentFooter from "../apartmentFooter";
+import {createReservation} from "../../../services/apartmentService";
+import ApartmentReservationModal from "./apartmentReservationModal";
 
 class ApartmentQuickRent extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            dateNotOrdered: true
-        }
+            dateNotOrdered: true,
+            reservationParams: {
+                dateFrom: new Date(this.props.dateFrom),
+                dateTo: new Date(this.props.dateTo),
+                idApartment: this.props.apartment.id
+            },
+            modalIsOpen: false
+        };
+    }
+
+    onCloseModal = () => {
+        this.setState({modalIsOpen: false});
+    }
+
+    componentDidMount = () => {
+        this.checkDates(this.state.dateFrom, this.state.dateTo);
     }
 
     dateDiff = (date1, date2) => {
@@ -21,28 +36,34 @@ class ApartmentQuickRent extends React.Component {
     }
 
     onChangeFrom = dateFrom => {
-        this.setState({dateTo: this.datePlusDay(dateFrom), dateFrom: dateFrom});
-        if (this.props.apartment.apartmentReservations.length) this.checkDates(dateFrom, this.datePlusDay(dateFrom));
+        this.setState({
+            reservationParams: Object.assign(this.state.reservationParams, {
+                dateTo: this.datePlusDay(dateFrom),
+                dateFrom: dateFrom
+            }),
+        });
+        this.checkDates(dateFrom, this.datePlusDay(dateFrom));
     }
     onChangeTo = dateTo => {
-        this.setState({dateTo});
-        if (this.props.flat.orders.length) this.checkDates(this.state.dateFrom, dateTo);
+        this.setState({reservationParams: Object.assign(this.state.reservationParams, {dateTo: dateTo,})});
+        this.checkDates(this.state.dateFrom, dateTo);
     };
 
     checkDates(currentDateFrom, currentDateTo) {
-        let arrayOrders = this.props.flat.orders;
-        let state = null;
-        currentDateFrom = currentDateFrom.setHours(0, 0, 0, 0);
-        currentDateTo = currentDateTo.setHours(0, 0, 0, 0);
-        let count = 0;
-        arrayOrders.some((order) => {
-            let dateFrom = new Date(order.dateFrom).setHours(0, 0, 0, 0);
-            let dateTo = new Date(order.dateTo).setHours(0, 0, 0, 0);
+        if (this.props.apartment.apartmentReservation === null) return;
+        let state = this.props.apartment.apartmentReservation.some((reservation) => {
+            let dateFrom = new Date(reservation.dateFrom);
+            let dateTo = new Date(reservation.dateTo);
             state = ((dateFrom <= currentDateFrom && dateTo >= currentDateFrom)
                 && (dateFrom <= currentDateTo && dateTo >= currentDateTo)
                 || (dateFrom > currentDateFrom && dateFrom < currentDateTo));
             return state;
-        }) ? this.setState({dateNotOrdered: false}) : this.setState({dateNotOrdered: true});
+        });
+        state ? this.setState({dateNotReservation: false}) : this.setState({dateNotReservation: true});
+    }
+
+    addReservation = () => {
+        this.setState({modalIsOpen: true});
     }
 
     render() {
@@ -62,16 +83,16 @@ class ApartmentQuickRent extends React.Component {
                     </div>
                     <DatePicker
                         className="input_size_s bg-white mt-3 border"
-                        value={this.props.dateFrom}
+                        value={this.state.reservationParams.dateFrom}
                         onChange={this.onChangeFrom}
                         minDate={new Date()}
                         locale="en-En"
                     />
                     <DatePicker
                         className="input_size_s bg-white mt-3 border"
-                        value={this.props.dateTo}
+                        value={this.state.reservationParams.dateTo}
                         onChange={this.onChangeTo}
-                        minDate={this.datePlusDay(this.props.dateFrom)}
+                        minDate={this.datePlusDay(this.state.reservationParams.dateFrom)}
                         locale="en-En"
                     />
                 </div>
@@ -85,19 +106,25 @@ class ApartmentQuickRent extends React.Component {
                                      body="We don't charge you to upload your place, and you get instant access to thousands of guests."/>
                 </div>
             </div>
-            <div className="mt-4 text-muted d-flex align-items-center border-d-top border-d-bottom m-0 mb-3 p-2 ml-3 mr-3">
+            <div
+                className="mt-4 text-muted d-flex align-items-center border-d-top border-d-bottom m-0 mb-3 p-2 ml-3 mr-3">
                 <div className="w-100 pl-3">
                     <h5 className="">Total</h5>
                 </div>
                 <div className="w-100 d-flex justify-content-end pr-3">
                     <small
-                        className="text-right h5">${/*this.dateDiff(this.props.dateTo, this.props.dateFrom)*/2 * this.props.apartment.apartmentRates}</small>
+                        className="text-right h5">${this.dateDiff(this.state.reservationParams.dateTo, this.state.reservationParams.dateFrom) * this.props.apartment.apartmentRates}</small>
                 </div>
             </div>
             <div className="text-center mb-4">
-                <button className="btn-next" type='button'>Book Now
+                <button className="btn-next" type='button' onClick={this.addReservation}>Book Now
                 </button>
             </div>
+            <ApartmentReservationModal dateNotOrdered={this.state.dateNotOrdered}
+                                       reservationParams={this.state.reservationParams} open={this.state.modalIsOpen}
+                                       onClose={this.onCloseModal}
+                                       history={this.props.history}
+                                       apartment={this.props.apartment}/>
         </div>
     }
 }

@@ -20,7 +20,10 @@ class RuleSequence extends React.Component {
                         {this.props.nameRule}
                     </div>
                 </div>
-                <div className="text-right text-info d-flex justify-content-end" onClick={this.props.removeRule}>remove</div>
+                {
+                    (this.props.type !== "show") && <div className="text-right text-info d-flex justify-content-end"
+                      onClick={this.props.removeRule}>remove</div>
+                }
             </div>
         </div>
     }

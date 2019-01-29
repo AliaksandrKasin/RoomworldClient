@@ -1,6 +1,8 @@
 import React from "react";
 import DatePicker from "react-date-picker";
 import Geocode from "react-geocode";
+import {setSearchParams} from "../../actions/apartmentActions/apartmentActions";
+import connect from "react-redux/es/connect/connect";
 
 
 class SearchBlock extends React.Component {
@@ -19,15 +21,17 @@ class SearchBlock extends React.Component {
         let datePlusDay = new Date(date);
         return new Date(datePlusDay.setDate(date.getDate() + 1));
     }
+
     onChangeFrom = (dateFrom) => this.setState({dateFrom: dateFrom, dateTo: this.datePlusDay(dateFrom)});
     onChangeTo = (dateTo) => this.setState({dateTo});
     onChangePlace = (e) => {
-        Geocode.fromAddress(this.state.place).then(
+        this.setState({place: e.target.value});
+        Geocode.fromAddress(e.target.value).then(
             (response) => {
                 this.setState({typePlace: response.results[0].types[0].toLocaleUpperCase()});
             },
             (error) => {
-                console.log(error)
+
             }
         );
         this.setState({place: e.target.value})
@@ -55,12 +59,12 @@ class SearchBlock extends React.Component {
         e.preventDefault();
         let addressObject = this.placeToObject(this.state.place);
         let searchParams = {
-            dateFrom: new Date(Date.UTC(this.state.dateFrom.getUTCFullYear(), this.state.dateFrom.getUTCMonth(), this.state.dateFrom.getUTCDate())),
-            dateTo: new Date(Date.UTC(this.state.dateTo.getUTCFullYear(), this.state.dateTo.getUTCMonth(), this.state.dateTo.getUTCDate())),
+            dateFrom: new Date(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDate()),
+            dateTo: new Date(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDate()),
             country: addressObject.country,
             city: addressObject.city
         };
-        debugger
+        /*this.props.setSearchParams(searchParams);*/
         localStorage.setItem("searchParams", JSON.stringify(searchParams));
         this.props.history.push("/search/apartment");
     }
@@ -75,6 +79,7 @@ class SearchBlock extends React.Component {
                             <input type="text" className="input-search"
                                    placeholder="Where do you want to go?"
                                    required={true}
+                                   value={this.state.place}
                                    onChange={this.onChangePlace}/>
                         </div>
                     </div>
@@ -100,7 +105,20 @@ class SearchBlock extends React.Component {
             </div>
         </form>
     }
-
 }
 
-export default SearchBlock;
+function mapStateToProps(state) {
+    return {
+        searchParams: state.apartmentReducer.searchParams,
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setSearchParams: details => {
+            dispatch(setSearchParams(details));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBlock);

@@ -4,7 +4,7 @@ import {
     SET_APARTMENT_LOCATION,
     SET_APARTMENT_RATES,
     SET_APARTMENT_RULES,
-    SET_APARTMENT_TYPES, SET_SELECTED_APARTMENT
+    SET_APARTMENT_TYPES, SET_SEARCH_PARAMS, SET_SELECTED_APARTMENT
 } from "../actions/apartmentActions/apartmentActions";
 
 const initialState = {
@@ -39,7 +39,12 @@ const initialState = {
         rulesIsDone: false
     },
     apartmentTypes: [],
-    selectedApartment: ""
+    selectedApartment: "",
+    searchParams: {
+        dateFrom: new Date(),
+        dateTo: new Date(new Date().setDate(new Date().getDate() + 1)),
+        place: ""
+    }
 };
 
 export default function apartmentReducer(state = initialState, action) {
@@ -83,10 +88,9 @@ export default function apartmentReducer(state = initialState, action) {
                 apartmentTypes: Object.assign(state.apartmentTypes, action.types)
             });
         case SET_SELECTED_APARTMENT:
-            debugger
-            return Object.assign(state, {
-                selectedApartment: action.id
-            });
+            return Object.assign(state, {selectedApartment: action.id});
+        case SET_SEARCH_PARAMS:
+            return Object.assign(state, {searchParams: action.searchParams});
         default:
             return state;
     }

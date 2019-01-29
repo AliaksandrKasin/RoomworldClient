@@ -76,9 +76,7 @@ class ApartmentLocation extends React.Component {
 
                     <h4 className="apartment-title">Where is your apartment located?</h4>
                     <h6 className="text-muted pt-2">Your listing will include a map, but not your address.
-                        Your
-                        address
-                        is only shared with guests who have booked your property.</h6>
+                        Your address is only shared with guests who have booked your property.</h6>
                     <div className="border-bottom w-100 pt-4">
                     </div>
                     <AlertError message={this.state.addressIsNotExists && "This address is not exists!"}/>

@@ -1,10 +1,10 @@
 import * as React from "react";
 import UsersProfile from "./userProfile";
 import ProfileMenu from "./profileMenu";
-import UsersFlats from "./usersFlats";
-import UsersOrders from "./userOrders";
+import UsersApartment from "./usersApartment";
+import UsersOrders from "./usersReservations";
 import Account from "./account";
-import Orders from "./Orders";
+import ApartmentsReservations from "./apartmentsReservations";
 import {Route, Switch} from "react-router-dom";
 
 class Profile extends React.Component {
@@ -17,8 +17,8 @@ class Profile extends React.Component {
         return <div>
             <ProfileMenu/>
             <Switch>
-                <Route path={'/profile/my/flats/orders'} component={Orders}/>
-                <Route path={'/profile/my/flats'} component={UsersFlats}/>
+                <Route path={'/profile/my/flats/orders'} component={ApartmentsReservations}/>
+                <Route path={'/profile/my/flats'} component={UsersApartment}/>
                 <Route path={'/profile/my/booking'} component={UsersOrders}/>
                 <Route path={'/profile/account'} component={Account}/>
                 <Route path={'/profile'} component={UsersProfile}/>

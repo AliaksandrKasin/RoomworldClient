@@ -5,7 +5,7 @@ import Login from "./components/accountComponents/login";
 import Profile from "./components/profile/profile"
 import ResetPassword from "./components/accountComponents/resetPassword"
 import ChangePasswordByToken from "./components/accountComponents/changePasswordByToken"
-import NotFound from "./components/notFound"
+import PageNotFound from "./components/pageNotFound"
 import AdminGeneral from "./components/admin/adminGeneral";
 import RegistrationUser from "./components/accountComponents/registrationUser";
 import ServerError from "./components/extensionComponents/serverError";
@@ -28,7 +28,7 @@ class Router extends React.Component {
             <Route path={'/admin'} component={AdminGeneral}/>
             <Route path={'/apartment'} component={ApartmentMain}/>
             <Route path={'/error'} component={ServerError}/>
-            <Route path='*' component={NotFound}/>}
+            <Route path='*' component={PageNotFound}/>}
         </Switch>
     }
 }

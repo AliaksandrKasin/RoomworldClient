@@ -12,6 +12,11 @@ class ApartmentMap extends React.Component {
                 center={this.props.center}
                 zoom={this.props.zoom}
                 bootstrapURLKeys={{key: "AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY"}}>
+                {
+                    (this.props.collectionPoint) && this.props.collectionPoint.map((center) => {
+                        return <AnyReactComponent lat={center.lat} lng={center.lng} text={'Efel Tower'}/>
+                    })
+                }
                 <AnyReactComponent lat={this.props.center.lat} lng={this.props.center.lng} text={'Efel Tower'}/>
             </GoogleMapReact>
         </div>
@@ -21,7 +26,6 @@ class ApartmentMap extends React.Component {
 const AnyReactComponent = ({text}) => <div>
     <img className="img_size_4 cursor-pointer"
          src="https://cdn4.iconfinder.com/data/icons/iconsimple-places/512/pin_2-512.png"/>
-    <h6></h6>
 </div>;
 
 export default ApartmentMap;

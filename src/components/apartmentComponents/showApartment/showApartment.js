@@ -12,16 +12,19 @@ import Loading from "../../extensionComponents/loading";
 import ApartmentMap from "../apartmentMap";
 import RuleSequence from "../rules/ruleSequence";
 import ApartmentFooter from "../apartmentFooter";
-import {setSelectedApartment} from "../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
-
+import Geocode from "react-geocode";
 
 class ShowApartment extends React.Component {
 
     constructor(props) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         super(props);
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
         this.apartmentRules = React.createRef();
+        this.map = React.createRef();
+        this.rates = React.createRef();
+        this.overview = React.createRef();
         this.state = {
             apartment: {},
             isLoad: false,
@@ -29,15 +32,25 @@ class ShowApartment extends React.Component {
                 lat: 0,
                 lng: 0
             },
-            zoom: 15
+            zoom: 15,
+            searchParams: JSON.parse(localStorage.getItem("searchParams"))
         }
     }
 
     componentDidMount = () => {
         let id = localStorage.getItem("selectedApartment");
         (id) ? getApartmentById(id).then((apartment) => {
-                this.setState({apartment: apartment, isLoad: true});
-            }) : this.props.history.push("/");
+            Geocode.fromAddress(apartment.apartmentLocation.country + " " + apartment.apartmentLocation.city + " " + apartment.apartmentLocation.streetAddress)
+                .then((response) => {
+                        let geocode = response.results[0].geometry.location;
+                        this.setState({center: {lat: geocode.lat, lng: geocode.lng}});
+                    },
+                    (error) => {
+                        console.log(error)
+                    }
+                );
+            this.setState({apartment: apartment, isLoad: true});
+        }) : this.props.history.push("/");
     }
 
     listAmenities(amenities) {
@@ -48,23 +61,16 @@ class ShowApartment extends React.Component {
         })
     }
 
-    /*listHouseRules(houseRuleses) {
-        return houseRuleses.map((rule, index) => {
-            return <Rules key={index} state={rule.state} text={rule.name}/>
-        })
-    }*/
-
-
     formatDate = (date) => {
         return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
     }
 
     showCalendar = () => {
-        return <Calendar locale="en-En" /*tileDisabled={({activeStartDate, date, view}) => {
-            return this.state.apartment.apartmentReservations.map((order) => {
-                return (date.getTime() >= new Date(order.dateFrom).setHours(0, 0, 0, 0) && date.getTime() <= new Date(order.dateTo).setHours(0, 0, 0, 0));
+        return <Calendar locale="en-En" minDate={new Date()} tileDisabled={({activeStartDate, date, view}) => {
+            return this.state.apartment.apartmentReservations && this.state.apartment.apartmentReservations.map((reservation) => {
+                return (date.getTime() >= new Date(reservation.dateFrom).setHours(0, 0, 0, 0) && date.getTime() <= new Date(reservation.dateTo).setHours(0, 0, 0, 0));
             }).find((element) => element === true);
-        }}*//>
+        }}/>
     }
 
     getTime = (stringDate) => {
@@ -78,15 +84,17 @@ class ShowApartment extends React.Component {
             <ApartmentLocation
                 place={this.state.apartment.apartmentLocation.country + ", " + this.state.apartment.apartmentLocation.city}/>
             <ApartmentMenu
-                overview={() => scrollToComponent(this.overview)}
-                amenities={() => scrollToComponent(this.amenities)}
-                rates={() => scrollToComponent(this.rates)}
-                map={() => scrollToComponent(this.map)}
+                overview={() =>  window.scrollTo(0, this.overview.current.offsetTop)}
+                rates={() => window.scrollTo(0, this.rates.current.offsetTop)}
+                map={() => window.scrollTo(0, this.map.current.offsetTop)}
             />
             <div className="mt-3"><h3>{this.state.apartment.headTitle}</h3></div>
             {
-                <QuickRent dateFrom={new Date()/*this.props.searchParams.dateFrom*/}
-                           dateTo={new Date()/*this.props.searchParams.dateTo*/} apartment={this.state.apartment}/>
+                <QuickRent dateFrom={new Date(this.state.searchParams.dateFrom)}
+                           dateTo={new Date(this.state.searchParams.dateTo)}
+                           searchParams={this.state.searchParams}
+                           apartment={this.state.apartment}
+                           history={this.props.history}/>
             }
             <div className="row mt-3 justify-content-center">
                 <ApartmentCardInfo
@@ -101,7 +109,7 @@ class ShowApartment extends React.Component {
                                    body="Sleeps"
                                    title={this.state.apartment.accommodates}/>
             </div>
-            <div className="mt-4 ml-0">
+            <div ref={this.overview} className="mt-4 ml-0">
                 <h3 className="mt-3">Overview</h3>
                 <div className="pl-0 text-muted">
                     {this.state.apartment.propertyDescription}
@@ -122,7 +130,7 @@ class ShowApartment extends React.Component {
                             {
                                 this.state.apartment.rulesOfResidence.map((rule, index) => {
                                     return <RuleSequence key={index} isAllowed={rule.isAllowed} nameRule={rule.nameRule}
-                                                         removeRule={() => this.removeRule(index)}/>
+                                                         type="show"/>
                                 })
                             }
                         </div>
@@ -131,18 +139,14 @@ class ShowApartment extends React.Component {
                 <h6 className="col-6 text-muted pb-4 mw-300">Minimum age of primary renter: <small
                     className="h5">18</small></h6>
             </div>
-
-            <div ref="amenities">
-                {/*this.listAmenities(this.state.flat.amentieses)*/}
-            </div>
-            <div ref="rates" className=" mt-5">
+            <div ref={this.rates} className=" mt-5">
                 <h4 className="mb-4">Rates & Availability</h4>
                 {
                     this.showCalendar()
                 }
             </div>
 
-            <div ref="map" className="apartment-location-map mt-5 mb-5">
+            <div ref={this.map} className="apartment-location-map mt-5 mb-5">
                 <h3 className="mb-3">Map</h3>
                 <ApartmentMap center={this.state.center} zoom={this.state.zoom}/>
             </div>

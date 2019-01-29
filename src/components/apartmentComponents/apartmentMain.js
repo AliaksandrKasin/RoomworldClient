@@ -18,6 +18,9 @@ class ApartmentMain extends React.Component {
     componentDidMount = () => {
         document.body.style.backgroundColor = "#f7f7f8";
     }
+    componentWillUnmount = () =>{
+        document.body.style.backgroundColor = "#fff";
+    }
 
     render() {
         return <div className="root-container">

@@ -22,51 +22,52 @@
     height: 100%;
     position: relative;
 }
-.h-35{
-    height: 35%!important;
+
+.h-35 {
+    height: 35% !important;
 }
 
-.w-30{
+.w-30 {
     width: 30%;
 }
-.root-container{
+
+.root-container {
 
 }
 
-.styles_modal__gNwvD{
-    height: 400px!important;
-    min-width: 360px!important;
+.styles_modal__gNwvD {
+    height: 400px !important;
+    min-width: 360px !important;
 }
 
 @media (max-width: 1100px) {
-    .styles_modal__gNwvD{
-        min-width: 500px!important;
+    .styles_modal__gNwvD {
+        min-width: 500px !important;
     }
 }
 
 @media (max-width: 400px) {
-    .styles_modal__gNwvD{
-        min-width: 320px!important;
+    .styles_modal__gNwvD {
+        min-width: 320px !important;
     }
 }
 
 @media (max-width: 320px) {
-    .styles_modal__gNwvD{
-        min-width: 280px!important;
+    .styles_modal__gNwvD {
+        min-width: 280px !important;
     }
 }
 
-.border-d-top{
+.border-d-top {
     border-top: 1px dashed #d3d8de;
 }
 
-
-.border-d-bottom{
+.border-d-bottom {
     border-bottom: 1px dashed #d3d8de;
 }
 
-.MuiInput-underline-7:before{
-    display: block;
+.MuiInput-underline {
+    display: block!important;
     width: 100%;
     height: 56px;
     font-size: 16px;
@@ -79,24 +80,12 @@
     box-shadow: none;
     outline: none;
     background-size: 0 3px !important;
+    padding-left: 20px !important;
 }
 
-.MuiInput-root-3{
-    position: static!important;
-    color: #323f4d!important;
-    height: 56px;
-    width: 100%!important;
-}
-
-.MuiInputBase-input-26{
-    color: #525e74 !important;
-    font-size: 16px!important;
-    font-weight: 400!important;
-    padding-left: 20px!important;
-}
-
-.styles_closeIcon__1QwbI {
-    cursor: pointer!important;
+.MuiInput-underline > input {
+    width: 100%;
+    height: 43px;
 }
 
 a:hover {
@@ -110,11 +99,9 @@ a:hover {
 
 .app-container {
     min-height: 100vh;
-    overflow: hidden;
     display: block;
     position: relative;
     /*padding-bottom: 400px;*/
-
 }
 
 .page-footer {
@@ -210,8 +197,18 @@ a:hover {
     /*height: 60px!important;*/
 }
 
-.card-apartment-container-img{
+.card-apartment-container-img {
     height: 300px;
+}
+
+.finish-container {
+    background: url("https://get.pxhere.com/photo/architecture-house-floor-building-home-ceiling-cottage-property-living-room-room-apartment-interior-design-design-hardwood-estate-digital-art-suite-real-estate-dining-room-wood-flooring-945412.jpg") fixed center center;
+    height: 600px;
+    width: 100%;
+}
+
+.btn-opacity-5 {
+    opacity: 0.5 !important;
 }
 
 @media (max-width: 1610px) {
@@ -273,7 +270,8 @@ a:hover {
 
 .map-sticky-container {
     position: sticky !important;
-    height: 700px;
+    height: 780px;
+    top: 100px;
 }
 
 .card {
@@ -833,7 +831,6 @@ a:hover {
     margin-top: 120px;
     z-index: 1111 !important;
 }
-
 
 /***ContainerAmenity***/
 

@@ -43,7 +43,7 @@ class ApartmentRules extends React.Component {
 
     next = (e) => {
         e.preventDefault();
-        if (this.state.rulesOfResidence.length !== 2) {
+        if (this.state.rulesOfResidence.length < 2) {
             this.setState({errorMessage: "Add at least two rules."});
             return;
         }

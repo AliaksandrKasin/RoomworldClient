@@ -68,7 +68,7 @@ class ApartmentDetails extends React.Component {
                                    onChange={this.onChangeFormValue}/>
                     </div>
                     <div>
-                        <FormTextArea placeholder="Property description" minLength={400} maxLength={100000}
+                        <FormTextArea placeholder="Property description" minLength={200} maxLength={100000}
                                       required={true}
                                       value={this.state.apartmentDetails.propertyDescription}
                                       name="propertyDescription" onChange={this.onChangeFormValue}/>

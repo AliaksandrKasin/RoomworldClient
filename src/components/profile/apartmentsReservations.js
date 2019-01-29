@@ -3,7 +3,7 @@ import axios from "axios";
 import {SERVER} from "../../constants/constants";
 
 
-class Orders extends React.Component {
+class ApartmentsReservations extends React.Component {
 
     constructor(props) {
         super(props);
@@ -38,7 +38,6 @@ class Orders extends React.Component {
             <div className="container border rounded_10 mb-3 mt-5">
                 <h1>Orders for your flats</h1>
             </div>
-
             <div className="border rounded_10">
                 <table className="table">
                     <thead>
@@ -52,7 +51,6 @@ class Orders extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-
                     {(this.state.order !== undefined) ? this.state.order.map((order, index) => {
                         return <tr key={index}>
                             <td className="h6">{order.flat.id}.</td>
@@ -73,4 +71,4 @@ class Orders extends React.Component {
 
 }
 
-export default Orders;
+export default ApartmentsReservations;

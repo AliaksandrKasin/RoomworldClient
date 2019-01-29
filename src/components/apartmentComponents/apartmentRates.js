@@ -81,12 +81,12 @@ class ApartmentRates extends React.Component {
                 <div className="row m-0 mb-5">
                     <div className="col-sm mt-4 p-0 ml-3 mr-3">
                         <TimeInput mode='12h' placeholder="Check in time" onChange={(time) => this.checkInChange(time)}
-                                   value={this.state.checkInTime}/>
+                                   value={this.state.checkInTime} className="MuiInput-underline"/>
                     </div>
                     <div className="col-sm mt-4 p-0 ml-3 mr-3">
                         <TimeInput mode='12h' placeholder="Check out time"
                                    onChange={(time) => this.checkOutChange(time)}
-                                   value={this.state.checkOutTime}/>
+                                   value={this.state.checkOutTime} className="MuiInput-underline"/>
                     </div>
                 </div>
                 <div className="row m-0 mb-4 mt-4">

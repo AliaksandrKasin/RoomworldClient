@@ -13,16 +13,17 @@ class ApartmentFinish extends React.Component {
             apartmentForm.append("rulesOfResidence[][" + index + "][nameRule]", rule.nameRule);
             apartmentForm.append("rulesOfResidence[][" + index + "][isAllowed]", rule.isAllowed);
         });
-        for (let pair of apartmentForm.entries()) {
-            console.log(pair);
-        }
-        createApartment(apartmentForm);
+        createApartment(apartmentForm).then(()=>{
+            this.props.history.push("/profile/my/flats")
+        });
     }
 
     render() {
-        return <form onSubmit={this.createApartment} className="d-flex border container bg-white">
-            <div className="text-left col-sm">
-                <button className="btn-back button-size-s" type='submit'>Save</button>
+        return <form onSubmit={this.createApartment} className="d-flex border container bg-white p-0">
+            <div className="w-100 d-flex justify-content-center finish-container">
+                <div className="w-100 d-flex justify-content-center align-items-center">
+                    <button className="btn-next" type='submit'>Save</button>
+                </div>
             </div>
         </form>
     }

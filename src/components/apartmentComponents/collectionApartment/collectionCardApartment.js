@@ -3,40 +3,65 @@ import CardApartment from "./cardApartment";
 import {IMG_NOT_FOUND, SERVER} from "../../../constants/constants";
 import ApartmentFilter from "../apartmentFilter/apartmentFilter";
 import ApartmentMap from "../apartmentMap";
-import {getApartmentByParams} from "../../../services/apartmentService";
+import {getAmountApartmentByParams, getApartmentByParams} from "../../../services/apartmentService";
 import Loading from "../../extensionComponents/loading";
+import Geocode from "react-geocode";
+import ApartmentFooter from "../apartmentFooter";
 
 
 class CollectionCardApartment extends React.Component {
 
     constructor(props) {
         super(props);
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
         this.state = {
             apartments: [],
             skip: 0,
             take: 10,
-            found: 0,
             center: {
                 lat: 0,
                 lng: 0
             },
-            zoom: 15,
-            isLoad: false
+            zoom: 10,
+            isLoad: false,
+            amountApartment: 0,
+            searchParams: JSON.parse(localStorage.getItem("searchParams"))
         }
     }
 
     componentDidMount = () => {
-        debugger
         let searchParams = JSON.parse(localStorage.getItem("searchParams"));
         searchParams.skip = this.state.skip;
         searchParams.take = this.state.take;
         getApartmentByParams(searchParams).then((collectionApartments) => {
             this.setState({apartments: collectionApartments, isLoad: true});
         });
+        getAmountApartmentByParams(searchParams).then((amountApartment) => {
+            this.setState({amountApartment: amountApartment});
+        });
+        Geocode.fromAddress(searchParams.country + " " + searchParams.city)
+            .then((response) => {
+                    let geocode = response.results[0].geometry.location;
+                    this.setState({center: {lat: geocode.lat, lng: geocode.lng}});
+                },
+                (error) => {
+                    console.log(error)
+                }
+            );
     }
 
     formatDate = (date) => {
-        return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+        return date.getDate() + "/" + (+date.getMonth() + 1) + "/" + date.getFullYear();
+    }
+
+    showMore = () => {
+        let searchParams = JSON.parse(localStorage.getItem("searchParams"));
+        searchParams.skip = this.state.skip + this.state.take;
+        searchParams.take = this.state.take;
+        getApartmentByParams(searchParams).then((collectionApartments) => {
+            this.setState({apartments: [...this.state.apartments].concat(collectionApartments)});
+        });
+        this.setState({skip: searchParams.skip, take: searchParams.take});
     }
 
     collectionApartment = () => {
@@ -52,43 +77,39 @@ class CollectionCardApartment extends React.Component {
                 date={this.formatDate(new Date())}
             />
         })
-
-    }
-
-    stringPlace() {
-        /*let params = this.props.searchParams;
-        return (params.city) ? params.country + ", " + params.city : params.country;*/
     }
 
     render() {
-        return (!this.state.isLoad) ? <Loading/> : <div className="mt-3">
+        return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="mt-3">
             <div className="ml-5 mr-5">
                 <ApartmentFilter/>
             </div>
             <div className="row m-0">
                 <div className="container col-sm-6 container_flex_none container_width_none">
                     <div className="container__title border mb-4 rounded_10 p-2">
-                        <h3>{this.stringPlace()}
-                            <small className="text-muted">({this.state.found} places
-                                found)
-                            </small>
+                        <h3>
+                            <span
+                                className="text-uppercase">{(this.state.searchParams.country) && this.state.searchParams.country}</span>
+                            <span>{(this.state.searchParams.country && this.state.searchParams.city) && ", "}</span>
+                            <span
+                                className="text-uppercase">{(this.state.searchParams.city) && this.state.searchParams.city}</span>
+                            <small className="text-muted ml-2">({this.state.amountApartment} places found)</small>
                         </h3>
                     </div>
                     <div className="row m-0">
                         {this.collectionApartment()}
                     </div>
                     <div className="text-center">
-                        <button className="btn-next" type='button'>Show more
-                        </button>
+                        <button className="btn-next" type='button' onClick={this.showMore}>Show more</button>
                     </div>
                 </div>
                 <div className="map-sticky-container sticky-top col-sm-5">
                     <ApartmentMap center={this.state.center} zoom={this.state.zoom}/>
                 </div>
             </div>
+            <ApartmentFooter/>
         </div>
     }
 }
-
 
 export default CollectionCardApartment;

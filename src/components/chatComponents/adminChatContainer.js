@@ -31,6 +31,7 @@ class AdminChatContainer extends React.Component {
             .withUrl(SERVER + "/chat", {accessTokenFactory: () => localStorage.getItem("accessToken")})
             .build();
         connection.on("sendToConsultants", (text, username, id) => {
+            debugger
             if (username !== this.state.username) {
                 this.setState({
                     messages: [...this.state.messages, {text, userFrom: {email: username}}],

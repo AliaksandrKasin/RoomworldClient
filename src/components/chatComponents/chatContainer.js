@@ -40,14 +40,13 @@ class ChatContainer extends React.Component {
             }
         });
         connection.on("stateConsultants", (state) => {
-            (state && !this.state.messages.length)
-                ? this.setState({
-                    messages: [...this.state.messages, {
-                        text: "Hello, how can I help you?",
-                        username: "Consultant"
-                    }]
-                }) :
-                this.setState({consultantIsOnline: state});
+            (state && !this.state.messages.length) && this.setState({
+                messages: [...this.state.messages, {
+                    text: "Hello, how can I help you?",
+                    username: "Consultant"
+                }]
+            });
+            this.setState({consultantIsOnline: state});
         });
         connection.start()
             .then(() => {

@@ -40,3 +40,47 @@ export function getApartmentByParams(searchParams) {
             throw error;
         });
 }
+
+export function getAmountApartmentByParams(searchParams) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    return axios.post(SERVER + '/collection/apartment/amount', searchParams)
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
+
+export function getUsersApartment() {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    return axios.get(SERVER + '/collection/users/apartment')
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
+
+export function createReservation(reservationParams) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    return axios.post(SERVER + '/reservation/create', reservationParams)
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
+
+export function getUserReservations() {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    return axios.get(SERVER + '/users/reservations')
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
