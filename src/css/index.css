@@ -17,6 +17,8 @@
 @import './apartment/photos.css';
 @import './apartment/apartmentWelcome.css';
 @import './apartment/modal.css';
+@import './apartment/collectionApartment/collectionApartment.css';
+@import './buttons/button-filter.css';
 
 .app-container {
     height: 100%;
@@ -29,6 +31,10 @@
 
 .w-30 {
     width: 30%;
+}
+
+.w-60{
+    width: 60%;
 }
 
 .root-container {
@@ -142,10 +148,6 @@ a:hover {
     text-overflow: ellipsis;
 }
 
-.card-title {
-    overflow: hidden !important;
-    height: 40px !important;
-}
 
 /*input file*/
 
@@ -183,10 +185,6 @@ a:hover {
     min-width: 300px !important;
 }
 
-.container__title {
-    min-width: 350px;
-    max-width: 96%;
-}
 
 .row {
     width: 100%;
@@ -197,9 +195,6 @@ a:hover {
     /*height: 60px!important;*/
 }
 
-.card-apartment-container-img {
-    height: 300px;
-}
 
 .finish-container {
     background: url("https://get.pxhere.com/photo/architecture-house-floor-building-home-ceiling-cottage-property-living-room-room-apartment-interior-design-design-hardwood-estate-digital-art-suite-real-estate-dining-room-wood-flooring-945412.jpg") fixed center center;
@@ -270,13 +265,10 @@ a:hover {
 
 .map-sticky-container {
     position: sticky !important;
-    height: 780px;
-    top: 100px;
+    height: 850px;
+    top: 60px;
 }
 
-.card {
-    cursor: pointer;
-}
 
 .amenities {
     column-count: 4;
@@ -364,9 +356,6 @@ a:hover {
     width: 800px !important;
 }
 
-.card_size_s {
-    width: 100px;
-}
 
 .img_size_5 {
     width: 50px;

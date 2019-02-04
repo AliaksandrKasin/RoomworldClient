@@ -25,7 +25,7 @@ class UsersOrders extends React.Component {
 
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div>
-            <div className="row ml-3">
+            <div className="row">
                 <div className="container container_flex_none container_width_none">
                     <div className="row">
                         {

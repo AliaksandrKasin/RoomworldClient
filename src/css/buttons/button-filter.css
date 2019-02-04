@@ -1,0 +1,26 @@
+.btn-filters {
+    border-radius: 20px;
+    background-color: white;
+    color: #3072c6;
+    border: 1px solid #b0b3bc;
+    cursor: pointer;
+    padding: 3px 15px;
+    transition: 250ms;
+    outline: none!important;
+}
+
+.btn-filters:hover {
+    border-color: #26569b;
+    color: #26569b;
+    transition: 250ms;
+}
+
+.btn-sort:active .btn-sort-icon{
+    transform: rotateX(180deg);
+    transition: 1s;
+}
+
+.btn-sort-icon{
+    font-size: 12px;
+    padding-left: 3px;
+}

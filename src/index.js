@@ -8,6 +8,7 @@ import Menu from "./components/menu/menu";
 import Router from "./router";
 import ChatContainer from "./components/chatComponents/chatContainer";
 import ChatButton from "./components/chatComponents/chatButton";
+import {tokenIsExpired} from "./services/tokenService";
 
 ReactDOM.render(<Provider store={STORE}>
         <BrowserRouter>

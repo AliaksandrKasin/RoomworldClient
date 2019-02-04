@@ -1,0 +1,182 @@
+.card-title {
+    overflow: hidden !important;
+    height: 40px !important;
+}
+
+.card-apartment-container-img {
+    height: 300px;
+}
+
+.card_size_s {
+    width: 100px;
+}
+
+.container__title {
+    min-width: 350px;
+    max-width: 96%;
+}
+
+.card-sm {
+    min-width: 300px;
+}
+
+@media (max-width: 1260px) {
+    .card-sm {
+
+    }
+}
+
+/**/
+.apartment-filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background-color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    min-width: 320px;
+}
+
+.filter-bar-title {
+    font-size: 18px;
+}
+
+@media (max-width: 380px) {
+    .filter-bar-title {
+        display: none;
+    }
+}
+
+.filter-bar-container {
+    margin-left: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.collection-view {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.collection-view-icon {
+    font-size: 28px;
+    color: #84868b;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.collection-view-icon:hover {
+    color: #0067db;
+}
+
+.collection-view-icon-active {
+    color: #0067db;
+}
+
+.apartment-card-image {
+    width: 100%;
+    height: 300px;
+}
+
+.card-horizontal-image {
+    width: 330px;
+    height: 230px;
+}
+
+@media (max-width: 1500px) {
+    .apartment-card-image {
+        height: 250px;
+    }
+}
+
+.apartment-location-container {
+    height: 30px;
+    background-color: rgba(96, 98, 103, 0.6);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.apartment-location-container-hor {
+    height: 30px;
+    background-color: rgba(96, 98, 103, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.apartment-location-title {
+    color: white;
+    font-size: 18px;
+    padding: 5px 15px;
+}
+
+.card-price-container {
+    background-color: #f6f7f8;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    /*clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);*/
+}
+
+.card-price-container-hor {
+    height: 230px;
+    background-color: #f6f7f8;
+    display: flex;
+
+}
+
+.card-hor-img-container {
+    width: 390px;
+}
+
+.container-favorite {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.container-favorite:hover .fa-heart {
+    font-size: 21px;
+    color: #d22b07;
+}
+
+.fa-heart {
+    font-size: 19px;
+}
+
+.card-shadow:hover {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .3);
+}
+
+.description-icon {
+    font-size: 22px;
+    color: #4a88bf;
+}
+
+.carousel-control-prev-hor {
+    width: 30px;
+}
+
+.carousel-control-next-hor {
+    width: 30px;
+}
+
+.container-desc {
+    height: 180px;
+}
+
+.leaflet-container {
+    height: 900px;
+    width: 100%;
+}

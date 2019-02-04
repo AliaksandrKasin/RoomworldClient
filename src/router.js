@@ -12,6 +12,8 @@ import ServerError from "./components/extensionComponents/serverError";
 import ApartmentMain from "./components/apartmentComponents/apartmentMain";
 import ShowApartment from "./components/apartmentComponents/showApartment/showApartment";
 import CollectionCardApartment from "./components/apartmentComponents/collectionApartment/collectionCardApartment";
+import { withRouter } from 'react-router-dom'
+import OpenStreetMap from "./components/apartmentComponents/showApartment/openStreetMap";
 
 class Router extends React.Component {
     render() {
@@ -21,6 +23,7 @@ class Router extends React.Component {
             <Route path='/search/apartment' component={CollectionCardApartment}/>
             <Route path='/vacation-rental' component={ShowApartment}/>
             <Route path={'/registration'} component={RegistrationUser}/>
+            <Route path={'/open-street-map'} component={OpenStreetMap}/>
 
             <Route path={'/password/reset'} component={ResetPassword}/>
             <Route path={'/change/password/:token'} component={ChangePasswordByToken}/>
@@ -33,4 +36,4 @@ class Router extends React.Component {
     }
 }
 
-export default Router;
+export default withRouter(Router);
