@@ -1,7 +1,7 @@
 import * as React from "react";
-import FormSelect from "../baseComponents/formSelect";
-import FormInput from "../baseComponents/formInput";
-import {setApartmentRates} from "../../actions/apartmentActions/apartmentActions";
+import FormSelect from "../../baseComponents/formSelect";
+import FormInput from "../../baseComponents/formInput";
+import {setApartmentRates} from "../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 import TimeInput from 'material-ui-time-picker'
 

@@ -1,13 +1,10 @@
 import {createStore} from 'redux';
 import {combineReducers} from 'redux'
-
-import profileReducer from "./reducers/profileReducer";
 import chatReducer from "./reducers/chatReducer";
 import apartmentReducer from "./reducers/apartmentReducer";
 
 const reducers = combineReducers({
     apartmentReducer,
-    profileReducer,
     chatReducer
 });
 

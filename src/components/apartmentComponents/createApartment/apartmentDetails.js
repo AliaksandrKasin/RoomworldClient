@@ -1,11 +1,11 @@
 import * as React from "react";
-import FormInput from "../baseComponents/formInput";
-import FormTextArea from "../baseComponents/formTextArea";
-import FormSelect from "../baseComponents/formSelect";
-import {getTypesApartment} from "../../services/apartmentService";
+import FormInput from "../../baseComponents/formInput";
+import FormTextArea from "../../baseComponents/formTextArea";
+import FormSelect from "../../baseComponents/formSelect";
+import {getTypesApartment} from "../../../services/apartmentServices/apartmentService";
 import connect from "react-redux/es/connect/connect";
-import {setApartmentDetails, setApartmentTypes} from "../../actions/apartmentActions/apartmentActions";
-import Loading from "../extensionComponents/loading";
+import {setApartmentDetails, setApartmentTypes} from "../../../actions/apartmentActions/apartmentActions";
+import Loading from "../../extensionComponents/loading";
 
 class ApartmentDetails extends React.Component {
 

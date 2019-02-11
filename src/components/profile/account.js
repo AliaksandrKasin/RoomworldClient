@@ -1,7 +1,7 @@
 import * as React from "react";
 import FormInput from "../baseComponents/formInput";
 import {Link} from "react-router-dom";
-import {changePassword} from "../../services/profileService";
+import {changePassword} from "../../services/accountServices/profileService";
 import AlertError from "../alertComponents/alertError";
 
 class Account extends React.Component {

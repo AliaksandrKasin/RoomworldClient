@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import {changePasswordByToken} from "../../services/profileService";
+import {changePasswordByToken} from "../../services/accountServices/profileService";
 import AlertError from "../alertComponents/alertError";
 
 class ChangePasswordByToken extends React.Component {

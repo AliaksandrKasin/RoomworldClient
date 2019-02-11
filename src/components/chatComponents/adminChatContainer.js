@@ -1,9 +1,9 @@
 import * as React from "react";
-import {getMessagesByEmail} from "../../services/chatService";
+import {getMessagesByEmail} from "../../services/chatServices/chatService";
 import AdminChatMessage from "./adminChatMessage";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import {SERVER} from "../../constants/constants";
+import {SERVER} from "../../constants";
 import * as signalR from "@aspnet/signalr";
 
 class AdminChatContainer extends React.Component {

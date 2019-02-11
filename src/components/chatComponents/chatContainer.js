@@ -4,7 +4,7 @@ import {chatState} from "../../actions/chatActions/chatActions";
 import connect from "react-redux/es/connect/connect";
 import ChatMessage from "./chatMessage";
 import * as signalR from "@aspnet/signalr";
-import {SERVER} from "../../constants/constants";
+import {SERVER} from "../../constants";
 
 
 class ChatContainer extends React.Component {

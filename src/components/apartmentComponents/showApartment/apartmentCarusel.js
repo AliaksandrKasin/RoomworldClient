@@ -1,5 +1,5 @@
 import * as React from "react";
-import {SERVER} from "../../../constants/constants";
+import {SERVER} from "../../../constants";
 
 class ApartmentCarousel extends React.Component {
 

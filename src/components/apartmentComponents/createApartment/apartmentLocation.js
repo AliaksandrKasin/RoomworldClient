@@ -1,11 +1,11 @@
 import * as React from "react";
-import FormSelect from "../baseComponents/formSelect";
-import FormInput from "../baseComponents/formInput";
+import FormSelect from "../../baseComponents/formSelect";
+import FormInput from "../../baseComponents/formInput";
 import countryList from 'react-select-country-list'
 import ApartmentMap from "./apartmentMap";
 import Geocode from "react-geocode";
-import AlertError from "../alertComponents/alertError";
-import {setApartmentLocation} from "../../actions/apartmentActions/apartmentActions";
+import AlertError from "../../alertComponents/alertError";
+import {setApartmentLocation} from "../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 
 class ApartmentLocation extends React.Component {

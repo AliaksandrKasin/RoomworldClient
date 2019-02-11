@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {SERVER} from "../../../constants/constants";
+import {SERVER} from "../../../constants";
 
 class ApartmentSmallCard extends React.Component {
 

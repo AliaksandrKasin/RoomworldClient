@@ -1,7 +1,7 @@
 import * as React from "react";
 import ApartmentSmallCard from "../apartmentComponents/showApartment/apartmentSmallCard";
 import Loading from "../extensionComponents/loading";
-import {getUsersApartment} from "../../services/apartmentService";
+import {getUsersApartment} from "../../services/apartmentServices/apartmentService";
 import Link from "../../../node_modules/@material-ui/core/Link/Link";
 
 class UsersApartment extends React.Component {

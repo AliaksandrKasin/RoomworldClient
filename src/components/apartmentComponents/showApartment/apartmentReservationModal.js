@@ -1,6 +1,6 @@
 import * as React from "react";
 import Modal from "react-responsive-modal";
-import {createReservation} from "../../../services/apartmentService";
+import {createReservation} from "../../../services/apartmentServices/apartmentService";
 
 class ApartmentReservationModal extends React.Component {
 

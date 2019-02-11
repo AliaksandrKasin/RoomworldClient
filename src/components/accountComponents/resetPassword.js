@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
-import {resetPassword} from "../../services/tokenService";
+import {resetPassword} from "../../services/accountServices/tokenService";
 import AlertSuccess from "../alertComponents/alertSuccess";
 
 class ResetPassword extends React.Component {

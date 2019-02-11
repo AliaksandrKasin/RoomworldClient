@@ -1,7 +1,7 @@
 import * as React from "react";
 import connect from "react-redux/es/connect/connect";
 import objectToFormData from "object-to-formdata"
-import {createApartment} from "../../services/apartmentService";
+import {createApartment} from "../../../services/apartmentServices/apartmentService";
 
 class ApartmentFinish extends React.Component {
 

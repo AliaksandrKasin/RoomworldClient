@@ -8,7 +8,7 @@ import Menu from "./components/menu/menu";
 import Router from "./router";
 import ChatContainer from "./components/chatComponents/chatContainer";
 import ChatButton from "./components/chatComponents/chatButton";
-import {tokenIsExpired} from "./services/tokenService";
+import {tokenIsExpired} from "./services/accountServices/tokenService";
 
 ReactDOM.render(<Provider store={STORE}>
         <BrowserRouter>
@@ -16,8 +16,8 @@ ReactDOM.render(<Provider store={STORE}>
                 <Menu/>
                 <main>
                     <Router/>
-                    {(localStorage.getItem('accessToken')) && <ChatContainer/>}
-                    {(localStorage.getItem('accessToken')) && <ChatButton/>}
+                    {/*(localStorage.getItem('accessToken')) && <ChatContainer/>*/}
+                    {/*(localStorage.getItem('accessToken')) && <ChatButton/>*/}
                 </main>
                 <footer>
                 </footer>

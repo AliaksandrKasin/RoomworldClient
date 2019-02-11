@@ -1,14 +1,14 @@
 import React from "react";
 import CardApartment from "./cardApartment";
-import ApartmentMap from "../apartmentMap";
-import {getAmountApartmentByParams, getApartmentByParams} from "../../../services/apartmentService";
+import {getAmountApartmentByParams, getApartmentByParams} from "../../../services/apartmentServices/apartmentService";
 import Loading from "../../extensionComponents/loading";
 import Geocode from "react-geocode";
-import ApartmentFooter from "../apartmentFooter";
+import ApartmentFooter from "../createApartment/apartmentFooter";
 import ReactCountryFlag from "react-country-flag";
-import {Map} from 'react-leaflet'
 import CardHorizontalApartment from "./cardHorizontalApartment";
 import OpenStreetMap from "../showApartment/openStreetMap";
+import SortSelectApartment from "./sortSelectApartment";
+import FiltersModalApartment from "./filtersModalApartment";
 
 class CollectionCardApartment extends React.Component {
 
@@ -28,7 +28,9 @@ class CollectionCardApartment extends React.Component {
             amountApartment: 0,
             searchParams: JSON.parse(localStorage.getItem("searchParams")),
             shortCountryName: "",
-            cardView: false
+            cardView: false,
+            modalFiltersIsOpen: false,
+            mapIsHidden: (window.innerWidth <= 974)
         }
     }
 
@@ -52,6 +54,16 @@ class CollectionCardApartment extends React.Component {
                     console.log(error)
                 }
             );
+
+        window.addEventListener("resize", this.resizeWindow);
+    }
+
+    resizeWindow = (e) => {
+        let b = e.target.innerWidth;
+        (e.target.innerWidth < 620) ?
+            this.setState({cardView: true}) : this.setState({cardView: false});
+        (e.target.innerWidth <= 974) ?
+            this.setState({mapIsHidden: true}) : this.setState({mapIsHidden: false});
     }
 
     formatDate = (date) => {
@@ -97,58 +109,58 @@ class CollectionCardApartment extends React.Component {
                                          amauntBath={apartment.amountBathroom}
                                          amountBed={apartment.amountBedroom}
                                          typeApart={apartment.apartmentTypeString}
-                                         accommodates={apartment.accommodates}/>
+                                         accommodates={apartment.accommodates}
+                                         description={apartment.propertyDescription}/>
         })
     }
 
     render() {
-        return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="mt-3">
-            <div className="ml-5 mr-5">
-                {/*<ApartmentFilter/>*/}
-            </div>
-            <div className="border-top border-bottom apartment-filter-bar">
-                <div className="mb-1 filter-bar-container">
-                    <div className="d-flex">
+        return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
+            <div className="border-bottom apartment-filter-bar">
+                <div className="mb-1 d-flex align-items-center justify-content-center text-anthracite h-100">
+                    {/*<div className="d-flex">
                         <div><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
                         <span className="text-capitalize filter-bar-title ml-2">{this.state.searchParams.country}</span>
                         <span
                             className="text-capitalize filter-bar-title">{(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}</span>
                         <span
                             className="ml-2">({this.state.apartments.length + " of " + this.state.amountApartment})</span>
+                    </div>*/}
+                    <div className="d-flex justify-content-center align-items-center ml-3 h-100">
+                        <SortSelectApartment/>
                     </div>
-                    <div>
-                        <button className="btn-filters ml-3"><i className="fas fa-sliders-h"></i> <span>Filters</span>
+                    <div className="ml-3">
+                        <button className="btn-filters" onClick={() => this.setState({modalFiltersIsOpen: true})}>
+                            <i className="fas fa-sliders-h pr-2"></i>
+                            <span>Filters</span>
                         </button>
                     </div>
                     <div className="ml-3">
-                        <button className="btn-filters btn-sort"><span>Sort</span>
-                            <i className="fas fa-arrow-down btn-sort-icon"></i></button>
+                        <button className="btn-filters">
+                            <i className="fas fa-map-marked-alt pr-2"></i>
+                            <span>Map</span>
+                        </button>
                     </div>
                 </div>
             </div>
             <div className="row m-0 justify-content-center">
-                <div className="container col-sm-6 m-0 mt-2">
-                    <div className="w-100 collection-view">
-                        <div className="mr-3">
-                            <i className={(!this.state.cardView) ? "fas fa-th collection-view-icon" : "fas fa-th collection-view-icon collection-view-icon-active"}
-                               onClick={() => this.setState({cardView: true})}></i>
-                            <i className={(this.state.cardView) ? "fas fa-th-list collection-view-icon ml-2" : "fas fa-th-list collection-view-icon ml-2 collection-view-icon-active"}
-                               onClick={() => this.setState({cardView: false})}></i>
-                        </div>
-                    </div>
-                    <div className="row m-0">
+                <div className="container container-collection-apartment col-sm-6 m-0 mt-2">
+                    <div className="row m-0 d-flex justify-content-center mt-3">
                         {this.collectionApartment()}
                     </div>
                     <div className="text-center">
                         <button className="btn-next" type='button' onClick={this.showMore}>Show more</button>
                     </div>
                 </div>
-                <div className="map-sticky-container sticky-top col-sm-6">
-                    {/*<ApartmentMap center={this.state.center} zoom={this.state.zoom}/>*/}
-                    <OpenStreetMap/>
-                </div>
+                {
+                    (!this.state.mapIsHidden) && < div className="map-sticky-container sticky-top col-sm-6">
+                        <OpenStreetMap/>
+                    </div>
+                }
             </div>
             <ApartmentFooter/>
+            <FiltersModalApartment open={this.state.modalFiltersIsOpen}
+                                   onClose={() => this.setState({modalFiltersIsOpen: false})}/>
         </div>
     }
 }

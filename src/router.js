@@ -9,7 +9,7 @@ import PageNotFound from "./components/pageNotFound"
 import AdminGeneral from "./components/admin/adminGeneral";
 import RegistrationUser from "./components/accountComponents/registrationUser";
 import ServerError from "./components/extensionComponents/serverError";
-import ApartmentMain from "./components/apartmentComponents/apartmentMain";
+import ApartmentMain from "./components/apartmentComponents/createApartment/apartmentMain";
 import ShowApartment from "./components/apartmentComponents/showApartment/showApartment";
 import CollectionCardApartment from "./components/apartmentComponents/collectionApartment/collectionCardApartment";
 import { withRouter } from 'react-router-dom'

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import FieldRegistration from "./fieldRegistration";
 import ReactPhoneInput from "react-phone-input-2";
 import AlertError from "../alertComponents/alertError";
-import {registration} from "../../services/tokenService";
+import {registration} from "../../services/accountServices/tokenService";
 import {isValidNumber} from "libphonenumber-js";
 
 class RegistrationUser extends React.Component {

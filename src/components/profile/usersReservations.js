@@ -1,6 +1,6 @@
 import * as React from "react";
 import ApartmentSmallCard from "../apartmentComponents/showApartment/apartmentSmallCard";
-import {getUserReservations} from "../../services/apartmentService";
+import {getUserReservations} from "../../services/apartmentServices/apartmentService";
 import Loading from "../extensionComponents/loading";
 
 class UsersOrders extends React.Component {

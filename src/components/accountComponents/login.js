@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {login} from "../../services/tokenService";
+import {login} from "../../services/accountServices/tokenService";
 import AlertError from "../alertComponents/alertError";
 
 class Login extends React.Component {

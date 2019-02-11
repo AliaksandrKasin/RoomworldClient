@@ -1,6 +1,6 @@
 import * as React from "react";
-import AlertError from "../alertComponents/alertError";
-import {setApartmentImages} from "../../actions/apartmentActions/apartmentActions";
+import AlertError from "../../alertComponents/alertError";
+import {setApartmentImages} from "../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 
 class ApartmentPhotos extends React.Component {

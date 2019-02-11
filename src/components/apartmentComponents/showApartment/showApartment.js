@@ -7,11 +7,11 @@ import ApartmentMenu from "./apartmentMenu";
 import QuickRent from "./apartmentQuickRent";
 import Fasilities from "./apartmentAmenity";
 import scrollToComponent from 'react-scroll-to-component';
-import {getApartmentById} from "../../../services/apartmentService";
+import {getApartmentById} from "../../../services/apartmentServices/apartmentService";
 import Loading from "../../extensionComponents/loading";
-import ApartmentMap from "../apartmentMap";
-import RuleSequence from "../rules/ruleSequence";
-import ApartmentFooter from "../apartmentFooter";
+import ApartmentMap from "../createApartment/apartmentMap";
+import RuleSequence from "../createApartment/rules/ruleSequence";
+import ApartmentFooter from "../createApartment/apartmentFooter";
 import connect from "react-redux/es/connect/connect";
 import Geocode from "react-geocode";
 

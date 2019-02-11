@@ -1,9 +1,9 @@
 import * as React from "react";
 import AdminChatDialog from "./adminChatDialog";
 import * as signalR from "@aspnet/signalr";
-import {SERVER} from "../../constants/constants";
+import {SERVER} from "../../constants";
 import axios from "axios";
-import {getAllDialogs} from "../../services/chatService";
+import {getAllDialogs} from "../../services/chatServices/chatService";
 
 
 class AdminChat extends React.Component {

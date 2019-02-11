@@ -1,7 +1,7 @@
 import * as React from "react";
 import DatePicker from "react-date-picker";
 import QuickRentAdvice from "./quickRentAdvice";
-import {createReservation} from "../../../services/apartmentService";
+import {createReservation} from "../../../services/apartmentServices/apartmentService";
 import ApartmentReservationModal from "./apartmentReservationModal";
 
 class ApartmentQuickRent extends React.Component {

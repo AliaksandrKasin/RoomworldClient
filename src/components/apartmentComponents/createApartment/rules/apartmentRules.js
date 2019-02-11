@@ -2,8 +2,8 @@ import * as React from "react";
 import RuleSequence from "./ruleSequence";
 import ModalCreateRule from "./modalCreateRule";
 import connect from "react-redux/es/connect/connect";
-import {setApartmentRules} from "../../../actions/apartmentActions/apartmentActions";
-import AlertError from "../../alertComponents/alertError";
+import {setApartmentRules} from "../../../../actions/apartmentActions/apartmentActions";
+import AlertError from "../../../alertComponents/alertError";
 
 
 class ApartmentRules extends React.Component {

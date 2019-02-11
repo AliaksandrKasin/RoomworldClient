@@ -20,9 +20,45 @@
 @import './apartment/collectionApartment/collectionApartment.css';
 @import './buttons/button-filter.css';
 
+.page-not-fount{
+    background-color: #005595;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top:0;
+}
+
+.text-dark-green{
+    color: #00935a;
+}
+
+.font-weight-6{
+    font-weight: 600;
+}
+
+.row{
+    margin: 0;
+}
+
+.text-anthracite{
+    color: #5e6d77;
+}
+
+.error-number{
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4384B3;
+    opacity: 0.8;
+}
+
+.error-page-title{
+    color: #ededed;
+    opacity: 0.8;
+}
+
 .app-container {
     height: 100%;
     position: relative;
+    min-width: 320px;
 }
 
 .h-35 {
@@ -33,7 +69,7 @@
     width: 30%;
 }
 
-.w-60{
+.w-60 {
     width: 60%;
 }
 
@@ -42,8 +78,17 @@
 }
 
 .styles_modal__gNwvD {
-    height: 400px !important;
-    min-width: 360px !important;
+    /*height: 400px !important;
+    min-width: 360px !important;*/
+    max-width: 1600px;
+}
+
+.styles_closeButton__20ID4 {
+    outline: none !important;
+}
+
+.styles_closeIcon__1QwbI {
+    cursor: pointer;
 }
 
 @media (max-width: 1100px) {
@@ -73,7 +118,7 @@
 }
 
 .MuiInput-underline {
-    display: block!important;
+    display: block !important;
     width: 100%;
     height: 56px;
     font-size: 16px;
@@ -148,7 +193,6 @@ a:hover {
     text-overflow: ellipsis;
 }
 
-
 /*input file*/
 
 /**/
@@ -185,7 +229,6 @@ a:hover {
     min-width: 300px !important;
 }
 
-
 .row {
     width: 100%;
 }
@@ -194,7 +237,6 @@ a:hover {
     font-size: 1rem;
     /*height: 60px!important;*/
 }
-
 
 .finish-container {
     background: url("https://get.pxhere.com/photo/architecture-house-floor-building-home-ceiling-cottage-property-living-room-room-apartment-interior-design-design-hardwood-estate-digital-art-suite-real-estate-dining-room-wood-flooring-945412.jpg") fixed center center;
@@ -213,7 +255,7 @@ a:hover {
     }
 
     .map-sticky-container {
-        max-width: 40%;
+        max-width: 50%;
     }
 }
 
@@ -230,7 +272,7 @@ a:hover {
     }
 
     .map-sticky-container {
-        display: none;
+        /*display: none;*/
     }
 
     .container_flex_none {
@@ -268,7 +310,6 @@ a:hover {
     height: 850px;
     top: 60px;
 }
-
 
 .amenities {
     column-count: 4;
@@ -355,7 +396,6 @@ a:hover {
 .container-width-800 {
     width: 800px !important;
 }
-
 
 .img_size_5 {
     width: 50px;
@@ -702,14 +742,6 @@ a:hover {
 
 .react-tel-input .flag-dropdown {
     background-color: white !important;
-}
-
-.blur {
-    -webkit-filter: blur(5px) !important;
-    -moz-filter: blur(5px) !important;
-    -o-filter: blur(5px) !important;
-    -ms-filter: blur(5px) !important;
-    filter: blur(5px) !important;
 }
 
 /***Counter***/

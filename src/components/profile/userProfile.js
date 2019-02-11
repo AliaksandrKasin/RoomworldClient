@@ -2,7 +2,7 @@ import * as React from "react";
 import PhoneInput from "../baseComponents/phoneInput";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
-import {SERVER} from "../../constants/constants";
+import {SERVER} from "../../constants";
 import {isValidNumber} from "libphonenumber-js";
 import FormInput from "../baseComponents/formInput";
 import Loading from "../extensionComponents/loading";

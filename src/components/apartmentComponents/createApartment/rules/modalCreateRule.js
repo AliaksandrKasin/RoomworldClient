@@ -1,6 +1,6 @@
 import * as React from "react";
 import Modal from 'react-responsive-modal';
-import FormInput from "../../baseComponents/formInput";
+import FormInput from "../../../baseComponents/formInput";
 import Switch from "react-switch";
 
 class ModalCreateRule extends React.Component {

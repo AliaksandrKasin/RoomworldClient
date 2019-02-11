@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import {setSelectedApartment} from "../../../actions/apartmentActions/apartmentActions";
-import {SERVER} from "../../../constants/constants";
+import {SERVER} from "../../../constants";
 import ReactCountryFlag from "react-country-flag";
 import StarRatings from 'react-star-ratings';
 

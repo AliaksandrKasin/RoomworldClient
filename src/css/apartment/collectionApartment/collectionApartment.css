@@ -16,17 +16,6 @@
     max-width: 96%;
 }
 
-.card-sm {
-    min-width: 300px;
-}
-
-@media (max-width: 1260px) {
-    .card-sm {
-
-    }
-}
-
-/**/
 .apartment-filter-bar {
     position: sticky;
     top: 0;
@@ -119,7 +108,6 @@
     padding: 5px 10px;
     display: flex;
     align-items: center;
-    /*clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);*/
 }
 
 .card-price-container-hor {
@@ -173,10 +161,72 @@
 }
 
 .container-desc {
-    height: 180px;
+    height: 165px;
+    background-color: white;
 }
 
 .leaflet-container {
-    height: 900px;
+    height: 92vh;
     width: 100%;
+}
+
+.apartment-filter-container {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.card-horizontal-container {
+    min-width: 613px;
+}
+
+@media (max-width: 1300px) {
+    .map-sticky-container {
+        max-width: 45% !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .map-sticky-container {
+        max-width: 39% !important;
+    }
+}
+
+@media (max-width: 1060px) {
+    .map-sticky-container {
+        max-width: 34% !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container-collection-apartment {
+        flex: 1 0 50% !important;
+    }
+}
+
+.card-sm {
+    min-width: 300px;
+}
+
+@media (max-width: 620px) {
+    .card-sm {
+        flex: 1 0 50%!important;
+        max-width: 100%!important;
+    }
+}
+
+.btn-sort{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none!important;
+    display: flex;
+    align-items: center;
+    color: #606267;
+    height: 100%;
+    padding: 10px 20px;
+}
+
+.btn-sort:active{
+
 }

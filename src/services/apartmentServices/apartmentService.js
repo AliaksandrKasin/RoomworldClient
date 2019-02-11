@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SERVER} from "../constants/constants";
+import {SERVER} from "../../constants";
 
 export function getTypesApartment() {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
