@@ -1,6 +1,6 @@
 import * as React from "react";
 import Modal from "react-responsive-modal";
-import ApartmentFilter from "./apartmentFilter/apartmentFilter";
+import ApartmentFilter from "./apartmentFilter";
 
 class FiltersModalApartment extends React.Component {
     render() {

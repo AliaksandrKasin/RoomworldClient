@@ -1,6 +1,6 @@
 .cssload-thecube {
-    width: 244px;
-    height: 244px;
+    width: 100px;
+    height: 100px;
     margin: 163px auto 0;
     position: relative;
     transform: rotateZ(45deg);
@@ -179,21 +179,21 @@
 
 @media (max-width: 1366px){
     .cssload-thecube {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
     }
 }
 
 @media (max-width: 768px){
     .cssload-thecube {
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
     }
 }
 
 @media (max-width: 500px){
     .cssload-thecube {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
     }
 }

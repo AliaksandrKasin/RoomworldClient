@@ -1,0 +1,20 @@
+.card-horizontal {
+    min-width: 613px;
+}
+
+.carousel-control-prev_size_s {
+    width: 30px;
+}
+
+.carousel-control-next_size_s {
+    width: 30px;
+}
+
+.card-horizontal-box-img {
+    width: 450px;
+}
+
+.card-horizontal__image {
+    width: 330px;
+    height: 230px;
+}

@@ -20,6 +20,11 @@
 @import './apartment/collectionApartment/collectionApartment.css';
 @import './buttons/button-filter.css';
 
+@import './apartment/collectionApartment/cards/card.css';
+@import 'apartment/collectionApartment/cards/cardVertical.css';
+@import './apartment/collectionApartment/cards/cardHorizontal.css';
+@import './apartment/collectionApartment/apartmentFilter/apartment-filter.css';
+
 .page-not-fount{
     background-color: #005595;
     position: absolute;
@@ -28,7 +33,11 @@
     top:0;
 }
 
-.text-dark-green{
+.container-overflow-hidden{
+    overflow: hidden!important;
+}
+
+.text_color_dark-green{
     color: #00935a;
 }
 
@@ -305,11 +314,7 @@ a:hover {
     max-width: 900px;
 }
 
-.map-sticky-container {
-    position: sticky !important;
-    height: 850px;
-    top: 60px;
-}
+
 
 .amenities {
     column-count: 4;
@@ -793,7 +798,7 @@ a:hover {
 /***ContainerAmenity***/
 
 .sticky-top {
-    z-index: 2 !important;
+    z-index: 2;
 }
 
 .container-line {

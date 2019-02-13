@@ -1,14 +1,14 @@
 import React from "react";
-import CardApartment from "./cardApartment";
+import CardApartment from "./cards/cardVerticalApartment";
 import {getAmountApartmentByParams, getApartmentByParams} from "../../../services/apartmentServices/apartmentService";
 import Loading from "../../extensionComponents/loading";
 import Geocode from "react-geocode";
 import ApartmentFooter from "../createApartment/apartmentFooter";
-import ReactCountryFlag from "react-country-flag";
-import CardHorizontalApartment from "./cardHorizontalApartment";
+import CardHorizontalApartment from "./cards/cardHorizontalApartment";
 import OpenStreetMap from "../showApartment/openStreetMap";
 import SortSelectApartment from "./sortSelectApartment";
-import FiltersModalApartment from "./filtersModalApartment";
+import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
+import ReactCountryFlag from "react-country-flag";
 
 class CollectionCardApartment extends React.Component {
 
@@ -28,7 +28,7 @@ class CollectionCardApartment extends React.Component {
             amountApartment: 0,
             searchParams: JSON.parse(localStorage.getItem("searchParams")),
             shortCountryName: "",
-            cardView: false,
+            cardView: (window.innerWidth < 620),
             modalFiltersIsOpen: false,
             mapIsHidden: (window.innerWidth <= 974)
         }
@@ -82,52 +82,30 @@ class CollectionCardApartment extends React.Component {
 
     collectionApartment = () => {
         return this.state.apartments.map((apartment, index) => {
-            return (this.state.cardView) ? <CardApartment
-                    id={apartment.id}
-                    key={index}
-                    name={apartment.headTitle}
-                    images={apartment.images}
-                    cardText={apartment.propertyDescription}
-                    cost={apartment.apartmentRates}
-                    location={apartment.apartmentLocation}
-                    date={this.formatDate(new Date())}
-                    shortCountryName={this.state.shortCountryName}
-                    amauntBath={apartment.amountBathroom}
-                    amountBed={apartment.amountBedroom}
-                    typeApart={apartment.apartmentTypeString}
-                    accommodates={apartment.accommodates}
-                /> :
-                <CardHorizontalApartment id={apartment.id}
-                                         key={index}
-                                         name={apartment.headTitle}
-                                         images={apartment.images}
-                                         cardText={apartment.propertyDescription}
-                                         cost={apartment.apartmentRates}
-                                         location={apartment.apartmentLocation}
-                                         date={this.formatDate(new Date())}
-                                         shortCountryName={this.state.shortCountryName}
-                                         amauntBath={apartment.amountBathroom}
-                                         amountBed={apartment.amountBedroom}
-                                         typeApart={apartment.apartmentTypeString}
-                                         accommodates={apartment.accommodates}
-                                         description={apartment.propertyDescription}/>
+            return (this.state.cardView) ?
+                <CardApartment key={index} apartment={apartment} shortCountryName={this.state.shortCountryName}/> :
+                <CardHorizontalApartment key={index} apartment={apartment}
+                                         shortCountryName={this.state.shortCountryName}/>
         })
+    }
+
+    onCloseMap = () => {
+        this.setState({mapIsHidden: true});
     }
 
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
             <div className="border-bottom apartment-filter-bar">
-                <div className="mb-1 d-flex align-items-center justify-content-center text-anthracite h-100">
-                    {/*<div className="d-flex">
-                        <div><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
-                        <span className="text-capitalize filter-bar-title ml-2">{this.state.searchParams.country}</span>
-                        <span
-                            className="text-capitalize filter-bar-title">{(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}</span>
-                        <span
-                            className="ml-2">({this.state.apartments.length + " of " + this.state.amountApartment})</span>
-                    </div>*/}
-                    <div className="d-flex justify-content-center align-items-center ml-3 h-100">
-                        <SortSelectApartment/>
+                <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
+                    <div className="d-flex align-items-center">
+                        <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
+                        <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
+                            {this.state.searchParams.country}
+                            {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}
+                            </span>
+                        <span className="ml-2 text-dark h6 font-weight-normal pt-1">
+                            {"( " + this.state.apartments.length + " of " + this.state.amountApartment + " )"}
+                            </span>
                     </div>
                     <div className="ml-3">
                         <button className="btn-filters" onClick={() => this.setState({modalFiltersIsOpen: true})}>
@@ -135,17 +113,23 @@ class CollectionCardApartment extends React.Component {
                             <span>Filters</span>
                         </button>
                     </div>
-                    <div className="ml-3">
-                        <button className="btn-filters">
-                            <i className="fas fa-map-marked-alt pr-2"></i>
-                            <span>Map</span>
-                        </button>
-                    </div>
+                    {
+                        (this.state.mapIsHidden) && <div className="ml-3">
+                            <button className="btn-filters" onClick={() => this.setState({mapIsHidden: false})}>
+                                <i className="fas fa-map-marked-alt pr-2"></i>
+                                <span>Map</span>
+                            </button>
+                        </div>
+                    }
                 </div>
             </div>
             <div className="row m-0 justify-content-center">
                 <div className="container container-collection-apartment col-sm-6 m-0 mt-2">
-                    <div className="row m-0 d-flex justify-content-center mt-3">
+                    <div
+                        className="row m-0 d-flex justify-content-center mt-1">
+                        <div className="d-flex justify-content-end align-items-center w-100">
+                            <SortSelectApartment/>
+                        </div>
                         {this.collectionApartment()}
                     </div>
                     <div className="text-center">
@@ -154,7 +138,7 @@ class CollectionCardApartment extends React.Component {
                 </div>
                 {
                     (!this.state.mapIsHidden) && < div className="map-sticky-container sticky-top col-sm-6">
-                        <OpenStreetMap/>
+                        <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)} apartments={this.state.apartments}/>
                     </div>
                 }
             </div>

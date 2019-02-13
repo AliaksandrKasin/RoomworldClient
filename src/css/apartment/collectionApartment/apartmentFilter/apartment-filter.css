@@ -1,0 +1,33 @@
+.apartment-filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background-color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    min-width: 320px;
+    padding-left: 36px;
+}
+
+.filter-bar-title {
+    font-size: 18px;
+}
+
+.filter-bar-container {
+    margin-left: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.apartment-filter-container {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media (max-width: 380px) {
+    .filter-bar-title {
+        display: none;
+    }
+}
