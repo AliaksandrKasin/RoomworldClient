@@ -9,6 +9,7 @@ import OpenStreetMap from "../showApartment/openStreetMap";
 import SortSelectApartment from "./sortSelectApartment";
 import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
 import ReactCountryFlag from "react-country-flag";
+import SearchBar from "./searchBar/searchBar";
 
 class CollectionCardApartment extends React.Component {
 
@@ -95,7 +96,8 @@ class CollectionCardApartment extends React.Component {
 
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
-            <div className="border-bottom apartment-filter-bar">
+            <SearchBar/>
+            <div className="apartment-filter-bar border-bottom border-d-top">
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
                     <div className="d-flex align-items-center">
                         <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
@@ -110,7 +112,7 @@ class CollectionCardApartment extends React.Component {
                     <div className="ml-3">
                         <button className="btn-filters" onClick={() => this.setState({modalFiltersIsOpen: true})}>
                             <i className="fas fa-sliders-h pr-2"></i>
-                            <span>Filters</span>
+                            <span>More Filters</span>
                         </button>
                     </div>
                     {
@@ -138,7 +140,8 @@ class CollectionCardApartment extends React.Component {
                 </div>
                 {
                     (!this.state.mapIsHidden) && < div className="map-sticky-container sticky-top col-sm-6">
-                        <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)} apartments={this.state.apartments}/>
+                        <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)}
+                                       apartments={this.state.apartments}/>
                     </div>
                 }
             </div>

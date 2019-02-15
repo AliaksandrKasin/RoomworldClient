@@ -17,14 +17,19 @@ button.react-date-picker__button__icon.react-date-picker__clear-button {
 
 .react-date-picker__button__input {
     cursor: pointer;
-    height: 60px;
+    height: 58px;
     /*pointer-events: none;*/
 }
 
 .react-date-picker {
     border-radius: 6px !important;
-    margin-right: 5px;
-    margin-left: 15px;
+    /*margin-right: 5px;*/
+    margin-left: 6px;
+}
+
+.react-date-picker:hover {
+    border-color: #2a6ebb!important;
+    transition: 0.4s;
 }
 
 .react-date-picker__calendar--above-label {
@@ -123,6 +128,7 @@ button.react-date-picker__button__icon.react-date-picker__clear-button {
 .react-date-picker__calendar {
     left: 0 !important;
     top: 65px !important;
+    z-index: 10 !important;
 }
 
 @media (max-width: 770px) {
@@ -132,7 +138,7 @@ button.react-date-picker__button__icon.react-date-picker__clear-button {
         top: 26vh !important;
         width: 98% !important;
         z-index: 1050 !important;
-        min-width: 250px!important;
+        min-width: 250px !important;
     }
 }
 
@@ -142,8 +148,8 @@ button.react-date-picker__button__icon.react-date-picker__clear-button {
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-right: 10px!important;
-        margin-bottom: 10px!important;
+        margin-right: 10px !important;
+        margin-bottom: 10px !important;
     }
 
     .react-date-picker {

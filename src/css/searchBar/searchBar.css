@@ -1,0 +1,121 @@
+.search-bar__input{
+    height: 60px;
+    padding-left: 13px;
+    font-size: 20px;
+    width: 100%;
+    outline: none!important;
+    border-radius: 6px;
+    color: #606267;
+    text-transform: capitalize;
+}
+
+.search-bar__input:hover{
+    border-color: #2a6ebb!important;
+    transition: 0.4s;
+}
+
+.search-bar__input_active{
+    padding-top: 5px;
+    padding-left: 20px;
+}
+
+.search-bar__marker{
+    position: absolute;
+    font-size: 24px;
+    padding-left: 10px;
+    padding-top: 18px;
+    color: #2a6ebb;
+}
+
+.search-bar__placeholder{
+    position: absolute;
+    padding-top: 16px;
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+.search-bar__placeholder_small{
+    font-size: 13px;
+    padding-top: 3px;
+    padding-left: 13px;
+    transition: 0.4s;
+}
+
+.box-place{
+    width: 500px;
+    margin-left: 40px;
+}
+
+.search-bar__btn{
+    border-radius: 8px;
+    border: 1px solid #a6a9b2;
+    background-color: white;
+    padding: 11px 35px;
+    font-size: 22px;
+    color: #255fa2;
+    cursor: pointer;
+    transition: 0.4s;
+    outline: none!important;
+}
+
+.search-bar__btn:hover{
+    border-color: #2a6ebb;
+    transition: 0.4s;
+}
+
+.guest-container{
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    font-size: 18px;
+    padding: 15px 35px 15px 15px;
+    border-radius: 8px;
+    color: #606267;
+    text-transform: capitalize;
+    transition: 0.6s;
+}
+
+.guest-container:hover{
+    border-color: #2a6ebb!important;
+}
+
+.guest-select{
+    position: absolute;
+    top: 67px;
+    left: -63px;
+    width: 270px;
+    height: 120px;
+    background-color: white;
+    border: 1px solid #a6a9b2;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 9px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 37px;
+    color: #2a6ebb;
+    font-weight: 100;
+    transition: 0.6s;
+}
+
+.circle:hover{
+    border-color: #2a6ebb!important;
+    transition: 0.6s;
+}
+
+.guest-select__arrow{
+    border: 5px solid #a6a9b2!important;
+    background-color: white;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    width: 20px;
+    position: absolute;
+    top: -10px;
+    right: 130px;
+}
