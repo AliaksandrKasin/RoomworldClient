@@ -4,7 +4,6 @@ import Geocode from "react-geocode";
 import {setSearchParams} from "../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 
-
 class SearchBlock extends React.Component {
     constructor(props) {
         super(props);

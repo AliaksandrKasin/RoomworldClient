@@ -27,7 +27,7 @@ class OpenStreetMap extends React.Component {
             {
                 (this.props.btnCloseIsVisible) && <button className="leaflet-map-btn d-flex align-items-center" onClick={this.props.onClose}>
                     <span>Back</span>
-                    <i className="fas fa-angle-right angle-right_size_m pl-1"></i>
+                    <i className="fas fa-angle-right window-close_size_m pl-1"></i>
                 </button>
             }
                 <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>

@@ -25,6 +25,8 @@
 @import './apartment/collectionApartment/cards/cardHorizontal.css';
 @import './apartment/collectionApartment/apartmentFilter/apartment-filter.css';
 @import './searchBar/searchBar.css';
+@import './places/googleAutocomplete.css';
+@import './places/googleMap.css';
 
 .page-not-fount{
     background-color: #005595;

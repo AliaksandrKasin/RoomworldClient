@@ -26,6 +26,14 @@
     overflow-x: hidden;
 }
 
+@media (max-width: 400px) {
+    .apartment-filter-bar{
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 380px) {
     .filter-bar-title {
         display: none;

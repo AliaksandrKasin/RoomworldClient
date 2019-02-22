@@ -1,0 +1,28 @@
+.pac-logo:after {
+    height: 0 !important;
+    background-image: none !important;
+}
+
+.pac-item {
+    line-height: 60px;
+    font-size: 14px;
+    cursor: pointer!important;
+}
+
+.pac-item-query{
+    font-size: 16px!important;
+}
+
+.pac-matched{
+    font-size: 16px!important;
+    font-weight: 300!important;
+    padding-left: 20px;
+}
+
+.pac-icon{
+    display: none!important;
+}
+
+.pac-container{
+    top: 137px!important;
+}

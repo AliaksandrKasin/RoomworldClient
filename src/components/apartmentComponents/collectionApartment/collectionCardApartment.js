@@ -10,6 +10,7 @@ import SortSelectApartment from "./sortSelectApartment";
 import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
 import ReactCountryFlag from "react-country-flag";
 import SearchBar from "./searchBar/searchBar";
+import {GoogleMapContainer} from "../showApartment/googleMap";
 
 class CollectionCardApartment extends React.Component {
 
@@ -31,7 +32,8 @@ class CollectionCardApartment extends React.Component {
             shortCountryName: "",
             cardView: (window.innerWidth < 620),
             modalFiltersIsOpen: false,
-            mapIsHidden: (window.innerWidth <= 974)
+            mapIsHidden: (window.innerWidth <= 974),
+            hoveredApartment: -1
         }
     }
 
@@ -86,6 +88,10 @@ class CollectionCardApartment extends React.Component {
             return (this.state.cardView) ?
                 <CardApartment key={index} apartment={apartment} shortCountryName={this.state.shortCountryName}/> :
                 <CardHorizontalApartment key={index} apartment={apartment}
+                                         onMouseOver={(id) => this.setState({hoveredApartment: id})}
+                                         onMouseOut={() => {
+                                             this.setState({hoveredApartment: -1})
+                                         }}
                                          shortCountryName={this.state.shortCountryName}/>
         })
     }
@@ -101,10 +107,14 @@ class CollectionCardApartment extends React.Component {
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
                     <div className="d-flex align-items-center">
                         <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
-                        <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
+                        {
+
+                            (!this.state.cardView) &&
+                            <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
                             {this.state.searchParams.country}
-                            {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}
+                                {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}
                             </span>
+                        }
                         <span className="ml-2 text-dark h6 font-weight-normal pt-1">
                             {"( " + this.state.apartments.length + " of " + this.state.amountApartment + " )"}
                             </span>
@@ -112,7 +122,7 @@ class CollectionCardApartment extends React.Component {
                     <div className="ml-3">
                         <button className="btn-filters" onClick={() => this.setState({modalFiltersIsOpen: true})}>
                             <i className="fas fa-sliders-h pr-2"></i>
-                            <span>More Filters</span>
+                            <span>Filters</span>
                         </button>
                     </div>
                     {
@@ -140,8 +150,11 @@ class CollectionCardApartment extends React.Component {
                 </div>
                 {
                     (!this.state.mapIsHidden) && < div className="map-sticky-container sticky-top col-sm-6">
-                        <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)}
-                                       apartments={this.state.apartments}/>
+                        {/* <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)}
+                                       apartments={this.state.apartments}/> */}
+                        <GoogleMapContainer apartments={this.state.apartments} onClose={this.onCloseMap}
+                                            btnCloseIsVisible={(window.innerWidth <= 974)} center={this.state.center}
+                                            hoveredApartment={this.state.hoveredApartment}/>
                     </div>
                 }
             </div>

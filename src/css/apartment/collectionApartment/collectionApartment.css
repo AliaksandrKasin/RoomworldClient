@@ -26,7 +26,7 @@
 
 .map-sticky-container {
     position: sticky;
-    height: 850px;
+    height: 910px;
     top: 60px;
 }
 
@@ -71,20 +71,16 @@
     }
 }
 
-.angle-right_size_m{
-    font-size: 20px;
-}
-
 .leaflet-map-btn{
     z-index: 1000;
     position: absolute!important;
-    top: 0;
+    top: 10px;
     right: 0;
-    padding: 10px 20px;
+    padding: 8px 15px;
     background-color: white;
     border: none;
     font-size: 16px;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .leaflet-map-btn:hover{
