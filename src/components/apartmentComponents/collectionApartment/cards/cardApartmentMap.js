@@ -1,6 +1,5 @@
 import * as React from "react";
 import CardImage from "./cardImage";
-import StarRatings from "react-star-ratings";
 
 class CardApartmentMap extends React.Component{
     render(){

@@ -24,5 +24,8 @@
 }
 
 .pac-container{
-    top: 137px!important;
+   /* width: 492px!important;*/
+    border-top: none!important;
+    border-radius: 4px!important;
+   /* top: 137px!important;*/
 }

@@ -10,7 +10,7 @@ import SortSelectApartment from "./sortSelectApartment";
 import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
 import ReactCountryFlag from "react-country-flag";
 import SearchBar from "./searchBar/searchBar";
-import {GoogleMapContainer} from "../showApartment/googleMap";
+import {GoogleMapContainer} from "./googleMap/googleMap";
 
 class CollectionCardApartment extends React.Component {
 
@@ -88,10 +88,8 @@ class CollectionCardApartment extends React.Component {
             return (this.state.cardView) ?
                 <CardApartment key={index} apartment={apartment} shortCountryName={this.state.shortCountryName}/> :
                 <CardHorizontalApartment key={index} apartment={apartment}
-                                         onMouseOver={(id) => this.setState({hoveredApartment: id})}
-                                         onMouseOut={() => {
-                                             this.setState({hoveredApartment: -1})
-                                         }}
+                                         onMouseOver={(coordinates) => this.child.onMouseOver(coordinates)}
+                                         onMouseOut={() => this.child.onMouseOut()}
                                          shortCountryName={this.state.shortCountryName}/>
         })
     }
@@ -103,7 +101,7 @@ class CollectionCardApartment extends React.Component {
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
             <SearchBar/>
-            <div className="apartment-filter-bar border-bottom border-d-top">
+            <div className="apartment-filter-bar border-bottom border-top">
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
                     <div className="d-flex align-items-center">
                         <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
@@ -154,7 +152,7 @@ class CollectionCardApartment extends React.Component {
                                        apartments={this.state.apartments}/> */}
                         <GoogleMapContainer apartments={this.state.apartments} onClose={this.onCloseMap}
                                             btnCloseIsVisible={(window.innerWidth <= 974)} center={this.state.center}
-                                            hoveredApartment={this.state.hoveredApartment}/>
+                                            hoveredApartment={this.state.hoveredApartment} onRef={ref => (this.child = ref)}/>
                     </div>
                 }
             </div>

@@ -5,7 +5,9 @@ import CardImage from "./cardImage";
 class CardHorizontalApartment extends React.Component {
 
     render() {
-        return <div className="card-horizontal cursor-pointer w-100 mb-3" onMouseOver={() => {this.props.onMouseOver(this.props.apartment.id)}} onMouseOut={this.props.onMouseOver}>
+        return <div className="card-horizontal cursor-pointer w-100 mb-3" onMouseEnter={() => {
+            this.props.onMouseOver(this.props.apartment.apartmentLocation.coordinates)
+        }} onMouseOut={this.props.onMouseOver}>
             <div className="card card-hover_shadow">
                 <div className="d-flex align-items-end">
                     <div className="position-relative card-horizontal-box-img">

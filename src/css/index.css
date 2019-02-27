@@ -19,7 +19,6 @@
 @import './apartment/modal.css';
 @import './apartment/collectionApartment/collectionApartment.css';
 @import './buttons/button-filter.css';
-
 @import './apartment/collectionApartment/cards/card.css';
 @import 'apartment/collectionApartment/cards/cardVertical.css';
 @import './apartment/collectionApartment/cards/cardHorizontal.css';
@@ -27,42 +26,46 @@
 @import './searchBar/searchBar.css';
 @import './places/googleAutocomplete.css';
 @import './places/googleMap.css';
+@import './main/icons-overview.css';
+@import './main/main.css';
 
-.page-not-fount{
+
+
+.page-not-fount {
     background-color: #005595;
     position: absolute;
     height: 100vh;
     width: 100vw;
-    top:0;
+    top: 0;
 }
 
-.container-overflow-hidden{
-    overflow: hidden!important;
+.container-overflow-hidden {
+    overflow: hidden !important;
 }
 
-.text_color_dark-green{
+.text_color_dark-green {
     color: #00935a;
 }
 
-.font-weight-6{
+.font-weight-6 {
     font-weight: 600;
 }
 
-.row{
+.row {
     margin: 0;
 }
 
-.text-anthracite{
+.text-anthracite {
     color: #5e6d77;
 }
 
-.error-number{
+.error-number {
     padding-bottom: 15px;
     border-bottom: 2px solid #4384B3;
     opacity: 0.8;
 }
 
-.error-page-title{
+.error-page-title {
     color: #ededed;
     opacity: 0.8;
 }
@@ -174,9 +177,9 @@ a:hover {
 }
 
 .search {
-    background-size: cover;
-    background: url("https://www.gd-home.com/wp-content/uploads/2016/04/stilnaya-kvartira-v-stile-loft-iz-kieva-1.jpg") fixed center center;
-    min-height: 70vh;
+    /*background-size: cover;
+    background: url("https://www.gd-home.com/wp-content/uploads/2016/04/stilnaya-kvartira-v-stile-loft-iz-kieva-1.jpg") 50%;*/
+    height: 600px;
     display: flex;
     justify-content: center;
     min-width: 310px;
@@ -184,9 +187,9 @@ a:hover {
 
 .search-container-max {
     padding-top: 2px;
-    max-width: 1000px !important;
-    background-color: rgba(0, 0, 0, .2);
-    height: 80px;
+    max-width: 1110px !important;
+    background-color: rgba(0, 0, 0, 0.27);
+    height: 100px;
     border-radius: 10px;
 }
 
@@ -317,8 +320,6 @@ a:hover {
     max-width: 900px;
 }
 
-
-
 .amenities {
     column-count: 4;
     list-style: none;
@@ -387,10 +388,6 @@ a:hover {
 
 .rounded_20 {
     border-radius: 20px !important;
-}
-
-.w-100 {
-    border-radius: 5px;
 }
 
 .row-ml-0 {
@@ -863,11 +860,14 @@ a:hover {
 
 /***ContainerAmenity***/
 
-@media (max-width: 740px) {
-    .btn-search {
-        max-width: 100% !important;
+@media (max-width: 845px) {
+    .search-container-max {
+        background-color: rgba(0, 0, 0, .2);
+        height: 160px;
     }
+}
 
+@media (max-width: 614px) {
     .search-container-max {
         background-color: rgba(0, 0, 0, .2);
         height: 240px;

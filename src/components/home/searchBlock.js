@@ -3,6 +3,9 @@ import DatePicker from "react-date-picker";
 import Geocode from "react-geocode";
 import {setSearchParams} from "../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
+import SearchBar from "../apartmentComponents/collectionApartment/searchBar/searchBar";
+
+const arrayCities = ["Paris", "Minsk", "Berlin", "Frankfurt", "Grodno", "London"];
 
 class SearchBlock extends React.Component {
     constructor(props) {
@@ -12,8 +15,33 @@ class SearchBlock extends React.Component {
             dateFrom: new Date(),
             dateTo: this.datePlusDay(new Date()),
             place: "",
-            typePlace: ""
+            typePlace: "",
+            currentCity: "",
+            arrayIndex: 0,
+            countryIndex: 0
         }
+    }
+
+    setCurrentCity = () => {
+        /*if (arrayCities.length - 1 > this.state.arrayIndex) {
+            this.setState({arrayIndex: 0});
+            return;
+        }
+        if (arrayCities[this.state.arrayIndex].length - 1 > this.state.countryIndex) {
+            this.setState({arrayIndex: this.state.arrayIndex + 1,})
+        }*/
+        this.setState({
+            currentCity: this.state.currentCity + arrayCities[this.state.arrayIndex][this.state.countryIndex],
+            arrayIndex: this.state.arrayIndex + 1,
+        });
+    }
+
+    componentDidMount = () => {
+        /*this.timerID = setInterval(this.setCurrentCity, 2000);*/
+    }
+
+    componentWillUnmount = () => {
+        clearInterval(this.timerID);
     }
 
     datePlusDay = (date) => {
@@ -69,40 +97,19 @@ class SearchBlock extends React.Component {
     }
 
     render() {
-        return <form onSubmit={this.search} className="search">
-            <div className="d-flex justify-content-center align-items-center w-100">
-                <div className="row d-flex justify-content-center search-container-max">
-                    <div className="col-sm mt-2">
-                        <div className="position-relative w-100">
-                            <i className="fas fa-map-marker-alt input-label"></i>
-                            <input type="text" className="input-search"
-                                   placeholder="Where do you want to go?"
-                                   required={true}
-                                   value={this.state.place}
-                                   onChange={this.onChangePlace}/>
-                        </div>
+        return <div className="search">
+            <div className="box-top d-flex justify-content-center align-items-center w-100">
+                <div>
+                    <h1 className="text-white display-4 text-center search-title">Book apartments online
+                        <span
+                            className="text-white display-4 text-center search-title search-animation-city ml-3 animation-city-border-b">in {this.state.currentCity}</span>
+                    </h1>
+                    <div className="row d-flex justify-content-center search-container-max">
+                        <SearchBar/>
                     </div>
-                    <div className="mt-2 search-container-calendar">
-                        <DatePicker
-                            className="bg-white"
-                            value={this.state.dateFrom}
-                            onChange={this.onChangeFrom}
-                            minDate={new Date()}
-                            locale="en-En"
-                        />
-                        <DatePicker
-                            className="bg-white"
-                            value={this.state.dateTo}
-                            onChange={this.onChangeTo}
-                            minDate={this.datePlusDay(this.state.dateFrom)}
-                            locale="en-En"
-                            onChangeRaw={this.onChangeRow}
-                        />
-                    </div>
-                    <button className="btn btn-search col-sm ml-3 mr-3 mt-2" type='submit'>Search</button>
                 </div>
             </div>
-        </form>
+        </div>
     }
 }
 
