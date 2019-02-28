@@ -24,7 +24,7 @@ class GuestCounter extends React.Component {
     }
 
     render() {
-        return <div className="guest-container border d-flex align-items-center ml-3"
+        return <div className="guest-container border d-flex justify-content-center align-items-center ml-3"
                     onClick={() => this.setState({isVisibleSelect: !this.state.isVisibleSelect})}>
             <span className="pl-3">{this.state.counter} Guests</span>
             {

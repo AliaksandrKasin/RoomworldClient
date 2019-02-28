@@ -4,8 +4,7 @@ import Geocode from "react-geocode";
 import {setSearchParams} from "../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 import SearchBar from "../apartmentComponents/collectionApartment/searchBar/searchBar";
-
-const arrayCities = ["Paris", "Minsk", "Berlin", "Frankfurt", "Grodno", "London"];
+import TitleCountry from "./titleCountry";
 
 class SearchBlock extends React.Component {
     constructor(props) {
@@ -16,32 +15,7 @@ class SearchBlock extends React.Component {
             dateTo: this.datePlusDay(new Date()),
             place: "",
             typePlace: "",
-            currentCity: "",
-            arrayIndex: 0,
-            countryIndex: 0
         }
-    }
-
-    setCurrentCity = () => {
-        /*if (arrayCities.length - 1 > this.state.arrayIndex) {
-            this.setState({arrayIndex: 0});
-            return;
-        }
-        if (arrayCities[this.state.arrayIndex].length - 1 > this.state.countryIndex) {
-            this.setState({arrayIndex: this.state.arrayIndex + 1,})
-        }*/
-        this.setState({
-            currentCity: this.state.currentCity + arrayCities[this.state.arrayIndex][this.state.countryIndex],
-            arrayIndex: this.state.arrayIndex + 1,
-        });
-    }
-
-    componentDidMount = () => {
-        /*this.timerID = setInterval(this.setCurrentCity, 2000);*/
-    }
-
-    componentWillUnmount = () => {
-        clearInterval(this.timerID);
     }
 
     datePlusDay = (date) => {
@@ -100,10 +74,10 @@ class SearchBlock extends React.Component {
         return <div className="search">
             <div className="box-top d-flex justify-content-center align-items-center w-100">
                 <div>
-                    <h1 className="text-white display-4 text-center search-title">Book apartments online
-                        <span
-                            className="text-white display-4 text-center search-title search-animation-city ml-3 animation-city-border-b">in {this.state.currentCity}</span>
-                    </h1>
+                    <h1 className="text-white text-center search-title mb-0">Book apartments online</h1>
+                    <div className="d-flex justify-content-center">
+                        <TitleCountry timeout={500} speadWrite={200} speadErase={100}/>
+                    </div>
                     <div className="row d-flex justify-content-center search-container-max">
                         <SearchBar/>
                     </div>

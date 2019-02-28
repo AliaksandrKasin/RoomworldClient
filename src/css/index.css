@@ -28,6 +28,7 @@
 @import './places/googleMap.css';
 @import './main/icons-overview.css';
 @import './main/main.css';
+@import './cursor/cursorBlinking.css';
 
 
 

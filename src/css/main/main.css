@@ -91,11 +91,14 @@
 
 .search-title {
     font-weight: 400;
+    font-size: 45px;
+    font-family: "YACgEYmuCJE 0";
 }
 
 .search-animation-city {
     font-weight: 100;
     white-space: nowrap;
+    font-size: 45px;
     /* background-color: rgb(13, 46, 83);;*/
 }
 
