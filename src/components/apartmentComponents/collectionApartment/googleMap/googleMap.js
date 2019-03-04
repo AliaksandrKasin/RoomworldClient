@@ -118,8 +118,8 @@ export class GoogleMapContainer extends React.Component {
                 })
 
             }
-            <Marker position={this.props.center}
-                    icon={icon}/>
+            {/*<Marker position={this.props.center}
+                    icon={icon}/>*/}
             <InfoWindow marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                         onOpen={this.onInfoWindowOpen}

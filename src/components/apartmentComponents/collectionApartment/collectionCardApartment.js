@@ -11,6 +11,9 @@ import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
 import ReactCountryFlag from "react-country-flag";
 import SearchBar from "./searchBar/searchBar";
 import {GoogleMapContainer} from "./googleMap/googleMap";
+import connect from "react-redux/es/connect/connect";
+import STORE from "../../../store";
+import {load} from "redux-storage";
 
 class CollectionCardApartment extends React.Component {
 
@@ -28,7 +31,7 @@ class CollectionCardApartment extends React.Component {
             zoom: 10,
             isLoad: false,
             amountApartment: 0,
-            searchParams: JSON.parse(localStorage.getItem("searchParams")),
+            searchParams: props.searchParams,
             shortCountryName: "",
             cardView: (window.innerWidth < 620),
             modalFiltersIsOpen: false,
@@ -38,7 +41,7 @@ class CollectionCardApartment extends React.Component {
     }
 
     componentDidMount = () => {
-        let searchParams = JSON.parse(localStorage.getItem("searchParams"));
+        let searchParams = this.props.searchParams;
         searchParams.skip = this.state.skip;
         searchParams.take = this.state.take;
         getApartmentByParams(searchParams).then((collectionApartments) => {
@@ -100,7 +103,7 @@ class CollectionCardApartment extends React.Component {
 
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
-            <SearchBar/>
+            <SearchBar position="left"/>
             <div className="apartment-filter-bar border-bottom border-top">
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
                     <div className="d-flex align-items-center">
@@ -152,7 +155,8 @@ class CollectionCardApartment extends React.Component {
                                        apartments={this.state.apartments}/> */}
                         <GoogleMapContainer apartments={this.state.apartments} onClose={this.onCloseMap}
                                             btnCloseIsVisible={(window.innerWidth <= 974)} center={this.state.center}
-                                            hoveredApartment={this.state.hoveredApartment} onRef={ref => (this.child = ref)}/>
+                                            hoveredApartment={this.state.hoveredApartment}
+                                            onRef={ref => (this.child = ref)}/>
                     </div>
                 }
             </div>
@@ -163,4 +167,10 @@ class CollectionCardApartment extends React.Component {
     }
 }
 
-export default CollectionCardApartment;
+function mapStateToProps(state) {
+    return {
+        searchParams: state.apartmentReducer.searchParams,
+    };
+}
+
+export default connect(mapStateToProps)(CollectionCardApartment);
