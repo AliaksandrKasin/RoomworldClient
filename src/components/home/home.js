@@ -4,7 +4,6 @@ import OverviewIcons from "./overviewIcons";
 import Teaser from "./teaser";
 import CitiesTiles from "./citiesTiles";
 
-
 class Home extends React.Component {
 
     render() {
@@ -77,10 +76,10 @@ class Home extends React.Component {
                 <div className="search-cover-img-rent"></div>
                 <div className="search-cover-property"></div>
                 <div className="text-center">
-                    <h5 className="mb-4 text-white">List your property on RoomWorld.com and open your door to rental income</h5>
-                    <button className="btn-property">List your property</button>
+                    <h4 className="mb-4 text-white font-lora">List your property on RoomWorld.com and open your door to
+                        rental income</h4>
+                    <button className="btn-property font-lora">List your property</button>
                 </div>
-
             </div>
 
         </div>
