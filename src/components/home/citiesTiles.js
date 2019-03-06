@@ -16,8 +16,8 @@ class CitiesTiles extends React.Component{
     render(){
         return <div className="d-flex align-items-center justify-content-center flex-wrap tiles-container">
             {
-                cities.map(city => {
-                    return <div className="position-relative city-tile">
+                cities.map((city, index) => {
+                    return <div key={index} className="position-relative city-tile">
                         <div className="tile-cover"></div>
                         <img className="img-fluid city-tile__image" src={city.image}/>
                         <div className="city-title-box d-flex justify-content-center align-items-center">

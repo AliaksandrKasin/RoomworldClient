@@ -73,6 +73,16 @@ class Home extends React.Component {
             <div className="mt-5 d-flex justify-content-center">
                 <CitiesTiles/>
             </div>
+            <div className="d-flex justify-content-center align-items-center list-apartment-container mt-5">
+                <div className="search-cover-img-rent"></div>
+                <div className="search-cover-property"></div>
+                <div className="text-center">
+                    <h5 className="mb-4 text-white">List your property on RoomWorld.com and open your door to rental income</h5>
+                    <button className="btn-property">List your property</button>
+                </div>
+
+            </div>
+
         </div>
     }
 }
