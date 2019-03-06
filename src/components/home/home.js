@@ -1,6 +1,8 @@
 import React from "react";
 import SearchBlock from "./searchBlock";
 import OverviewIcons from "./overviewIcons";
+import Teaser from "./teaser";
+import CitiesTiles from "./citiesTiles";
 
 
 class Home extends React.Component {
@@ -42,6 +44,34 @@ class Home extends React.Component {
                         booking with verified e-signature it’s even possible to book furnished apartments at short
                         notice.</p>
                 </div>
+            </div>
+
+            <div className="d-flex justify-content-center align-items-center mt-5 mb-5 flex-wrap teaser-block">
+                <Teaser img="https://resources.kamernet.nl/content/images/redesign/pages/home/Huur1normal.png"
+                        title="Start your search"
+                        description="Use the free and extensive filters to narrow your search"/>
+                <Teaser img="https://resources.kamernet.nl/content/images/redesign/pages/home/Huur2normal.png"
+                        title="Upgrade to premium"
+                        description="Respond to favourite rooms, studios and apartments"/>
+                <Teaser img="https://resources.kamernet.nl/content/images/redesign/pages/home/Huur3normal.png"
+                        title="Find your new home"
+                        description="Plan viewings to meet landlords and roommates"/>
+            </div>
+
+            <div className="pl-2 pr-2">
+                <div className="d-flex justify-content-center mt-5">
+                    <h2 className="h2-underline h2-underline_color_graphite text-center">Explore Temporary
+                        Accommodation</h2>
+                </div>
+                <div className="d-flex justify-content-center mt-5">
+                    <p className="main-paragraph text-center">More comfort, more space, more flexibility but cheaper
+                        than a comparable hotel. With a few clicks you can book your second home – to live, work and
+                        relax.</p>
+                </div>
+            </div>
+
+            <div className="mt-5 d-flex justify-content-center">
+                <CitiesTiles/>
             </div>
         </div>
     }

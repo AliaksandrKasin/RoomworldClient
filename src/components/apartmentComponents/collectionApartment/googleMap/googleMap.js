@@ -98,10 +98,10 @@ export class GoogleMapContainer extends React.Component {
 
 
     onMouseOver = (coordinates) => {
-        debugger
+
     }
     onMouseOut = () => {
-        debugger
+
     }
 
 

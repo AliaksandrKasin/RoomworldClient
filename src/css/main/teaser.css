@@ -1,0 +1,96 @@
+.teaser-block {
+    background-color: #edeeed;
+}
+
+.teaser__img {
+    max-height: 171px;
+    object-fit: cover;
+    margin: 20px 0 0 0;
+
+}
+
+.teaser-content-block{
+    background-color: white;
+    height: 428px;
+    width: 20%;
+    margin: 20px;
+}
+
+.teaser-description__title{
+    font-size: 1.6em;
+    line-height: 2.212rem;
+    color: #6a6a64;
+}
+
+.teaser-description{
+    margin: 3rem 10px 1.168rem 10px;
+}
+
+.teaser-description__paragraph{
+    font-size: 16px;
+    color: #6a6a64;
+    padding: .05rem 2.5rem 0;
+}
+
+@media (max-width: 1500px){
+    .teaser-description__title{
+        font-size: 1.3em;
+    }
+
+    .teaser-description{
+        margin-top: 25px;
+    }
+
+    .teaser-description__paragraph{
+        font-size: 14px;
+        padding: .05rem 0.5rem 0;
+    }
+}
+
+@media (max-width: 1366px) {
+    .teaser-content-block{
+        width: 32%;
+    }
+
+    .teaser-content-block{
+        margin: 10px 5px;
+    }
+
+    .teaser-description{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .teaser-content-block{
+        width: 32%;
+    }
+
+    .teaser-content-block{
+        margin: 10px 2px;
+    }
+
+    .teaser-description{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 647px) {
+    .teaser-content-block {
+        width: 100%;
+        padding: 0!important;
+    }
+
+    .teaser-description__title{
+        font-size: 1.6em;
+    }
+
+    .teaser-description__paragraph{
+        font-size: 16px;
+    }
+
+    .teaser-content-block{
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
