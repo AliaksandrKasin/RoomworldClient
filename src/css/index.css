@@ -31,8 +31,11 @@
 @import './cursor/cursorBlinking.css';
 @import './main/teaser.css';
 @import 'main/cityTile.css';
+@import 'main/footer.css';
 
-
+li{
+    list-style: none;
+}
 
 .page-not-fount {
     background-color: #005595;

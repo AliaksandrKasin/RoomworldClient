@@ -3,6 +3,7 @@ import SearchBlock from "./searchBlock";
 import OverviewIcons from "./overviewIcons";
 import Teaser from "./teaser";
 import CitiesTiles from "./citiesTiles";
+import Footer from "../home/footer";
 
 class Home extends React.Component {
 
@@ -72,16 +73,16 @@ class Home extends React.Component {
             <div className="mt-5 d-flex justify-content-center">
                 <CitiesTiles/>
             </div>
-            <div className="d-flex justify-content-center align-items-center list-apartment-container mt-5">
+            <div className="d-flex justify-content-center align-items-center list-apartment-container mt-5 mb-5">
                 <div className="search-cover-img-rent"></div>
                 <div className="search-cover-property"></div>
                 <div className="text-center">
                     <h4 className="mb-4 text-white font-lora">List your property on RoomWorld.com and open your door to
                         rental income</h4>
-                    <button className="btn-property font-lora">List your property</button>
+                    <button className="btn-property font-lora" onClick={() =>  this.props.history.push('/apartment/welcome')}>List your property</button>
                 </div>
             </div>
-
+            <Footer/>
         </div>
     }
 }
