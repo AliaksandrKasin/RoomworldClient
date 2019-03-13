@@ -9,7 +9,7 @@ class ApartmentPhotos extends React.Component {
         super(props);
         this.inputFile = React.createRef();
         this.state = {
-            images: this.props.apartment.images || [],
+            images: props.apartment.images || [],
             errorMessage: ""
         };
     }
@@ -22,6 +22,7 @@ class ApartmentPhotos extends React.Component {
     }
 
     onChangeSelectPictures = event => {
+        debugger
         let images = this.state.images;
         [...event.target.files].map(img => {
             let isExistsImage = images.map(el => el.name).indexOf(img.name);

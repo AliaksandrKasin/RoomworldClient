@@ -4,7 +4,6 @@ import GuestCounter from "./guestCounter";
 import Autocomplete from 'react-google-autocomplete';
 import moment from "moment";
 import Geocode from "react-geocode";
-import {openStreetGeocode} from "../../../../services/mapServices/openStreetService";
 import {setSearchParams} from "../../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
 
@@ -18,44 +17,40 @@ class SearchBar extends React.Component {
             dateFrom: dateNow,
             dateTo: moment(dateNow).add(1, "days").toDate(),
             guests: 1,
-            place: ""
+            searchPlace: {},
+            displayPlace: ""
         }
     }
 
-    onChangeDateFrom = (dateFrom) =>
-        this.setState({
-            dateFrom: dateFrom, dateTo: moment(dateFrom).add(1, "days").toDate()
-        });
-    onChangeDateTo = (dateTo) => this.setState({dateTo: dateTo});
+    onChangeDateFrom = (dateFrom) => {
+        this.setState({dateFrom: dateFrom, dateTo: moment(dateFrom).add(1, "days").toDate()});
+    }
+    onChangeDateTo = (dateTo) => {
+        this.setState({dateTo: dateTo})
+    };
 
     onChangePlace = (e) => {
-        this.setState({place: e.target.value});
-        /*openStreetGeocode(e.target.value).then((response) => {
-        })*/
+        this.setState({displayPlace: e.target.value});
+        Geocode.fromAddress(e.target.value)
+            .then((response) => {
+                    debugger
+                    let geocode = response.results[0].geometry.location;
+                },
+                (error) => {
+                    console.log(error)
+                }
+            );
     };
+
+    onPlaceSelected = (place) => {
+        this.setState({displayPlace: place.formatted_address})
+    }
 
     placeToObject = (place) => {
         let splitPlace = place.split(/[,]/).filter(n => n);
         return (splitPlace.length === 1) ? {city: null, country: splitPlace[splitPlace.length - 1].trim()} :
             {city: splitPlace[0].trim(), country: splitPlace[splitPlace.length - 1].trim()}
     }
-
-    /*placeToObject = (place) => {
-        let splitPlace = place.split(/[, ]/).filter(n => n);
-        switch (splitPlace.length) {
-            case 0:
-                return {country: null, city: null};
-            case 1: {
-                if (this.state.typePlace === "country".toLocaleUpperCase()) {
-                    return {country: splitPlace[0], city: null};
-                } else {
-                    return {country: null, city: splitPlace[0]};
-                }
-            }
-            case 2:
-                return {country: splitPlace[0], city: splitPlace[1]};
-        }
-    }*/
 
     search = () => {
         let place = this.placeToObject(this.state.place.formatted_address);
@@ -66,7 +61,6 @@ class SearchBar extends React.Component {
             city: place.city
         };
         this.props.setSearchParams(searchParams);
-        /*localStorage.setItem("searchParams", JSON.stringify(searchParams));*/
         this.props.history.push("/search/apartment");
     }
 
@@ -78,20 +72,20 @@ class SearchBar extends React.Component {
             <div className="search-destination-input d-flex">
                 <div className="position-relative box-place">
                     <span
-                        className={(this.state.place) ? "text-muted search-bar__placeholder search-bar__placeholder_small" :
+                        className={(this.state.displayPlace) ? "text-muted search-bar__placeholder search-bar__placeholder_small" :
                             "text-muted search-bar__placeholder"}>Were do you want to go?</span>
                     <Autocomplete
-                        className={(this.state.place) ? "search-bar__input_active search-bar__input border" : "search-bar__input border"}
+                        className={(this.state.displayPlace) ? "search-bar__input_active search-bar__input border" : "search-bar__input border"}
                         placeholder=""
                         required={true}
-                        value={this.state.placeSelected}
+                        value={this.state.displayPlace}
                         onChange={this.onChangePlace}
-                        onPlaceSelected={(place) => this.setState({place: place})}
+                        onPlaceSelected={this.onPlaceSelected}
                         types={['(cities)']}
                     />
-                    {(this.state.place) &&
+                    {(this.state.displayPlace) &&
                     <i className="material-icons position-absolute search-bar__icon-close"
-                       onClick={() => this.setState({place: ""})}>clear</i>}
+                       onClick={() => this.setState({displayPlace: ""})}>clear</i>}
                 </div>
             </div>
             <div className={"d-flex flex-wrap box-combined-row " + position}>

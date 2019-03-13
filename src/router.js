@@ -12,10 +12,15 @@ import ServerError from "./components/extensionComponents/serverError";
 import ApartmentMain from "./components/apartmentComponents/createApartment/apartmentMain";
 import ShowApartment from "./components/apartmentComponents/showApartment/showApartment";
 import CollectionCardApartment from "./components/apartmentComponents/collectionApartment/collectionCardApartment";
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import OpenStreetMap from "./components/apartmentComponents/showApartment/openStreetMap";
 
 class Router extends React.Component {
+
+    componentDidUpdate = () => {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         return <Switch>
             <Route exact path='/' component={Home}/>

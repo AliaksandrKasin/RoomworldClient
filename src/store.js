@@ -1,26 +1,33 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {combineReducers, createStore} from 'redux';
 import chatReducer from "./reducers/chatReducer";
 import apartmentReducer from "./reducers/apartmentReducer";
-import createEngine from 'redux-storage-engine-localstorage';
-import * as storage from 'redux-storage'
 
 const localStorageKey = 'room-world-storage';
-
 const reducers = combineReducers({apartmentReducer, chatReducer});
-const engine = createEngine(localStorageKey);
-const middleware = storage.createMiddleware(engine);
-const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 
-const oldState = loadFromLocalStorage(localStorageKey);
-const STORE = createStoreWithMiddleware(reducers, oldState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const oldState = loadState();
+const STORE = createStore(reducers, oldState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 export default STORE;
 
-export function loadFromLocalStorage(localStorageKey) {
+STORE.subscribe(() => {
+    saveState(STORE.getState());
+});
+
+function loadState() {
     try {
-        const serializedState = localStorage.getItem(localStorageKey);
+        const serializedState = window.sessionStorage.getItem(localStorageKey);
+        if (!serializedState) return undefined;
         return JSON.parse(serializedState);
     } catch (e) {
-        console.log(e);
-        return null;
+        return undefined;
     }
 }
+
+function saveState(state) {
+    try {
+        const serialisedState = JSON.stringify(state);
+        window.sessionStorage.setItem(localStorageKey, serialisedState);
+    } catch (e) {
+    }
+}
+
