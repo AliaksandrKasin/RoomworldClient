@@ -18,9 +18,7 @@ import Geocode from "react-geocode";
 class ShowApartment extends React.Component {
 
     constructor(props) {
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
         super(props);
-        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
         this.apartmentRules = React.createRef();
         this.map = React.createRef();
         this.rates = React.createRef();

@@ -12,7 +12,6 @@ class ApartmentLocation extends React.Component {
 
     constructor(props) {
         super(props);
-        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY");
         this.countries = countryList().getLabels();
         this.state = {
             location: {

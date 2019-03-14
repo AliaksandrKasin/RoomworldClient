@@ -14,8 +14,14 @@ import ShowApartment from "./components/apartmentComponents/showApartment/showAp
 import CollectionCardApartment from "./components/apartmentComponents/collectionApartment/collectionCardApartment";
 import {withRouter} from 'react-router-dom'
 import OpenStreetMap from "./components/apartmentComponents/showApartment/openStreetMap";
+import Geocode from "react-geocode";
 
 class Router extends React.Component {
+
+    constructor(props) {
+        super(props);
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY&language=en");
+    }
 
     componentDidUpdate = () => {
         window.scrollTo(0, 0);

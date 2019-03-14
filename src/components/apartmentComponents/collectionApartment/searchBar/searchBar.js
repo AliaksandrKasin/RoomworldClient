@@ -11,7 +11,6 @@ class SearchBar extends React.Component {
 
     constructor(props) {
         super(props);
-        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY&language=en");
         let dateNow = new Date();
         let city = (props.searchParams.city) ? props.searchParams.city : "";
         let country = (props.searchParams.country) ? props.searchParams.country : "";
@@ -102,7 +101,7 @@ class SearchBar extends React.Component {
                         value={this.state.displayPlace}
                         onChange={this.onChangePlace}
                         onPlaceSelected={this.onPlaceSelected}
-                        types={['(cities)']}
+                        types={['geocode']}
                     />
                     {(this.state.displayPlace) &&
                     <i className="material-icons position-absolute search-bar__icon-close"
