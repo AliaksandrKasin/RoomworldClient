@@ -112,12 +112,11 @@
 }
 
 .guest-select__arrow {
-    border: 5px solid #fff !important;
-    background-color: white;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    width: 20px;
+    border: 8px solid transparent;
+    border-bottom-color: #606267;
+
     position: absolute;
-    top: -10px;
+    top: -16px;
     right: 130px;
 }
 
@@ -134,8 +133,7 @@
     }
 }
 
-
-@media (max-width: 845px) {
+@media (max-width: 853px) {
     .search-destination-input {
         width: 100%;
         max-width: 585px;
@@ -145,7 +143,7 @@
         margin-left: 0;
     }
 
-    .search-bar__btn{
+    .search-bar__btn {
         width: 100%;
     }
 
@@ -157,7 +155,7 @@
         margin-bottom: 10px;
     }
 
-    .box-combined-row{
+    .box-combined-row {
         width: 100%;
         justify-content: center;
         padding-right: 15px;
@@ -166,8 +164,9 @@
 
 @media (max-width: 614px) {
     .search-destination-input {
-       padding-right: 15px;
+        padding-right: 15px;
     }
+
     .box-dates {
         width: 100%;
         display: flex;
@@ -177,23 +176,23 @@
         width: 100%;
     }
 
-    .box-guests{
+    .box-guests {
         width: 100%;
         margin-top: 10px;
     }
 
-    .guest-container{
-        margin-left: 0!important;
+    .guest-container {
+        margin-left: 0 !important;
     }
 
-    .box-btn-search{
+    .box-btn-search {
         width: 100%;
         z-index: 1;
     }
 
-    .search-bar__btn{
+    .search-bar__btn {
         width: 100%;
         margin-top: 10px;
-        margin-left: 0!important;
+        margin-left: 0 !important;
     }
 }

@@ -12,7 +12,8 @@ class SearchBlock extends React.Component {
                         <TitleCountry timeout={500} speadWrite={200} speadErase={100}/>
                     </div>
                     <div className="row d-flex justify-content-center search-container-max">
-                        <SearchBar history={this.props.history} position="center"/>
+                        <SearchBar history={this.props.history} position="center"
+                                   onClickApply={this.props.onClickApply}/>
                     </div>
                 </div>
             </div>

@@ -62,8 +62,7 @@ button.react-date-picker__button__icon.react-date-picker__clear-button {
 
 .react-calendar {
     width: 900px !important;
-    border: none !important;
-    box-shadow: 0 0 30px rgb(89, 89, 89);
+    border: 1px solid #383a41!important;
 }
 
 .react-calendar__navigation button {

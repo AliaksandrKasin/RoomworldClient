@@ -12,8 +12,7 @@ import ReactCountryFlag from "react-country-flag";
 import SearchBar from "./searchBar/searchBar";
 import {GoogleMapContainer} from "./googleMap/googleMap";
 import connect from "react-redux/es/connect/connect";
-import STORE from "../../../store";
-import {load} from "redux-storage";
+import moment from "moment";
 
 class CollectionCardApartment extends React.Component {
 
@@ -41,15 +40,24 @@ class CollectionCardApartment extends React.Component {
     }
 
     componentDidMount = () => {
-        let searchParams = this.props.searchParams;
+        this.loadCollections();
+        window.addEventListener("resize", this.resizeWindow);
+    }
+
+    loadCollections = (params) => {
+        let utcOffset = moment().utcOffset();
+        let searchParams = (params) ? params : this.props.searchParams;
         searchParams.skip = this.state.skip;
         searchParams.take = this.state.take;
+        searchParams.dateFrom = moment(searchParams.dateFrom).add(utcOffset, "m").utc();
+        searchParams.dateTo = moment(searchParams.dateTo).add(utcOffset, "m").utc();
         getApartmentByParams(searchParams).then((collectionApartments) => {
             this.setState({apartments: collectionApartments, isLoad: true});
         });
         getAmountApartmentByParams(searchParams).then((amountApartment) => {
             this.setState({amountApartment: amountApartment});
         });
+        this.setState({searchParams: searchParams});
         Geocode.fromAddress(searchParams.country + " " + searchParams.city)
             .then((response) => {
                     let shortCountryName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
@@ -60,8 +68,6 @@ class CollectionCardApartment extends React.Component {
                     console.log(error)
                 }
             );
-
-        window.addEventListener("resize", this.resizeWindow);
     }
 
     resizeWindow = (e) => {
@@ -103,14 +109,12 @@ class CollectionCardApartment extends React.Component {
 
     render() {
         return (!this.state.isLoad) ? <Loading/> : <div onScroll={this.onScroll} className="">
-            <SearchBar position="left"/>
+            <SearchBar position="left" onClickApply={this.loadCollections}/>
             <div className="apartment-filter-bar border-bottom border-top">
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
                     <div className="d-flex align-items-center">
                         <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
                         {
-
-                            (!this.state.cardView) &&
                             <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
                             {this.state.searchParams.country}
                                 {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}

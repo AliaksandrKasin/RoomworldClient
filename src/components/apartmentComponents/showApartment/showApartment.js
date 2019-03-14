@@ -32,8 +32,7 @@ class ShowApartment extends React.Component {
                 lat: 0,
                 lng: 0
             },
-            zoom: 15,
-            searchParams: JSON.parse(localStorage.getItem("searchParams"))
+            zoom: 15
         }
     }
 
@@ -90,9 +89,9 @@ class ShowApartment extends React.Component {
             />
             <div className="mt-3"><h3>{this.state.apartment.headTitle}</h3></div>
             {
-                <QuickRent dateFrom={new Date(this.state.searchParams.dateFrom)}
-                           dateTo={new Date(this.state.searchParams.dateTo)}
-                           searchParams={this.state.searchParams}
+                <QuickRent dateFrom={this.props.searchParams.dateFrom}
+                           dateTo={this.props.searchParams.dateTo}
+                           searchParams={this.props.searchParams}
                            apartment={this.state.apartment}
                            history={this.props.history}/>
             }
@@ -173,6 +172,7 @@ function getArrayUniqueTypes(amenities) {
 function mapStateToProps(state) {
     return {
         selectedApartment: state.apartmentReducer.selectedApartment,
+        searchParams: state.apartmentReducer.searchParams
     };
 }
 

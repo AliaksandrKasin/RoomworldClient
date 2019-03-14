@@ -30,7 +30,7 @@ class GuestCounter extends React.Component {
             {
                 (this.state.isVisibleSelect) &&
                 <div ref={this.counter} className="guest-select d-flex align-items-center">
-                    <div className="guest-select__arrow"></div>
+                    <span className="guest-select__arrow"></span>
                     <div className="w-100 ml-3">
                         <span>{this.state.counter} {(this.state.counter < 2) ? "guest" : "guests"}</span>
                     </div>

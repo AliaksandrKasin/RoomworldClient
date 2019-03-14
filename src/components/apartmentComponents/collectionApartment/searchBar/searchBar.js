@@ -13,18 +13,25 @@ class SearchBar extends React.Component {
         super(props);
         Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY&language=en");
         let dateNow = new Date();
+        let city = (props.searchParams.city) ? props.searchParams.city : "";
+        let country = (props.searchParams.country) ? props.searchParams.country : "";
+        let dateTo = (props.searchParams.dateTo) ? moment(props.searchParams.dateTo).toDate() : moment(dateNow).add(1, "days").toDate();
+        let dateFrom = (props.searchParams.dateFrom) ? moment(props.searchParams.dateFrom).toDate() : dateNow;
         this.state = {
-            dateFrom: dateNow,
-            dateTo: moment(dateNow).add(1, "days").toDate(),
+            dateFrom: dateFrom,
+            dateTo: dateTo,
             guests: 1,
-            searchPlace: {},
-            displayPlace: ""
+            searchPlace: {
+                city: city,
+                country: country
+            },
+            displayPlace: city + ((city && country) && ", ") + country
         }
     }
 
     onChangeDateFrom = (dateFrom) => {
         this.setState({dateFrom: dateFrom, dateTo: moment(dateFrom).add(1, "days").toDate()});
-    }
+    };
     onChangeDateTo = (dateTo) => {
         this.setState({dateTo: dateTo})
     };
@@ -33,8 +40,16 @@ class SearchBar extends React.Component {
         this.setState({displayPlace: e.target.value});
         Geocode.fromAddress(e.target.value)
             .then((response) => {
-                    debugger
-                    let geocode = response.results[0].geometry.location;
+                    let arrayLocationTypes = response.results[0].types;
+                    let formattedAddress = response.results[0].formatted_address;
+                    if (arrayLocationTypes.includes("locality") || arrayLocationTypes.includes("country")) {
+                        let searchPlaceObj = this.searchPlaceToObject(formattedAddress);
+                        this.setState({
+                            searchPlace: searchPlaceObj,
+                        })
+                    } else {
+
+                    }
                 },
                 (error) => {
                     console.log(error)
@@ -43,25 +58,31 @@ class SearchBar extends React.Component {
     };
 
     onPlaceSelected = (place) => {
-        this.setState({displayPlace: place.formatted_address})
+        if (place.id) {
+            let searchPlaceObj = this.searchPlaceToObject(place.formatted_address);
+            this.setState({
+                displayPlace: place.formatted_address,
+                searchPlace: searchPlaceObj
+            })
+        }
+
     }
 
-    placeToObject = (place) => {
+    searchPlaceToObject = (place) => {
         let splitPlace = place.split(/[,]/).filter(n => n);
         return (splitPlace.length === 1) ? {city: null, country: splitPlace[splitPlace.length - 1].trim()} :
             {city: splitPlace[0].trim(), country: splitPlace[splitPlace.length - 1].trim()}
     }
 
     search = () => {
-        let place = this.placeToObject(this.state.place.formatted_address);
         let searchParams = {
             dateFrom: new Date(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDate()),
             dateTo: new Date(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDate()),
-            country: place.country,
-            city: place.city
+            country: this.state.searchPlace.country,
+            city: this.state.searchPlace.city
         };
         this.props.setSearchParams(searchParams);
-        this.props.history.push("/search/apartment");
+        (window.location.pathname !== "/search/apartment") ? this.props.history.push("/search/apartment") : this.props.onClickApply(searchParams);
     }
 
     render() {
