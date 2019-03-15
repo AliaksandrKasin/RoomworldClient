@@ -34,6 +34,10 @@
 @import 'main/footer.css';
 @import 'feedback/feedback.css';
 
+html{
+    width: 100%!important;
+}
+
 li{
     list-style: none;
 }
@@ -578,7 +582,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 0;
 }
 
 ::-webkit-scrollbar-track {
