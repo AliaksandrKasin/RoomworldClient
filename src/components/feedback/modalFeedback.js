@@ -17,7 +17,8 @@ class ModalFeedback extends React.Component {
         for (let i = 0; i < 11; i++) {
             arrayButtons.push(<button
                 className={(this.state.btnCheck === i) ? "btn-choice border btn-choice-checked" : "btn-choice border"}
-                onClick={() => this.setState({btnCheck: i})}>{i}</button>)
+                onClick={() => this.setState({btnCheck: i})}
+                key={i}>{i}</button>)
         }
         return arrayButtons;
     }
@@ -39,7 +40,8 @@ class ModalFeedback extends React.Component {
                             <FormTextArea placeholder="Feedback"/>
                         </div>
                         <div className="mb-3 mt-3">
-                            <span className="h6">How likely are you to recommend our website to a friend or colleague?</span>
+                            <span
+                                className="h6">How likely are you to recommend our website to a friend or colleague?</span>
                         </div>
                         {this.displayChoiceBtn()}
 
