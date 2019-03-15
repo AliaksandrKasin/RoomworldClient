@@ -1,0 +1,68 @@
+.btn-feedback{
+    background-color: white;
+    border: 1px solid #606267;
+    z-index: 100;
+    bottom: -25px;
+    right: 70px;
+    border-radius: 5px 0 0 0;
+    color: #2a6ebb;
+    padding: 10px 15px 30px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.btn-feedback:hover{
+    transition: 0.5s;
+    bottom: -18px;
+    border-top-right-radius: 4px;
+}
+
+.chat-bubble{
+    font-size: 22px;
+}
+
+.container-modal-feedback{
+    width: 600px;
+    height: 650px;
+}
+
+.btn-choice{
+    outline: none!important;
+    background-color: white;
+    padding: 10px 17px;
+    width: 50px;
+    margin: -1px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #606267;
+}
+
+.btn-choice-checked{
+    background-color: #2a6ebb;
+    color: white;
+    z-index: 1;
+}
+
+.btn-choice:hover{
+    background-color: #2a6ebb;
+    color: white;
+    z-index: 1;
+}
+
+.feedback-modal__btn{
+    background-color: white;
+    color: #606267;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.feedback-modal__btn:hover{
+    background-color: #606267;
+    color: white;
+    transition: 1s;
+}
+

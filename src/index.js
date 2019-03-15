@@ -9,6 +9,7 @@ import Router from "./router";
 import ChatContainer from "./components/chatComponents/chatContainer";
 import ChatButton from "./components/chatComponents/chatButton";
 import {tokenIsExpired} from "./services/accountServices/tokenService";
+import FeedbackContainer from "./components/feedback/feedbackContainer";
 
 ReactDOM.render(<Provider store={STORE}>
         <BrowserRouter>
@@ -17,7 +18,8 @@ ReactDOM.render(<Provider store={STORE}>
                 <main>
                     <Router/>
                     {/*(localStorage.getItem('accessToken')) && <ChatContainer/>*/}
-                    {/*(localStorage.getItem('accessToken')) && <ChatButton/>*/}
+                    <ChatButton/>
+                   <FeedbackContainer/>
                 </main>
                 <footer>
                 </footer>

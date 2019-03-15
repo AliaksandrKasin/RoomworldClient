@@ -32,6 +32,7 @@
 @import './main/teaser.css';
 @import 'main/cityTile.css';
 @import 'main/footer.css';
+@import 'feedback/feedback.css';
 
 li{
     list-style: none;
