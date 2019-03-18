@@ -62,7 +62,7 @@ class ApartmentRules extends React.Component {
             return;
         }
         this.props.setApartmentRules(this.state.rulesOfResidence);
-        createApartment();
+        this.createApartment();
     }
 
     render() {

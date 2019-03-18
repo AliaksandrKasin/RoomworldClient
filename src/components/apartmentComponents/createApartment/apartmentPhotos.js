@@ -9,7 +9,7 @@ class ApartmentPhotos extends React.Component {
         super(props);
         this.inputFile = React.createRef();
         this.state = {
-            images: props.apartment.images || [],
+            images: [],
             errorMessage: "",
             tooBigSize: []
         };
@@ -20,12 +20,13 @@ class ApartmentPhotos extends React.Component {
             this.props.setApartmentImages(this.state.images);
             unsubscribe();
         });
+        this.addPhoto(this.props.apartment.images);
     }
 
-    onChangeSelectPictures = event => {
+    addPhoto = (image) => {
         let tooBigSize = this.state.tooBigSize;
         let images = this.state.images;
-        [...event.target.files].map(img => {
+        [...image].map(img => {
             let isExistsImage = images.map(el => el.name).indexOf(img.name);
             if (isExistsImage === -1) {
                 images.push(img);
@@ -34,10 +35,12 @@ class ApartmentPhotos extends React.Component {
                 }
             }
         });
-
-        debugger
         (this.state.images.length > 3) && this.setState({errorMessage: ""});
         this.setState({images: images});
+    }
+
+    onChangeSelectPictures = event => {
+        this.addPhoto(event.target.files);
     }
 
     listPictures = (images) => {
@@ -53,8 +56,6 @@ class ApartmentPhotos extends React.Component {
                         <h5 className="text-uppercase">Is too large</h5>
                     </div>
                 }
-
-
                 <img src={URL.createObjectURL(img)}
                      className={this.state.tooBigSize.indexOf(img.name) !== -1 ? "img-thumbnail gallery-picture blur" : "img-thumbnail gallery-picture"}/>
             </div>
