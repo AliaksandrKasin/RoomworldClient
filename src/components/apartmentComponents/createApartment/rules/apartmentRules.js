@@ -4,6 +4,8 @@ import ModalCreateRule from "./modalCreateRule";
 import connect from "react-redux/es/connect/connect";
 import {setApartmentRules} from "../../../../actions/apartmentActions/apartmentActions";
 import AlertError from "../../../alertComponents/alertError";
+import objectToFormData from "object-to-formdata";
+import {createApartment} from "../../../../services/apartmentServices/apartmentService";
 
 
 class ApartmentRules extends React.Component {
@@ -41,6 +43,18 @@ class ApartmentRules extends React.Component {
             this.setState({errorMessage: "This rule already exists!"});
     }
 
+    createApartment = () => {
+        let apartment = this.props.apartment;
+        let apartmentForm = objectToFormData(apartment);
+        apartment.rulesOfResidence.forEach((rule, index) => {
+            apartmentForm.append("rulesOfResidence[][" + index + "][nameRule]", rule.nameRule);
+            apartmentForm.append("rulesOfResidence[][" + index + "][isAllowed]", rule.isAllowed);
+        });
+        createApartment(apartmentForm).then(()=>{
+            this.props.history.push("/profile/my/flats")
+        });
+    }
+
     next = (e) => {
         e.preventDefault();
         if (this.state.rulesOfResidence.length < 2) {
@@ -48,7 +62,7 @@ class ApartmentRules extends React.Component {
             return;
         }
         this.props.setApartmentRules(this.state.rulesOfResidence);
-        this.props.history.push("/apartment/finish")
+        createApartment();
     }
 
     render() {
@@ -62,14 +76,8 @@ class ApartmentRules extends React.Component {
                     </div>
                 </div>
                 <AlertError message={this.state.errorMessage}/>
-                <div className="photo-container mb-5">
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <button className="button-upload" type="button"
-                                onClick={() => this.setState({modalIsOpen: true})}>
-                            <i className="fas fa-check-circle button-upload-icon"></i>
-                            <span className="button-upload-title">Create Rule</span>
-                        </button>
-                    </div>
+                <div className="photo-container mb-5 p-2">
+                    <ModalCreateRule open={this.state.modalIsOpen} onClose={this.onCloseModal} createRule={this.addRule}/>
                 </div>
                 {
                     (!!this.state.rulesOfResidence.length) &&
@@ -93,7 +101,6 @@ class ApartmentRules extends React.Component {
                     </div>
                 </div>
             </form>
-            <ModalCreateRule open={this.state.modalIsOpen} onClose={this.onCloseModal} createRule={this.addRule}/>
         </div>
     }
 }

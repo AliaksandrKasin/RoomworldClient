@@ -31,7 +31,7 @@ class Menu extends React.Component {
                 {
                     (this.checkLocalStorage()) &&
                     <div className="d-flex h-100">
-                        <Link to={'/apartment/welcome'}>
+                        <Link to={'/apartment/details'}>
                             <div className="navbar-button">
                                 <i className="fas fa-home navbar-icon"></i>
                                 <i className="fas fa-plus-circle navbar-icon-info"></i>

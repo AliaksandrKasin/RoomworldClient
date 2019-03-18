@@ -77,7 +77,7 @@ class Home extends React.Component {
                 <div className="text-center">
                     <h4 className="mb-4 font-lora">List your property on RoomWorld.com and open your door to
                         rental income</h4>
-                    <button className="btn-property font-lora" onClick={() =>  this.props.history.push('/apartment/welcome')}>List your property</button>
+                    <button className="btn-property font-lora" onClick={() =>  this.props.history.push('/apartment/details')}>List your property</button>
                 </div>
             </div>
             <Footer/>

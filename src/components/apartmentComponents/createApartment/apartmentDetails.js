@@ -111,13 +111,8 @@ class ApartmentDetails extends React.Component {
                     </div>
                     <div className="border-bottom w-100 mb-5">
                     </div>
-                    <div className="row m-0 flex-nowrap mb-5">
-                        <div className="text-left col-sm">
-                            <button className="btn-back button-size-s" type='button'
-                                    onClick={() => this.props.history.push('/apartment')}>Back
-                            </button>
-                        </div>
-                        <div className="text-right col-sm">
+                    <div className="m-0 mb-3">
+                        <div className="text-center">
                             <button className="btn-next button-size-s" type='submit'>Next</button>
                         </div>
                     </div>

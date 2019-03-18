@@ -1,10 +1,9 @@
 import axios from "axios";
 import {SERVER} from "../../constants";
 import jwt_decode from "jwt-decode";
-import AjaxService from "../ajaxService";
 
 export function login(email, password) {
-    return AjaxService.post(SERVER + '/token', {
+    return axios.post(SERVER + '/token', {
         email: email,
         password: password
     }).then((response) => {

@@ -114,6 +114,7 @@ class CollectionCardApartment extends React.Component {
                     <div className="d-flex align-items-center">
                         <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
                         {
+                            (!this.state.mapIsHidden) &&
                             <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
                             {this.state.searchParams.country}
                                 {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}

@@ -10,7 +10,8 @@ class ApartmentPhotos extends React.Component {
         this.inputFile = React.createRef();
         this.state = {
             images: props.apartment.images || [],
-            errorMessage: ""
+            errorMessage: "",
+            tooBigSize: []
         };
     }
 
@@ -22,12 +23,19 @@ class ApartmentPhotos extends React.Component {
     }
 
     onChangeSelectPictures = event => {
-        debugger
+        let tooBigSize = this.state.tooBigSize;
         let images = this.state.images;
         [...event.target.files].map(img => {
             let isExistsImage = images.map(el => el.name).indexOf(img.name);
-            (isExistsImage === -1) && images.push(img);
+            if (isExistsImage === -1) {
+                images.push(img);
+                if (img.size / 1024 > 2048) {
+                    tooBigSize.push(img.name);
+                }
+            }
         });
+
+        debugger
         (this.state.images.length > 3) && this.setState({errorMessage: ""});
         this.setState({images: images});
     }
@@ -38,19 +46,36 @@ class ApartmentPhotos extends React.Component {
                 <div className="gallery-picture-icon" onClick={() => this.removePicture(index)}>
                     <i className="fas fa-times"></i>
                 </div>
-                <img src={URL.createObjectURL(img)} className="img-thumbnail gallery-picture"/>
+                {
+                    this.state.tooBigSize.indexOf(img.name) !== -1 &&
+                    <div className="position-absolute img-alert-box">
+                        <i className="fas fa-exclamation-triangle img-alert-box__icon"></i>
+                        <h5 className="text-uppercase">Is too large</h5>
+                    </div>
+                }
+
+
+                <img src={URL.createObjectURL(img)}
+                     className={this.state.tooBigSize.indexOf(img.name) !== -1 ? "img-thumbnail gallery-picture blur" : "img-thumbnail gallery-picture"}/>
             </div>
         })
     }
 
     removePicture = (index) => {
-        this.setState({images: [...this.state.images].filter((el, i) => i !== index)});
+        this.setState({
+            images: [...this.state.images].filter((el, i) => i !== index),
+            tooBigSize: [...this.state.tooBigSize].filter((name) => name !== this.state.images[index].name)
+        });
     }
 
     next = (e) => {
         e.preventDefault();
         if (this.state.images.length < 3) {
             this.setState({errorMessage: "Upload 3 or more images!"});
+            return;
+        }
+        if (this.state.tooBigSize.length > 0) {
+            this.setState({errorMessage: "Some photos is too large!"});
             return;
         }
         this.props.setApartmentImages(this.state.images);

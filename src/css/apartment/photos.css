@@ -36,7 +36,7 @@
     margin-right: 5px;
 }
 
-.gallery-picture{
+.gallery-picture {
     height: 180px;
     width: 255px;
     margin: 1px;
@@ -44,63 +44,85 @@
 }
 
 @media (max-width: 1000px) {
-    .gallery-picture{
+    .gallery-picture {
         height: 160px;
         width: 240px;
     }
 }
 
 @media (max-width: 705px) {
-    .gallery-picture{
+    .gallery-picture {
         height: 120px;
         width: 160px;
     }
 }
 
 @media (max-width: 400px) {
-    .gallery-picture{
+    .gallery-picture {
         height: 130px;
         width: 180px;
     }
-    .apartment-title{
+
+    .apartment-title {
         text-align: center;
     }
 }
 
 @media (max-width: 360px) {
-    .gallery-picture{
+    .gallery-picture {
         height: 110px;
         width: 140px;
     }
 }
 
 @media (max-width: 320px) {
-    .gallery-picture{
+    .gallery-picture {
         height: 110px;
         width: 140px;
     }
 }
 
-
-.gallery-picture-icon{
+.gallery-picture-icon {
     position: absolute;
     top: 6px;
     right: 6px;
-    z-index: 1;
     color: #c8c8c8;
     cursor: pointer;
-    background-color: rgba(29,32,34,.6);;
+    background-color: rgba(29, 32, 34, .6);;
     padding-left: 5px;
     padding-right: 3px;
     font-size: 12px;
     display: none;
+    z-index: 10;
 }
 
-.gallery-picture-icon:hover{
+.gallery-picture-icon:hover {
     color: white;
 }
 
-.picture-container:hover .gallery-picture-icon{
+.picture-container:hover .gallery-picture-icon {
     display: block;
+}
+
+.img-alert-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1;
+    border: 2px solid #d22b07;
+}
+
+.img-alert-box__icon{
+    padding-bottom: 6px;
+    padding-right: 5px;
+    font-size: 30px;
+    color: #d30000;
+}
+
+.blur{
+    filter: blur(4px);
 }
 

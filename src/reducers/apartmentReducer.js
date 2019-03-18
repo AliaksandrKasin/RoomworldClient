@@ -66,6 +66,8 @@ export default function apartmentReducer(state = initialState, action) {
                 apartment: Object.assign(state.apartment, {apartmentLocation: action.location})
             });
         case SET_APARTMENT_IMAGES:
+            debugger
+            debugger
             return Object.assign(state, {
                 apartment: Object.assign(state.apartment, {images: action.images})
             });

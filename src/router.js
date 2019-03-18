@@ -15,16 +15,19 @@ import CollectionCardApartment from "./components/apartmentComponents/collection
 import {withRouter} from 'react-router-dom'
 import OpenStreetMap from "./components/apartmentComponents/showApartment/openStreetMap";
 import Geocode from "react-geocode";
+import axios from "axios";
 
 class Router extends React.Component {
 
     constructor(props) {
         super(props);
         Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY&language=en");
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
     }
 
     componentDidUpdate = () => {
         window.scrollTo(0, 0);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
     }
 
     render() {
