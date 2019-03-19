@@ -4,7 +4,7 @@ import {
     SET_APARTMENT_LOCATION,
     SET_APARTMENT_RATES,
     SET_APARTMENT_RULES,
-    SET_APARTMENT_TYPES, SET_SEARCH_PARAMS, SET_SELECTED_APARTMENT
+    SET_APARTMENT_TYPES, SET_SEARCH_PARAMS, SET_SEARCH_PARAMS_SORT, SET_SELECTED_APARTMENT
 } from "../actions/apartmentActions/apartmentActions";
 
 const initialState = {
@@ -43,7 +43,9 @@ const initialState = {
     searchParams: {
         dateFrom: new Date(),
         dateTo: new Date(new Date().setDate(new Date().getDate() + 1)),
-        place: ""
+        country: "",
+        city: "",
+        sort: {}
     }
 };
 
@@ -66,8 +68,6 @@ export default function apartmentReducer(state = initialState, action) {
                 apartment: Object.assign(state.apartment, {apartmentLocation: action.location})
             });
         case SET_APARTMENT_IMAGES:
-            debugger
-            debugger
             return Object.assign(state, {
                 apartment: Object.assign(state.apartment, {images: action.images})
             });
@@ -92,7 +92,12 @@ export default function apartmentReducer(state = initialState, action) {
         case SET_SELECTED_APARTMENT:
             return Object.assign(state, {selectedApartment: action.id});
         case SET_SEARCH_PARAMS:
-            return Object.assign(state, {searchParams: action.searchParams});
+            let a = Object.assign(state, {searchParams: {...state.searchParams, ...action.searchParams}})
+            debugger
+            return Object.assign(state, {searchParams: {...state.searchParams, ...action.searchParams}});
+        case SET_SEARCH_PARAMS_SORT:
+            debugger
+            return Object.assign(state, Object.assign(state.searchParams, {sort: action.sortItem}));
         default:
             return state;
     }

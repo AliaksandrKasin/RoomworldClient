@@ -28,6 +28,7 @@ class Router extends React.Component {
     componentDidUpdate = () => {
         window.scrollTo(0, 0);
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+        Geocode.setApiKey("AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY&language=en");
     }
 
     render() {

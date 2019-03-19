@@ -45,6 +45,7 @@ class CollectionCardApartment extends React.Component {
 
     loadCollections = (params) => {
         let utcOffset = moment().utcOffset();
+        let a = this.props.searchParams
         let searchParams = (params) ? params : this.props.searchParams;
         searchParams.skip = this.state.skip;
         searchParams.take = this.state.take;
@@ -56,7 +57,7 @@ class CollectionCardApartment extends React.Component {
         getAmountApartmentByParams(searchParams).then((amountApartment) => {
             this.setState({amountApartment: amountApartment});
         });
-        this.setState({searchParams: searchParams});
+        debugger
         Geocode.fromAddress(searchParams.country + " " + searchParams.city)
             .then((response) => {
                     let shortCountryName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
@@ -67,6 +68,7 @@ class CollectionCardApartment extends React.Component {
                     console.log(error)
                 }
             );
+        this.setState({searchParams: searchParams});
     }
 
     resizeWindow = (e) => {
@@ -82,7 +84,7 @@ class CollectionCardApartment extends React.Component {
     }
 
     showMore = () => {
-        let searchParams = JSON.parse(localStorage.getItem("searchParams"));
+        let searchParams = this.state.searchParams;
         searchParams.skip = this.state.skip + this.state.take;
         searchParams.take = this.state.take;
         getApartmentByParams(searchParams).then((collectionApartments) => {
@@ -145,7 +147,7 @@ class CollectionCardApartment extends React.Component {
                     <div
                         className="row m-0 d-flex justify-content-center mt-1">
                         <div className="d-flex justify-content-end align-items-center w-100">
-                            <SortSelectApartment/>
+                            <SortSelectApartment onSelect={this.loadCollections}/>
                         </div>
                         {this.collectionApartment()}
                     </div>

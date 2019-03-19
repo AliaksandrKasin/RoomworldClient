@@ -6,6 +6,7 @@ export const SET_APARTMENT_RULES = 'SET_APARTMENT_RULES';
 export const SET_APARTMENT_TYPES = 'SET_APARTMENT_TYPES';
 export const SET_SELECTED_APARTMENT = 'SET_SELECTED_APARTMENT';
 export const SET_SEARCH_PARAMS = 'SET_SEARCH_PARAMS';
+export const SET_SEARCH_PARAMS_SORT = 'SET_SEARCH_PARAMS_SORT'
 
 export function setApartmentDetails(apartmentDetails) {
     return {
@@ -60,5 +61,12 @@ export function setSearchParams(searchParams) {
     return {
         type: SET_SEARCH_PARAMS,
         searchParams
+    }
+}
+
+export function setSearchParamsSort(sortItem) {
+    return {
+        type: SET_SEARCH_PARAMS_SORT,
+        sortItem
     }
 }

@@ -43,15 +43,12 @@ class SearchBar extends React.Component {
                     let formattedAddress = response.results[0].formatted_address;
                     if (arrayLocationTypes.includes("locality") || arrayLocationTypes.includes("country")) {
                         let searchPlaceObj = this.searchPlaceToObject(formattedAddress);
-                        this.setState({
-                            searchPlace: searchPlaceObj,
-                        })
+                        this.setState({searchPlace: searchPlaceObj})
                     } else {
 
                     }
                 },
                 (error) => {
-                    console.log(error)
                 }
             );
     };
@@ -59,26 +56,24 @@ class SearchBar extends React.Component {
     onPlaceSelected = (place) => {
         if (place.id) {
             let searchPlaceObj = this.searchPlaceToObject(place.formatted_address);
-            this.setState({
-                displayPlace: place.formatted_address,
-                searchPlace: searchPlaceObj
-            })
+            this.setState({displayPlace: place.formatted_address, searchPlace: searchPlaceObj});
         }
-
     }
 
     searchPlaceToObject = (place) => {
         let splitPlace = place.split(/[,]/).filter(n => n);
-        return (splitPlace.length === 1) ? {city: null, country: splitPlace[splitPlace.length - 1].trim()} :
+        return (splitPlace.length === 1) ? {city: "", country: splitPlace[splitPlace.length - 1].trim()} :
             {city: splitPlace[0].trim(), country: splitPlace[splitPlace.length - 1].trim()}
     }
 
     search = () => {
+        let utcOffset = moment().utcOffset();
         let searchParams = {
-            dateFrom: new Date(this.state.dateFrom.getFullYear(), this.state.dateFrom.getMonth(), this.state.dateFrom.getDate()),
-            dateTo: new Date(this.state.dateTo.getFullYear(), this.state.dateTo.getMonth(), this.state.dateTo.getDate()),
+            dateFrom: moment(this.state.dateFrom).toDate(),
+            dateTo: moment(this.state.dateTo).toDate(),
             country: this.state.searchPlace.country,
-            city: this.state.searchPlace.city
+            city: this.state.searchPlace.city,
+            sort: {}
         };
         this.props.setSearchParams(searchParams);
         (window.location.pathname !== "/search/apartment") ? this.props.history.push("/search/apartment") : this.props.onClickApply(searchParams);

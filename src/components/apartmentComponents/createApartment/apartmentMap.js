@@ -14,7 +14,7 @@ class ApartmentMap extends React.Component {
                 bootstrapURLKeys={{key: "AIzaSyCNmZiicfeXMG-PG4HQNU4lzX4OB-ci-NY"}}>
                 {
                     (this.props.collectionPoint) && this.props.collectionPoint.map((center) => {
-                        return <AnyReactComponent lat={center.lat} lng={center.lng} text={'Efel Tower'}/>
+                        return <AnyReactComponent lat={center.lat} lng={center.lng}/>
                     })
                 }
                 <AnyReactComponent lat={this.props.center.lat} lng={this.props.center.lng} text={'Efel Tower'}/>
