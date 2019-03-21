@@ -5,7 +5,6 @@ import Loading from "../../extensionComponents/loading";
 import Geocode from "react-geocode";
 import ApartmentFooter from "../createApartment/apartmentFooter";
 import CardHorizontalApartment from "./cards/cardHorizontalApartment";
-import OpenStreetMap from "../showApartment/openStreetMap";
 import SortSelectApartment from "./sortSelectApartment";
 import FiltersModalApartment from "./apartmentFilter/filtersModalApartment";
 import ReactCountryFlag from "react-country-flag";
@@ -13,6 +12,7 @@ import SearchBar from "./searchBar/searchBar";
 import {GoogleMapContainer} from "./googleMap/googleMap";
 import connect from "react-redux/es/connect/connect";
 import moment from "moment";
+import {setSearchParams} from "../../../actions/apartmentActions/apartmentActions";
 
 class CollectionCardApartment extends React.Component {
 
@@ -22,11 +22,6 @@ class CollectionCardApartment extends React.Component {
             apartments: [],
             skip: 0,
             take: 10,
-            center: {
-                lat: 0,
-                lng: 0
-            },
-            zoom: 10,
             isLoad: false,
             amountApartment: 0,
             searchParams: props.searchParams,
@@ -43,44 +38,33 @@ class CollectionCardApartment extends React.Component {
         window.addEventListener("resize", this.resizeWindow);
     }
 
-    loadCollections = (params) => {
-        let utcOffset = moment().utcOffset();
-        let a = this.props.searchParams
-        let searchParams = (params) ? params : this.props.searchParams;
-        searchParams.skip = this.state.skip;
-        searchParams.take = this.state.take;
-        searchParams.dateFrom = moment(searchParams.dateFrom).add(utcOffset, "m").utc();
-        searchParams.dateTo = moment(searchParams.dateTo).add(utcOffset, "m").utc();
-        getApartmentByParams(searchParams).then((collectionApartments) => {
-            this.setState({apartments: collectionApartments, isLoad: true});
-        });
-        getAmountApartmentByParams(searchParams).then((amountApartment) => {
-            this.setState({amountApartment: amountApartment});
-        });
-        debugger
-        Geocode.fromAddress(searchParams.country + " " + searchParams.city)
-            .then((response) => {
-                    let shortCountryName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
-                    let geocode = response.results[0].geometry.location;
-                    this.setState({center: {lat: geocode.lat, lng: geocode.lng}, shortCountryName: shortCountryName});
-                },
-                (error) => {
-                    console.log(error)
-                }
-            );
-        this.setState({searchParams: searchParams});
-    }
-
     resizeWindow = (e) => {
-        let b = e.target.innerWidth;
         (e.target.innerWidth < 620) ?
             this.setState({cardView: true}) : this.setState({cardView: false});
         (e.target.innerWidth <= 974) ?
             this.setState({mapIsHidden: true}) : this.setState({mapIsHidden: false});
     }
 
-    formatDate = (date) => {
-        return date.getDate() + "/" + (+date.getMonth() + 1) + "/" + date.getFullYear();
+    loadCollections = (params) => {
+        debugger
+        let utcOffset = moment().utcOffset();
+        let searchParams = (params) ? params : this.props.searchParams;
+        searchParams.skip = this.state.skip;
+        searchParams.take = this.state.take;
+        searchParams.dateFrom = moment(searchParams.dateFrom).add(utcOffset, "m").utc();
+        searchParams.dateTo = moment(searchParams.dateTo).add(utcOffset, "m").utc();
+        this.setState({searchParams: searchParams});
+        getApartmentByParams(searchParams).then((collectionApartments) => {
+            this.setState({apartments: collectionApartments, isLoad: true});
+        });
+        getAmountApartmentByParams(searchParams).then((amountApartment) => {
+            this.setState({amountApartment: amountApartment});
+        });
+        Geocode.fromAddress(searchParams.country + " " + searchParams.city)
+            .then((response) => {
+                let shortCountryName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
+                this.setState({shortCountryName: shortCountryName});
+            });
     }
 
     showMore = () => {
@@ -98,14 +82,8 @@ class CollectionCardApartment extends React.Component {
             return (this.state.cardView) ?
                 <CardApartment key={index} apartment={apartment} shortCountryName={this.state.shortCountryName}/> :
                 <CardHorizontalApartment key={index} apartment={apartment}
-                                         onMouseOver={(coordinates) => this.child.onMouseOver(coordinates)}
-                                         onMouseOut={() => this.child.onMouseOut()}
                                          shortCountryName={this.state.shortCountryName}/>
         })
-    }
-
-    onCloseMap = () => {
-        this.setState({mapIsHidden: true});
     }
 
     render() {
@@ -157,12 +135,12 @@ class CollectionCardApartment extends React.Component {
                 </div>
                 {
                     (!this.state.mapIsHidden) && < div className="map-sticky-container sticky-top col-sm-6">
-                        {/* <OpenStreetMap onClose={this.onCloseMap} btnCloseIsVisible={(window.innerWidth <= 974)}
-                                       apartments={this.state.apartments}/> */}
-                        <GoogleMapContainer apartments={this.state.apartments} onClose={this.onCloseMap}
-                                            btnCloseIsVisible={(window.innerWidth <= 974)} center={this.state.center}
+                        <GoogleMapContainer apartments={this.state.apartments}
+                                            onClose={() => this.setState({mapIsHidden: true})}
+                                            btnCloseIsVisible={this.state.mapIsHidden}
                                             hoveredApartment={this.state.hoveredApartment}
-                                            onRef={ref => (this.child = ref)}/>
+                                            onRef={ref => (this.child = ref)}
+                                            place={this.state.searchParams.country + " " + this.state.searchParams.city}/>
                     </div>
                 }
             </div>
@@ -179,4 +157,12 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(CollectionCardApartment);
+const mapDispatchToProps = dispatch => {
+    return {
+        setSearchParams: details => {
+            dispatch(setSearchParams(details));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionCardApartment);

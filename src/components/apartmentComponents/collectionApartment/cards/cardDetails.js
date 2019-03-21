@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 import StarRatings from "react-star-ratings";
+import moment from "moment";
 
 class CardDetails extends React.Component{
 
@@ -29,7 +30,7 @@ class CardDetails extends React.Component{
                 </div>
                 <div>
                     <small className="text_color_dark-green font-weight-6 w-100 pl-3">Available
-                        from {new Date().toDateString()}</small>
+                        from {moment(this.props.createdDate).format("MMMM Do YYYY")}</small>
                     <div className="d-flex align-items-end pt-2">
                         <div className="w-100 pl-3">
                             <strong className="h5 text-dark">{this.props.cost}€ <small>per night</small>

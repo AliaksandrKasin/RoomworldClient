@@ -18,7 +18,8 @@ class CardVerticalApartment extends React.Component {
                                  name={this.props.apartment.headTitle}
                                  cardText={this.props.apartment.propertyDescription}
                                  cost={this.props.apartment.apartmentRates}
-                                 id={this.props.apartment.id}/>
+                                 id={this.props.apartment.id}
+                                 createdDate={this.props.apartment.createdDate}/>
                 </div>
             </div>
         </div>

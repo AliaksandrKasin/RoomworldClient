@@ -33,7 +33,6 @@ class SortSelectApartment extends React.Component {
             this.props.setSearchParamsSort(item);
             this.props.onSelect();
         }
-
     }
 
     render() {
