@@ -22,7 +22,7 @@ class Menu extends React.Component {
 
 
     render() {
-        return <header>
+        return <header className="">
             <nav className='navbar border-bottom pr-0'>
                 <Link className="navbar-logo" to="/">
                     <img className="img-thumbnail border-0"

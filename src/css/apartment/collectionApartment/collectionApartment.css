@@ -87,18 +87,6 @@
     opacity: 1;
 }
 
-.btn-sort {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    outline: none !important;
-    display: flex;
-    align-items: center;
-    color: #606267;
-    height: 100%;
-    padding: 10px 20px;
-}
-
 .nav-item-marker-point:before {
     margin-right: 7px;
     font-weight: 800;

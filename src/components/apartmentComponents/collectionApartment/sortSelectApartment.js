@@ -59,7 +59,7 @@ class SortSelectApartment extends React.Component {
 }
 
 const sortSelect = [
-    {name: "Sort", type: null, direction: true},
+    {name: "Sort By", type: null, direction: true},
     {name: "Price: Low to High", type: "price", direction: true},
     {name: "Price: High to Low", type: "price", direction: false},
     {name: "Guest Rating", type: "rating", direction: true},

@@ -18,7 +18,7 @@ class CheckList extends React.Component {
 
     render() {
         return <div>
-            <h4>{this.props.title}</h4>
+            <h5>{this.props.title}</h5>
             {
                 this.props.list.map((checkBox, index) => {
                     return <div key={index} className="mt-2"><CheckBox title={checkBox} onClick={this.onClickCheckBox}/>

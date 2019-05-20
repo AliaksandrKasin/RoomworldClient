@@ -13,6 +13,9 @@ import {GoogleMapContainer} from "./googleMap/googleMap";
 import connect from "react-redux/es/connect/connect";
 import moment from "moment";
 import {setSearchParams} from "../../../actions/apartmentActions/apartmentActions";
+import PriceSlider from "./apartmentFilter/priceSlider";
+import SinglePriceSlider from "./apartmentFilter/singlePriceSlider";
+import SingleBedroomsSelect from "./apartmentFilter/singleBedroomsSlider";
 
 class CollectionCardApartment extends React.Component {
 
@@ -45,14 +48,14 @@ class CollectionCardApartment extends React.Component {
             this.setState({mapIsHidden: true}) : this.setState({mapIsHidden: false});
     }
 
-    loadCollections = (params) => {
-        debugger
+    loadCollections = (params, filters = null) => {
         let utcOffset = moment().utcOffset();
         let searchParams = (params) ? params : this.props.searchParams;
         searchParams.skip = this.state.skip;
         searchParams.take = this.state.take;
         searchParams.dateFrom = moment(searchParams.dateFrom).add(utcOffset, "m").utc();
         searchParams.dateTo = moment(searchParams.dateTo).add(utcOffset, "m").utc();
+        searchParams.apartmentFilters = filters;
         this.setState({searchParams: searchParams});
         getApartmentByParams(searchParams).then((collectionApartments) => {
             this.setState({apartments: collectionApartments, isLoad: true});
@@ -91,23 +94,18 @@ class CollectionCardApartment extends React.Component {
             <SearchBar position="left" onClickApply={this.loadCollections}/>
             <div className="apartment-filter-bar border-bottom border-top">
                 <div className="d-flex align-items-center justify-content-center text-anthracite h-100 mb-1">
-                    <div className="d-flex align-items-center">
-                        <div className="pl-2 pb-1"><ReactCountryFlag code={this.state.shortCountryName} svg/></div>
-                        {
-                            (!this.state.mapIsHidden) &&
-                            <span className="text-capitalize pl-2 text-dark h5 font-weight-normal pt-1">
-                            {this.state.searchParams.country}
-                                {(this.state.searchParams.country && this.state.searchParams.city) && ", " + this.state.searchParams.city}
-                            </span>
-                        }
-                        <span className="ml-2 text-dark h6 font-weight-normal pt-1">
-                            {"( " + this.state.apartments.length + " of " + this.state.amountApartment + " )"}
-                            </span>
+                    <SinglePriceSlider onClickDone={this.loadCollections}/>
+                    <SingleBedroomsSelect  onClickDone={this.loadCollections}/>
+                    <div>
+                        <button className="btn-sort">
+                            <span>Instant Confirmation</span>
+                            <i className={false ? "fas fa-angle-down btn-sort-icon btn-sort-icon-active" : "fas fa-angle-down btn-sort-icon"}></i>
+                        </button>
                     </div>
-                    <div className="ml-3">
+                    <div className="">
                         <button className="btn-filters" onClick={() => this.setState({modalFiltersIsOpen: true})}>
                             <i className="fas fa-sliders-h pr-2"></i>
-                            <span>Filters</span>
+                            <span>More Filters</span>
                         </button>
                     </div>
                     {
@@ -124,9 +122,18 @@ class CollectionCardApartment extends React.Component {
                 <div className="container container-collection-apartment col-sm-6 m-0 mt-2">
                     <div
                         className="row m-0 d-flex justify-content-center mt-1">
-                        <div className="d-flex justify-content-end align-items-center w-100">
-                            <SortSelectApartment onSelect={this.loadCollections}/>
+                        <div className="d-flex align-items-center w-100">
+                            <div className="d-flex justify-content-start align-items-center w-100 h-100">
+                                <div className="">
+                                    <span
+                                        className="ml-2 text-dark h6 font-weight-normal pt-1">{this.state.apartments.length + " of " + this.state.amountApartment + " Apartments"}</span>
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-end align-items-center w-100">
+                                <SortSelectApartment onSelect={this.loadCollections}/>
+                            </div>
                         </div>
+
                         {this.collectionApartment()}
                     </div>
                     <div className="text-center">
@@ -146,7 +153,8 @@ class CollectionCardApartment extends React.Component {
             </div>
             <ApartmentFooter/>
             <FiltersModalApartment open={this.state.modalFiltersIsOpen}
-                                   onClose={() => this.setState({modalFiltersIsOpen: false})}/>
+                                   onClose={() => this.setState({modalFiltersIsOpen: false})}
+                                   onClickDone={this.loadCollections}/>
         </div>
     }
 }

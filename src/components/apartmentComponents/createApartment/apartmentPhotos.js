@@ -2,6 +2,7 @@ import * as React from "react";
 import AlertError from "../../alertComponents/alertError";
 import {setApartmentImages} from "../../../actions/apartmentActions/apartmentActions";
 import connect from "react-redux/es/connect/connect";
+import {MAX_FILE_SIZE} from "../../../constants";
 
 class ApartmentPhotos extends React.Component {
 
@@ -24,13 +25,14 @@ class ApartmentPhotos extends React.Component {
     }
 
     addPhoto = (image) => {
+        const byte = 1024;
         let tooBigSize = this.state.tooBigSize;
         let images = this.state.images;
         [...image].map(img => {
             let isExistsImage = images.map(el => el.name).indexOf(img.name);
             if (isExistsImage === -1) {
                 images.push(img);
-                if (img.size / 1024 > 2048) {
+                if (img.size / byte > MAX_FILE_SIZE) {
                     tooBigSize.push(img.name);
                 }
             }

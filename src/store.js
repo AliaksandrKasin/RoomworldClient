@@ -1,9 +1,10 @@
 import {combineReducers, createStore} from 'redux';
 import chatReducer from "./reducers/chatReducer";
 import apartmentReducer from "./reducers/apartmentReducer";
+import profileReducer from "./reducers/profileReducer";
 
 const localStorageKey = 'room-world-storage';
-const reducers = combineReducers({apartmentReducer, chatReducer});
+const reducers = combineReducers({apartmentReducer, chatReducer, profileReducer});
 
 const oldState = loadState();
 const STORE = createStore(reducers, oldState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

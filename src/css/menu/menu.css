@@ -12,6 +12,14 @@
     background-color: white;
     justify-content: flex-end !important;
     padding: 0;
+    width: 100%;
+    /*box-shadow: 0 0 1px 0px #c5c5c5;*/
+}
+
+.navbar-sticky{
+    position: sticky;
+    top:0;
+    z-index: 1000000;
 }
 
 .navbar-button {

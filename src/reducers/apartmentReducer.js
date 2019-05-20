@@ -45,7 +45,13 @@ const initialState = {
         dateTo: new Date(new Date().setDate(new Date().getDate() + 1)),
         country: "",
         city: "",
-        sort: {}
+        sort: {},
+        filters: {
+            maxCost: null,
+            minCost: null,
+            amountBedrooms: null,
+            amountBathrooms: null
+        }
     }
 };
 

@@ -14,6 +14,10 @@
     font-size: 18px;
 }
 
+.filter-animation{
+    padding: 1000px;
+}
+
 .filter-bar-container {
     margin-left: 32px;
     display: flex;
@@ -24,6 +28,11 @@
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.filters-block{
+    height: 80vh;
+    overflow: auto;
 }
 
 @media (max-width: 400px) {
@@ -37,5 +46,23 @@
 @media (max-width: 380px) {
     .filter-bar-title {
         display: none;
+    }
+}
+
+@media (max-height: 900px) {
+    .filters-block{
+        height: 75vh;
+    }
+}
+
+@media (max-height: 745px) {
+    .filters-block{
+        height: 70vh;
+    }
+}
+
+@media (max-height: 568px) {
+    .filters-block{
+        height: 64vh;
     }
 }
