@@ -34,11 +34,11 @@
 @import 'main/footer.css';
 @import 'feedback/feedback.css';
 
-html{
-    width: 100%!important;
+html {
+    width: 100% !important;
 }
 
-li{
+li {
     list-style: none;
 }
 
@@ -261,7 +261,13 @@ a:hover {
 .title_size_1 {
     font-size: 1rem;
     /*height: 60px!important;*/
+    height: 60px;
 }
+
+.small-card-img{
+    height: 200px;
+}
+
 
 .finish-container {
     background: url("https://get.pxhere.com/photo/architecture-house-floor-building-home-ceiling-cottage-property-living-room-room-apartment-interior-design-design-hardwood-estate-digital-art-suite-real-estate-dining-room-wood-flooring-945412.jpg") fixed center center;
@@ -583,6 +589,7 @@ a:hover {
 ::-webkit-scrollbar {
     width: 0;
 }
+
 /*
 ::-webkit-scrollbar-track {
     background: #f1f1f1;

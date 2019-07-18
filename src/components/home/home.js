@@ -16,15 +16,15 @@ class Home extends React.Component {
                 <div className="container-icons-overview w-100 position-relative">
                     <div className="search-cover-black"></div>
                     <OverviewIcons img="https://www.thehomelike.com/wp-content/uploads/large-office.png"
-                                   strong="45,000+"
+                                   strong="10+"
                                    span="Apartments"/>
 
                     <OverviewIcons img="https://www.thehomelike.com/wp-content/uploads/moon.png"
-                                   strong="915,000+"
+                                   strong="15+"
                                    span="Booked night"/>
 
                     <OverviewIcons img="https://www.thehomelike.com/wp-content/uploads/pin-on-map.png"
-                                   strong="400+"
+                                   strong="3+"
                                    span="Cities"/>
 
                     <OverviewIcons img="https://www.thehomelike.com/wp-content/uploads/discount-percentage.png"

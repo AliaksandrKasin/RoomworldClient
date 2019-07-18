@@ -82,7 +82,7 @@ class ChatContainer extends React.Component {
     }
 
     render() {
-        return (this.props.chatIsOpen) && <div className="bottom-right d-flex justify-content-end mb-3 mr-3">
+        return (this.props.chatIsOpen) && <div className="bottom-right d-flex justify-content-end mb-5 mr-3">
             <div className="chat-container">
                 <div className="border chat-container-top d-flex align-items-center justify-content-center">
                     <div className="w-100 chat-container-title">

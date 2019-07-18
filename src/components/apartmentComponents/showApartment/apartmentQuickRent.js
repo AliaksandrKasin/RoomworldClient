@@ -70,7 +70,7 @@ class ApartmentQuickRent extends React.Component {
         return <div className="border rounded_10 mt-3 mb-5">
             <div className="row">
                 <div className="col-sm">
-                    <h3 className="mt-5 ml-4">${this.props.apartment.apartmentRates}
+                    <h3 className="mt-5 ml-4">€{this.props.apartment.apartmentRates}
                         <small className="text-muted"> per night</small>
                     </h3>
                     <div className="ml-3 quick-rent_title">
@@ -113,7 +113,7 @@ class ApartmentQuickRent extends React.Component {
                 </div>
                 <div className="w-100 d-flex justify-content-end pr-3">
                     <small
-                        className="text-right h5">${this.dateDiff(this.state.reservationParams.dateTo, this.state.reservationParams.dateFrom) * this.props.apartment.apartmentRates}</small>
+                        className="text-right h5">€{this.dateDiff(this.state.reservationParams.dateTo, this.state.reservationParams.dateFrom) * this.props.apartment.apartmentRates}</small>
                 </div>
             </div>
             <div className="text-center mb-4">

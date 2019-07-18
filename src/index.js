@@ -17,9 +17,9 @@ ReactDOM.render(<Provider store={STORE}>
                 <Menu/>
                 <main>
                     <Router/>
-                    {/*(localStorage.getItem('accessToken')) && <ChatContainer/>*/}
+                    {(localStorage.getItem('accessToken')) && <ChatContainer/>}
                     <ChatButton/>
-                   <FeedbackContainer/>
+                    <FeedbackContainer/>
                 </main>
                 <footer>
                 </footer>

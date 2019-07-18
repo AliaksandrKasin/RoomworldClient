@@ -24,7 +24,7 @@ class ApartmentSmallCard extends React.Component {
             <div className="card">
                 <div>
                     <img src={SERVER + this.props.image}
-                         className="img-fluid"/>
+                         className="img-fluid small-card-img"/>
                     <div className="px-3 text-left pb-3 mt-3">
                         <h4 className="card-title title_size_1 text-dark">{this.props.name}</h4>
                         <div className="d-flex justify-content-between align-items-center pt-4 mt-4">

@@ -43,7 +43,7 @@ class Footer extends React.Component {
                 </div>
                 <SocialButtons/>
                 <div className="text-center mb-5 mt-4 text-white">
-                    <h5 className="font-lora">RoomWorld.com</h5>
+                    <h5 className="font-lora">RoomWorld.com by Kasin Alexander</h5>
                     <small className="d-block">Find a home away from home.</small>
                     <small className="d-block">Copyright © 2019.</small>
                 </div>
