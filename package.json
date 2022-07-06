@@ -25,7 +25,7 @@
     "lodash": "^4.17.11",
     "material-icons": "^0.3.0",
     "material-ui-time-picker": "^1.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "object-to-formdata": "^1.6.2",
     "prop-types": "^15.6.2",
     "qs-stringify": "^1.1.0",
